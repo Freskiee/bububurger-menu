@@ -16,29 +16,25 @@ const ProductCard: React.FC<ProductCardProps> = ({ product }) => {
         onClick={() => setShowModal(true)}
         style={{ cursor: 'pointer' }}
       >
-        <div className="row align-items-center">
-          <div className="col-auto">
-            <img 
-              src={product.image} 
-              alt={product.name}
-              className="product-image"
-            />
-          </div>
-          <div className="col">
-            <h6 className="fw-bold mb-1">
-              {product.name}
-            </h6>
-            <p className="text-muted mb-2 small">
-              {product.description}
-            </p>
-            <div className="product-price">
-              ${product.price}
-              {product.doublePrice && (
-                <span className="ms-2 text-muted">
-                  | Doble: ${product.doublePrice}
-                </span>
-              )}
-            </div>
+        <img 
+          src={product.image} 
+          alt={product.name}
+          className="product-image"
+        />
+        <div className="product-content">
+          <h6 className="product-title">
+            {product.name}
+          </h6>
+          <p className="product-description">
+            {product.description}
+          </p>
+          <div className="product-price">
+            ${product.price}
+            {product.doublePrice && (
+              <span className="double-price">
+                | Doble: ${product.doublePrice}
+              </span>
+            )}
           </div>
         </div>
       </div>
