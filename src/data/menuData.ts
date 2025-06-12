@@ -1,8 +1,11 @@
+import olimpica from "/menu-images/olimpica.jpg";
+
 export interface Product {
   id: string;
   name: string;
   description: string;
   price: number;
+  doublePrice?: number;
   image: string;
 }
 
@@ -21,10 +24,11 @@ export const menuCategories: Category[] = [
     products: [
       {
         id: "f1",
-        name: "Bububurger Clásica",
-        description: "Carne de res, queso cheddar, lechuga, tomate, cebolla y salsa bubu especial",
-        price: 140,
-        image: "https://images.pexels.com/photos/1639557/pexels-photo-1639557.jpeg?auto=compress&cs=tinysrgb&w=300"
+        name: "Bububurger Olímpica",
+        description: "Ex-qui-si-ta, simplemente el mejor balance de sabor, 100 gr. de carne de res sazonada con la receta secreta de la casa, gratinada con queso manchego, tocino, y un par de deliciosos aros de cebolla bañados en aderezo blue-cheese.",
+        price: 170,
+        doublePrice: 185,
+        image: olimpica
       },
       {
         id: "f2", 
@@ -108,6 +112,7 @@ export const menuCategories: Category[] = [
         name: "Bububurger Clásica",
         description: "Carne de res, queso cheddar, lechuga, tomate, cebolla y salsa bubu",
         price: 140,
+        doublePrice: 180,
         image: "https://images.pexels.com/photos/1639557/pexels-photo-1639557.jpeg?auto=compress&cs=tinysrgb&w=300"
       },
       {
@@ -115,6 +120,7 @@ export const menuCategories: Category[] = [
         name: "Bububurger Doble",
         description: "Doble carne, doble queso, lechuga, tomate y salsa especial",
         price: 180,
+        doublePrice: 220,
         image: "https://images.pexels.com/photos/2762942/pexels-photo-2762942.jpeg?auto=compress&cs=tinysrgb&w=300"
       },
       {
@@ -143,6 +149,7 @@ export const menuCategories: Category[] = [
         name: "Ari-Wings BBQ",
         description: "10 alitas bañadas en salsa BBQ casera",
         price: 120,
+        doublePrice: 200,
         image: "https://images.pexels.com/photos/60616/fried-chicken-chicken-fried-crunchy-60616.jpeg?auto=compress&cs=tinysrgb&w=300"
       },
       {

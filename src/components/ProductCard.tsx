@@ -33,6 +33,11 @@ const ProductCard: React.FC<ProductCardProps> = ({ product }) => {
             </p>
             <div className="product-price">
               ${product.price}
+              {product.doublePrice && (
+                <span className="ms-2 text-muted">
+                  | Doble: ${product.doublePrice}
+                </span>
+              )}
             </div>
           </div>
         </div>
@@ -65,6 +70,11 @@ const ProductCard: React.FC<ProductCardProps> = ({ product }) => {
               <p className="text-muted mb-4">{product.description}</p>
               <div className="product-price mb-4">
                 ${product.price}
+                {product.doublePrice && (
+                  <span className="ms-2 text-muted">
+                    | Doble: ${product.doublePrice}
+                  </span>
+                )}
               </div>
               <button 
                 className="btn btn-primary w-100"
