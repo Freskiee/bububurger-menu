@@ -29,12 +29,15 @@ const ProductCard: React.FC<ProductCardProps> = ({ product }) => {
             {product.description}
           </p>
           <div className="product-price">
-            ${product.price}
-            {product.doublePrice && (
-              <span className="double-price">
-                | Doble: ${product.doublePrice}
+            {product.prices.map((option, idx) => (
+              <span key={option.label}>
+                {idx > 0 && <span> | </span>}
+                {option.label
+                  ? <span style={{ color: 'var(--primary-orange)', fontWeight: 700 }}>{option.label}: </span>
+                  : null}
+                <span style={{ color: 'var(--primary-orange)', fontWeight: 700 }}>${option.value}</span>
               </span>
-            )}
+            ))}
           </div>
         </div>
       </div>
@@ -65,12 +68,15 @@ const ProductCard: React.FC<ProductCardProps> = ({ product }) => {
               <h4 className="mb-3">{product.name}</h4>
               <p className="text-muted mb-4">{product.description}</p>
               <div className="product-price mb-4">
-                ${product.price}
-                {product.doublePrice && (
-                  <span className="ms-2 text-muted">
-                    | Doble: ${product.doublePrice}
+                {product.prices.map((option, idx) => (
+                  <span key={option.label}>
+                    {idx > 0 && <span> | </span>}
+                    {option.label
+                      ? <span style={{ color: 'var(--primary-orange)', fontWeight: 700 }}>{option.label}: </span>
+                      : null}
+                    <span style={{ color: 'var(--primary-orange)', fontWeight: 700 }}>${option.value}</span>
                   </span>
-                )}
+                ))}
               </div>
               <button 
                 className="btn btn-primary w-100"
