@@ -74,6 +74,7 @@ const ProductCard: React.FC<ProductCardProps> = ({ product, category }) => {
       <div 
         className="product-card p-3 mb-3"
         onClick={() => setShowModal(true)}
+        id={isInfantil ? "infantil" : undefined}
         style={isInfantil ? {
           background: isDark ? '#23243a' : '#f3eafe',
           borderRadius: 22,
@@ -100,13 +101,25 @@ const ProductCard: React.FC<ProductCardProps> = ({ product, category }) => {
           boxShadow: '0 2px 8px #7c4dff22',
           padding: '10px 10px 8px 10px',
           fontFamily: "'Fredoka One', 'Comic Sans MS', cursive, sans-serif",
+          width: '92%',
+          margin: '0 auto 8px auto',
+          minHeight: '70px'
         } : {}}>
           <h6 className={isInfantil ? "product-title" : "product-title fw-bold mb-1"} style={isInfantil ? { fontFamily: "'Fredoka One', 'Comic Sans MS', cursive, sans-serif", fontWeight: 900, fontSize: '1.13rem', marginBottom: 2, letterSpacing: '0.01em', textAlign: 'left', display: 'flex', alignItems: 'center', gap: 6 } : {}}>
             {isInfantil ? multicolorText(product.name) : product.name}
             {isInfantil && <span style={{ fontSize: 18, marginLeft: 4 }}>🧃</span>}
           </h6>
           {isInfantil ? (
-            <p className="mb-4" style={{ color: '#7c4dff', fontWeight: 700, fontSize: '1.01em' }}>{product.description}</p>
+            <p className="mb-4" style={{ 
+              color: '#7c4dff', 
+              fontWeight: 700, 
+              fontSize: '1.01em',
+              overflow: 'hidden',
+              textOverflow: 'ellipsis',
+              whiteSpace: 'nowrap',
+              WebkitLineClamp: 1,
+              WebkitBoxOrient: 'vertical'
+            }}>{product.description}</p>
           ) : (
             <p className="product-description">{product.description}</p>
           )}
@@ -164,18 +177,28 @@ const ProductCard: React.FC<ProductCardProps> = ({ product, category }) => {
               ) : (
                 <p className="text-muted mb-4">{product.description}</p>
               )}
-              <div className="product-price mb-4" style={isInfantil ? { color: pastelColors[0], fontWeight: 900, fontSize: '1.13em', fontFamily: "'Fredoka One', 'Comic Sans MS', cursive, sans-serif" } : {}}>
+              <div className="product-price mb-4" style={isInfantil ? { 
+                color: pastelColors[0], 
+                fontWeight: 900, 
+                fontSize: '1.13em', 
+                fontFamily: "'Fredoka One', 'Comic Sans MS', cursive, sans-serif" 
+              } : {
+                color: '#ff6a00',
+                fontWeight: 700,
+                fontSize: '1.18rem',
+                textShadow: '0 1px 2px rgba(0,0,0,0.2)'
+              }}>
                 {product.prices.map((option, idx) => (
                   <span key={option.label} style={{ display: 'inline-block', marginBottom: option.note ? 2 : 0 }}>
                     {idx > 0 && <span> | </span>}
                     {option.label
-                      ? <span style={{ color: pastelColors[2], fontWeight: 700 }}>
+                      ? <span style={{ color: '#000', fontWeight: 600 }}>
                           {option.label}{/\.$/.test(option.label.trim()) ? '' : ':'}{' '}
                         </span>
                       : null}
-                    <span style={{ color: pastelColors[0], fontWeight: 900 }}>${option.value}</span>
+                    <span style={{ color: '#ff6a00', fontWeight: 700 }}>${option.value}</span>
                     {option.note && (
-                      <div style={{ fontSize: '0.93em', color: pastelColors[1], opacity: 0.85, marginTop: 2, fontWeight: 400, lineHeight: 1.2 }}>{option.note}</div>
+                      <div style={{ fontSize: '0.93em', color: '#000', opacity: 0.85, marginTop: 2, fontWeight: 400, lineHeight: 1.2 }}>{option.note}</div>
                     )}
                   </span>
                 ))}

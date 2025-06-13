@@ -111,18 +111,18 @@ const RatingModal: React.FC<RatingModalProps> = ({ show, onHide }) => {
               <form autoComplete="off" onSubmit={handleSubmit}>
                 {/* Campo honeypot para spam */}
                 <input type="hidden" name="_gotcha" style={{ display: 'none' }} />
-                <div className="mb-3">
+              <div className="mb-3">
                   <label className="form-label fw-medium">Tu Nombre *</label>
-                  <input
-                    type="text"
-                    className="form-control"
+                <input
+                  type="text"
+                  className="form-control"
                     name="name"
                     value={name}
                     onChange={e => setName(e.target.value)}
-                    required
-                  />
-                </div>
-                <div className="mb-3">
+                  required
+                />
+              </div>
+              <div className="mb-3">
                   <label className="form-label fw-medium">👥 Calidad del Servicio *</label>
                   <div className="d-flex justify-content-center">
                     {[1, 2, 3, 4, 5].map((star) => (
@@ -139,8 +139,8 @@ const RatingModal: React.FC<RatingModalProps> = ({ show, onHide }) => {
                       >🍔</span>
                     ))}
                   </div>
-                </div>
-                <div className="mb-3">
+              </div>
+              <div className="mb-3">
                   <label className="form-label fw-medium">😋 Sabor de los Alimentos *</label>
                   <div className="d-flex justify-content-center">
                     {[1, 2, 3, 4, 5].map((star) => (
@@ -157,8 +157,8 @@ const RatingModal: React.FC<RatingModalProps> = ({ show, onHide }) => {
                       >🍔</span>
                     ))}
                   </div>
-                </div>
-                <div className="mb-3">
+              </div>
+              <div className="mb-3">
                   <label className="form-label fw-medium">🎨 Presentación *</label>
                   <div className="d-flex justify-content-center">
                     {[1, 2, 3, 4, 5].map((star) => (
@@ -175,8 +175,8 @@ const RatingModal: React.FC<RatingModalProps> = ({ show, onHide }) => {
                       >🍔</span>
                     ))}
                   </div>
-                </div>
-                <div className="mb-3">
+              </div>
+              <div className="mb-3">
                   <label className="form-label fw-medium">💰 Percepción del Precio *</label>
                   <div className="d-flex justify-content-center">
                     {[1, 2, 3, 4, 5].map((star) => (
@@ -193,32 +193,32 @@ const RatingModal: React.FC<RatingModalProps> = ({ show, onHide }) => {
                       >🍔</span>
                     ))}
                   </div>
-                </div>
-                <div className="mb-3">
+              </div>
+              <div className="mb-3">
                   <label className="form-label fw-medium">Comentarios Adicionales</label>
-                  <textarea
-                    className="form-control"
-                    rows={3}
+                <textarea
+                  className="form-control"
+                  rows={3}
                     name="comments"
                     value={comments}
                     onChange={e => setComments(e.target.value)}
                     placeholder="Cuéntanos más sobre tu experiencia..."
-                  ></textarea>
-                </div>
-                <button
-                  type="submit"
-                  className="btn w-100 fw-bold"
-                  style={{
-                    background: 'var(--primary-orange)',
-                    color: 'white',
-                    borderRadius: '25px'
-                  }}
+                ></textarea>
+              </div>
+              <button
+                type="submit"
+                className="btn w-100 fw-bold"
+                style={{
+                  background: 'var(--primary-orange)',
+                  color: 'white',
+                  borderRadius: '25px'
+                }}
                   disabled={sending}
-                >
-                  <Send size={20} className="me-2" />
+              >
+                <Send size={20} className="me-2" />
                   {sending ? 'Enviando...' : 'Enviar Mi Reseña'}
-                </button>
-              </form>
+              </button>
+            </form>
             )}
           </div>
         </div>

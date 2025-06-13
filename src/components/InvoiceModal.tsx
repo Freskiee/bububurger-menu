@@ -58,70 +58,70 @@ const InvoiceModal: React.FC<InvoiceModalProps> = ({ show, onHide }) => {
                   action="https://formspree.io/f/meokgnzg"
                   method="POST"
                 >
-                  <div className="row">
-                    <div className="col-12 mb-3">
+                <div className="row">
+                  <div className="col-12 mb-3">
                       <label className="form-label">Correo Electrónico *</label>
-                      <input
+                    <input
                         name="email"
-                        type="email"
-                        className="form-control"
-                        value={formData.email}
-                        onChange={(e) => handleInputChange('email', e.target.value)}
-                        placeholder="tu@email.com"
-                        required
-                      />
-                    </div>
+                      type="email"
+                      className="form-control"
+                      value={formData.email}
+                      onChange={(e) => handleInputChange('email', e.target.value)}
+                      placeholder="tu@email.com"
+                      required
+                    />
+                  </div>
 
-                    <div className="col-md-6 mb-3">
+                  <div className="col-md-6 mb-3">
                       <label className="form-label">RFC *</label>
-                      <input
+                    <input
                         name="rfc"
-                        type="text"
-                        className="form-control"
-                        value={formData.rfc}
-                        onChange={(e) => handleInputChange('rfc', e.target.value.toUpperCase())}
-                        placeholder="ABCD123456EF7"
-                        maxLength={13}
-                        required
-                      />
-                    </div>
+                      type="text"
+                      className="form-control"
+                      value={formData.rfc}
+                      onChange={(e) => handleInputChange('rfc', e.target.value.toUpperCase())}
+                      placeholder="ABCD123456EF7"
+                      maxLength={13}
+                      required
+                    />
+                  </div>
 
-                    <div className="col-md-6 mb-3">
+                  <div className="col-md-6 mb-3">
                       <label className="form-label">Código Postal *</label>
-                      <input
+                    <input
                         name="postal_code"
-                        type="text"
-                        className="form-control"
-                        value={formData.postalCode}
-                        onChange={(e) => handleInputChange('postalCode', e.target.value)}
-                        placeholder="12345"
-                        maxLength={5}
-                        required
-                      />
-                    </div>
+                      type="text"
+                      className="form-control"
+                      value={formData.postalCode}
+                      onChange={(e) => handleInputChange('postalCode', e.target.value)}
+                      placeholder="12345"
+                      maxLength={5}
+                      required
+                    />
+                  </div>
 
-                    <div className="col-12 mb-3">
+                  <div className="col-12 mb-3">
                       <label className="form-label">Nombre Completo *</label>
-                      <input
+                    <input
                         name="name"
-                        type="text"
-                        className="form-control"
-                        value={formData.fullName}
-                        onChange={(e) => handleInputChange('fullName', e.target.value)}
+                      type="text"
+                      className="form-control"
+                      value={formData.fullName}
+                      onChange={(e) => handleInputChange('fullName', e.target.value)}
                         placeholder="Nombre completo o razón social"
-                        required
-                      />
-                    </div>
+                      required
+                    />
+                  </div>
 
-                    <div className="col-12 mb-3">
+                  <div className="col-12 mb-3">
                       <label className="form-label">Régimen Fiscal *</label>
-                      <select
+                    <select
                         name="tax_regime"
-                        className="form-select"
-                        value={formData.taxRegime}
-                        onChange={(e) => handleInputChange('taxRegime', e.target.value)}
-                        required
-                      >
+                      className="form-select"
+                      value={formData.taxRegime}
+                      onChange={(e) => handleInputChange('taxRegime', e.target.value)}
+                      required
+                    >
                         <option value="">Selecciona tu Régimen Fiscal</option>
                         <option value="General de Ley Personas Morales">601 - General de Ley Personas Morales</option>
                         <option value="Personas Morales con Fines no Lucrativos">603 - Personas Morales con Fines no Lucrativos</option>
@@ -142,58 +142,58 @@ const InvoiceModal: React.FC<InvoiceModalProps> = ({ show, onHide }) => {
                         <option value="Coordinados">624 - Coordinados</option>
                         <option value="Régimen de las Actividades Empresariales con Ingresos a través de Plataformas Tecnológicas">625 - Régimen de las Actividades Empresariales con Ingresos a través de Plataformas Tecnológicas</option>
                         <option value="Régimen Simplificado de Confianza">626 - Régimen Simplificado de Confianza</option>
-                      </select>
-                    </div>
+                    </select>
+                  </div>
 
-                    <div className="col-md-6 mb-3">
+                  <div className="col-md-6 mb-3">
                       <label className="form-label">Método de Pago *</label>
-                      <select
+                    <select
                         name="payment_method"
-                        className="form-select"
-                        value={formData.paymentMethod}
-                        onChange={(e) => handleInputChange('paymentMethod', e.target.value)}
-                        required
-                      >
+                      className="form-select"
+                      value={formData.paymentMethod}
+                      onChange={(e) => handleInputChange('paymentMethod', e.target.value)}
+                      required
+                    >
                         <option value="">Selecciona Método de Pago</option>
                         <option value="Efectivo">01 - Efectivo</option>
                         <option value="Transferencia Electrónica de Fondos">03 - Transferencia Electrónica de Fondos</option>
                         <option value="Tarjeta de Crédito">04 - Tarjeta de Crédito</option>
                         <option value="Tarjeta de Débito">28 - Tarjeta de Débito</option>
                         <option value="Por Definir">99 - Por Definir</option>
-                      </select>
-                    </div>
-
-                    <div className="col-md-6 mb-3">
-                      <label className="form-label">Cantidad Total *</label>
-                      <input
-                        name="amount"
-                        type="number"
-                        className="form-control"
-                        value={formData.amount}
-                        onChange={(e) => handleInputChange('amount', e.target.value)}
-                        placeholder="0.00"
-                        min="0"
-                        step="0.01"
-                        required
-                      />
-                    </div>
-
-                    <div className="col-12 mb-4">
-                      <label className="form-label">fecha de consumo *</label>
-                      <input
-                        name="consumption_date"
-                        type="date"
-                        className="form-control"
-                        value={formData.consumptionDate}
-                        onChange={(e) => handleInputChange('consumptionDate', e.target.value)}
-                        required
-                      />
-                    </div>
+                    </select>
                   </div>
 
-                  <div className="text-center">
-                    <button
-                      type="submit"
+                  <div className="col-md-6 mb-3">
+                      <label className="form-label">Cantidad Total *</label>
+                    <input
+                        name="amount"
+                      type="number"
+                      className="form-control"
+                      value={formData.amount}
+                      onChange={(e) => handleInputChange('amount', e.target.value)}
+                      placeholder="0.00"
+                      min="0"
+                      step="0.01"
+                      required
+                    />
+                  </div>
+
+                  <div className="col-12 mb-4">
+                    <label className="form-label">fecha de consumo *</label>
+                    <input
+                        name="consumption_date"
+                      type="date"
+                      className="form-control"
+                      value={formData.consumptionDate}
+                      onChange={(e) => handleInputChange('consumptionDate', e.target.value)}
+                      required
+                    />
+                  </div>
+                </div>
+
+                <div className="text-center">
+                  <button
+                    type="submit"
                       className="btn w-100 fw-bold"
                       style={{
                         background: 'var(--primary-orange)',
@@ -201,17 +201,17 @@ const InvoiceModal: React.FC<InvoiceModalProps> = ({ show, onHide }) => {
                         borderRadius: '25px'
                       }}
                     >
-                      solicitar factura
-                    </button>
-                  </div>
+                    solicitar factura
+                  </button>
+                </div>
 
-                  <div className="mt-3">
-                    <small className="text-muted">
-                      <strong>nota:</strong> tu factura será procesada en un plazo máximo de 72 horas hábiles. 
-                      Recibirás un correo de confirmación una vez que esté lista.
-                    </small>
-                  </div>
-                </form>
+                <div className="mt-3">
+                  <small className="text-muted">
+                    <strong>nota:</strong> tu factura será procesada en un plazo máximo de 72 horas hábiles. 
+                    Recibirás un correo de confirmación una vez que esté lista.
+                  </small>
+                </div>
+              </form>
               )}
             </div>
           </div>

@@ -181,7 +181,7 @@ body {
 }
 
 .product-price {
-  color: var(--primary-orange);
+  color: #ff6a00;
   font-weight: 700;
   font-size: 1.18rem;
   padding: 0 18px;
@@ -189,12 +189,14 @@ body {
   border-radius: 0 0 12px 12px;
   background: none;
   letter-spacing: 0.01em;
+  text-shadow: 0 1px 2px rgba(0,0,0,0.2);
 }
 
 .product-price .double-price {
-  color: rgba(255,255,255,0.9);
+  color: #000;
   font-size: 1rem;
   margin-left: 0.5rem;
+  font-weight: 600;
 }
 
 .floating-btn {
@@ -521,7 +523,11 @@ body {
 }
 
 .dark-mode .product-price {
-  color: var(--primary-orange);
+  color: #ff6a00;
+}
+
+.dark-mode .product-price .double-price {
+  color: #fff;
 }
 
 /* Inputs y selects en formularios de modales */
@@ -585,3 +591,19 @@ body {
 }
 
 /* Mejorar el acabado visual inferior */
+
+/* Estilos específicos para el menú infantil */
+#infantil .product-content {
+  width: 92%;
+  min-height: 70px;
+  padding: 12px 0 10px 0;
+}
+
+#infantil .product-description {
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  -webkit-line-clamp: 1;
+  font-size: 0.82rem;
+  margin-bottom: 0.35rem;
+}
