@@ -9,6 +9,11 @@ import aros from "/menu-images/aros_de_cebolla.png";
 import nachosChilibean from "/menu-images/nachos.png";
 import costillasElote from "/menu-images/costillas-elote.png";
 import eloteAsado from "/menu-images/elote-asado.png";
+import papasFrancesa from "/menu-images/papas-francesa.png";
+import papasCurly from "/menu-images/papas-curly.png";
+import papasGajo from "/menu-images/papas-gajo.png";
+import cariPapas from "/menu-images/caripapas.png";
+import papasWaffle from "/menu-images/papas-waffle.png";
 
 export interface ProductPriceOption {
   label: string;
@@ -163,30 +168,48 @@ export const menuCategories: Category[] = [
     products: [
       {
         id: "p1",
-        name: "Papas Bubu",
-        description: "Papas fritas con nuestra mezcla especial de condimentos",
+        name: "PAPAS A LA FRANCESA",
+        description: "Generosa porción de papas corte recto, calientitas y bien fritas; acompañadas de Kétchup Heinz y queso amarillo tipo Cheddar. ¡Obviamente sazonadas con nuestros polvos mágicos!",
         prices: [
-          { label: "Precio", value: 45 }
+          { label: "Precio", value: 110 }
         ],
-        image: "https://images.pexels.com/photos/1893556/pexels-photo-1893556.jpeg?auto=compress&cs=tinysrgb&w=300"
+        image: papasFrancesa
       },
       {
         id: "p2",
-        name: "Papas con Queso",
-        description: "Papas fritas cubiertas con queso cheddar derretido",
+        name: "PAPAS CURLY",
+        description: "Deliciosas papas espiral delicadamente sazonadas y muy crujientes, acompañadas con Kétchup Heinz y queso amarillo tipo Cheddar.",
         prices: [
-          { label: "Precio", value: 55 }
+          { label: "Precio", value: 110 }
         ],
-        image: "https://images.pexels.com/photos/2271107/pexels-photo-2271107.jpeg?auto=compress&cs=tinysrgb&w=300"
+        image: papasCurly
       },
       {
         id: "p3",
-        name: "Papas Gajo",
-        description: "Papas en gajos sazonadas con hierbas y especias",
+        name: "PAPAS GAJO",
+        description: "Grandiosas papas gajo en cortes de gran tamaño, doradas por fuera y suaves por dentro, acompañadas de Kétchup Heinz y queso amarillo tipo Cheddar.",
         prices: [
-          { label: "Precio", value: 50 }
+          { label: "Precio", value: 110 }
         ],
-        image: "https://images.pexels.com/photos/1586942/pexels-photo-1586942.jpeg?auto=compress&cs=tinysrgb&w=300"
+        image: papasGajo
+      },
+      {
+        id: "p4",
+        name: "CARI-PAPAS",
+        description: "Simpáticas papas en forma de carita feliz esponjaditas, fritas y calientitas, acompañadas de Kétchup Heinz y queso amarillo tipo Cheddar.",
+        prices: [
+          { label: "Precio", value: 110 }
+        ],
+        image: cariPapas
+      },
+      {
+        id: "p5",
+        name: "PAPAS WAFFLE",
+        description: "Pide estas bellezas de papas en forma de Waffle, crujientes y deliciosas, acompañadas con Kétchup Heinz y queso amarillo tipo Cheddar.",
+        prices: [
+          { label: "Precio", value: 110 }
+        ],
+        image: papasWaffle
       }
     ]
   },
