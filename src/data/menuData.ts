@@ -730,6 +730,7 @@ export const menuCategories: Category[] = [
     id: "cockteles",
     name: "Cócteles de Color",
     icon: "",
+    chefImage: chefPorCategoria["cockteles"],
     products: [
       {
         id: "co1",
