@@ -7,7 +7,8 @@ const Header: React.FC = () => {
       backgroundImage: 'url("https://images.pexels.com/photos/1639557/pexels-photo-1639557.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1")',
       backgroundSize: 'cover',
       backgroundPosition: 'center',
-      position: 'relative'
+      position: 'relative',
+      color: 'var(--text-main)'
     }}>
       <div style={{
         position: 'absolute',
@@ -52,21 +53,21 @@ const Header: React.FC = () => {
               <div className="mb-2">
                 <strong>Mar - Mié</strong>
                 <br />
-                <small>16:00 - 23:00</small>
+                <small>16:00 - 23:30</small>
               </div>
             </div>
             <div className="col-6">
               <div className="mb-2">
-                <strong>Jue - Dom</strong>
-                <br />
-                <small>13:00 - 23:30</small>
-              </div>
-            </div>
-            <div className="col-6">
-              <div className="mb-2">
-                <strong>Vie - Sáb</strong>
+                <strong>Jue - Vie - Sáb</strong>
                 <br />
                 <small>13:00 - 00:30</small>
+              </div>
+            </div>
+            <div className="col-6">
+              <div className="mb-2">
+                <strong>Dom</strong>
+                <br />
+                <small>13:00 - 23:30</small>
               </div>
             </div>
             <div className="col-6">

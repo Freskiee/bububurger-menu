@@ -43,21 +43,23 @@ const InvoiceModal: React.FC<InvoiceModalProps> = ({ show, onHide }) => {
 
   return (
     <div className="modal show d-block" style={{ backgroundColor: 'rgba(0,0,0,0.5)' }}>
-      <div className="modal-dialog modal-dialog-centered modal-lg">
-        <div className="modal-content">
-          <div className="modal-header modal-header-custom">
+      <div className="modal-dialog modal-dialog-centered">
+        <div className="modal-content" style={{ color: 'var(--text-main)' }}>
+          <div className="modal-header modal-header-custom" style={{ color: 'var(--text-main)' }}>
             <h5 className="modal-title fw-bold">
-              <FileText size={24} className="me-2" />
+              <span className="me-2">🧾</span>
               Solicitar Factura
             </h5>
             <button
               type="button"
               className="btn-close btn-close-white"
               onClick={onHide}
+              aria-label="Cerrar"
+              style={{ filter: 'invert(1)' }}
             ></button>
           </div>
           
-          <div className="modal-body">
+          <div className="modal-body" style={{ color: 'var(--text-main)' }}>
             <div className="invoice-form">
               <form onSubmit={handleSubmit}>
                 <div className="row">

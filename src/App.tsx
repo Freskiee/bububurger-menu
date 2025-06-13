@@ -14,6 +14,9 @@ function App() {
   const [showRatingModal, setShowRatingModal] = useState(false);
   const [showPaymentModal, setShowPaymentModal] = useState(false);
   const [showInvoiceModal, setShowInvoiceModal] = useState(false);
+  const [darkMode, setDarkMode] = useState(() => {
+    return localStorage.getItem('darkMode') === 'true';
+  });
 
   const handleCategoryChange = (categoryId: string) => {
     setActiveCategory(categoryId);
@@ -55,8 +58,47 @@ function App() {
     return () => window.removeEventListener('scroll', handleScroll);
   }, [activeCategory]);
 
+  useEffect(() => {
+    if (darkMode) {
+      document.body.classList.add('dark-mode');
+    } else {
+      document.body.classList.remove('dark-mode');
+    }
+    localStorage.setItem('darkMode', darkMode.toString());
+  }, [darkMode]);
+
   return (
-    <div className="min-h-screen bg-light">
+    <div
+      className="min-h-screen"
+      style={{
+        background: 'var(--background-main)',
+        color: 'var(--text-main)',
+        minHeight: '100vh',
+      }}
+    >
+      <button
+        onClick={() => setDarkMode((prev) => !prev)}
+        style={{
+          position: 'fixed',
+          top: 14,
+          right: 14,
+          zIndex: 1040,
+          background: 'var(--background-card)',
+          color: 'var(--primary-orange)',
+          border: 'none',
+          borderRadius: '50%',
+          width: 36,
+          height: 36,
+          boxShadow: '0 2px 8px rgba(0,0,0,0.13)',
+          cursor: 'pointer',
+          fontSize: 18,
+          transition: 'background 0.3s',
+        }}
+        aria-label="Alternar modo oscuro"
+        title="Alternar modo oscuro"
+      >
+        {darkMode ? '🌙' : '☀️'}
+      </button>
       <Header />
       
       <CategoryNav 

@@ -25,8 +25,8 @@ const PaymentModal: React.FC<PaymentModalProps> = ({ show, onHide }) => {
   return (
     <div className="modal show d-block" style={{ backgroundColor: 'rgba(0,0,0,0.5)' }}>
       <div className="modal-dialog modal-dialog-centered">
-        <div className="modal-content">
-          <div className="modal-header modal-header-custom">
+        <div className="modal-content" style={{ color: 'var(--text-main)' }}>
+          <div className="modal-header modal-header-custom" style={{ color: 'var(--text-main)' }}>
             <h5 className="modal-title fw-bold">
               <span className="me-2">💳</span>
               Métodos de Pago
@@ -35,10 +35,12 @@ const PaymentModal: React.FC<PaymentModalProps> = ({ show, onHide }) => {
               type="button"
               className="btn-close btn-close-white"
               onClick={onHide}
+              aria-label="Cerrar"
+              style={{ filter: 'invert(1)' }}
             ></button>
           </div>
           
-          <div className="modal-body p-4">
+          <div className="modal-body" style={{ color: 'var(--text-main)' }}>
             {/* Efectivo */}
             <div className="payment-method mb-4">
               <div className="d-flex align-items-center mb-2">

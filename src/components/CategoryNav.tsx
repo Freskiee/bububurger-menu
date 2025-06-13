@@ -8,7 +8,7 @@ interface CategoryNavProps {
 
 const CategoryNav: React.FC<CategoryNavProps> = ({ activeCategory, onCategoryChange }) => {
   return (
-    <div className="category-nav py-3">
+    <div className="category-nav" style={{ background: 'var(--background-navbar)', color: 'var(--text-main)' }}>
       <div className="container-fluid">
         <div className="category-scroll-container">
           <div className="category-scroll d-flex">

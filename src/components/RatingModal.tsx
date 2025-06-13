@@ -67,6 +67,8 @@ const RatingModal: React.FC<RatingModalProps> = ({ show, onHide }) => {
               type="button"
               className="btn-close btn-close-white"
               onClick={onHide}
+              aria-label="Cerrar"
+              style={{ filter: 'invert(1)' }}
             ></button>
           </div>
           

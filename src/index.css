@@ -3,12 +3,19 @@
 @tailwind components;
 @tailwind utilities;
 
+/* Variables modo claro */
 :root {
   --primary-orange: #ff6a00;
   --pure-black: #000000;
   --light-gray: #f8f9fa;
   --shadow-light: 0 2px 15px rgba(255, 106, 0, 0.1);
   --shadow-medium: 0 4px 20px rgba(0, 0, 0, 0.1);
+  --background-main: #f8f9fa;
+  --background-card: #fff;
+  --background-navbar: #fff;
+  --background-modal: #fff;
+  --text-main: #181818;
+  --text-muted: #6c757d;
 }
 
 * {
@@ -19,17 +26,18 @@
 
 body {
   font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', sans-serif;
-  background-color: var(--light-gray);
+  background-color: var(--background-main);
+  color: var(--text-main);
   overflow-x: hidden;
   padding-bottom: 120px; /* Espacio para botones flotantes */
 }
 
 .header-gradient {
-  background: linear-gradient(135deg, var(--primary-orange) 0%, #ff8533 50%, #ff6a00 100%);
+  background: var(--background-navbar);
 }
 
 .category-nav {
-  background: white;
+  background: var(--background-navbar);
   box-shadow: var(--shadow-light);
   position: sticky;
   top: 0;
@@ -89,7 +97,7 @@ body {
 }
 
 .product-card {
-  background: white;
+  background: var(--background-card);
   border-radius: 16px;
   box-shadow: var(--shadow-medium);
   transition: all 0.3s ease;
@@ -128,46 +136,53 @@ body {
   left: 0;
   right: 0;
   z-index: 2;
-  background: linear-gradient(to bottom, rgba(30,30,30,0.8) 60%, rgba(30,30,30,0.5) 100%);
-  padding: 15px 0 10px 0;
+  background: linear-gradient(135deg, rgba(30,30,30,0.75) 60%, rgba(30,30,30,0.45) 100%);
+  padding: 18px 0 14px 0;
   display: flex;
   flex-direction: column;
   justify-content: flex-end;
-  border-bottom-left-radius: 16px;
-  border-bottom-right-radius: 16px;
-  width: 100%;
+  border-radius: 18px 18px 22px 22px;
+  width: 96%;
+  margin: 0 auto 8px auto;
   min-height: 80px;
+  box-shadow: 0 4px 18px 0 rgba(0,0,0,0.13);
+  backdrop-filter: blur(2.5px);
 }
 
 .product-title {
   color: white;
   font-weight: 700;
   font-size: 1.1rem;
-  margin-bottom: 0.5rem;
-  text-shadow: 0 2px 4px rgba(0,0,0,0.5);
-  padding: 0 16px;
-  border-top-left-radius: 16px;
-  border-top-right-radius: 16px;
-  padding-top: 5px;
+  margin-bottom: 0.35rem;
+  text-shadow: 0 2px 4px rgba(0,0,0,0.4);
+  padding: 0 18px;
+  border-radius: 12px 12px 0 0;
+  padding-top: 2px;
+  letter-spacing: 0.01em;
 }
 
 .product-description {
-  color: rgba(255,255,255,0.9);
-  font-size: 0.85rem;
-  margin-bottom: 0.5rem;
+  color: rgba(255,255,255,0.92);
+  font-size: 0.87rem;
+  margin-bottom: 0.45rem;
   display: -webkit-box;
   -webkit-line-clamp: 2;
   -webkit-box-orient: vertical;
   overflow: hidden;
-  padding: 0 16px;
+  padding: 0 18px;
+  border-radius: 0;
+  letter-spacing: 0.01em;
 }
 
 .product-price {
   color: var(--primary-orange);
   font-weight: 700;
-  font-size: 1.25rem;
-  padding: 0 16px;
-  margin-bottom: 5px;
+  font-size: 1.18rem;
+  padding: 0 18px;
+  margin-bottom: 2px;
+  border-radius: 0 0 12px 12px;
+  background: none;
+  letter-spacing: 0.01em;
 }
 
 .product-price .double-price {
@@ -286,6 +301,13 @@ body {
   border-radius: 20px;
   padding: 20px;
   margin-bottom: 30px;
+  margin-top: 24px;
+}
+
+.dark-mode .favorites-section {
+  background: linear-gradient(135deg, #23242a 60%, #18191c 100%);
+  border: 2px solid var(--primary-orange);
+  margin-top: 24px;
 }
 
 .payment-method {
@@ -395,18 +417,37 @@ body {
   }
 }
 
-.product-modal .modal-content {
+.product-modal .modal-content, .modal-content {
   border-radius: 16px;
   border: none;
   overflow: hidden;
+  background: var(--background-modal);
+  font-size: 1.08rem;
+  line-height: 1.6;
 }
 
-.product-modal .modal-header {
-  padding: 1rem 1.5rem;
+.dark-mode .product-modal .modal-content, .dark-mode .modal-content {
+  background: var(--background-modal);
 }
 
-.product-modal .modal-body {
-  padding: 1.5rem;
+.product-modal .modal-header, .modal-header {
+  color: var(--text-main);
+  background: var(--background-navbar);
+}
+
+.product-modal .modal-body, .modal-body {
+  color: var(--text-main);
+  background: var(--background-modal);
+}
+
+.dark-mode .product-modal .modal-header, .dark-mode .modal-header {
+  color: var(--text-main);
+  background: var(--background-navbar);
+}
+
+.dark-mode .product-modal .modal-body, .dark-mode .modal-body {
+  color: var(--text-main);
+  background: var(--background-modal);
 }
 
 .product-modal .img-fluid {
@@ -426,4 +467,113 @@ body {
 .product-modal .btn-primary:hover {
   transform: translateY(-2px);
   box-shadow: var(--shadow-medium);
+}
+
+.modal-header, .product-modal .modal-header,
+.modal-body, .product-modal .modal-body {
+  color: #181818;
+}
+
+.dark-mode .modal-header, .dark-mode .product-modal .modal-header,
+.dark-mode .modal-body, .dark-mode .product-modal .modal-body {
+  color: #fff;
+}
+
+/* Modo oscuro */
+.dark-mode {
+  --background-main: #18191c;
+  --background-card: #23242a;
+  --background-navbar: #23242a;
+  --background-modal: #23242a;
+  --text-main: #f3f3f3;
+  --text-muted: #b0b0b0;
+  --shadow-light: 0 2px 15px rgba(255, 106, 0, 0.08);
+  --shadow-medium: 0 4px 20px rgba(0,0,0,0.25);
+}
+
+.dark-mode body {
+  background-color: var(--background-main);
+  color: var(--text-main);
+}
+
+.dark-mode .product-card {
+  background: var(--background-card);
+}
+
+.dark-mode .header-gradient, .dark-mode .category-nav {
+  background: var(--background-navbar);
+}
+
+.dark-mode .product-content {
+  background: linear-gradient(135deg, rgba(30,30,30,0.92) 60%, rgba(30,30,30,0.65) 100%);
+}
+
+.dark-mode .product-title,
+.dark-mode .product-description,
+.dark-mode .product-price {
+  color: #f3f3f3;
+}
+
+.dark-mode .product-price {
+  color: var(--primary-orange);
+}
+
+/* Inputs y selects en formularios de modales */
+.modal-content input,
+.modal-content select,
+.modal-content textarea,
+.product-modal .modal-content input,
+.product-modal .modal-content select,
+.product-modal .modal-content textarea {
+  color: var(--text-main);
+  background: var(--background-modal);
+  border: 1.5px solid #ccc;
+}
+
+.dark-mode .modal-content input,
+.dark-mode .modal-content select,
+.dark-mode .modal-content textarea,
+.dark-mode .product-modal .modal-content input,
+.dark-mode .product-modal .modal-content select,
+.dark-mode .product-modal .modal-content textarea {
+  color: #fff;
+  background: #23242a;
+  border: 1.5px solid #444;
+}
+
+.modal-content label,
+.product-modal .modal-content label {
+  color: var(--text-main);
+}
+
+.dark-mode .modal-content label,
+.dark-mode .product-modal .modal-content label {
+  color: #fff;
+}
+
+/* Botón de cerrar (X) en modales */
+.btn-close {
+  filter: none !important;
+}
+
+.dark-mode .btn-close {
+  filter: invert(1) !important;
+}
+
+.modal-content .text-muted,
+.product-modal .modal-content .text-muted,
+.modal-content .small,
+.product-modal .modal-content .small,
+.modal-content .payment-method,
+.product-modal .modal-content .payment-method {
+  color: var(--text-muted) !important;
+}
+
+.dark-mode .modal-content .text-muted,
+.dark-mode .product-modal .modal-content .text-muted,
+.dark-mode .modal-content .small,
+.dark-mode .product-modal .modal-content .small,
+.dark-mode .modal-content .payment-method,
+.dark-mode .product-modal .modal-content .payment-method {
+  color: #e0e0e0 !important;
 }

@@ -1,8 +1,14 @@
-import olimpica from "/menu-images/olimpica.jpg";
+import olimpica from "/menu-images/olimpica.png";
 import mojitoFrutosRojos from "/menu-images/mojito-fr.png";
-import dedosQueso from "/menu-images/dedos-queso.jpg";
-import baconWestern from "/menu-images/bacon-doble.jpg";
+import dedosQueso from "/menu-images/dedos-queso.png";
+import baconWestern from "/menu-images/bacon_doble.png";
 import diablo from "/menu-images/diablo.png";
+import jalapeños from "/menu-images/jalapenios.png";
+import nuggets from "/menu-images/nuggets.png";
+import aros from "/menu-images/aros_de_cebolla.png";
+import nachosChilibean from "/menu-images/nachos.png";
+import costillasElote from "/menu-images/costillas-elote.png";
+import eloteAsado from "/menu-images/elote-asado.png";
 
 export interface ProductPriceOption {
   label: string;
@@ -27,12 +33,12 @@ export interface Category {
 export const menuCategories: Category[] = [
   {
     id: "favoritos",
-    name: "Favoritos del Restaurante",
+    name: "¡Los Más Pedidos! 🔥",
     icon: "⭐",
     products: [
       {
         id: "f1",
-        name: "Bububurger Olímpica",
+        name: "BUBUBURGER OLÍMPICA",
         description: "Ex-qui-si-ta, simplemente el mejor balance de sabor, 100 gr. de carne de res sazonada con la receta secreta de la casa, gratinada con queso manchego, tocino, y un par de deliciosos aros de cebolla bañados en aderezo blue-cheese.",
         prices: [
           { label: "", value: 170 },
@@ -42,7 +48,7 @@ export const menuCategories: Category[] = [
       },
       {
         id: "f2", 
-        name: "Mojito Frutos Rojos",
+        name: "MOJITO FRUTOS ROJOS",
         description: "Refrescante combinación de ron blanco con frutos rojos naturales, hojas de menta y un toque de limón, servido sobre hielo en vaso de litro. Ideal para quienes buscan un sabor equilibrado entre lo frutal y lo herbal.",
         prices: [
           { label: "1/2", value: 85 },
@@ -52,7 +58,7 @@ export const menuCategories: Category[] = [
       },
       {
         id: "f3",
-        name: "Bubu-Dedos de Queso",
+        name: "BUBU-DEDOS DE QUESO",
         description: "6 Deditos de queso fritos por fuera con un toque delicado de especias y por dentro queso mozzarella derretido, acompañados con salsa tipo italiana. ¡Cuidado no te muerdas tus propios dedos, que te van a quedar cortos para pedir más!",
         prices: [
           { label: "", value: 135 }
@@ -61,7 +67,7 @@ export const menuCategories: Category[] = [
       },
       {
         id: "f4",
-        name: "Bacon Western",
+        name: "BACON WESTERN",
         description: "Esta hamburguesa te hará sentir en el viejo Oeste por su selecto tocino bien doradito, su queso manchego y un delicado toque de salsa BBQ. ¡Así que ponte las botas, el sombrero de cowboy y prepárate para bailar el Payaso de Rodeo… ajúa! Lechuga, jitomate, cebolla caramelizada, pepinillos, chiles, catsup, mostaza y mayonesa.",
         prices: [
           { label: "", value: 170 },
@@ -71,7 +77,7 @@ export const menuCategories: Category[] = [
       },
       {
         id: "f5", 
-        name: "El Diablo",
+        name: "EL DIABLO",
         description: "Mezcla intensa y refrescante de tequila, vino tinto y agua mineral, con un toque de limón y jarabe natural. Servida con escarchado de chamoy y tajín para un acabado picante y equilibrado.",
         prices: [
           { label: "1 Lt", value: 145 }
@@ -83,34 +89,70 @@ export const menuCategories: Category[] = [
   {
     id: "entradas",
     name: "Entradas",
-    icon: "🥗",
+    icon: "🍿",
     products: [
       {
         id: "e1",
-        name: "Nachos Supremos",
-        description: "Tortillas crujientes con queso derretido, jalapeños, guacamole y crema",
+        name: "BUBU-DEDOS DE QUESO",
+        description: "6 Deditos de queso fritos por fuera con un toque delicado de especias y por dentro queso mozzarella derretido, acompañados con salsa tipo italiana. ¡Cuidado no te muerdas tus propios dedos, que te van a quedar cortos para pedir más!",
         prices: [
-          { label: "Precio", value: 95 }
+          { label: "", value: 135 }
         ],
-        image: "https://images.pexels.com/photos/2741458/pexels-photo-2741458.jpeg?auto=compress&cs=tinysrgb&w=300"
+        image: dedosQueso
       },
       {
         id: "e2",
-        name: "Dedos de Queso",
-        description: "Bastones de queso mozzarella empanizados, servidos con salsa marinara",
+        name: "BUBU-CHILES RELLENOS",
+        description: "6 Chiles jalapeños atrevidos rellenos de queso Philadelphia y empanizados por fuera, acompañados de Ketchup Heinz y queso amarillo tipo cheddar, ¡serán el remedio para tu antojo desenfrenado!",
         prices: [
-          { label: "Precio", value: 85 }
+          { label: "", value: 135 }
         ],
-        image: "https://images.pexels.com/photos/4394612/pexels-photo-4394612.jpeg?auto=compress&cs=tinysrgb&w=300"
+        image: jalapeños
       },
       {
         id: "e3",
-        name: "Aros de Cebolla",
-        description: "Crujientes aros de cebolla dorados, perfectos para compartir",
+        name: "BUBU-NUGGETS",
+        description: "Nuestros Nuggets de pechuga de pollo Pilgrim’s Pride (10 pzs), ¡Crujientes y dorados siempre! Acompañados de Kétchup Heinz y queso amarillo tipo Cheddar.",
         prices: [
-          { label: "Precio", value: 70 }
+          { label: "", value: 135 }
         ],
-        image: "https://images.pexels.com/photos/2271107/pexels-photo-2271107.jpeg?auto=compress&cs=tinysrgb&w=300"
+        image: nuggets
+      },
+      {
+        id: "e4",
+        name: "BUBU-AROS DE CEBOLLA",
+        description: "Perfectos aros de cebolla fritos y crujientes (10 pzs), acompañados con aderezo de blue cheese o ranch. ¡Te aseguramos que si los aros Olímpicos tuvieran sabor, a estos sabrían!",
+        prices: [
+          { label: "", value: 135 }
+        ],
+        image: aros
+      },
+      {
+        id: "e5",
+        name: "BUBU-NACHOS CHILIBEAN",
+        description: "Crujientes nachos acompañados con una deliciosa mezcla de chili bean, a base de carne molida de res, frijoles, salsa italiana, servidos con rodajas de jalapeño y abundante queso amarillo tipo Cheddar. ¡Perfectos para compartir!",
+        prices: [
+          { label: "", value: 220 }
+        ],
+        image: nachosChilibean
+      },
+      {
+        id: "e6",
+        name: "COSTILLAS DE ELOTE AMARILLO",
+        description: "Estas costillitas de elote dulce amarillo, bañaditas con salsa Hot BBQ, Cajun, Tajín y un toque de perejil deshidratado con limón te harán bailar como texano. Son perfectas para compartir y calmar tus antojos, ¡así que prepárate para chuparte los dedos!",
+        prices: [
+          { label: "", value: 170 }
+        ],
+        image: costillasElote
+      },
+      {
+        id: "e7",
+        name: "ELOTE ASADO",
+        description: "Elote dulce amarillo asado a la parrilla, servido con un toque de sal y especias. Perfecto para acompañar cualquier platillo o disfrutar por sí solo con su sabor ahumado y natural.",
+        prices: [
+          { label: "", value: 35 }
+        ],
+        image: eloteAsado
       }
     ]
   },
