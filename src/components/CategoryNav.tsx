@@ -20,6 +20,13 @@ const CategoryNav: React.FC<CategoryNavProps> = ({ activeCategory, onCategoryCha
                 }`}
                 onClick={() => onCategoryChange(category.id)}
               >
+                {category.chefImage && (
+                  <img
+                    src={category.chefImage}
+                    alt={category.name}
+                    style={{ width: '40px', height: '40px', objectFit: 'contain', marginRight: '8px', borderRadius: '50%' }}
+                  />
+                )}
                 <span className="me-2">{category.icon}</span>
                 <span className="fw-medium">{category.name}</span>
               </div>

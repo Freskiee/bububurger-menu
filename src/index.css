@@ -1,3 +1,4 @@
+@import url('https://fonts.googleapis.com/css2?family=Fredoka+One&display=swap');
 @import 'bootstrap/dist/css/bootstrap.min.css';
 @tailwind base;
 @tailwind components;
@@ -29,7 +30,7 @@ body {
   background-color: var(--background-main);
   color: var(--text-main);
   overflow-x: hidden;
-  padding-bottom: 120px; /* Espacio para botones flotantes */
+  padding-bottom: 40px; /* Menos espacio inferior */
 }
 
 .header-gradient {
@@ -582,3 +583,5 @@ body {
 .dark-mode .product-modal .modal-content .payment-method {
   color: #e0e0e0 !important;
 }
+
+/* Mejorar el acabado visual inferior */

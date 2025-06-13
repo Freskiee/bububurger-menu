@@ -14,10 +14,29 @@ import papasCurly from "/menu-images/papas-curly.png";
 import papasGajo from "/menu-images/papas-gajo.png";
 import cariPapas from "/menu-images/caripapas.png";
 import papasWaffle from "/menu-images/papas-waffle.png";
+import sensata from "/menu-images/sensata.png";
+import dobleMoral from "/menu-images/doble-queso-pinia.png";
+import hawaiana from "/menu-images/hawaiana.png";
+import crujipollo from "/menu-images/crujipollo.png";
+import pepperoniBurger from "/menu-images/peperoni.png";
+import costraBurger from "/menu-images/costra-burger.png";
+import ariWings from "/menu-images/alitas.png";
+import boneless from "/menu-images/boneless.png";
+import hotdog from "/menu-images/hot-dog.png";
+import hotdogTocino from "/menu-images/hot-dog-tocino.png";
+import hotdogHawaiano from "/menu-images/hot-dog-hawaiano.png";
+import hotdogItalian from "/menu-images/hot-dog-italiano.png";
+import costillas from "/menu-images/costilla.png";
+import banderillas from "/menu-images/banderillas.png";
+import paqueteBububurger from "/menu-images/paq-burger.png";
+import paqueteNuggets from "/menu-images/paq-nuggets.png";
+import paqueteHotdog from "/menu-images/paq-hot-dog.png";
+import paqueteDeditos from "/menu-images/paq-deditos.png";
 
 export interface ProductPriceOption {
   label: string;
   value: number;
+  note?: string;
 }
 
 export interface Product {
@@ -26,6 +45,8 @@ export interface Product {
   description: string;
   prices: ProductPriceOption[];
   image: string;
+  comment?: string;
+  sauces?: string[];
 }
 
 export interface Category {
@@ -33,13 +54,38 @@ export interface Category {
   name: string;
   icon: string;
   products: Product[];
+  chefImage?: string;
 }
 
+// Asignación de chefs por tipo de categoría
+const chefPorCategoria: Record<string, string> = {
+  favoritos: 'chefcitos/chef-burger.png',
+  entradas: 'chefcitos/chef-principal.png',
+  papas: 'chefcitos/chef-fry.png',
+  bububurgers: 'chefcitos/chef-cook.png',
+  wings: 'chefcitos/chef-cartoon-fry.png',
+  hotdog: 'chefcitos/chef-cartoon-cook.png',
+  costillas: 'chefcitos/chef-cook.png',
+  infantil: 'chefcitos/chef-fiesta.png',
+  bebidas: 'chefcitos/chef-bar.png',
+  malteadas: 'chefcitos/chef-fiesta.png',
+  cafe: 'chefcitos/chef-ok.png',
+  digestivos: 'chefcitos/chef-zombi.png',
+  bubuchelas: 'chefcitos/chef-cartoon-bar.png',
+  cockteles: 'chefcitos/chef-bar.png',
+  mojitos: 'chefcitos/chef-bar.png',
+  destilados: 'chefcitos/chef-cartoon-bar.png',
+  bubucocteles: 'chefcitos/chef-cartoon-bar.png',
+  sidras: 'chefcitos/chef-cartoon-bar.png',
+};
+
 export const menuCategories: Category[] = [
+  // 1. ¡Los Más Pedidos! 🔥
   {
     id: "favoritos",
     name: "¡Los Más Pedidos! 🔥",
-    icon: "⭐",
+    icon: "",
+    chefImage: chefPorCategoria["favoritos"],
     products: [
       {
         id: "f1",
@@ -49,7 +95,7 @@ export const menuCategories: Category[] = [
           { label: "", value: 170 },
           { label: "Doble", value: 185 }
         ],
-        image: olimpica
+        image: olimpica,
       },
       {
         id: "f2", 
@@ -59,7 +105,7 @@ export const menuCategories: Category[] = [
           { label: "1/2", value: 85 },
           { label: "1 Lt", value: 145 }
         ],
-        image: mojitoFrutosRojos
+        image: mojitoFrutosRojos,
       },
       {
         id: "f3",
@@ -68,7 +114,7 @@ export const menuCategories: Category[] = [
         prices: [
           { label: "", value: 135 }
         ],
-        image: dedosQueso
+        image: dedosQueso,
       },
       {
         id: "f4",
@@ -78,7 +124,7 @@ export const menuCategories: Category[] = [
           { label: "", value: 170 },
           { label: "Doble", value: 185 }
         ],
-        image: baconWestern
+        image: baconWestern,
       },
       {
         id: "f5", 
@@ -87,14 +133,16 @@ export const menuCategories: Category[] = [
         prices: [
           { label: "1 Lt", value: 145 }
         ],
-        image: diablo
+        image: diablo,
       },
     ]
   },
+  // 2. Entradas
   {
     id: "entradas",
     name: "Entradas",
-    icon: "🍿",
+    icon: "",
+    chefImage: chefPorCategoria["entradas"],
     products: [
       {
         id: "e1",
@@ -103,7 +151,7 @@ export const menuCategories: Category[] = [
         prices: [
           { label: "", value: 135 }
         ],
-        image: dedosQueso
+        image: dedosQueso,
       },
       {
         id: "e2",
@@ -112,16 +160,16 @@ export const menuCategories: Category[] = [
         prices: [
           { label: "", value: 135 }
         ],
-        image: jalapeños
+        image: jalapeños,
       },
       {
         id: "e3",
         name: "BUBU-NUGGETS",
-        description: "Nuestros Nuggets de pechuga de pollo Pilgrim’s Pride (10 pzs), ¡Crujientes y dorados siempre! Acompañados de Kétchup Heinz y queso amarillo tipo Cheddar.",
+        description: "Nuestros Nuggets de pechuga de pollo Pilgrim's Pride (10 pzs), ¡Crujientes y dorados siempre! Acompañados de Kétchup Heinz y queso amarillo tipo Cheddar.",
         prices: [
           { label: "", value: 135 }
         ],
-        image: nuggets
+        image: nuggets,
       },
       {
         id: "e4",
@@ -130,7 +178,7 @@ export const menuCategories: Category[] = [
         prices: [
           { label: "", value: 135 }
         ],
-        image: aros
+        image: aros,
       },
       {
         id: "e5",
@@ -139,7 +187,7 @@ export const menuCategories: Category[] = [
         prices: [
           { label: "", value: 220 }
         ],
-        image: nachosChilibean
+        image: nachosChilibean,
       },
       {
         id: "e6",
@@ -148,7 +196,7 @@ export const menuCategories: Category[] = [
         prices: [
           { label: "", value: 170 }
         ],
-        image: costillasElote
+        image: costillasElote,
       },
       {
         id: "e7",
@@ -157,14 +205,16 @@ export const menuCategories: Category[] = [
         prices: [
           { label: "", value: 75 }
         ],
-        image: eloteAsado
+        image: eloteAsado,
       }
     ]
   },
+  // 3. Papas
   {
     id: "papas",
     name: "Papas",
-    icon: "🍟",
+    icon: "",
+    chefImage: chefPorCategoria["papas"],
     products: [
       {
         id: "p1",
@@ -173,7 +223,7 @@ export const menuCategories: Category[] = [
         prices: [
           { label: "Precio", value: 110 }
         ],
-        image: papasFrancesa
+        image: papasFrancesa,
       },
       {
         id: "p2",
@@ -182,7 +232,7 @@ export const menuCategories: Category[] = [
         prices: [
           { label: "Precio", value: 110 }
         ],
-        image: papasCurly
+        image: papasCurly,
       },
       {
         id: "p3",
@@ -191,7 +241,7 @@ export const menuCategories: Category[] = [
         prices: [
           { label: "Precio", value: 110 }
         ],
-        image: papasGajo
+        image: papasGajo,
       },
       {
         id: "p4",
@@ -200,7 +250,7 @@ export const menuCategories: Category[] = [
         prices: [
           { label: "Precio", value: 110 }
         ],
-        image: cariPapas
+        image: cariPapas,
       },
       {
         id: "p5",
@@ -209,230 +259,370 @@ export const menuCategories: Category[] = [
         prices: [
           { label: "Precio", value: 110 }
         ],
-        image: papasWaffle
+        image: papasWaffle,
       }
     ]
   },
+  // 4. Banderillas
   {
-    id: "bububurgers",
-    name: "Bububurgers",
-    icon: "🍔",
+    id: "banderillas",
+    name: "Banderillas",
+    icon: "",
+    chefImage: chefPorCategoria["entradas"],
     products: [
       {
         id: "b1",
-        name: "Bububurger Clásica",
-        description: "Carne de res, queso cheddar, lechuga, tomate, cebolla y salsa bubu",
+        name: "Banderilla Clásica",
+        description: "Salchichas empanizadas con masa dorada y crujiente, montadas en palillos de madera. Fritas al momento para lograr una textura ligera y perfectamente dorada. Servidas listas para acompañar con tus salsas favoritas.",
         prices: [
-          { label: "Sencillo", value: 140 },
-          { label: "Doble", value: 180 }
+          { label: "2 Pzs", value: 140 },
+          { label: "5 Pzs", value: 180 }
         ],
-        image: "https://images.pexels.com/photos/1639557/pexels-photo-1639557.jpeg?auto=compress&cs=tinysrgb&w=300"
+        image: banderillas,
+      }
+    ]
+  },
+  // 5. Bububurgers
+  {
+    id: "bububurgers",
+    name: "Bububurgers",
+    icon: "",
+    chefImage: chefPorCategoria["bububurgers"],
+    products: [
+      {
+        id: "b1",
+        name: "LA SENSATA",
+        description: "100 gr. De carne de res sazonada con la receta secreta de la casa. Lechuga, jitomate, cebolla caramelizada, pepinillos, chiles, catsup, mostaza y mayonesa.",
+        prices: [
+          { label: "Sencilla", value: 135 },
+          { label: "Queso o Piña", value: 140 },
+          { label: "Queso y Piña", value: 145 }
+        ],
+        image: sensata,
       },
       {
         id: "b2",
-        name: "Bububurger Doble",
-        description: "Doble carne, doble queso, lechuga, tomate y salsa especial",
+        name: "DOBLE MORAL",
+        description: "Dos carnes de 100 gr. de res sazonadas con la receta secreta de la casa. Lechuga, jitomate, cebolla caramelizada, pepinillos, chiles, catsup, mostaza y mayonesa.",
         prices: [
-          { label: "Precio", value: 180 },
-          { label: "Doble Precio", value: 220 }
+          { label: "Queso o Piña", value: 160 },
+          { label: "Queso y Piña", value: 175 }
         ],
-        image: "https://images.pexels.com/photos/2762942/pexels-photo-2762942.jpeg?auto=compress&cs=tinysrgb&w=300"
+        image: dobleMoral,
       },
       {
         id: "b3",
-        name: "Bububurger Pollo",
-        description: "Pechuga de pollo empanizada, lechuga, tomate y aderezo ranch",
+        name: "OLÍMPICA",
+        description: "Ex-qui-si-ta, simplemente el mejor balance de sabor, 100 gr. de carne de res sazonada con la receta secreta de la casa, gratinada con queso manchego, tocino, y un par de deliciosos aros de cebolla bañados en aderezo blue-cheese. Lechuga, jitomate, cebolla caramelizada, pepinillos, chiles, catsup, mostaza y mayonesa.",
         prices: [
-          { label: "Precio", value: 135 }
+          { label: "Sencilla", value: 170 },
+          { label: "Doble", value: 185 },
         ],
-        image: "https://images.pexels.com/photos/552056/pexels-photo-552056.jpeg?auto=compress&cs=tinysrgb&w=300"
+        image: olimpica,
       },
       {
         id: "b4",
-        name: "Bububurger Vegetariana",
-        description: "Hamburguesa de lentejas, aguacate, lechuga, tomate y aderezo vegano",
+        name: "TROPICAL - HAWAIANA",
+        description: "La inconfundible hamburguesa hawaiana con su deliciosa piña tropical, asada lentamente a la parrilla, jamón Virginia, queso manchego y su tocino bien frito a la plancha. ¡Esta Bububurger te hará bailar el Waikiki! Lechuga, jitomate, cebolla caramelizada, pepinillos, chiles, catsup, mostaza y mayonesa.",
         prices: [
-          { label: "Precio", value: 125 }
+          { label: "Sencilla", value: 170 },
+          { label: "Doble", value: 185 },
         ],
-        image: "https://images.pexels.com/photos/1640772/pexels-photo-1640772.jpeg?auto=compress&cs=tinysrgb&w=300"
-      }
+        image: hawaiana,
+      },
+      {
+        id: "b5",
+        name: "BACON WESTERN",
+        description: "Esta hamburguesa te hará sentir en el viejo Oeste por su selecto tocino bien doradito, su queso manchego y un delicado toque de salsa BBQ. ¡Así que ponte las botas, el sombrero de cowboy y prepárate para bailar el Payaso de Rodeo… ajúa! Lechuga, jitomate, cebolla caramelizada, pepinillos, chiles, catsup, mostaza y mayonesa.",
+        prices: [
+          { label: "Sencilla", value: 170 },
+          { label: "Doble", value: 185 },
+        ],
+        image: baconWestern,
+      },
+      {
+        id: "b6",
+        name: "CRUJIPOLLO",
+        description: "Para los fanáticos del pollo les tenemos esta maravillosa Bububurger de pollo extra crunchy, puedes pedirla al natural (Como dios la trajo al mundo) o bañadita en cualquiera de nuestras salsas de la casa, además viene con un toque de aderezo blue-cheese. Lechuga, jitomate, cebolla caramelizada, pepinillos, chiles, catsup, mostaza y mayonesa.",
+        prices: [
+          { label: "Natural", value: 160 },
+          { label: "Bañada", value: 175 }
+        ],
+        image: crujipollo,
+        sauces: [
+          "bbq miel",
+          "ajo parmesano",
+          "teriyaki",
+          "bbq",
+          "hot bbq",
+          "tamarindo",
+          "maggi",
+          "cajún",
+          "brava",
+          "mango habanero",
+          "requete-macho"
+        ],
+      },
+      {
+        id: "b7",
+        name: "PEPPERONI BURGER",
+        description: "La Bububurger molto Italiana! Fue especialmente diseñada para los amantes de las pipshas, te aseguramos que te hará recordar en cada bocado el rico sabor de una rebanada de pizza, lleva extra queso manchego, pepperoni y salsa italiana. buon appetito!",
+        prices: [
+          { label: "Sencilla", value: 170 },
+          { label: "Doble", value: 185 },
+        ],
+        image: pepperoniBurger,
+      },
+      {
+        id: "b8",
+        name: "COSTRA BURGER",
+        description: "Nuestra Bububurger consentida, es una delicia por su crujiente costra de queso con tocino frito y un toque de aderezo secreto, receta de la casa. Puedes pedirla sencilla o doble, y si te animas por la doble, te espera una doble costra de queso con tocino. ¡Crunchy, crunchy!",
+        prices: [
+          { label: "Sencilla", value: 175 },
+          { label: "Doble", value: 190 },
+        ],
+        image: costraBurger,
+      },
     ]
   },
+  // 6. Ari-Wings y Boneless
   {
     id: "wings",
     name: "Ari-Wings y Boneless",
-    icon: "🍗",
+    icon: "",
+    chefImage: chefPorCategoria["wings"],
     products: [
       {
         id: "w1",
-        name: "Ari-Wings BBQ",
-        description: "10 alitas bañadas en salsa BBQ casera",
+        name: "Ari-Wings",
+        description: "Muchos presumen tener las mejores alitas... pero las nuestras sí lo demuestran. Están tan grandes que parecen piernitas de pollo, bien jugosas, bien bañadas y servidas con su lechuguita y un toque de ranch o blue cheese. 🔥 Te retamos a que te comas solo una... ¡imposible!",
         prices: [
-          { label: "Precio", value: 120 },
-          { label: "Doble Precio", value: 200 }
+          { label: "10 Pzs", value: 220, note: "Incluye 2 salsas a elegir" },
+          { label: "15 Pzs", value: 270, note: "Incluye 3 salsas a elegir" }
         ],
-        image: "https://images.pexels.com/photos/60616/fried-chicken-chicken-fried-crunchy-60616.jpeg?auto=compress&cs=tinysrgb&w=300"
+        image: ariWings,
+        sauces: [
+          "bbq miel",
+          "ajo parmesano",
+          "teriyaki",
+          "bbq",
+          "hot bbq",
+          "tamarindo",
+          "maggi",
+          "cajún",
+          "brava",
+          "mango habanero",
+          "requete-macho"
+        ],
       },
       {
         id: "w2",
-        name: "Ari-Wings Buffalo",
-        description: "10 alitas picantes con salsa buffalo y aderezo blue cheese",
+        name: "CHICKEN BONELESS",
+        description: "¡Sin huesos, sin excusas! Nuestros Boneless son puro placer: pollo jugoso, crujiente por fuera, bañado en la salsa que más te prende. ¿Blue cheese o ranch? Tú mandas. 💥 Advertencia: este manjar ha sido culpable de muchas lamidas de dedos… y de platos vacíos en segundos.",
         prices: [
-          { label: "Precio", value: 125 }
+          { label: "225 gr.", value: 235 },
+          { label: "515 gr.", value: 355 },
+          { label: "1100 gr.", value: 605 }
         ],
-        image: "https://images.pexels.com/photos/2271107/pexels-photo-2271107.jpeg?auto=compress&cs=tinysrgb&w=300"
+        image: boneless,
+        comment: "225 gr. ≈ 8 pzas. | 515 gr. ≈ 13 pzas. | 1100 gr. ≈ 28 pzas.",
+        sauces: [
+          "bbq miel",
+          "ajo parmesano",
+          "teriyaki",
+          "bbq",
+          "hot bbq",
+          "tamarindo",
+          "maggi",
+          "cajún",
+          "brava",
+          "mango habanero",
+          "requete-macho"
+        ],
       },
-      {
-        id: "w3",
-        name: "Boneless Mango Habanero",
-        description: "Trozos de pollo sin hueso en salsa mango habanero",
-        prices: [
-          { label: "Precio", value: 115 }
-        ],
-        image: "https://images.pexels.com/photos/616354/pexels-photo-616354.jpeg?auto=compress&cs=tinysrgb&w=300"
-      }
     ]
   },
+  // 7. Hot-Dog Jumbo
   {
     id: "hotdog",
-    name: "Hot-Dog Jumbo",
-    icon: "🌭",
+    name: "Hot-dogs JUMBO",
+    icon: "",
+    chefImage: chefPorCategoria["hotdog"],
     products: [
       {
         id: "h1",
-        name: "Hot-Dog Clásico Jumbo",
-        description: "Salchicha jumbo con mostaza, ketchup, cebolla y pepinillos",
+        name: "SENCILLITO Y SIN RODEOS",
+        description: "30 cm. De salchicha de pavo, deliciosamente frita, acompañado de 70 gr. de papas a la francesa sazonadas con polvos mágicos, jitomate, cebolla, chiles picados, mostaza, mayonesa y catsup.  ¡Un deleite!",
         prices: [
-          { label: "Precio", value: 75 }
+          { label: "Salchicha de Pavo", value: 95 },
+          { label: "Salchicha de Res", value: 120 }
         ],
-        image: "https://images.pexels.com/photos/4518843/pexels-photo-4518843.jpeg?auto=compress&cs=tinysrgb&w=300"
+        image: hotdog,
       },
       {
         id: "h2",
-        name: "Hot-Dog Mexicano",
-        description: "Salchicha jumbo envuelta en tocino, frijoles, pico de gallo y aguacate",
+        name: "CON TOCINO",
+        description: "Salchicha de pavo de 30 cm perfectamente dorada, envuelta en tiras crujientes de tocino, servida sobre pan suave tipo hotdog. Acompañado con jitomate, cebolla, chiles picados y un toque de mostaza, mayonesa y catsup. Incluye una porción de papas a la francesa con sazonador especial.",
         prices: [
-          { label: "Precio", value: 95 }
+          { label: "Salchicha de Pavo", value: 110 },
+          { label: "Salchicha de Res", value: 135 }
         ],
-        image: "https://images.pexels.com/photos/4518844/pexels-photo-4518844.jpeg?auto=compress&cs=tinysrgb&w=300"
+        image: hotdogTocino,
       },
       {
         id: "h3",
-        name: "Hot-Dog Chicago",
-        description: "Salchicha con pepinillos, cebolla, tomate, chile sport y mostaza",
+        name: "HAWAIANO",
+        description: "Salchicha de pavo de 30 cm, envuelta en tocino crujiente, servida en pan suave tipo hotdog. Cubierto con trozos de piña natural y queso derretido, creando el balance perfecto entre lo salado y lo dulce. Acompañado de papas a la francesa con sazonador especial.",
         prices: [
-          { label: "Precio", value: 85 }
+          { label: "Salchicha de Pavo", value: 125 },
+          { label: "Salchicha de Res", value: 150 }
         ],
-        image: "https://images.pexels.com/photos/4518845/pexels-photo-4518845.jpeg?auto=compress&cs=tinysrgb&w=300"
+        image: hotdogHawaiano,
+      },
+      {
+        id: "h4",
+        name: "ITALIANO",
+        description: "Salchicha de pavo de 30 cm servida en pan suave tipo hotdog, bañada en una abundante salsa italiana estilo boloñesa, elaborada con carne molida de res, jitomate y especias mediterráneas. Acompañado de papas a la francesa sazonadas con polvo especial.",
+        prices: [
+          { label: "Salchicha de Pavo", value: 125 },
+          { label: "Salchicha de Res", value: 150 }
+        ],
+        image: hotdogItalian,
       }
     ]
   },
+  // 8. Costillas BBQ
   {
     id: "costillas",
     name: "Costillas BBQ",
-    icon: "🥩",
+    icon: "",
+    chefImage: chefPorCategoria["costillas"],
     products: [
       {
         id: "c1",
-        name: "Costillas a la Parrilla",
-        description: "Media orden de costillas tiernas con glaseado de miel",
+        name: "BUBU-COSTILLAS BBQ",
+        description: "¡Llegaron las costillas que ni Thalía se imaginó! Jugosas Grilled Baby Back Ribs de cerdo, bien barnizadas con tu wing sauce favorita, sobre cama de lechuga fresca. Vienen acompañadas de un elotito dulce con mantequilla y nuestros polvitos mágicos que le dan el toque especial. ¿No eres de elote? Cámbialo por papitas sin costo. 😉",
         prices: [
-          { label: "Precio", value: 180 }
+          { label: "Precio", value: 315 }
         ],
-        image: "https://images.pexels.com/photos/323682/pexels-photo-323682.jpeg?auto=compress&cs=tinysrgb&w=300"
+        image: costillas,
+        sauces: [
+          "bbq miel",
+          "ajo parmesano",
+          "teriyaki",
+          "bbq",
+          "hot bbq",
+          "maggi",
+          "cajún",
+          "brava",
+          "mango habanero",
+          "requete-macho"
+        ],
       },
       {
-        id: "c2",
-        name: "Costillas Completas",
-        description: "Orden completa de costillas BBQ con papas y ensalada",
+        id: "c4",
+        name: "Costillitas de Elote",
+        description: "Costillitas de elote bañadas en salsa a elegir.",
         prices: [
-          { label: "Precio", value: 280 }
+          { label: "Precio", value: 120 }
         ],
-        image: "https://images.pexels.com/photos/1539688/pexels-photo-1539688.jpeg?auto=compress&cs=tinysrgb&w=300"
-      },
-      {
-        id: "c3",
-        name: "Costillas Picantes",
-        description: "Costillas con salsa chipotle y especias mexicanas",
-        prices: [
-          { label: "Precio", value: 190 }
+        image: costillasElote,
+        sauces: [
+          "bbq miel",
+          "ajo parmesano",
+          "teriyaki",
+          "bbq",
+          "hot bbq",
+          "maggi",
+          "cajún",
+          "brava",
+          "mango habanero",
+          "requete-macho"
         ],
-        image: "https://images.pexels.com/photos/675951/pexels-photo-675951.jpeg?auto=compress&cs=tinysrgb&w=300"
       }
     ]
   },
+  // 9. Menú Infantil
   {
     id: "infantil",
     name: "Menú Infantil",
-    icon: "🧒",
+    icon: "",
+    chefImage: chefPorCategoria["infantil"],
     products: [
       {
         id: "i1",
-        name: "Mini Bububurger",
-        description: "Hamburguesa pequeña con papas y jugo natural",
+        name: "PAQUETE BUBUBURGER",
+        description: "Deliciosa Bububurger sencilla con queso manchego + 5 divertidas papas carita feliz y una chaparrita.",
         prices: [
-          { label: "Precio", value: 85 }
+          { label: "", value: 160 }
         ],
-        image: "https://images.pexels.com/photos/1639557/pexels-photo-1639557.jpeg?auto=compress&cs=tinysrgb&w=300"
+        image: paqueteBububurger,
       },
       {
         id: "i2",
-        name: "Nuggets de Pollo",
-        description: "6 nuggets dorados con papas y salsa dulce",
+        name: "PAQUETE NUGGETS",
+        description: "5 Nuggets + 5 divertidas papas carita feliz y una chaparrita.",
         prices: [
-          { label: "Precio", value: 80 }
+          { label: "", value: 160 }
         ],
-        image: "https://images.pexels.com/photos/60616/fried-chicken-chicken-fried-crunchy-60616.jpeg?auto=compress&cs=tinysrgb&w=300"
+        image: paqueteNuggets,
       },
       {
         id: "i3",
-        name: "Quesadilla Infantil",
-        description: "Quesadilla de queso con papas y fruta",
+        name: "PAQUETE HOTDOG",
+        description: "Hot Dog sencillo + 5 papas carita feliz y una chaparrita. ",
         prices: [
-          { label: "Precio", value: 70 }
+          { label: "", value: 130 }
         ],
-        image: "https://images.pexels.com/photos/4394612/pexels-photo-4394612.jpeg?auto=compress&cs=tinysrgb&w=300"
-      }
+        image: paqueteHotdog,
+      },
+      {
+        id: "i4",
+        name: "PAQUETE DEDITOS DE QUESO",
+        description: "5 Dedos de queso mozzarella + 5 papas carita feliz y una chaparrita.",
+        prices: [
+          { label: "", value: 160 }
+        ],
+        image: paqueteDeditos,
+      },
     ]
   },
+  // 10. Extras
   {
-    id: "bebidas",
-    name: "Bebidas Sin Alcohol",
-    icon: "🥤",
+    id: "extras",
+    name: "Extras",
+    icon: "",
+    chefImage: chefPorCategoria["cafe"],
     products: [
       {
-        id: "be1",
-        name: "Limonada Natural",
-        description: "Limonada fresca con menta y hielo",
-        prices: [
-          { label: "Precio", value: 35 }
-        ],
-        image: "https://images.pexels.com/photos/96974/pexels-photo-96974.jpeg?auto=compress&cs=tinysrgb&w=300"
+        id: "e1",
+        name: "Extra Queso",
+        description: "Porción adicional de queso manchego derretido.",
+        prices: [{ label: "", value: 20 }],
+        image: "/menu-images/extra-queso.png"
       },
       {
-        id: "be2",
-        name: "Agua Fresca de Jamaica",
-        description: "Refrescante agua de jamaica endulzada naturalmente",
-        prices: [
-          { label: "Precio", value: 30 }
-        ],
-        image: "https://images.pexels.com/photos/1327838/pexels-photo-1327838.jpeg?auto=compress&cs=tinysrgb&w=300"
+        id: "e2",
+        name: "Extra Tocino",
+        description: "Porción extra de tocino crujiente.",
+        prices: [{ label: "", value: 25 }],
+        image: "/menu-images/extra-tocino.png"
       },
       {
-        id: "be3",
-        name: "Refresco de Lata",
-        description: "Coca Cola, Pepsi, Sprite o Fanta",
-        prices: [
-          { label: "Precio", value: 25 }
-        ],
-        image: "https://images.pexels.com/photos/50593/coca-cola-cold-drink-soft-drink-coke-50593.jpeg?auto=compress&cs=tinysrgb&w=300"
+        id: "e3",
+        name: "Papas Extra",
+        description: "Porción adicional de papas a la francesa.",
+        prices: [{ label: "", value: 35 }],
+        image: "/menu-images/extra-papas.png"
       }
     ]
   },
+  // 11. Malteadas y Postres
   {
     id: "malteadas",
     name: "Malteadas y Postres",
-    icon: "🍦",
+    icon: "",
+    chefImage: chefPorCategoria["malteadas"],
     products: [
       {
         id: "m1",
@@ -441,7 +631,7 @@ export const menuCategories: Category[] = [
         prices: [
           { label: "Precio", value: 65 }
         ],
-        image: "https://images.pexels.com/photos/103566/pexels-photo-103566.jpeg?auto=compress&cs=tinysrgb&w=300"
+        image: "https://images.pexels.com/photos/103566/pexels-photo-103566.jpeg?auto=compress&cs=tinysrgb&w=300",
       },
       {
         id: "m2",
@@ -450,7 +640,7 @@ export const menuCategories: Category[] = [
         prices: [
           { label: "Precio", value: 70 }
         ],
-        image: "https://images.pexels.com/photos/108370/pexels-photo-108370.jpeg?auto=compress&cs=tinysrgb&w=300"
+        image: "https://images.pexels.com/photos/108370/pexels-photo-108370.jpeg?auto=compress&cs=tinysrgb&w=300",
       },
       {
         id: "m3",
@@ -459,82 +649,52 @@ export const menuCategories: Category[] = [
         prices: [
           { label: "Precio", value: 85 }
         ],
-        image: "https://images.pexels.com/photos/140831/pexels-photo-140831.jpeg?auto=compress&cs=tinysrgb&w=300"
-      }
+        image: "https://images.pexels.com/photos/140831/pexels-photo-140831.jpeg?auto=compress&cs=tinysrgb&w=300",
+      },
     ]
   },
+  // 12. Bebidas Sin Alcohol
   {
-    id: "cafe",
-    name: "Café y Tisanas",
-    icon: "☕",
+    id: "bebidas",
+    name: "Bebidas Sin Alcohol",
+    icon: "",
+    chefImage: chefPorCategoria["bebidas"],
     products: [
       {
-        id: "ca1",
-        name: "Café Americano",
-        description: "Café negro de grano selecto, servido caliente",
+        id: "be1",
+        name: "Limonada Natural",
+        description: "Limonada fresca con menta y hielo",
         prices: [
-          { label: "Precio", value: 25 }
+          { label: "Precio", value: 35 }
         ],
-        image: "https://images.pexels.com/photos/312418/pexels-photo-312418.jpeg?auto=compress&cs=tinysrgb&w=300"
+        image: "https://images.pexels.com/photos/96974/pexels-photo-96974.jpeg?auto=compress&cs=tinysrgb&w=300",
       },
       {
-        id: "ca2",
-        name: "Cappuccino",
-        description: "Espresso con leche espumada y canela",
-        prices: [
-          { label: "Precio", value: 45 }
-        ],
-        image: "https://images.pexels.com/photos/302899/pexels-photo-302899.jpeg?auto=compress&cs=tinysrgb&w=300"
-      },
-      {
-        id: "ca3",
-        name: "Té de Manzanilla",
-        description: "Tisana relajante de manzanilla con miel",
+        id: "be2",
+        name: "Agua Fresca de Jamaica",
+        description: "Refrescante agua de jamaica endulzada naturalmente",
         prices: [
           { label: "Precio", value: 30 }
         ],
-        image: "https://images.pexels.com/photos/1638280/pexels-photo-1638280.jpeg?auto=compress&cs=tinysrgb&w=300"
-      }
-    ]
-  },
-  {
-    id: "digestivos",
-    name: "Digestivos y Aperitivos",
-    icon: "🥃",
-    products: [
-      {
-        id: "d1",
-        name: "Tequila Blanco",
-        description: "Tequila 100% agave, servido solo o con sal y limón",
-        prices: [
-          { label: "Precio", value: 80 }
-        ],
-        image: "https://images.pexels.com/photos/5947041/pexels-photo-5947041.jpeg?auto=compress&cs=tinysrgb&w=300"
+        image: "https://images.pexels.com/photos/1327838/pexels-photo-1327838.jpeg?auto=compress&cs=tinysrgb&w=300",
       },
       {
-        id: "d2",
-        name: "Whisky en las Rocas",
-        description: "Whisky premium servido con hielo",
+        id: "be3",
+        name: "Refresco de Lata",
+        description: "Coca Cola, Pepsi, Sprite o Fanta",
         prices: [
-          { label: "Precio", value: 120 }
+          { label: "Precio", value: 25 }
         ],
-        image: "https://images.pexels.com/photos/1283219/pexels-photo-1283219.jpeg?auto=compress&cs=tinysrgb&w=300"
+        image: "https://images.pexels.com/photos/50593/coca-cola-cold-drink-soft-drink-coke-50593.jpeg?auto=compress&cs=tinysrgb&w=300",
       },
-      {
-        id: "d3",
-        name: "Licor de Café",
-        description: "Kahlúa servido con hielo y crema",
-        prices: [
-          { label: "Precio", value: 90 }
-        ],
-        image: "https://images.pexels.com/photos/338713/pexels-photo-338713.jpeg?auto=compress&cs=tinysrgb&w=300"
-      }
     ]
   },
+  // 13. Bubuchelas
   {
     id: "bubuchelas",
     name: "Bubuchelas",
-    icon: "🍺",
+    icon: "",
+    chefImage: chefPorCategoria["bubuchelas"],
     products: [
       {
         id: "bu1",
@@ -543,7 +703,7 @@ export const menuCategories: Category[] = [
         prices: [
           { label: "Precio", value: 40 }
         ],
-        image: "https://images.pexels.com/photos/52994/beer-slide-beer-glass-beer-mug-52994.jpeg?auto=compress&cs=tinysrgb&w=300"
+        image: "https://images.pexels.com/photos/52994/beer-slide-beer-glass-beer-mug-52994.jpeg?auto=compress&cs=tinysrgb&w=300",
       },
       {
         id: "bu2",
@@ -552,7 +712,7 @@ export const menuCategories: Category[] = [
         prices: [
           { label: "Precio", value: 45 }
         ],
-        image: "https://images.pexels.com/photos/1552630/pexels-photo-1552630.jpeg?auto=compress&cs=tinysrgb&w=300"
+        image: "https://images.pexels.com/photos/1552630/pexels-photo-1552630.jpeg?auto=compress&cs=tinysrgb&w=300",
       },
       {
         id: "bu3",
@@ -561,14 +721,15 @@ export const menuCategories: Category[] = [
         prices: [
           { label: "Precio", value: 60 }
         ],
-        image: "https://images.pexels.com/photos/1267696/pexels-photo-1267696.jpeg?auto=compress&cs=tinysrgb&w=300"
-      }
+        image: "https://images.pexels.com/photos/1267696/pexels-photo-1267696.jpeg?auto=compress&cs=tinysrgb&w=300",
+      },
     ]
   },
+  // 14. Cócteles de Color
   {
     id: "cockteles",
     name: "Cócteles de Color",
-    icon: "🍹",
+    icon: "",
     products: [
       {
         id: "co1",
@@ -577,7 +738,7 @@ export const menuCategories: Category[] = [
         prices: [
           { label: "Precio", value: 95 }
         ],
-        image: "https://images.pexels.com/photos/1304540/pexels-photo-1304540.jpeg?auto=compress&cs=tinysrgb&w=300"
+        image: "https://images.pexels.com/photos/1304540/pexels-photo-1304540.jpeg?auto=compress&cs=tinysrgb&w=300",
       },
       {
         id: "co2",
@@ -586,7 +747,7 @@ export const menuCategories: Category[] = [
         prices: [
           { label: "Precio", value: 90 }
         ],
-        image: "https://images.pexels.com/photos/1304540/pexels-photo-1304540.jpeg?auto=compress&cs=tinysrgb&w=300"
+        image: "https://images.pexels.com/photos/1304540/pexels-photo-1304540.jpeg?auto=compress&cs=tinysrgb&w=300",
       },
       {
         id: "co3",
@@ -595,14 +756,16 @@ export const menuCategories: Category[] = [
         prices: [
           { label: "Precio", value: 85 }
         ],
-        image: "https://images.pexels.com/photos/616836/pexels-photo-616836.jpeg?auto=compress&cs=tinysrgb&w=300"
-      }
+        image: "https://images.pexels.com/photos/616836/pexels-photo-616836.jpeg?auto=compress&cs=tinysrgb&w=300",
+      },
     ]
   },
+  // 15. Mojitos
   {
     id: "mojitos",
     name: "Mojitos",
-    icon: "🌿",
+    icon: "",
+    chefImage: chefPorCategoria["mojitos"],
     products: [
       {
         id: "mo1",
@@ -611,7 +774,7 @@ export const menuCategories: Category[] = [
         prices: [
           { label: "Precio", value: 85 }
         ],
-        image: "https://images.pexels.com/photos/1304540/pexels-photo-1304540.jpeg?auto=compress&cs=tinysrgb&w=300"
+        image: "https://images.pexels.com/photos/1304540/pexels-photo-1304540.jpeg?auto=compress&cs=tinysrgb&w=300",
       },
       {
         id: "mo2",
@@ -620,7 +783,7 @@ export const menuCategories: Category[] = [
         prices: [
           { label: "Precio", value: 90 }
         ],
-        image: "https://images.pexels.com/photos/1304540/pexels-photo-1304540.jpeg?auto=compress&cs=tinysrgb&w=300"
+        image: "https://images.pexels.com/photos/1304540/pexels-photo-1304540.jpeg?auto=compress&cs=tinysrgb&w=300",
       },
       {
         id: "mo3",
@@ -629,14 +792,16 @@ export const menuCategories: Category[] = [
         prices: [
           { label: "Precio", value: 95 }
         ],
-        image: "https://images.pexels.com/photos/616836/pexels-photo-616836.jpeg?auto=compress&cs=tinysrgb&w=300"
-      }
+        image: "https://images.pexels.com/photos/616836/pexels-photo-616836.jpeg?auto=compress&cs=tinysrgb&w=300",
+      },
     ]
   },
+  // 16. Destilados
   {
     id: "destilados",
     name: "Destilados",
-    icon: "🥃",
+    icon: "",
+    chefImage: chefPorCategoria["destilados"],
     products: [
       {
         id: "de1",
@@ -645,7 +810,7 @@ export const menuCategories: Category[] = [
         prices: [
           { label: "Precio", value: 110 }
         ],
-        image: "https://images.pexels.com/photos/1283219/pexels-photo-1283219.jpeg?auto=compress&cs=tinysrgb&w=300"
+        image: "https://images.pexels.com/photos/1283219/pexels-photo-1283219.jpeg?auto=compress&cs=tinysrgb&w=300",
       },
       {
         id: "de2",
@@ -654,7 +819,7 @@ export const menuCategories: Category[] = [
         prices: [
           { label: "Precio", value: 100 }
         ],
-        image: "https://images.pexels.com/photos/338713/pexels-photo-338713.jpeg?auto=compress&cs=tinysrgb&w=300"
+        image: "https://images.pexels.com/photos/338713/pexels-photo-338713.jpeg?auto=compress&cs=tinysrgb&w=300",
       },
       {
         id: "de3",
@@ -663,14 +828,16 @@ export const menuCategories: Category[] = [
         prices: [
           { label: "Precio", value: 130 }
         ],
-        image: "https://images.pexels.com/photos/5947041/pexels-photo-5947041.jpeg?auto=compress&cs=tinysrgb&w=300"
-      }
+        image: "https://images.pexels.com/photos/5947041/pexels-photo-5947041.jpeg?auto=compress&cs=tinysrgb&w=300",
+      },
     ]
   },
+  // 17. Sidras
   {
     id: "sidras",
     name: "Sidras",
-    icon: "🍎",
+    icon: "",
+    chefImage: chefPorCategoria["sidras"],
     products: [
       {
         id: "s1",
@@ -679,7 +846,7 @@ export const menuCategories: Category[] = [
         prices: [
           { label: "Precio", value: 55 }
         ],
-        image: "https://images.pexels.com/photos/1304540/pexels-photo-1304540.jpeg?auto=compress&cs=tinysrgb&w=300"
+        image: "https://images.pexels.com/photos/1304540/pexels-photo-1304540.jpeg?auto=compress&cs=tinysrgb&w=300",
       },
       {
         id: "s2",
@@ -688,7 +855,7 @@ export const menuCategories: Category[] = [
         prices: [
           { label: "Precio", value: 60 }
         ],
-        image: "https://images.pexels.com/photos/616836/pexels-photo-616836.jpeg?auto=compress&cs=tinysrgb&w=300"
+        image: "https://images.pexels.com/photos/616836/pexels-photo-616836.jpeg?auto=compress&cs=tinysrgb&w=300",
       },
       {
         id: "s3",
@@ -697,14 +864,16 @@ export const menuCategories: Category[] = [
         prices: [
           { label: "Precio", value: 65 }
         ],
-        image: "https://images.pexels.com/photos/1304540/pexels-photo-1304540.jpeg?auto=compress&cs=tinysrgb&w=300"
-      }
+        image: "https://images.pexels.com/photos/1304540/pexels-photo-1304540.jpeg?auto=compress&cs=tinysrgb&w=300",
+      },
     ]
   },
+  // 18. Bubu-Cócteles
   {
     id: "bubucocteles",
     name: "Bubu-Cócteles",
-    icon: "🍸",
+    icon: "",
+    chefImage: chefPorCategoria["bubucocteles"],
     products: [
       {
         id: "bc1",
@@ -713,7 +882,7 @@ export const menuCategories: Category[] = [
         prices: [
           { label: "Precio", value: 120 }
         ],
-        image: "https://images.pexels.com/photos/338713/pexels-photo-338713.jpeg?auto=compress&cs=tinysrgb&w=300"
+        image: "https://images.pexels.com/photos/338713/pexels-photo-338713.jpeg?auto=compress&cs=tinysrgb&w=300",
       },
       {
         id: "bc2",
@@ -722,7 +891,7 @@ export const menuCategories: Category[] = [
         prices: [
           { label: "Precio", value: 115 }
         ],
-        image: "https://images.pexels.com/photos/1283219/pexels-photo-1283219.jpeg?auto=compress&cs=tinysrgb&w=300"
+        image: "https://images.pexels.com/photos/1283219/pexels-photo-1283219.jpeg?auto=compress&cs=tinysrgb&w=300",
       },
       {
         id: "bc3",
@@ -731,8 +900,80 @@ export const menuCategories: Category[] = [
         prices: [
           { label: "Precio", value: 125 }
         ],
-        image: "https://images.pexels.com/photos/338713/pexels-photo-338713.jpeg?auto=compress&cs=tinysrgb&w=300"
-      }
+        image: "https://images.pexels.com/photos/338713/pexels-photo-338713.jpeg?auto=compress&cs=tinysrgb&w=300",
+      },
     ]
-  }
+  },
+  // 19. Café y Tisanas
+  {
+    id: "cafe",
+    name: "Café y Tisanas",
+    icon: "",
+    chefImage: chefPorCategoria["cafe"],
+    products: [
+      {
+        id: "ca1",
+        name: "Café Americano",
+        description: "Café negro de grano selecto, servido caliente",
+        prices: [
+          { label: "Precio", value: 25 }
+        ],
+        image: "https://images.pexels.com/photos/312418/pexels-photo-312418.jpeg?auto=compress&cs=tinysrgb&w=300",
+      },
+      {
+        id: "ca2",
+        name: "Cappuccino",
+        description: "Espresso con leche espumada y canela",
+        prices: [
+          { label: "Precio", value: 45 }
+        ],
+        image: "https://images.pexels.com/photos/302899/pexels-photo-302899.jpeg?auto=compress&cs=tinysrgb&w=300",
+      },
+      {
+        id: "ca3",
+        name: "Té de Manzanilla",
+        description: "Tisana relajante de manzanilla con miel",
+        prices: [
+          { label: "Precio", value: 30 }
+        ],
+        image: "https://images.pexels.com/photos/1638280/pexels-photo-1638280.jpeg?auto=compress&cs=tinysrgb&w=300",
+      },
+    ]
+  },
+  // 20. Digestivos y Aperitivos
+  {
+    id: "digestivos",
+    name: "Digestivos y Aperitivos",
+    icon: "",
+    chefImage: chefPorCategoria["digestivos"],
+    products: [
+      {
+        id: "d1",
+        name: "Tequila Blanco",
+        description: "Tequila 100% agave, servido solo o con sal y limón",
+        prices: [
+          { label: "Precio", value: 80 }
+        ],
+        image: "https://images.pexels.com/photos/5947041/pexels-photo-5947041.jpeg?auto=compress&cs=tinysrgb&w=300",
+      },
+      {
+        id: "d2",
+        name: "Whisky en las Rocas",
+        description: "Whisky premium servido con hielo",
+        prices: [
+          { label: "Precio", value: 120 }
+        ],
+        image: "https://images.pexels.com/photos/1283219/pexels-photo-1283219.jpeg?auto=compress&cs=tinysrgb&w=300",
+      },
+      {
+        id: "d3",
+        name: "Licor de Café",
+        description: "Kahlúa servido con hielo y crema",
+        prices: [
+          { label: "Precio", value: 90 }
+        ],
+        image: "https://images.pexels.com/photos/338713/pexels-photo-338713.jpeg?auto=compress&cs=tinysrgb&w=300",
+      },
+    ]
+  },
 ];

@@ -7,7 +7,6 @@ import FloatingButtons from './components/FloatingButtons';
 import RatingModal from './components/RatingModal';
 import PaymentModal from './components/PaymentModal';
 import InvoiceModal from './components/InvoiceModal';
-import EmailTestForm from './components/EmailTestForm';
 import { menuCategories } from './data/menuData';
 
 function App() {
@@ -84,21 +83,28 @@ function App() {
           top: 14,
           right: 14,
           zIndex: 1040,
-          background: 'var(--background-card)',
-          color: 'var(--primary-orange)',
+          background: 'transparent',
           border: 'none',
           borderRadius: '50%',
           width: 36,
           height: 36,
-          boxShadow: '0 2px 8px rgba(0,0,0,0.13)',
+          boxShadow: 'none',
           cursor: 'pointer',
-          fontSize: 18,
-          transition: 'background 0.3s',
+          padding: 0,
+          display: 'flex',
+          alignItems: 'center',
+          justifyContent: 'center',
         }}
         aria-label="Alternar modo oscuro"
         title="Alternar modo oscuro"
       >
-        {darkMode ? '🌙' : '☀️'}
+        {darkMode ? (
+          // Luna SVG
+          <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="#ffb347" strokeWidth="2.2" strokeLinecap="round" strokeLinejoin="round"><path d="M21 12.79A9 9 0 1 1 11.21 3a7 7 0 0 0 9.79 9.79z"/></svg>
+        ) : (
+          // Sol SVG
+          <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="#ffb347" strokeWidth="2.2" strokeLinecap="round" strokeLinejoin="round"><circle cx="12" cy="12" r="5"/><path d="M12 1v2m0 18v2m11-11h-2M3 12H1m16.95 7.07-1.41-1.41M6.34 6.34 4.93 4.93m12.02 0-1.41 1.41M6.34 17.66l-1.41 1.41"/></svg>
+        )}
       </button>
       <Header />
       
@@ -107,7 +113,7 @@ function App() {
         onCategoryChange={handleCategoryChange}
       />
 
-      <main className="pb-5">
+      <main className="pb-2">
         {menuCategories.map((category) => (
           <div key={category.id} id={`section-${category.id}`}>
             <MenuSection 
@@ -139,7 +145,7 @@ function App() {
         onHide={() => setShowInvoiceModal(false)}
       />
 
-      <EmailTestForm />
+      <div className="main-end-gradient" />
     </div>
   );
 }
