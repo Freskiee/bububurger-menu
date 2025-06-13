@@ -6,7 +6,7 @@ interface RatingModalProps {
   onHide: () => void;
 }
 
-const FORMSPREE_URL = "https://formspree.io/f/meqybwqg"; // Cambia este endpoint si tienes uno diferente
+const FORMSPREE_URL = "https://formspree.io/f/meokgnzg"; // Ahora usa el mismo endpoint que facturación
 
 const RatingModal: React.FC<RatingModalProps> = ({ show, onHide }) => {
   const [formData, setFormData] = useState({
