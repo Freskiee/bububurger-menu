@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { Send } from 'lucide-react';
 
 interface RatingModalProps {
@@ -6,25 +6,85 @@ interface RatingModalProps {
   onHide: () => void;
 }
 
+const BASIN_ENDPOINT = "https://usebasin.com/f/289192520763";
+
 const RatingModal: React.FC<RatingModalProps> = ({ show, onHide }) => {
   const [service, setService] = useState(0);
   const [taste, setTaste] = useState(0);
   const [presentation, setPresentation] = useState(0);
   const [price, setPrice] = useState(0);
+  const [name, setName] = useState("");
+  const [comments, setComments] = useState("");
+  const [enviado, setEnviado] = useState(false);
+  const [sending, setSending] = useState(false);
+
+  // Limpiar información y cerrar modal al regresar al menú o tras enviar
+  useEffect(() => {
+    if (!show) {
+      setService(0);
+      setTaste(0);
+      setPresentation(0);
+      setPrice(0);
+      setName("");
+      setComments("");
+      setEnviado(false);
+      setSending(false);
+    }
+  }, [show]);
+
+  useEffect(() => {
+    if (enviado) {
+      const timeout = setTimeout(() => {
+        setService(0);
+        setTaste(0);
+        setPresentation(0);
+        setPrice(0);
+        setName("");
+        setComments("");
+        setEnviado(false);
+        setSending(false);
+        onHide();
+      }, 1800); // 1.8 segundos para mostrar el mensaje de éxito
+      return () => clearTimeout(timeout);
+    }
+  }, [enviado, onHide]);
 
   if (!show) return null;
 
-  // Mostrar mensaje de éxito si la URL contiene ?success (Getform puede redirigir a una página de gracias)
-  const urlParams = new URLSearchParams(window.location.search);
-  const enviado = urlParams.has('success');
-
-  // Resetear ratings al cerrar
   const handleClose = () => {
     setService(0);
     setTaste(0);
     setPresentation(0);
     setPrice(0);
+    setName("");
+    setComments("");
+    setEnviado(false);
+    setSending(false);
     onHide();
+  };
+
+  const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
+    e.preventDefault();
+    setSending(true);
+    const formData = new FormData();
+    formData.append("name", name);
+    formData.append("service", String(service));
+    formData.append("taste", String(taste));
+    formData.append("presentation", String(presentation));
+    formData.append("price", String(price));
+    formData.append("comments", comments);
+    formData.append("_gotcha", "");
+    try {
+      await fetch(BASIN_ENDPOINT, {
+        method: "POST",
+        body: formData,
+      });
+      setEnviado(true);
+    } catch {
+      alert("Hubo un error al enviar tu reseña. Intenta de nuevo.");
+    } finally {
+      setSending(false);
+    }
   };
 
   return (
@@ -48,17 +108,7 @@ const RatingModal: React.FC<RatingModalProps> = ({ show, onHide }) => {
             {enviado ? (
               <div className="alert alert-success text-center">¡Gracias por tu opinión! 👨‍🍳</div>
             ) : (
-              <form
-                action="https://getform.io/f/ajjodxpa"
-                method="POST"
-                autoComplete="off"
-                onSubmit={() => {
-                  setService(0);
-                  setTaste(0);
-                  setPresentation(0);
-                  setPrice(0);
-                }}
-              >
+              <form autoComplete="off" onSubmit={handleSubmit}>
                 {/* Campo honeypot para spam */}
                 <input type="hidden" name="_gotcha" style={{ display: 'none' }} />
                 <div className="mb-3">
@@ -67,12 +117,13 @@ const RatingModal: React.FC<RatingModalProps> = ({ show, onHide }) => {
                     type="text"
                     className="form-control"
                     name="name"
+                    value={name}
+                    onChange={e => setName(e.target.value)}
                     required
                   />
                 </div>
                 <div className="mb-3">
                   <label className="form-label fw-medium">👥 Calidad del Servicio *</label>
-                  <input type="hidden" name="service" value={service} />
                   <div className="d-flex justify-content-center">
                     {[1, 2, 3, 4, 5].map((star) => (
                       <span
@@ -91,7 +142,6 @@ const RatingModal: React.FC<RatingModalProps> = ({ show, onHide }) => {
                 </div>
                 <div className="mb-3">
                   <label className="form-label fw-medium">😋 Sabor de los Alimentos *</label>
-                  <input type="hidden" name="taste" value={taste} />
                   <div className="d-flex justify-content-center">
                     {[1, 2, 3, 4, 5].map((star) => (
                       <span
@@ -110,7 +160,6 @@ const RatingModal: React.FC<RatingModalProps> = ({ show, onHide }) => {
                 </div>
                 <div className="mb-3">
                   <label className="form-label fw-medium">🎨 Presentación *</label>
-                  <input type="hidden" name="presentation" value={presentation} />
                   <div className="d-flex justify-content-center">
                     {[1, 2, 3, 4, 5].map((star) => (
                       <span
@@ -129,7 +178,6 @@ const RatingModal: React.FC<RatingModalProps> = ({ show, onHide }) => {
                 </div>
                 <div className="mb-3">
                   <label className="form-label fw-medium">💰 Percepción del Precio *</label>
-                  <input type="hidden" name="price" value={price} />
                   <div className="d-flex justify-content-center">
                     {[1, 2, 3, 4, 5].map((star) => (
                       <span
@@ -152,6 +200,8 @@ const RatingModal: React.FC<RatingModalProps> = ({ show, onHide }) => {
                     className="form-control"
                     rows={3}
                     name="comments"
+                    value={comments}
+                    onChange={e => setComments(e.target.value)}
                     placeholder="Cuéntanos más sobre tu experiencia..."
                   ></textarea>
                 </div>
@@ -163,9 +213,10 @@ const RatingModal: React.FC<RatingModalProps> = ({ show, onHide }) => {
                     color: 'white',
                     borderRadius: '25px'
                   }}
+                  disabled={sending}
                 >
                   <Send size={20} className="me-2" />
-                  Enviar Mi Reseña
+                  {sending ? 'Enviando...' : 'Enviar Mi Reseña'}
                 </button>
               </form>
             )}
