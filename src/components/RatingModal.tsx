@@ -205,19 +205,25 @@ const RatingModal: React.FC<RatingModalProps> = ({ show, onHide }) => {
                     placeholder="Cuéntanos más sobre tu experiencia..."
                 ></textarea>
               </div>
-              <button
-                type="submit"
-                className="btn w-100 fw-bold"
-                style={{
-                  background: 'var(--primary-orange)',
-                  color: 'white',
-                  borderRadius: '25px'
-                }}
+              <div className="text-center">
+                <button
+                  type="submit"
+                  className="btn fw-bold d-flex align-items-center justify-content-center"
+                  style={{
+                    background: 'var(--primary-orange)',
+                    color: 'white',
+                    borderRadius: '25px',
+                    maxWidth: '300px',
+                    gap: '8px',
+                    margin: '32px auto 0 auto',
+                    display: 'flex'
+                  }}
                   disabled={sending}
-              >
-                <Send size={20} className="me-2" />
+                >
+                  <Send size={20} />
                   {sending ? 'Enviando...' : 'Enviar Mi Reseña'}
-              </button>
+                </button>
+              </div>
             </form>
             )}
           </div>
