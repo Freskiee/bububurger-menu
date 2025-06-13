@@ -526,8 +526,11 @@ body {
   color: #ff6a00;
 }
 
-.dark-mode .product-price .double-price {
-  color: #fff;
+.dark-mode .product-price .double-price,
+.dark-mode .product-price .double-price *,
+.dark-mode .product-modal .product-price .double-price,
+.dark-mode .product-modal .product-price .double-price * {
+  color: #fff !important;
 }
 
 /* Inputs y selects en formularios de modales */
@@ -606,4 +609,12 @@ body {
   -webkit-line-clamp: 1;
   font-size: 0.82rem;
   margin-bottom: 0.35rem;
+}
+
+.dark-mode .product-price, .dark-mode .product-price .double-price, .dark-mode .product-modal .product-price, .dark-mode .product-modal .product-price .double-price {
+  color: #fff !important;
+}
+
+.dark-label-white {
+  color: #fff !important;
 }

@@ -521,8 +521,8 @@ export const menuCategories: Category[] = [
       },
       {
         id: "c4",
-        name: "Costillitas de Elote",
-        description: "Costillitas de elote bañadas en salsa a elegir.",
+        name: "COSTILLAS DE ELOTE AMARILLO",
+        description: "Estas costillitas de elote dulce amarillo, bañaditas con salsa Hot BBQ, Cajun, Tajín y un toque de perejil deshidratado con limón te harán bailar como texano. Son perfectas para compartir y calmar tus antojos, ¡así que prepárate para chuparte los dedos!",
         prices: [
           { label: "Precio", value: 120 }
         ],

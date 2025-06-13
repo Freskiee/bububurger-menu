@@ -192,13 +192,13 @@ const ProductCard: React.FC<ProductCardProps> = ({ product, category }) => {
                   <span key={option.label} style={{ display: 'inline-block', marginBottom: option.note ? 2 : 0 }}>
                     {idx > 0 && <span> | </span>}
                     {option.label
-                      ? <span style={{ color: '#000', fontWeight: 600 }}>
+                      ? <span style={{ color: 'var(--text-main)', fontWeight: 600, opacity: 1 }}>
                           {option.label}{/\.$/.test(option.label.trim()) ? '' : ':'}{' '}
                         </span>
                       : null}
                     <span style={{ color: '#ff6a00', fontWeight: 700 }}>${option.value}</span>
                     {option.note && (
-                      <div style={{ fontSize: '0.93em', color: '#000', opacity: 0.85, marginTop: 2, fontWeight: 400, lineHeight: 1.2 }}>{option.note}</div>
+                      <div style={{ fontSize: '0.93em', color: 'var(--text-main)', opacity: 0.85, marginTop: 2, fontWeight: 400, lineHeight: 1.2 }}>{option.note}</div>
                     )}
                   </span>
                 ))}
@@ -284,12 +284,14 @@ const ProductCard: React.FC<ProductCardProps> = ({ product, category }) => {
                           else if (idx >= 7) level = 4;
                           else if (idx >= 4) level = 3;
                           else if (idx >= 2) level = 2;
+                          // Función para poner en mayúscula la primera letra de cada palabra
+                          const toTitleCase = (str: string) => str.replace(/\w\S*/g, (txt) => txt.charAt(0).toUpperCase() + txt.substr(1).toLowerCase());
                           // Colores de chile
                           return (
-                            <div key={salsa} style={{ display: 'flex', alignItems: 'center', marginBottom: 4, gap: 8 }}>
+                            <div key={salsa} style={{ display: 'flex', alignItems: 'center', marginBottom: 8, gap: 8, flexWrap: 'wrap' }}>
                               <div style={{ width: 18, height: 18, borderRadius: '50%', background: sauceColors[idx] || '#eee', marginRight: 6, border: '1.5px solid #fff', boxShadow: '0 1px 4px rgba(0,0,0,0.07)' }} />
-                              <span style={{ fontWeight: 500, color: 'var(--text-main)', minWidth: 110 }}>{salsa}</span>
-                              <span>
+                              <span style={{ fontWeight: 500, color: 'var(--text-main)', minWidth: 110, marginRight: 8 }}>{toTitleCase(salsa)}</span>
+                              <span style={{ display: 'flex', flexWrap: 'wrap', gap: 2 }}>
                                 {Array.from({ length: level }).map((_, i) => (
                                   <span key={i} style={{ color: chiliColors[level-1], fontSize: 18, marginLeft: 1 }}>🌶️</span>
                                 ))}
