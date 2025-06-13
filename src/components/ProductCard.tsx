@@ -83,7 +83,7 @@ const ProductCard: React.FC<ProductCardProps> = ({ product, category }) => {
           minHeight: 180,
           padding: '12px 8px 12px 8px',
           fontFamily: "'Fredoka One', 'Comic Sans MS', cursive, sans-serif",
-        } : { cursor: 'pointer', position: 'relative' }}
+        } : {}}
       >
         {isInfantil && (
           <span style={{ position: 'absolute', top: 10, left: 12, fontSize: 22, zIndex: 2 }}>🎈🍟</span>
@@ -91,21 +91,25 @@ const ProductCard: React.FC<ProductCardProps> = ({ product, category }) => {
         <img 
           src={product.image} 
           alt={product.name}
-          className="product-image"
+          className={isInfantil ? "product-image" : "product-image"}
           style={isInfantil ? { borderRadius: 18, border: '2px solid #ffd740', boxShadow: '0 2px 8px #ffd74033', background: '#fff' } : {}}
         />
-        <div className="product-content" style={isInfantil ? {
+        <div className={isInfantil ? "product-content" : "product-content"} style={isInfantil ? {
           background: isDark ? 'linear-gradient(135deg, #23243a 80%, #7c4dff 100%)' : 'linear-gradient(135deg, #fffde7 80%, #f3eafe 100%)',
           borderRadius: 18,
           boxShadow: '0 2px 8px #7c4dff22',
           padding: '10px 10px 8px 10px',
           fontFamily: "'Fredoka One', 'Comic Sans MS', cursive, sans-serif",
         } : {}}>
-          <h6 className="product-title" style={isInfantil ? { fontFamily: "'Fredoka One', 'Comic Sans MS', cursive, sans-serif", fontWeight: 900, fontSize: '1.13rem', marginBottom: 2, letterSpacing: '0.01em', textAlign: 'left', display: 'flex', alignItems: 'center', gap: 6 } : {}}>
+          <h6 className={isInfantil ? "product-title" : "product-title fw-bold mb-1"} style={isInfantil ? { fontFamily: "'Fredoka One', 'Comic Sans MS', cursive, sans-serif", fontWeight: 900, fontSize: '1.13rem', marginBottom: 2, letterSpacing: '0.01em', textAlign: 'left', display: 'flex', alignItems: 'center', gap: 6 } : {}}>
             {isInfantil ? multicolorText(product.name) : product.name}
             {isInfantil && <span style={{ fontSize: 18, marginLeft: 4 }}>🧃</span>}
           </h6>
-          <p className={isInfantil ? 'mb-4' : 'text-muted mb-4'} style={isInfantil ? { color: '#7c4dff', fontWeight: 700, fontSize: '1.01em' } : {}}>{product.description}</p>
+          {isInfantil ? (
+            <p className="mb-4" style={{ color: '#7c4dff', fontWeight: 700, fontSize: '1.01em' }}>{product.description}</p>
+          ) : (
+            <p className="product-description">{product.description}</p>
+          )}
         </div>
       </div>
 
@@ -155,7 +159,11 @@ const ProductCard: React.FC<ProductCardProps> = ({ product, category }) => {
               <h4 className="mb-3" style={isInfantil ? { fontFamily: "'Fredoka One', 'Comic Sans MS', cursive, sans-serif", fontWeight: 900, fontSize: '1.18rem', letterSpacing: '0.01em', color: pastelColors[1], marginBottom: 8 } : {}}>
                 {isInfantil ? multicolorText(product.name) : product.name}
               </h4>
-              <p className={isInfantil ? 'mb-4' : 'text-muted mb-4'} style={isInfantil ? { color: '#7c4dff', fontWeight: 700, fontSize: '1.01em' } : {}}>{product.description}</p>
+              {isInfantil ? (
+                <p className="mb-4" style={{ color: '#7c4dff', fontWeight: 700, fontSize: '1.01em' }}>{product.description}</p>
+              ) : (
+                <p className="text-muted mb-4">{product.description}</p>
+              )}
               <div className="product-price mb-4" style={isInfantil ? { color: pastelColors[0], fontWeight: 900, fontSize: '1.13em', fontFamily: "'Fredoka One', 'Comic Sans MS', cursive, sans-serif" } : {}}>
                 {product.prices.map((option, idx) => (
                   <span key={option.label} style={{ display: 'inline-block', marginBottom: option.note ? 2 : 0 }}>
