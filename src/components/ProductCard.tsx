@@ -275,7 +275,7 @@ const ProductCard: React.FC<ProductCardProps> = ({ product, category }) => {
                         El orden es de menos a más picante.
                       </div>
                       {/* Lista vertical de salsas con chiles */}
-                      <div style={{ margin: '0 auto 10px auto', maxWidth: 340, textAlign: 'left' }}>
+                      <div className="salsa-lista" style={{ margin: '0 auto 10px auto', maxWidth: 340, textAlign: 'left' }}>
                         {product.sauces.map((salsa, idx) => {
                           // Nivel de picante: 1 a 5
                           let level = 1;
@@ -288,9 +288,9 @@ const ProductCard: React.FC<ProductCardProps> = ({ product, category }) => {
                           const toTitleCase = (str: string) => str.replace(/\w\S*/g, (txt) => txt.charAt(0).toUpperCase() + txt.substr(1).toLowerCase());
                           // Colores de chile
                           return (
-                            <div key={salsa} style={{ display: 'flex', alignItems: 'center', marginBottom: 8, gap: 8, flexWrap: 'wrap' }}>
+                            <div key={salsa} className="salsa-item">
                               <div style={{ width: 18, height: 18, borderRadius: '50%', background: sauceColors[idx] || '#eee', marginRight: 6, border: '1.5px solid #fff', boxShadow: '0 1px 4px rgba(0,0,0,0.07)' }} />
-                              <span style={{ fontWeight: 500, color: 'var(--text-main)', minWidth: 110, marginRight: 8 }}>{toTitleCase(salsa)}</span>
+                              <span className="salsa-nombre">{toTitleCase(salsa)}</span>
                               <span style={{ display: 'flex', flexWrap: 'wrap', gap: 2 }}>
                                 {Array.from({ length: level }).map((_, i) => (
                                   <span key={i} style={{ color: chiliColors[level-1], fontSize: 18, marginLeft: 1 }}>🌶️</span>

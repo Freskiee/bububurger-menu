@@ -618,3 +618,42 @@ body {
 .dark-label-white {
   color: #fff !important;
 }
+
+/* Mejorar responsividad del modal de salsas */
+.sauce-modal-content .salsa-lista {
+  max-width: 100%;
+  min-width: 0;
+  font-size: 1em;
+}
+
+.sauce-modal-content .salsa-item {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  flex-wrap: wrap;
+  margin-bottom: 8px;
+  min-width: 0;
+  word-break: break-word;
+}
+
+.sauce-modal-content .salsa-nombre {
+  font-weight: 500;
+  color: var(--text-main);
+  min-width: 90px;
+  margin-right: 8px;
+  font-size: 0.98em;
+  flex: 1 1 120px;
+  word-break: break-word;
+}
+
+@media (max-width: 480px) {
+  .sauce-modal-content .salsa-nombre {
+    font-size: 0.93em;
+    min-width: 60px;
+    flex: 1 1 80px;
+  }
+  .sauce-modal-content .salsa-item {
+    gap: 4px;
+    font-size: 0.93em;
+  }
+}
