@@ -7,6 +7,7 @@ import FloatingButtons from './components/FloatingButtons';
 import RatingModal from './components/RatingModal';
 import PaymentModal from './components/PaymentModal';
 import InvoiceModal from './components/InvoiceModal';
+import EmailTestForm from './components/EmailTestForm';
 import { menuCategories } from './data/menuData';
 
 function App() {
@@ -137,6 +138,8 @@ function App() {
         show={showInvoiceModal}
         onHide={() => setShowInvoiceModal(false)}
       />
+
+      <EmailTestForm />
     </div>
   );
 }
