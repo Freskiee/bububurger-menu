@@ -1,6 +1,5 @@
 import React, { useState } from 'react';
 import { Send, FileText } from 'lucide-react';
-import emailjs from '@emailjs/browser';
 
 interface InvoiceModalProps {
   show: boolean;
@@ -25,30 +24,6 @@ const InvoiceModal: React.FC<InvoiceModalProps> = ({ show, onHide }) => {
   const [sending, setSending] = useState(false);
   const [sent, setSent] = useState(false);
   const [error, setError] = useState<string | null>(null);
-
-  const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
-    e.preventDefault();
-    setSending(true);
-    setError(null);
-    emailjs.sendForm(
-      'bububurger',           // Service ID
-      'template_q75g0lf',     // Template ID
-      e.currentTarget,        // El formulario (form)
-      'DeTVB4MdIKuSSP5Yk'     // Public Key
-    )
-    .then(() => {
-      setSent(true);
-      setSending(false);
-      setTimeout(() => {
-        setSent(false);
-        onHide();
-      }, 2000);
-    })
-    .catch((err) => {
-      setError('Ocurrió un error al enviar. Intenta de nuevo.');
-      setSending(false);
-    });
-  };
 
   const handleInputChange = (field: string, value: string) => {
     setFormData({ ...formData, [field]: value });
@@ -79,7 +54,10 @@ const InvoiceModal: React.FC<InvoiceModalProps> = ({ show, onHide }) => {
               {sent ? (
                 <div className="alert alert-success text-center">¡Factura enviada correctamente!</div>
               ) : (
-                <form onSubmit={handleSubmit}>
+                <form
+                  action="https://formspree.io/f/meokgnzg"
+                  method="POST"
+                >
                   <div className="row">
                     <div className="col-12 mb-3">
                       <label className="form-label">Correo Electrónico *</label>
@@ -222,11 +200,9 @@ const InvoiceModal: React.FC<InvoiceModalProps> = ({ show, onHide }) => {
                         color: 'white',
                         borderRadius: '25px'
                       }}
-                      disabled={sending}
                     >
-                      {sending ? 'Enviando...' : (<><span className="me-2">📤</span>solicitar factura</>)}
+                      solicitar factura
                     </button>
-                    {error && <div className="alert alert-danger mt-2">{error}</div>}
                   </div>
 
                   <div className="mt-3">
