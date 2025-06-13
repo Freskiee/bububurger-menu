@@ -150,7 +150,7 @@ export const menuCategories: Category[] = [
         name: "ELOTE ASADO",
         description: "Elote dulce amarillo asado a la parrilla, servido con un toque de sal y especias. Perfecto para acompañar cualquier platillo o disfrutar por sí solo con su sabor ahumado y natural.",
         prices: [
-          { label: "", value: 35 }
+          { label: "", value: 75 }
         ],
         image: eloteAsado
       }
