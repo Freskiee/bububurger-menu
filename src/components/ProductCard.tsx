@@ -1,4 +1,4 @@
-import React, { useState, useRef, useEffect, useMemo } from 'react';
+import React, { useState, useRef, useEffect } from 'react';
 import { Product, Category } from '../data/menuData';
 import Modal from 'react-bootstrap/Modal';
 
@@ -29,29 +29,25 @@ const chiliColors = [
   '#d7263d'  // 5
 ];
 
-// Lista de todos los chefs disponibles
-const chefImages = [
-  '/images/cartoon-chef-fry.png',
-  '/images/cartoon-chef-cook.png',
-  '/images/cartoon-chef-bar.png',
-  '/images/chef-sarten.png',
-  '/images/chef-sad.png',
-  '/images/chef-build.png',
-  '/images/chef-fry.png',
-  '/images/chef-cook.png',
-  '/images/chef-bar.png',
-  '/images/chef3.png',
-  '/images/chef2.png',
-  '/images/chef1.png',
-  '/images/logo-chef.png',
-  '/images/chef only.png',
-  '/images/chef rock.png',
-  '/images/chef zombi.png',
-  '/images/chef fashion.png',
-  '/images/chef stand up.png',
-  '/images/chef paste.png',
-  '/images/chef karaoke.png',
+const pastelColors = [
+  '#ff80ab', // rosa
+  '#7c4dff', // lila
+  '#ffd740', // amarillo
+  '#40c4ff', // azul
+  '#69f0ae', // verde
 ];
+
+function multicolorText(text: string) {
+  return (
+    <span>
+      {text.split('').map((char, i) => (
+        <span key={i} style={{ color: pastelColors[i % pastelColors.length], fontWeight: 900 }}>
+          {char}
+        </span>
+      ))}
+    </span>
+  );
+}
 
 const ProductCard: React.FC<ProductCardProps> = ({ product, category }) => {
   const [showModal, setShowModal] = useState(false);
@@ -78,20 +74,38 @@ const ProductCard: React.FC<ProductCardProps> = ({ product, category }) => {
       <div 
         className="product-card p-3 mb-3"
         onClick={() => setShowModal(true)}
-        style={{ cursor: 'pointer', position: 'relative' }}
+        style={isInfantil ? {
+          background: isDark ? '#23243a' : '#f3eafe',
+          borderRadius: 22,
+          border: isDark ? '2.5px dashed #b39ddb' : '2.5px dashed #b39ddb',
+          boxShadow: isDark ? '0 2px 12px 0 rgba(124,77,255,0.10)' : '0 2px 12px 0 rgba(124,77,255,0.10)',
+          position: 'relative',
+          minHeight: 180,
+          padding: '12px 8px 12px 8px',
+          fontFamily: "'Fredoka One', 'Comic Sans MS', cursive, sans-serif",
+        } : { cursor: 'pointer', position: 'relative' }}
       >
+        {isInfantil && (
+          <span style={{ position: 'absolute', top: 10, left: 12, fontSize: 22, zIndex: 2 }}>🎈🍟</span>
+        )}
         <img 
           src={product.image} 
           alt={product.name}
           className="product-image"
+          style={isInfantil ? { borderRadius: 18, border: '2px solid #ffd740', boxShadow: '0 2px 8px #ffd74033', background: '#fff' } : {}}
         />
-        <div className="product-content">
-          <h6 className="product-title">
-            {product.name}
+        <div className="product-content" style={isInfantil ? {
+          background: isDark ? 'linear-gradient(135deg, #23243a 80%, #7c4dff 100%)' : 'linear-gradient(135deg, #fffde7 80%, #f3eafe 100%)',
+          borderRadius: 18,
+          boxShadow: '0 2px 8px #7c4dff22',
+          padding: '10px 10px 8px 10px',
+          fontFamily: "'Fredoka One', 'Comic Sans MS', cursive, sans-serif",
+        } : {}}>
+          <h6 className="product-title" style={isInfantil ? { fontFamily: "'Fredoka One', 'Comic Sans MS', cursive, sans-serif", fontWeight: 900, fontSize: '1.13rem', marginBottom: 2, letterSpacing: '0.01em', textAlign: 'left', display: 'flex', alignItems: 'center', gap: 6 } : {}}>
+            {isInfantil ? multicolorText(product.name) : product.name}
+            {isInfantil && <span style={{ fontSize: 18, marginLeft: 4 }}>🧃</span>}
           </h6>
-          <p className="product-description">
-            {product.description}
-          </p>
+          <p className={isInfantil ? 'mb-4' : 'text-muted mb-4'} style={isInfantil ? { color: '#7c4dff', fontWeight: 700, fontSize: '1.01em' } : {}}>{product.description}</p>
         </div>
       </div>
 
@@ -102,10 +116,17 @@ const ProductCard: React.FC<ProductCardProps> = ({ product, category }) => {
         size="lg"
         className="product-modal"
       >
-        <Modal.Header closeButton className="modal-header-custom">
+        <Modal.Header closeButton className="modal-header-custom" style={isInfantil ? {
+          background: isDark ? 'linear-gradient(90deg, #23243a, #7c4dff)' : 'linear-gradient(90deg, #ffd740, #ff80ab)',
+          color: isDark ? '#ffd740' : '#7c4dff',
+          fontFamily: "'Fredoka One', 'Comic Sans MS', cursive, sans-serif",
+        } : {}}>
           <div style={{ display: 'flex', alignItems: 'center', width: '100%', gap: 16, justifyContent: 'center' }}>
-            <Modal.Title className="fw-bold" style={{ textAlign: 'center', margin: 0 }}>
-              {product.name}
+            <Modal.Title className="fw-bold" style={isInfantil ? {
+              textAlign: 'center', margin: 0, fontFamily: "'Fredoka One', 'Comic Sans MS', cursive, sans-serif", fontWeight: 900, fontSize: '1.35rem', letterSpacing: '0.01em', display: 'flex', alignItems: 'center', gap: 8
+            } : { textAlign: 'center', margin: 0 }}>
+              {isInfantil ? multicolorText(product.name) : product.name}
+              {isInfantil && <span style={{ fontSize: 22 }}>🍭</span>}
             </Modal.Title>
             {category.chefImage && (
               <img
@@ -116,53 +137,69 @@ const ProductCard: React.FC<ProductCardProps> = ({ product, category }) => {
             )}
           </div>
         </Modal.Header>
-        <Modal.Body>
+        <Modal.Body style={isInfantil ? {
+          background: isDark ? '#23243a' : '#f3eafe',
+          color: isDark ? '#ffd740' : '#7c4dff',
+          fontFamily: "'Fredoka One', 'Comic Sans MS', cursive, sans-serif",
+        } : {}}>
           <div className="row">
             <div className="col-md-6">
               <img 
                 src={product.image} 
                 alt={product.name}
                 className="img-fluid rounded"
-                style={{ width: '100%', height: 'auto', objectFit: 'cover' }}
+                style={isInfantil ? { width: '100%', height: 'auto', objectFit: 'cover', borderRadius: 18, border: '2px solid #ffd740', boxShadow: '0 2px 8px #ffd74033', background: '#fff' } : { width: '100%', height: 'auto', objectFit: 'cover' }}
               />
             </div>
             <div className="col-md-6">
-              <h4 className="mb-3">{product.name}</h4>
-              <p className="text-muted mb-4">{product.description}</p>
-              {isInfantil && (
-                <div style={{
-                  background: 'linear-gradient(90deg, #ffe6fa 60%, #e0f7fa 100%)',
-                  color: '#7c4dff',
-                  fontFamily: "'Fredoka One', 'Comic Sans MS', cursive, sans-serif",
-                  fontWeight: 700,
-                  fontSize: '1.08em',
-                  borderRadius: 16,
-                  padding: '8px 18px',
-                  boxShadow: '0 2px 8px rgba(255,193,203,0.13)',
-                  border: '1.5px solid #ffd6e0',
-                  marginBottom: 18,
-                  marginTop: -8,
-                  textAlign: 'center',
-                  maxWidth: 320
-                }}>
-                  Por $95 extra puedes cambiar la bebida por una malteada 🥤🍦
-                </div>
-              )}
-              <div className="product-price mb-4">
+              <h4 className="mb-3" style={isInfantil ? { fontFamily: "'Fredoka One', 'Comic Sans MS', cursive, sans-serif", fontWeight: 900, fontSize: '1.18rem', letterSpacing: '0.01em', color: pastelColors[1], marginBottom: 8 } : {}}>
+                {isInfantil ? multicolorText(product.name) : product.name}
+              </h4>
+              <p className={isInfantil ? 'mb-4' : 'text-muted mb-4'} style={isInfantil ? { color: '#7c4dff', fontWeight: 700, fontSize: '1.01em' } : {}}>{product.description}</p>
+              <div className="product-price mb-4" style={isInfantil ? { color: pastelColors[0], fontWeight: 900, fontSize: '1.13em', fontFamily: "'Fredoka One', 'Comic Sans MS', cursive, sans-serif" } : {}}>
                 {product.prices.map((option, idx) => (
                   <span key={option.label} style={{ display: 'inline-block', marginBottom: option.note ? 2 : 0 }}>
                     {idx > 0 && <span> | </span>}
                     {option.label
-                      ? <span style={{ color: 'var(--primary-orange)', fontWeight: 700 }}>
+                      ? <span style={{ color: pastelColors[2], fontWeight: 700 }}>
                           {option.label}{/\.$/.test(option.label.trim()) ? '' : ':'}{' '}
                         </span>
                       : null}
-                    <span style={{ color: 'var(--primary-orange)', fontWeight: 700 }}>${option.value}</span>
+                    <span style={{ color: pastelColors[0], fontWeight: 900 }}>${option.value}</span>
                     {option.note && (
-                      <div style={{ fontSize: '0.93em', color: 'var(--text-main)', opacity: 0.85, marginTop: 2, fontWeight: 400, lineHeight: 1.2 }}>{option.note}</div>
+                      <div style={{ fontSize: '0.93em', color: pastelColors[1], opacity: 0.85, marginTop: 2, fontWeight: 400, lineHeight: 1.2 }}>{option.note}</div>
                     )}
                   </span>
                 ))}
+                {isInfantil && (
+                  <div style={{
+                    display: 'flex',
+                    justifyContent: 'flex-end',
+                    marginTop: 6
+                  }}>
+                    <span style={{
+                      background: isDark ? 'rgba(255,255,255,0.10)' : 'rgba(255,255,255,0.85)',
+                      color: isDark ? pastelColors[1] : pastelColors[0],
+                      fontFamily: "'Fredoka One', 'Comic Sans MS', cursive, sans-serif",
+                      fontWeight: 600,
+                      fontSize: '0.89em',
+                      borderRadius: 8,
+                      padding: '3px 8px',
+                      boxShadow: '0 1px 4px rgba(124,77,255,0.08)',
+                      border: isDark ? '1px solid #b39ddb' : '1px solid #e0e0e0',
+                      display: 'flex',
+                      alignItems: 'center',
+                      gap: 4,
+                      minWidth: 0,
+                      maxWidth: '100%',
+                      whiteSpace: 'normal',
+                      textAlign: 'center',
+                    }}>
+                      <span role="img" aria-label="malteada" style={{ fontSize: 15 }}>🥤</span>
+                      <span>+ $95 Cambia tu bebida por una malteada</span>
+                    </span>
+                  </div>
+                )}
               </div>
               <div style={{ position: 'relative', width: 'fit-content', marginBottom: 16 }}>
                 {product.comment && (
@@ -249,32 +286,6 @@ const ProductCard: React.FC<ProductCardProps> = ({ product, category }) => {
               </button>
             </div>
           </div>
-          {/* Etiqueta solo visible en el modal de productos infantiles */}
-          {isInfantil && (
-            <div style={{
-              position: 'absolute',
-              bottom: 18,
-              right: 18,
-              background: isDark ? 'rgba(255,255,255,0.10)' : 'rgba(255,255,255,0.85)',
-              color: isDark ? '#b39ddb' : '#7c4dff',
-              fontFamily: "'Fredoka One', 'Comic Sans MS', cursive, sans-serif",
-              fontWeight: 600,
-              fontSize: '0.93em',
-              borderRadius: 12,
-              padding: '4px 10px',
-              boxShadow: '0 1px 4px rgba(124,77,255,0.08)',
-              border: isDark ? '1px solid #b39ddb' : '1px solid #e0e0e0',
-              zIndex: 10,
-              display: 'flex',
-              alignItems: 'center',
-              gap: 5,
-              pointerEvents: 'none',
-              minWidth: 0
-            }}>
-              <span role="img" aria-label="malteada" style={{ fontSize: 16 }}>🥤</span>
-              <span>+ $95 malteada</span>
-            </div>
-          )}
         </Modal.Body>
       </Modal>
 
