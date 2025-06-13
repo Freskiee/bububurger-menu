@@ -6,8 +6,6 @@ interface RatingModalProps {
   onHide: () => void;
 }
 
-const FORMSPREE_URL = "https://formspree.io/f/mgyvkdnk"; // Nuevo endpoint para reseñas
-
 const RatingModal: React.FC<RatingModalProps> = ({ show, onHide }) => {
   const [formData, setFormData] = useState({
     name: '',
@@ -82,11 +80,12 @@ const RatingModal: React.FC<RatingModalProps> = ({ show, onHide }) => {
               <div className="alert alert-success text-center">¡Gracias por tu opinión! 👨‍🍳</div>
             ) : (
               <form
-                action={FORMSPREE_URL}
+                name="reseñas"
                 method="POST"
+                data-netlify="true"
                 onSubmit={() => setSent(true)}
               >
-                <input type="hidden" name="_subject" value="Nueva reseña de cliente Bububurger" />
+                <input type="hidden" name="form-name" value="reseñas" />
                 <div className="mb-3">
                   <label className="form-label fw-medium">Tu Nombre *</label>
                   <input
