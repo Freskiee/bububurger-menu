@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { Send } from 'lucide-react';
 
 interface RatingModalProps {
@@ -7,11 +7,25 @@ interface RatingModalProps {
 }
 
 const RatingModal: React.FC<RatingModalProps> = ({ show, onHide }) => {
+  const [service, setService] = useState(0);
+  const [taste, setTaste] = useState(0);
+  const [presentation, setPresentation] = useState(0);
+  const [price, setPrice] = useState(0);
+
   if (!show) return null;
 
   // Mostrar mensaje de éxito si la URL contiene ?success (Getform puede redirigir a una página de gracias)
   const urlParams = new URLSearchParams(window.location.search);
   const enviado = urlParams.has('success');
+
+  // Resetear ratings al cerrar
+  const handleClose = () => {
+    setService(0);
+    setTaste(0);
+    setPresentation(0);
+    setPrice(0);
+    onHide();
+  };
 
   return (
     <div className="modal show d-block" style={{ backgroundColor: 'rgba(0,0,0,0.5)' }}>
@@ -25,7 +39,7 @@ const RatingModal: React.FC<RatingModalProps> = ({ show, onHide }) => {
             <button
               type="button"
               className="btn-close btn-close-white"
-              onClick={onHide}
+              onClick={handleClose}
               aria-label="Cerrar"
               style={{ filter: 'invert(1)' }}
             ></button>
@@ -38,6 +52,12 @@ const RatingModal: React.FC<RatingModalProps> = ({ show, onHide }) => {
                 action="https://getform.io/f/ajjodxpa"
                 method="POST"
                 autoComplete="off"
+                onSubmit={() => {
+                  setService(0);
+                  setTaste(0);
+                  setPresentation(0);
+                  setPrice(0);
+                }}
               >
                 {/* Campo honeypot para spam */}
                 <input type="hidden" name="_gotcha" style={{ display: 'none' }} />
@@ -52,68 +72,76 @@ const RatingModal: React.FC<RatingModalProps> = ({ show, onHide }) => {
                 </div>
                 <div className="mb-3">
                   <label className="form-label fw-medium">👥 Calidad del Servicio *</label>
-                  <input type="hidden" name="service" id="service" />
+                  <input type="hidden" name="service" value={service} />
                   <div className="d-flex justify-content-center">
                     {[1, 2, 3, 4, 5].map((star) => (
                       <span
                         key={star}
-                        className="rating-stars text-warning"
-                        style={{ fontSize: '1.8rem', cursor: 'pointer' }}
-                        onClick={() => {
-                          const input = document.getElementById('service') as HTMLInputElement;
-                          if (input) input.value = String(star);
+                        className="rating-stars"
+                        style={{
+                          fontSize: '1.8rem',
+                          cursor: 'pointer',
+                          filter: star <= service ? 'none' : 'grayscale(1)',
+                          transition: 'filter 0.2s',
                         }}
+                        onClick={() => setService(star)}
                       >🍔</span>
                     ))}
                   </div>
                 </div>
                 <div className="mb-3">
                   <label className="form-label fw-medium">😋 Sabor de los Alimentos *</label>
-                  <input type="hidden" name="taste" id="taste" />
+                  <input type="hidden" name="taste" value={taste} />
                   <div className="d-flex justify-content-center">
                     {[1, 2, 3, 4, 5].map((star) => (
                       <span
                         key={star}
-                        className="rating-stars text-warning"
-                        style={{ fontSize: '1.8rem', cursor: 'pointer' }}
-                        onClick={() => {
-                          const input = document.getElementById('taste') as HTMLInputElement;
-                          if (input) input.value = String(star);
+                        className="rating-stars"
+                        style={{
+                          fontSize: '1.8rem',
+                          cursor: 'pointer',
+                          filter: star <= taste ? 'none' : 'grayscale(1)',
+                          transition: 'filter 0.2s',
                         }}
+                        onClick={() => setTaste(star)}
                       >🍔</span>
                     ))}
                   </div>
                 </div>
                 <div className="mb-3">
                   <label className="form-label fw-medium">🎨 Presentación *</label>
-                  <input type="hidden" name="presentation" id="presentation" />
+                  <input type="hidden" name="presentation" value={presentation} />
                   <div className="d-flex justify-content-center">
                     {[1, 2, 3, 4, 5].map((star) => (
                       <span
                         key={star}
-                        className="rating-stars text-warning"
-                        style={{ fontSize: '1.8rem', cursor: 'pointer' }}
-                        onClick={() => {
-                          const input = document.getElementById('presentation') as HTMLInputElement;
-                          if (input) input.value = String(star);
+                        className="rating-stars"
+                        style={{
+                          fontSize: '1.8rem',
+                          cursor: 'pointer',
+                          filter: star <= presentation ? 'none' : 'grayscale(1)',
+                          transition: 'filter 0.2s',
                         }}
+                        onClick={() => setPresentation(star)}
                       >🍔</span>
                     ))}
                   </div>
                 </div>
                 <div className="mb-3">
                   <label className="form-label fw-medium">💰 Percepción del Precio *</label>
-                  <input type="hidden" name="price" id="price" />
+                  <input type="hidden" name="price" value={price} />
                   <div className="d-flex justify-content-center">
                     {[1, 2, 3, 4, 5].map((star) => (
                       <span
                         key={star}
-                        className="rating-stars text-warning"
-                        style={{ fontSize: '1.8rem', cursor: 'pointer' }}
-                        onClick={() => {
-                          const input = document.getElementById('price') as HTMLInputElement;
-                          if (input) input.value = String(star);
+                        className="rating-stars"
+                        style={{
+                          fontSize: '1.8rem',
+                          cursor: 'pointer',
+                          filter: star <= price ? 'none' : 'grayscale(1)',
+                          transition: 'filter 0.2s',
                         }}
+                        onClick={() => setPrice(star)}
                       >🍔</span>
                     ))}
                   </div>
