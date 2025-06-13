@@ -80,12 +80,10 @@ const RatingModal: React.FC<RatingModalProps> = ({ show, onHide }) => {
               <div className="alert alert-success text-center">¡Gracias por tu opinión! 👨‍🍳</div>
             ) : (
               <form
-                name="reseñas"
+                action="https://getform.io/f/ajjodxpa"
                 method="POST"
-                data-netlify="true"
                 onSubmit={() => setSent(true)}
               >
-                <input type="hidden" name="form-name" value="reseñas" />
                 <div className="mb-3">
                   <label className="form-label fw-medium">Tu Nombre *</label>
                   <input
