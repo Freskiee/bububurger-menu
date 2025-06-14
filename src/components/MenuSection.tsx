@@ -1,6 +1,8 @@
-import React from 'react';
+import React, { useContext } from 'react';
 import { Category } from '../data/menuData';
 import ProductCard from './ProductCard';
+import { productTranslations, menuTranslations } from '../i18n/menu';
+import { LanguageContext } from '../App';
 
 interface MenuSectionProps {
   category: Category;
@@ -12,6 +14,7 @@ const MenuSection: React.FC<MenuSectionProps> = ({ category, isFavorites = false
   const isFavoritos = category.id === 'favoritos';
   // Detectar modo oscuro
   const isDark = document.body.classList.contains('dark-mode');
+  const { language } = useContext(LanguageContext);
   let sectionStyle = {};
   if (isInfantil) {
     sectionStyle = isDark
@@ -96,7 +99,7 @@ const MenuSection: React.FC<MenuSectionProps> = ({ category, isFavorites = false
             />
           )}
           <span>{category.icon}</span>
-          <span>{category.name}</span>
+          <span>{menuTranslations[category.id]?.[language] || category.name}</span>
         </h3>
         <div>
           {category.products.map((product) => (

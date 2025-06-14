@@ -1,8 +1,14 @@
-import React from 'react';
+import React, { useContext } from 'react';
 import { Clock } from 'lucide-react';
 import parrillaImg from '../assets/parrilla.png';
+import { LanguageContext } from '../App';
+import { uiTranslations } from '../i18n/menu';
 
-const Header: React.FC = () => {
+const Header: React.FC<{ setDarkMode?: (fn: (prev: boolean) => boolean) => void, darkMode?: boolean }> = ({ setDarkMode, darkMode }) => {
+  const { language, toggleLanguage } = useContext(LanguageContext) as { language: 'es' | 'en', toggleLanguage: () => void };
+  const t = uiTranslations;
+  const isDark = typeof darkMode === 'boolean' ? darkMode : document.body.classList.contains('dark-mode');
+
   return (
     <div className="header-gradient text-white" style={{
       backgroundImage: `url(${parrillaImg})`,
@@ -20,6 +26,86 @@ const Header: React.FC = () => {
         background: 'linear-gradient(135deg, rgba(30, 30, 30, 0.82) 0%, rgba(30, 30, 30, 0.65) 100%)',
         zIndex: 1
       }}></div>
+      
+      {/* Botón de idioma minimalista en la esquina superior izquierda del header */}
+      <button
+        onClick={toggleLanguage}
+        style={{
+          position: 'absolute',
+          top: 18,
+          left: 18,
+          zIndex: 10,
+          background: isDark ? 'rgba(40,40,40,0.72)' : 'rgba(255,255,255,0.88)',
+          border: 'none',
+          borderRadius: '50%',
+          width: 38,
+          height: 38,
+          boxShadow: '0 2px 10px 0 rgba(0,0,0,0.13)',
+          cursor: 'pointer',
+          padding: 0,
+          display: 'flex',
+          alignItems: 'center',
+          justifyContent: 'center',
+          transition: 'transform 0.18s, box-shadow 0.18s, background 0.18s',
+          fontSize: 24,
+          outline: 'none',
+          backdropFilter: 'blur(2.5px)'
+        }}
+        aria-label="Cambiar idioma / Change language"
+        title="Cambiar idioma / Change language"
+        onMouseOver={e => {
+          e.currentTarget.style.transform = 'scale(1.13)';
+          e.currentTarget.style.boxShadow = '0 0 14px 2px #7c4dff55';
+          e.currentTarget.style.background = isDark ? 'rgba(40,40,40,0.92)' : 'rgba(255,255,255,0.98)';
+        }}
+        onMouseOut={e => {
+          e.currentTarget.style.transform = 'scale(1)';
+          e.currentTarget.style.boxShadow = '0 2px 10px 0 rgba(0,0,0,0.13)';
+          e.currentTarget.style.background = isDark ? 'rgba(40,40,40,0.72)' : 'rgba(255,255,255,0.88)';
+        }}
+      >
+        <span role="img" aria-label="Cambiar idioma / Change language" style={{ fontSize: 26, filter: isDark ? 'drop-shadow(0 2px 4px #23243a)' : 'drop-shadow(0 2px 4px #fff)' }}>🌐</span>
+      </button>
+      
+      {/* Botón de dark/light mode en la esquina superior derecha del header */}
+      {setDarkMode && (
+        <button
+          onClick={() => setDarkMode((prev: boolean) => !prev)}
+          style={{
+            position: 'absolute',
+            top: 18,
+            right: 18,
+            zIndex: 10,
+            background: 'transparent',
+            border: 'none',
+            borderRadius: '50%',
+            width: 36,
+            height: 36,
+            boxShadow: 'none',
+            cursor: 'pointer',
+            padding: 0,
+            display: 'flex',
+            alignItems: 'center',
+            justifyContent: 'center',
+            transition: 'transform 0.18s',
+            outline: 'none',
+          }}
+          aria-label="Alternar modo oscuro / Toggle dark mode"
+          title="Alternar modo oscuro / Toggle dark mode"
+          onMouseOver={e => {
+            e.currentTarget.style.transform = 'scale(1.13)';
+          }}
+          onMouseOut={e => {
+            e.currentTarget.style.transform = 'scale(1)';
+          }}
+        >
+          {isDark ? (
+            <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="#ffb347" strokeWidth="2.2" strokeLinecap="round" strokeLinejoin="round"><path d="M21 12.79A9 9 0 1 1 11.21 3a7 7 0 0 0 9.79 9.79z"/></svg>
+          ) : (
+            <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="#ffb347" strokeWidth="2.2" strokeLinecap="round" strokeLinejoin="round"><circle cx="12" cy="12" r="5"/><path d="M12 1v2m0 18v2m11-11h-2M3 12H1m16.95 7.07-1.41-1.41M6.34 6.34 4.93 4.93m12.02 0-1.41 1.41M6.34 17.66l-1.41 1.41"/></svg>
+          )}
+        </button>
+      )}
       
       <div className="container-fluid py-4" style={{ position: 'relative', zIndex: 2 }}>
         {/* Logo y título */}
@@ -54,7 +140,7 @@ const Header: React.FC = () => {
             display: 'inline-block',
             marginTop: 2
           }}>
-            Por las que vale la pena romper cualquier dieta
+            {t.slogan[language]}
           </div>
           <p className="mb-3 opacity-90">Hamburguesas al Carbón</p>
         </div>
@@ -90,35 +176,35 @@ const Header: React.FC = () => {
           <div style={{ position: 'relative', zIndex: 2, color: '#fff', textShadow: '0 2px 8px rgba(0,0,0,0.35)' }}>
             <div className="d-flex align-items-center justify-content-center mb-2">
               <Clock size={20} className="me-2" />
-              <h6 className="mb-0 fw-bold">Horarios de Servicio</h6>
+              <h6 className="mb-0 fw-bold">{t.scheduleTitle[language]}</h6>
             </div>
             <div className="row text-center">
               <div className="col-6">
                 <div className="mb-2">
-                  <strong>Mar - Mié</strong>
+                  <strong>{t.scheduleWeekdays[language]}</strong>
                   <br />
                   <small>16:00 - 23:30</small>
                 </div>
               </div>
               <div className="col-6">
                 <div className="mb-2">
-                  <strong>Jue - Vie - Sáb</strong>
+                  <strong>{t.scheduleWeekend[language]}</strong>
                   <br />
                   <small>13:00 - 00:30</small>
                 </div>
               </div>
               <div className="col-6">
                 <div className="mb-2">
-                  <strong>Dom</strong>
+                  <strong>{t.scheduleSunday[language]}</strong>
                   <br />
                   <small>13:00 - 23:30</small>
                 </div>
               </div>
               <div className="col-6">
                 <div className="mb-2">
-                  <strong>Lunes</strong>
+                  <strong>{t.scheduleMonday[language]}</strong>
                   <br />
-                  <small>Cerrado</small>
+                  <small>{t.scheduleClosed[language]}</small>
                 </div>
               </div>
             </div>

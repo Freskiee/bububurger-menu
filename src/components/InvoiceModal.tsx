@@ -1,5 +1,7 @@
-import React, { useState } from 'react';
+import React, { useState, useContext } from 'react';
 import { Send, FileText } from 'lucide-react';
+import { LanguageContext } from '../App';
+import { uiTranslations } from '../i18n/menu';
 
 interface InvoiceModalProps {
   show: boolean;
@@ -24,6 +26,8 @@ const InvoiceModal: React.FC<InvoiceModalProps> = ({ show, onHide }) => {
   const [sending, setSending] = useState(false);
   const [sent, setSent] = useState(false);
   const [error, setError] = useState<string | null>(null);
+  const { language } = useContext(LanguageContext) as { language: 'es' | 'en' };
+  const t = uiTranslations;
 
   const handleInputChange = (field: string, value: string) => {
     setFormData({ ...formData, [field]: value });
@@ -38,21 +42,20 @@ const InvoiceModal: React.FC<InvoiceModalProps> = ({ show, onHide }) => {
           <div className="modal-header modal-header-custom" style={{ color: 'var(--text-main)' }}>
             <h5 className="modal-title fw-bold">
               <span className="me-2">🧾</span>
-              Solicitar Factura
+              {t.invoiceTitle[language]}
             </h5>
             <button
               type="button"
               className="btn-close btn-close-white"
               onClick={onHide}
-              aria-label="Cerrar"
+              aria-label={t.invoiceClose[language]}
               style={{ filter: 'invert(1)' }}
             ></button>
           </div>
-          
           <div className="modal-body" style={{ color: 'var(--text-main)' }}>
             <div className="invoice-form">
               {sent ? (
-                <div className="alert alert-success text-center">¡Factura enviada correctamente!</div>
+                <div className="alert alert-success text-center">{t.invoiceSuccess[language]}</div>
               ) : (
                 <form
                   action="https://formspree.io/f/meokgnzg"
@@ -60,61 +63,61 @@ const InvoiceModal: React.FC<InvoiceModalProps> = ({ show, onHide }) => {
                 >
                 <div className="row">
                   <div className="col-12 mb-3">
-                      <label className="form-label">Correo Electrónico *</label>
+                      <label className="form-label">{t.invoiceEmail[language]}</label>
                     <input
                         name="email"
                       type="email"
                       className="form-control"
                       value={formData.email}
                       onChange={(e) => handleInputChange('email', e.target.value)}
-                      placeholder="tu@email.com"
+                      placeholder={t.invoiceEmailPlaceholder[language]}
                       required
                     />
                   </div>
 
                   <div className="col-md-6 mb-3">
-                      <label className="form-label">RFC *</label>
+                      <label className="form-label">{t.invoiceRFC[language]}</label>
                     <input
                         name="rfc"
                       type="text"
                       className="form-control"
                       value={formData.rfc}
                       onChange={(e) => handleInputChange('rfc', e.target.value.toUpperCase())}
-                      placeholder="ABCD123456EF7"
+                      placeholder={t.invoiceRFCPlaceholder[language]}
                       maxLength={13}
                       required
                     />
                   </div>
 
                   <div className="col-md-6 mb-3">
-                      <label className="form-label">Código Postal *</label>
+                      <label className="form-label">{t.invoicePostal[language]}</label>
                     <input
                         name="postal_code"
                       type="text"
                       className="form-control"
                       value={formData.postalCode}
                       onChange={(e) => handleInputChange('postalCode', e.target.value)}
-                      placeholder="12345"
+                      placeholder={t.invoicePostalPlaceholder[language]}
                       maxLength={5}
                       required
                     />
                   </div>
 
                   <div className="col-12 mb-3">
-                      <label className="form-label">Nombre Completo *</label>
+                      <label className="form-label">{t.invoiceName[language]}</label>
                     <input
                         name="name"
                       type="text"
                       className="form-control"
                       value={formData.fullName}
                       onChange={(e) => handleInputChange('fullName', e.target.value)}
-                        placeholder="Nombre completo o razón social"
+                      placeholder={t.invoiceNamePlaceholder[language]}
                       required
                     />
                   </div>
 
                   <div className="col-12 mb-3">
-                      <label className="form-label">Régimen Fiscal *</label>
+                      <label className="form-label">{t.invoiceRegime[language]}</label>
                     <select
                         name="tax_regime"
                       className="form-select"
@@ -122,31 +125,14 @@ const InvoiceModal: React.FC<InvoiceModalProps> = ({ show, onHide }) => {
                       onChange={(e) => handleInputChange('taxRegime', e.target.value)}
                       required
                     >
-                        <option value="">Selecciona tu Régimen Fiscal</option>
-                        <option value="General de Ley Personas Morales">601 - General de Ley Personas Morales</option>
-                        <option value="Personas Morales con Fines no Lucrativos">603 - Personas Morales con Fines no Lucrativos</option>
-                        <option value="Sueldos y Salarios e Ingresos Asimilados a Salarios">605 - Sueldos y Salarios e Ingresos Asimilados a Salarios</option>
-                        <option value="Arrendamiento">606 - Arrendamiento</option>
-                        <option value="Régimen de Enajenación o Adquisición de Bienes">607 - Régimen de Enajenación o Adquisición de Bienes</option>
-                        <option value="Demás Ingresos">608 - Demás Ingresos</option>
-                        <option value="Residentes en el Extranjero sin Establecimiento Permanente en México">610 - Residentes en el Extranjero sin Establecimiento Permanente en México</option>
-                        <option value="Ingresos por Dividendos (Socios y Accionistas)">611 - Ingresos por Dividendos (Socios y Accionistas)</option>
-                        <option value="Personas Físicas con Actividades Empresariales y Profesionales">612 - Personas Físicas con Actividades Empresariales y Profesionales</option>
-                        <option value="Ingresos por Intereses">614 - Ingresos por Intereses</option>
-                        <option value="Régimen de los Ingresos por Obtención de Premios">615 - Régimen de los Ingresos por Obtención de Premios</option>
-                        <option value="Sin Obligaciones Fiscales">616 - Sin Obligaciones Fiscales</option>
-                        <option value="Sociedades Cooperativas de Producción que optan por diferir sus ingresos">620 - Sociedades Cooperativas de Producción que optan por diferir sus ingresos</option>
-                        <option value="Incorporación Fiscal">621 - Incorporación Fiscal</option>
-                        <option value="Actividades Agrícolas, Ganaderas, Silvícolas y Pesqueras">622 - Actividades Agrícolas, Ganaderas, Silvícolas y Pesqueras</option>
-                        <option value="Opcional para Grupos de Sociedades">623 - Opcional para Grupos de Sociedades</option>
-                        <option value="Coordinados">624 - Coordinados</option>
-                        <option value="Régimen de las Actividades Empresariales con Ingresos a través de Plataformas Tecnológicas">625 - Régimen de las Actividades Empresariales con Ingresos a través de Plataformas Tecnológicas</option>
-                        <option value="Régimen Simplificado de Confianza">626 - Régimen Simplificado de Confianza</option>
+                        {t.invoiceRegimes[language].map((option: string, idx: number) => (
+                          <option key={option} value={option}>{option}</option>
+                        ))}
                     </select>
                   </div>
 
                   <div className="col-md-6 mb-3">
-                      <label className="form-label">Método de Pago *</label>
+                      <label className="form-label">{t.invoicePayment[language]}</label>
                     <select
                         name="payment_method"
                       className="form-select"
@@ -154,24 +140,21 @@ const InvoiceModal: React.FC<InvoiceModalProps> = ({ show, onHide }) => {
                       onChange={(e) => handleInputChange('paymentMethod', e.target.value)}
                       required
                     >
-                        <option value="">Selecciona Método de Pago</option>
-                        <option value="Efectivo">01 - Efectivo</option>
-                        <option value="Transferencia Electrónica de Fondos">03 - Transferencia Electrónica de Fondos</option>
-                        <option value="Tarjeta de Crédito">04 - Tarjeta de Crédito</option>
-                        <option value="Tarjeta de Débito">28 - Tarjeta de Débito</option>
-                        <option value="Por Definir">99 - Por Definir</option>
+                        {t.invoicePayments[language].map((option: string, idx: number) => (
+                          <option key={option} value={option}>{option}</option>
+                        ))}
                     </select>
                   </div>
 
                   <div className="col-md-6 mb-3">
-                      <label className="form-label">Cantidad Total *</label>
+                      <label className="form-label">{t.invoiceAmount[language]}</label>
                     <input
                         name="amount"
                       type="number"
                       className="form-control"
                       value={formData.amount}
                       onChange={(e) => handleInputChange('amount', e.target.value)}
-                      placeholder="0.00"
+                      placeholder={t.invoiceAmountPlaceholder[language]}
                       min="0"
                       step="0.01"
                       required
@@ -179,7 +162,7 @@ const InvoiceModal: React.FC<InvoiceModalProps> = ({ show, onHide }) => {
                   </div>
 
                   <div className="col-12 mb-4">
-                    <label className="form-label">fecha de consumo *</label>
+                    <label className="form-label">{t.invoiceDate[language]}</label>
                     <input
                         name="consumption_date"
                       type="date"
@@ -201,14 +184,13 @@ const InvoiceModal: React.FC<InvoiceModalProps> = ({ show, onHide }) => {
                         borderRadius: '25px'
                       }}
                     >
-                    solicitar factura
+                    {t.invoiceButton[language]}
                   </button>
                 </div>
 
                 <div className="mt-3">
                   <small className="text-muted">
-                    <strong>nota:</strong> tu factura será procesada en un plazo máximo de 72 horas hábiles. 
-                    Recibirás un correo de confirmación una vez que esté lista.
+                    <strong>{t.invoiceNote[language]}</strong> {t.invoiceNoteText[language]}
                   </small>
                 </div>
               </form>

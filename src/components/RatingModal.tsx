@@ -1,5 +1,7 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useContext } from 'react';
 import { Send } from 'lucide-react';
+import { LanguageContext } from '../App';
+import { uiTranslations } from '../i18n/menu';
 
 interface RatingModalProps {
   show: boolean;
@@ -17,6 +19,8 @@ const RatingModal: React.FC<RatingModalProps> = ({ show, onHide }) => {
   const [comments, setComments] = useState("");
   const [enviado, setEnviado] = useState(false);
   const [sending, setSending] = useState(false);
+  const { language } = useContext(LanguageContext) as { language: 'es' | 'en' };
+  const t = uiTranslations;
 
   // Limpiar información y cerrar modal al regresar al menú o tras enviar
   useEffect(() => {
@@ -81,7 +85,7 @@ const RatingModal: React.FC<RatingModalProps> = ({ show, onHide }) => {
       });
       setEnviado(true);
     } catch {
-      alert("Hubo un error al enviar tu reseña. Intenta de nuevo.");
+      alert(t.reviewError[language]);
     } finally {
       setSending(false);
     }
@@ -94,25 +98,25 @@ const RatingModal: React.FC<RatingModalProps> = ({ show, onHide }) => {
           <div className="modal-header modal-header-custom">
             <h5 className="modal-title fw-bold">
               <span className="me-2">🍔</span>
-              Califica Tu Experiencia
+              {t.reviewTitle[language]}
             </h5>
             <button
               type="button"
               className="btn-close btn-close-white"
               onClick={handleClose}
-              aria-label="Cerrar"
+              aria-label={t.reviewClose[language]}
               style={{ filter: 'invert(1)' }}
             ></button>
           </div>
           <div className="modal-body">
             {enviado ? (
-              <div className="alert alert-success text-center">¡Gracias por tu opinión! 👨‍🍳</div>
+              <div className="alert alert-success text-center">{t.reviewThanks[language]}</div>
             ) : (
               <form autoComplete="off" onSubmit={handleSubmit}>
                 {/* Campo honeypot para spam */}
                 <input type="hidden" name="_gotcha" style={{ display: 'none' }} />
               <div className="mb-3">
-                  <label className="form-label fw-medium">Tu Nombre *</label>
+                  <label className="form-label fw-medium">{t.reviewName[language]}</label>
                 <input
                   type="text"
                   className="form-control"
@@ -123,7 +127,7 @@ const RatingModal: React.FC<RatingModalProps> = ({ show, onHide }) => {
                 />
               </div>
               <div className="mb-3">
-                  <label className="form-label fw-medium">👥 Calidad del Servicio *</label>
+                  <label className="form-label fw-medium">{t.reviewService[language]}</label>
                   <div className="d-flex justify-content-center">
                     {[1, 2, 3, 4, 5].map((star) => (
                       <span
@@ -141,7 +145,7 @@ const RatingModal: React.FC<RatingModalProps> = ({ show, onHide }) => {
                   </div>
               </div>
               <div className="mb-3">
-                  <label className="form-label fw-medium">😋 Sabor de los Alimentos *</label>
+                  <label className="form-label fw-medium">{t.reviewTaste[language]}</label>
                   <div className="d-flex justify-content-center">
                     {[1, 2, 3, 4, 5].map((star) => (
                       <span
@@ -159,7 +163,7 @@ const RatingModal: React.FC<RatingModalProps> = ({ show, onHide }) => {
                   </div>
               </div>
               <div className="mb-3">
-                  <label className="form-label fw-medium">🎨 Presentación *</label>
+                  <label className="form-label fw-medium">{t.reviewPresentation[language]}</label>
                   <div className="d-flex justify-content-center">
                     {[1, 2, 3, 4, 5].map((star) => (
                       <span
@@ -177,7 +181,7 @@ const RatingModal: React.FC<RatingModalProps> = ({ show, onHide }) => {
                   </div>
               </div>
               <div className="mb-3">
-                  <label className="form-label fw-medium">💰 Percepción del Precio *</label>
+                  <label className="form-label fw-medium">{t.reviewPrice[language]}</label>
                   <div className="d-flex justify-content-center">
                     {[1, 2, 3, 4, 5].map((star) => (
                       <span
@@ -195,14 +199,14 @@ const RatingModal: React.FC<RatingModalProps> = ({ show, onHide }) => {
                   </div>
               </div>
               <div className="mb-3">
-                  <label className="form-label fw-medium">Comentarios Adicionales</label>
+                  <label className="form-label fw-medium">{t.reviewComments[language]}</label>
                 <textarea
                   className="form-control"
                   rows={3}
                     name="comments"
                     value={comments}
                     onChange={e => setComments(e.target.value)}
-                    placeholder="Cuéntanos más sobre tu experiencia..."
+                    placeholder={t.reviewCommentsPlaceholder[language]}
                 ></textarea>
               </div>
               <div className="text-center">
@@ -221,7 +225,7 @@ const RatingModal: React.FC<RatingModalProps> = ({ show, onHide }) => {
                   disabled={sending}
                 >
                   <Send size={20} />
-                  {sending ? 'Enviando...' : 'Enviar Mi Reseña'}
+                  {sending ? t.reviewSending[language] : t.reviewSend[language]}
                 </button>
               </div>
             </form>

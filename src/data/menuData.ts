@@ -1,3 +1,4 @@
+import { MenuItem } from "../types/menu";
 import olimpica from "/menu-images/olimpica.png";
 import mojitoFrutosRojos from "/menu-images/mojito-fr.png";
 import dedosQueso from "/menu-images/dedos-queso.png";
@@ -90,7 +91,7 @@ export const menuCategories: Category[] = [
       {
         id: "f1",
         name: "BUBUBURGER OLÍMPICA",
-        description: "Ex-qui-si-ta, simplemente el mejor balance de sabor, 100 gr. de carne de res sazonada con la receta secreta de la casa, gratinada con queso manchego, tocino, y un par de deliciosos aros de cebolla bañados en aderezo blue-cheese.",
+        description: "Ex-qui-si-ta, simplemente el mejor balance de sabor, 100 gr. de carne de res sazonada con la receta secreta de la casa, gratinada con queso manchego, tocino, y un par de deliciosos aros de cebolla con un toque de blue-cheese.",
         prices: [
           { label: "", value: 170 },
           { label: "Doble", value: 185 }
@@ -194,9 +195,14 @@ export const menuCategories: Category[] = [
         name: "COSTILLAS DE ELOTE AMARILLO",
         description: "Estas costillitas de elote dulce amarillo, bañaditas con salsa Hot BBQ, Cajun, Tajín y un toque de perejil deshidratado con limón te harán bailar como texano. Son perfectas para compartir y calmar tus antojos, ¡así que prepárate para chuparte los dedos!",
         prices: [
-          { label: "", value: 170 }
+          { label: "Precio", value: 120 }
         ],
         image: costillasElote,
+        sauces: [
+          "bbq",
+          "hot bbq",
+          "mango habanero",
+        ],
       },
       {
         id: "e7",
@@ -271,11 +277,11 @@ export const menuCategories: Category[] = [
     chefImage: chefPorCategoria["entradas"],
     products: [
       {
-        id: "b1",
-        name: "Banderilla Clásica",
+        id: "bd1",
+        name: "BANDERILLA CLÁSICA",
         description: "Salchichas empanizadas con masa dorada y crujiente, montadas en palillos de madera. Fritas al momento para lograr una textura ligera y perfectamente dorada. Servidas listas para acompañar con tus salsas favoritas.",
         prices: [
-          { label: "2 Pzs", value: 140 },
+          { label: "2 Pzs", value: 140, note: "Incluye papas 70g" },
           { label: "5 Pzs", value: 180 }
         ],
         image: banderillas,
@@ -292,7 +298,7 @@ export const menuCategories: Category[] = [
       {
         id: "b1",
         name: "LA SENSATA",
-        description: "100 gr. De carne de res sazonada con la receta secreta de la casa. Lechuga, jitomate, cebolla caramelizada, pepinillos, chiles, catsup, mostaza y mayonesa.",
+        description: "100 gr. de carne de res sazonada con la receta secreta de la casa. Lechuga, jitomate, cebolla caramelizada, pepinillos, chiles, catsup, mostaza y mayonesa.",
         prices: [
           { label: "Sencilla", value: 135 },
           { label: "Queso o Piña", value: 140 },
@@ -313,10 +319,10 @@ export const menuCategories: Category[] = [
       {
         id: "b3",
         name: "OLÍMPICA",
-        description: "Ex-qui-si-ta, simplemente el mejor balance de sabor, 100 gr. de carne de res sazonada con la receta secreta de la casa, gratinada con queso manchego, tocino, y un par de deliciosos aros de cebolla bañados en aderezo blue-cheese. Lechuga, jitomate, cebolla caramelizada, pepinillos, chiles, catsup, mostaza y mayonesa.",
+        description: "Ex-qui-si-ta, simplemente el mejor balance de sabor, 100 gr. de carne de res sazonada con la receta secreta de la casa, gratinada con queso manchego, tocino, y un par de deliciosos aros de cebolla con un toque de blue-cheese. Lechuga, jitomate, cebolla caramelizada, pepinillos, chiles, catsup, mostaza y mayonesa.",
         prices: [
           { label: "Sencilla", value: 170 },
-          { label: "Doble", value: 185 },
+          { label: "Doble", value: 185 }
         ],
         image: olimpica,
       },
@@ -326,7 +332,7 @@ export const menuCategories: Category[] = [
         description: "La inconfundible hamburguesa hawaiana con su deliciosa piña tropical, asada lentamente a la parrilla, jamón Virginia, queso manchego y su tocino bien frito a la plancha. ¡Esta Bububurger te hará bailar el Waikiki! Lechuga, jitomate, cebolla caramelizada, pepinillos, chiles, catsup, mostaza y mayonesa.",
         prices: [
           { label: "Sencilla", value: 170 },
-          { label: "Doble", value: 185 },
+          { label: "Doble", value: 185 }
         ],
         image: hawaiana,
       },
@@ -336,7 +342,7 @@ export const menuCategories: Category[] = [
         description: "Esta hamburguesa te hará sentir en el viejo Oeste por su selecto tocino bien doradito, su queso manchego y un delicado toque de salsa BBQ. ¡Así que ponte las botas, el sombrero de cowboy y prepárate para bailar el Payaso de Rodeo… ajúa! Lechuga, jitomate, cebolla caramelizada, pepinillos, chiles, catsup, mostaza y mayonesa.",
         prices: [
           { label: "Sencilla", value: 170 },
-          { label: "Doble", value: 185 },
+          { label: "Doble", value: 185 }
         ],
         image: baconWestern,
       },
@@ -369,7 +375,7 @@ export const menuCategories: Category[] = [
         description: "La Bububurger molto Italiana! Fue especialmente diseñada para los amantes de las pipshas, te aseguramos que te hará recordar en cada bocado el rico sabor de una rebanada de pizza, lleva extra queso manchego, pepperoni y salsa italiana. buon appetito!",
         prices: [
           { label: "Sencilla", value: 170 },
-          { label: "Doble", value: 185 },
+          { label: "Doble", value: 185 }
         ],
         image: pepperoniBurger,
       },
@@ -379,7 +385,7 @@ export const menuCategories: Category[] = [
         description: "Nuestra Bububurger consentida, es una delicia por su crujiente costra de queso con tocino frito y un toque de aderezo secreto, receta de la casa. Puedes pedirla sencilla o doble, y si te animas por la doble, te espera una doble costra de queso con tocino. ¡Crunchy, crunchy!",
         prices: [
           { label: "Sencilla", value: 175 },
-          { label: "Doble", value: 190 },
+          { label: "Doble", value: 190 }
         ],
         image: costraBurger,
       },
@@ -394,7 +400,7 @@ export const menuCategories: Category[] = [
     products: [
       {
         id: "w1",
-        name: "Ari-Wings",
+        name: "ARI-WINGS",
         description: "Muchos presumen tener las mejores alitas... pero las nuestras sí lo demuestran. Están tan grandes que parecen piernitas de pollo, bien jugosas, bien bañadas y servidas con su lechuguita y un toque de ranch o blue cheese. 🔥 Te retamos a que te comas solo una... ¡imposible!",
         prices: [
           { label: "10 Pzs", value: 220, note: "Incluye 2 salsas a elegir" },
@@ -420,12 +426,11 @@ export const menuCategories: Category[] = [
         name: "CHICKEN BONELESS",
         description: "¡Sin huesos, sin excusas! Nuestros Boneless son puro placer: pollo jugoso, crujiente por fuera, bañado en la salsa que más te prende. ¿Blue cheese o ranch? Tú mandas. 💥 Advertencia: este manjar ha sido culpable de muchas lamidas de dedos… y de platos vacíos en segundos.",
         prices: [
-          { label: "225 gr.", value: 235 },
+          { label: "225 gr.", value: 235, note: "225 gr. ≈ 8 pzas. | 515 gr. ≈ 13 pzas. | 1100 gr. ≈ 28 pzas." },
           { label: "515 gr.", value: 355 },
           { label: "1100 gr.", value: 605 }
         ],
         image: boneless,
-        comment: "225 gr. ≈ 8 pzas. | 515 gr. ≈ 13 pzas. | 1100 gr. ≈ 28 pzas.",
         sauces: [
           "bbq miel",
           "ajo parmesano",
@@ -442,7 +447,7 @@ export const menuCategories: Category[] = [
       },
     ]
   },
-  // 7. Hot-Dog Jumbo
+  // 7. Hot-dogs JUMBO
   {
     id: "hotdog",
     name: "Hot-dogs JUMBO",
@@ -451,28 +456,28 @@ export const menuCategories: Category[] = [
     products: [
       {
         id: "h1",
-        name: "SENCILLITO Y SIN RODEOS",
-        description: "30 cm. De salchicha de pavo, deliciosamente frita, acompañado de 70 gr. de papas a la francesa sazonadas con polvos mágicos, jitomate, cebolla, chiles picados, mostaza, mayonesa y catsup.  ¡Un deleite!",
+        name: "HOT DOG CLÁSICO",
+        description: "Salchicha de pavo de 30 cm servida en pan suave tipo hotdog, con catsup, mostaza, cebolla y chiles jalapeños. Acompañado de papas a la francesa sazonadas con polvo especial.",
         prices: [
-          { label: "Salchicha de Pavo", value: 95 },
-          { label: "Salchicha de Res", value: 120 }
+          { label: "Salchicha de Pavo", value: 120 },
+          { label: "Salchicha de Res", value: 150 }
         ],
         image: hotdog,
       },
       {
         id: "h2",
-        name: "CON TOCINO",
-        description: "Salchicha de pavo de 30 cm perfectamente dorada, envuelta en tiras crujientes de tocino, servida sobre pan suave tipo hotdog. Acompañado con jitomate, cebolla, chiles picados y un toque de mostaza, mayonesa y catsup. Incluye una porción de papas a la francesa con sazonador especial.",
+        name: "HOT DOG TOCINO",
+        description: "Salchicha de pavo de 30 cm servida en pan suave tipo hotdog, con abundante tocino crujiente, catsup, mostaza, cebolla y chiles jalapeños. Acompañado de papas a la francesa sazonadas con polvo especial.",
         prices: [
-          { label: "Salchicha de Pavo", value: 110 },
-          { label: "Salchicha de Res", value: 135 }
+          { label: "Salchicha de Pavo", value: 125 },
+          { label: "Salchicha de Res", value: 155 }
         ],
         image: hotdogTocino,
       },
       {
         id: "h3",
-        name: "HAWAIANO",
-        description: "Salchicha de pavo de 30 cm, envuelta en tocino crujiente, servida en pan suave tipo hotdog. Cubierto con trozos de piña natural y queso derretido, creando el balance perfecto entre lo salado y lo dulce. Acompañado de papas a la francesa con sazonador especial.",
+        name: "HOT DOG HAWAIANO",
+        description: "Salchicha de pavo de 30 cm servida en pan suave tipo hotdog, con jamón Virginia, piña caramelizada, queso manchego y un toque de salsa BBQ. Acompañado de papas a la francesa sazonadas con polvo especial.",
         prices: [
           { label: "Salchicha de Pavo", value: 125 },
           { label: "Salchicha de Res", value: 150 }
@@ -481,8 +486,8 @@ export const menuCategories: Category[] = [
       },
       {
         id: "h4",
-        name: "ITALIANO",
-        description: "Salchicha de pavo de 30 cm servida en pan suave tipo hotdog, bañada en una abundante salsa italiana estilo boloñesa, elaborada con carne molida de res, jitomate y especias mediterráneas. Acompañado de papas a la francesa sazonadas con polvo especial.",
+        name: "HOT DOG ITALIANO",
+        description: "Salchicha de pavo de 30 cm servida en pan suave tipo hotdog, bañada en una abundante salsa italiana estilo boloñesa, elaborada con carne molida de res, jitomate y especias mediterráneas. Acompañado de papas a la francesa sazonadas con polvo especial.",
         prices: [
           { label: "Salchicha de Pavo", value: 125 },
           { label: "Salchicha de Res", value: 150 }
@@ -520,7 +525,7 @@ export const menuCategories: Category[] = [
         ],
       },
       {
-        id: "c4",
+        id: "c2",
         name: "COSTILLAS DE ELOTE AMARILLO",
         description: "Estas costillitas de elote dulce amarillo, bañaditas con salsa Hot BBQ, Cajun, Tajín y un toque de perejil deshidratado con limón te harán bailar como texano. Son perfectas para compartir y calmar tus antojos, ¡así que prepárate para chuparte los dedos!",
         prices: [
@@ -528,17 +533,10 @@ export const menuCategories: Category[] = [
         ],
         image: costillasElote,
         sauces: [
-          "bbq miel",
-          "ajo parmesano",
-          "teriyaki",
           "bbq",
           "hot bbq",
-          "maggi",
-          "cajún",
-          "brava",
-          "mango habanero",
-          "requete-macho"
-        ],
+          "mango habanero"
+        ]
       }
     ]
   },
@@ -584,7 +582,7 @@ export const menuCategories: Category[] = [
           { label: "", value: 160 }
         ],
         image: paqueteDeditos,
-      },
+      }
     ]
   },
   // 10. Extras

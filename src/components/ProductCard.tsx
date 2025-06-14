@@ -7,30 +7,8 @@ interface ProductCardProps {
   category: Category;
 }
 
-const sauceColors = [
-  '#ffe066', // bbq miel
-  '#ffe599', // ajo parmesano
-  '#b6e0fe', // teriyaki
-  '#ffecb3', // bbq
-  '#ffb347', // hot bbq
-  '#ffd166', // tamarindo
-  '#b2f7ef', // maggi
-  '#f7b267', // cajún
-  '#ff8c42', // brava
-  '#ff5e57', // mango habanero
-  '#d7263d'  // requete-macho
-];
-
-const chiliColors = [
-  '#ffe066', // 1
-  '#ffd166', // 2
-  '#ffb347', // 3
-  '#ff8c42', // 4
-  '#d7263d'  // 5
-];
-
 const pastelColors = [
-  '#ff80ab', // rosa
+  '#ff4081', // rosa intenso
   '#7c4dff', // lila
   '#ffd740', // amarillo
   '#40c4ff', // azul
@@ -53,10 +31,10 @@ const ProductCard: React.FC<ProductCardProps> = ({ product, category }) => {
   const [showModal, setShowModal] = useState(false);
   const [showEquivModal, setShowEquivModal] = useState(false);
   const [showSauceModal, setShowSauceModal] = useState(false);
+  const [showFriesInfo, setShowFriesInfo] = useState(false);
   const popoverRef = useRef<HTMLDivElement | null>(null);
 
   const isInfantil = category.id === 'infantil';
-  const isDark = false; // Assuming isDark is a constant or state
 
   useEffect(() => {
     if (!showEquivModal) return;
@@ -76,10 +54,10 @@ const ProductCard: React.FC<ProductCardProps> = ({ product, category }) => {
         onClick={() => setShowModal(true)}
         id={isInfantil ? "infantil" : undefined}
         style={isInfantil ? {
-          background: isDark ? '#23243a' : '#f3eafe',
+          background: document.body.classList.contains('dark-mode') ? '#2a2250' : '#f3eafe',
           borderRadius: 22,
-          border: isDark ? '2.5px dashed #b39ddb' : '2.5px dashed #b39ddb',
-          boxShadow: isDark ? '0 2px 12px 0 rgba(124,77,255,0.10)' : '0 2px 12px 0 rgba(124,77,255,0.10)',
+          border: document.body.classList.contains('dark-mode') ? '2.5px dashed #ffd740' : '2.5px dashed #7c4dff',
+          boxShadow: '0 2px 12px 0 rgba(124,77,255,0.10)',
           position: 'relative',
           minHeight: 180,
           padding: '12px 8px 12px 8px',
@@ -96,7 +74,7 @@ const ProductCard: React.FC<ProductCardProps> = ({ product, category }) => {
           style={isInfantil ? { borderRadius: 18, border: '2px solid #ffd740', boxShadow: '0 2px 8px #ffd74033', background: '#fff' } : {}}
         />
         <div className={isInfantil ? "product-content" : "product-content"} style={isInfantil ? {
-          background: isDark ? 'linear-gradient(135deg, #23243a 80%, #7c4dff 100%)' : 'linear-gradient(135deg, #fffde7 80%, #f3eafe 100%)',
+          background: document.body.classList.contains('dark-mode') ? 'linear-gradient(135deg, #2a2250 80%, #7c4dff 100%)' : 'linear-gradient(135deg, #fffde7 80%, #f3eafe 100%)',
           borderRadius: 18,
           boxShadow: '0 2px 8px #7c4dff22',
           padding: '10px 10px 8px 10px',
@@ -105,13 +83,13 @@ const ProductCard: React.FC<ProductCardProps> = ({ product, category }) => {
           margin: '0 auto 8px auto',
           minHeight: '70px'
         } : {}}>
-          <h6 className={isInfantil ? "product-title" : "product-title fw-bold mb-1"} style={isInfantil ? { fontFamily: "'Fredoka One', 'Comic Sans MS', cursive, sans-serif", fontWeight: 900, fontSize: '1.13rem', marginBottom: 2, letterSpacing: '0.01em', textAlign: 'left', display: 'flex', alignItems: 'center', gap: 6 } : {}}>
+          <h6 className={isInfantil ? "product-title" : "product-title fw-bold mb-1"} style={isInfantil ? { fontFamily: "'Fredoka One', 'Comic Sans MS', cursive, sans-serif", fontWeight: 900, fontSize: '1.13rem', marginBottom: 2, letterSpacing: '0.01em', textAlign: 'left', display: 'flex', alignItems: 'center', gap: 6, color: document.body.classList.contains('dark-mode') ? '#ffd740' : '#7c4dff' } : {}}>
             {isInfantil ? multicolorText(product.name) : product.name}
             {isInfantil && <span style={{ fontSize: 18, marginLeft: 4 }}>🧃</span>}
           </h6>
           {isInfantil ? (
             <p className="mb-4" style={{ 
-              color: '#7c4dff', 
+              color: document.body.classList.contains('dark-mode') ? '#ffd740' : '#7c4dff', 
               fontWeight: 700, 
               fontSize: '1.01em',
               overflow: 'hidden',
@@ -134,8 +112,8 @@ const ProductCard: React.FC<ProductCardProps> = ({ product, category }) => {
         className="product-modal"
       >
         <Modal.Header closeButton className="modal-header-custom" style={isInfantil ? {
-          background: isDark ? 'linear-gradient(90deg, #23243a, #7c4dff)' : 'linear-gradient(90deg, #ffd740, #ff80ab)',
-          color: isDark ? '#ffd740' : '#7c4dff',
+          background: document.body.classList.contains('dark-mode') ? 'linear-gradient(90deg, #2a2250, #7c4dff)' : 'linear-gradient(90deg, #ffd740, #ff80ab)',
+          color: document.body.classList.contains('dark-mode') ? '#ffd740' : '#7c4dff',
           fontFamily: "'Fredoka One', 'Comic Sans MS', cursive, sans-serif",
         } : {}}>
           <div style={{ display: 'flex', alignItems: 'center', width: '100%', gap: 16, justifyContent: 'center' }}>
@@ -155,8 +133,8 @@ const ProductCard: React.FC<ProductCardProps> = ({ product, category }) => {
           </div>
         </Modal.Header>
         <Modal.Body style={isInfantil ? {
-          background: isDark ? '#23243a' : '#f3eafe',
-          color: isDark ? '#ffd740' : '#7c4dff',
+          background: document.body.classList.contains('dark-mode') ? '#2a2250' : '#f3eafe',
+          color: document.body.classList.contains('dark-mode') ? '#ffd740' : '#7c4dff',
           fontFamily: "'Fredoka One', 'Comic Sans MS', cursive, sans-serif",
         } : {}}>
           <div className="row">
@@ -169,151 +147,170 @@ const ProductCard: React.FC<ProductCardProps> = ({ product, category }) => {
               />
             </div>
             <div className="col-md-6">
-              <h4 className="mb-3" style={isInfantil ? { fontFamily: "'Fredoka One', 'Comic Sans MS', cursive, sans-serif", fontWeight: 900, fontSize: '1.18rem', letterSpacing: '0.01em', color: pastelColors[1], marginBottom: 8 } : {}}>
+              <h4 className="mb-3" style={isInfantil ? { fontFamily: "'Fredoka One', 'Comic Sans MS', cursive, sans-serif", fontWeight: 900, fontSize: '1.18rem', letterSpacing: '0.01em', color: document.body.classList.contains('dark-mode') ? '#ffd740' : pastelColors[1], marginBottom: 8 } : {}}>
                 {isInfantil ? multicolorText(product.name) : product.name}
               </h4>
               {isInfantil ? (
-                <p className="mb-4" style={{ color: '#7c4dff', fontWeight: 700, fontSize: '1.01em' }}>{product.description}</p>
+                <p className="mb-4" style={{ color: document.body.classList.contains('dark-mode') ? '#ffd740' : '#7c4dff', fontWeight: 700, fontSize: '1.01em' }}>{product.description}</p>
               ) : (
                 <p className="text-muted mb-4">{product.description}</p>
               )}
               <div className="product-price mb-4" style={isInfantil ? { 
-                color: pastelColors[0], 
+                color: document.body.classList.contains('dark-mode') ? '#ffd740' : pastelColors[0], 
                 fontWeight: 900, 
                 fontSize: '1.13em', 
                 fontFamily: "'Fredoka One', 'Comic Sans MS', cursive, sans-serif" 
               } : {
-                color: '#ff6a00',
+                color: (document.body.classList.contains('dark-mode') ? '#fff' : '#ff6a00'),
                 fontWeight: 700,
                 fontSize: '1.18rem',
                 textShadow: '0 1px 2px rgba(0,0,0,0.2)'
               }}>
                 {product.prices.map((option, idx) => (
-                  <span key={option.label} style={{ display: 'inline-block', marginBottom: option.note ? 2 : 0 }}>
+                  <span key={option.label} style={{ display: 'inline-block', marginBottom: 2, marginRight: 8, position: 'relative' }}>
                     {idx > 0 && <span> | </span>}
-                    {option.label
-                      ? <span style={{ color: 'var(--text-main)', fontWeight: 600, opacity: 1 }}>
-                          {option.label}{/\.$/.test(option.label.trim()) ? '' : ':'}{' '}
-                        </span>
-                      : null}
-                    <span style={{ color: '#ff6a00', fontWeight: 700 }}>${option.value}</span>
-                    {option.note && (
-                      <div style={{ fontSize: '0.93em', color: 'var(--text-main)', opacity: 0.85, marginTop: 2, fontWeight: 400, lineHeight: 1.2 }}>{option.note}</div>
+                    <span style={{ color: (document.body.classList.contains('dark-mode') ? '#ff6a00' : '#181818'), fontWeight: 700 }}>{option.label} </span>
+                    <span style={{ color: (document.body.classList.contains('dark-mode') ? '#fff' : '#ff6a00'), fontWeight: 700 }}>${option.value}</span>
+                    {/* Leyenda para alitas */}
+                    {product.id === 'w1' && option.label.includes('10') && (
+                      <span style={{ display: 'block', fontSize: '0.93em', color: '#888', marginTop: 2, fontWeight: 500 }}>
+                        Incluye 2 salsas a elegir
+                      </span>
+                    )}
+                    {product.id === 'w1' && option.label.includes('15') && (
+                      <span style={{ display: 'block', fontSize: '0.93em', color: '#888', marginTop: 2, fontWeight: 500 }}>
+                        Incluye 3 salsas a elegir
+                      </span>
+                    )}
+                    {/* Emoji de papas para banderillas de 2 piezas */}
+                    {product.id && product.id.startsWith('bd') && option.label.includes('2') && (
+                      <span style={{ position: 'relative', display: 'inline-block' }}>
+                        <span
+                          style={{ cursor: 'pointer', marginLeft: 6, fontSize: 18, verticalAlign: 'middle' }}
+                          onClick={() => setShowFriesInfo((prev) => !prev)}
+                          title="¿Qué incluye?"
+                        >🍟</span>
+                        {/* Tooltip encima del emoji */}
+                        {showFriesInfo && (
+                          <span
+                            style={{
+                              position: 'absolute',
+                              bottom: '120%',
+                              left: '50%',
+                              transform: 'translateX(-50%)',
+                              background: '#ffe066',
+                              color: '#a0522d',
+                              borderRadius: 8,
+                              padding: '6px 14px',
+                              fontSize: '0.97em',
+                              fontWeight: 600,
+                              boxShadow: '0 2px 8px rgba(0,0,0,0.13)',
+                              whiteSpace: 'normal',
+                              zIndex: 10,
+                              border: '1.5px solid #ffecb3',
+                              maxWidth: '220px',
+                              minWidth: '160px',
+                              textAlign: 'center',
+                              wordBreak: 'break-word',
+                            }}
+                          >
+                            Incluye porción de papas a la francesa.
+                            {/* Flechita */}
+                            <span style={{
+                              position: 'absolute',
+                              top: '100%',
+                              left: '50%',
+                              transform: 'translateX(-50%)',
+                              width: 0,
+                              height: 0,
+                              borderLeft: '8px solid transparent',
+                              borderRight: '8px solid transparent',
+                              borderTop: '8px solid #ffe066',
+                            }} />
+                          </span>
+                        )}
+                      </span>
                     )}
                   </span>
                 ))}
+                {/* Leyenda de malteada para menú infantil */}
                 {isInfantil && (
                   <div style={{
+                    marginTop: 8,
+                    background: document.body.classList.contains('dark-mode') ? '#7c4dff' : '#ffd740',
+                    color: document.body.classList.contains('dark-mode') ? '#ffd740' : '#ff4081',
+                    border: document.body.classList.contains('dark-mode') ? '2px solid #ffd740' : '2px solid #ff80ab',
+                    borderRadius: 12,
+                    padding: '6px 14px',
+                    fontWeight: 700,
+                    fontSize: '1.01em',
+                    fontFamily: "'Fredoka One', 'Comic Sans MS', cursive, sans-serif",
                     display: 'flex',
-                    justifyContent: 'flex-end',
-                    marginTop: 6
+                    alignItems: 'center',
+                    gap: 8,
+                    justifyContent: 'center',
+                    boxShadow: '0 1px 8px #ffd74033',
+                    width: 'fit-content',
+                    marginLeft: 'auto',
+                    marginRight: 'auto',
                   }}>
-                    <span style={{
-                      background: isDark ? 'rgba(255,255,255,0.10)' : 'rgba(255,255,255,0.85)',
-                      color: isDark ? pastelColors[1] : pastelColors[0],
-                      fontFamily: "'Fredoka One', 'Comic Sans MS', cursive, sans-serif",
-                      fontWeight: 600,
-                      fontSize: '0.89em',
-                      borderRadius: 8,
-                      padding: '3px 8px',
-                      boxShadow: '0 1px 4px rgba(124,77,255,0.08)',
-                      border: isDark ? '1px solid #b39ddb' : '1px solid #e0e0e0',
-                      display: 'flex',
-                      alignItems: 'center',
-                      gap: 4,
-                      minWidth: 0,
-                      maxWidth: '100%',
-                      whiteSpace: 'normal',
-                      textAlign: 'center',
-                    }}>
-                      <span role="img" aria-label="malteada" style={{ fontSize: 15 }}>🥤</span>
-                      <span>+ $95 Cambia tu bebida por una malteada</span>
-                    </span>
+                    <span role="img" aria-label="malteada" style={{ fontSize: 20 }}>🥤</span>
+                    <span>+ $95 Cambia tu bebida por una malteada</span>
                   </div>
                 )}
               </div>
-              <div style={{ position: 'relative', width: 'fit-content', marginBottom: 16 }}>
-                {product.comment && (
-                  <>
-                    <button
-                      type="button"
-                      className="btn btn-outline-primary btn-sm"
-                      style={{ borderRadius: 20, fontSize: '0.98em', fontWeight: 500, padding: '4px 16px', position: 'relative' }}
-                      onClick={() => setShowEquivModal(true)}
-                    >
-                      Ver equivalencias
-                    </button>
-                  </>
-                )}
-              </div>
-              {/* Botón y modal de salsas */}
-              {product.sauces && (
-                <>
+              {/* Etiqueta de chilibean para hot dogs (excepto infantil) */}
+              {category.id === 'hotdog' && !isInfantil && (
+                <div style={{
+                  background: '#fff',
+                  border: '1.5px solid #ff9800',
+                  borderRadius: 10,
+                  padding: '8px 14px',
+                  marginBottom: 16,
+                  marginTop: 2,
+                  display: 'flex',
+                  alignItems: 'center',
+                  justifyContent: 'center',
+                  gap: 8,
+                  fontWeight: 600,
+                  fontSize: '1em',
+                  color: '#a0522d',
+                  textAlign: 'center',
+                  boxShadow: 'none',
+                }}>
+                  <span style={{ fontSize: 18, marginRight: 6 }}>🫘</span>
+                  <span>
+                    ¿Agregar chilibean a tu hot dog? +$45
+                  </span>
+                  <span style={{ fontSize: 18, marginLeft: 6 }}>🌶️</span>
+                </div>
+              )}
+              <div style={{ display: 'flex', gap: 8, marginBottom: 10, justifyContent: 'center' }}>
+                {product.id === 'w2' && (
                   <button
                     type="button"
-                    className="btn btn-outline-danger btn-sm ms-2"
-                    style={{ borderRadius: 20, fontSize: '0.98em', fontWeight: 500, padding: '4px 16px', marginBottom: 16 }}
+                    className="btn btn-outline-primary btn-sm"
+                    style={{ borderRadius: 16, fontSize: '0.97em', fontWeight: 500, padding: '4px 14px', minWidth: 120 }}
+                    onClick={() => setShowEquivModal(true)}
+                  >
+                    Ver equivalencias
+                  </button>
+                )}
+                {product.sauces && (
+                  <button
+                    type="button"
+                    className="btn btn-outline-danger btn-sm"
+                    style={{ borderRadius: 16, fontSize: '0.97em', fontWeight: 500, padding: '4px 14px', minWidth: 120 }}
                     onClick={() => setShowSauceModal(true)}
                   >
                     Ver salsas
                   </button>
-                  <Modal
-                    show={showSauceModal}
-                    onHide={() => setShowSauceModal(false)}
-                    centered
-                    size="sm"
-                    contentClassName="sauce-modal-content"
-                    backdropClassName="sauce-modal-backdrop"
-                  >
-                    <Modal.Header closeButton style={{ border: 'none', background: 'linear-gradient(90deg, #ffe066, #ff5e57)', color: '#222', borderRadius: '16px 16px 0 0', padding: '18px 24px 12px 24px' }}>
-                      <Modal.Title style={{ fontWeight: 800, fontSize: '1.13em', letterSpacing: '0.01em' }}>
-                        Salsas disponibles y nivel de picante
-                      </Modal.Title>
-                    </Modal.Header>
-                    <Modal.Body style={{ background: 'var(--background-modal)', color: 'var(--text-main)', borderRadius: '0 0 16px 16px', padding: '22px 18px 18px 18px', textAlign: 'center', fontWeight: 500, fontSize: '1.08em' }}>
-                      <div style={{ marginBottom: 18, fontSize: '0.98em', color: 'var(--text-muted)' }}>
-                        El orden es de menos a más picante.
-                      </div>
-                      {/* Lista vertical de salsas con chiles */}
-                      <div className="salsa-lista" style={{ margin: '0 auto 10px auto', maxWidth: 340, textAlign: 'left' }}>
-                        {product.sauces.map((salsa, idx) => {
-                          // Nivel de picante: 1 a 5
-                          let level = 1;
-                          if (salsa.toLowerCase().includes('teriyaki') || salsa.toLowerCase() === 'bbq') level = 1;
-                          else if (idx >= 9) level = 5;
-                          else if (idx >= 7) level = 4;
-                          else if (idx >= 4) level = 3;
-                          else if (idx >= 2) level = 2;
-                          // Función para poner en mayúscula la primera letra de cada palabra
-                          const toTitleCase = (str: string) => str.replace(/\w\S*/g, (txt) => txt.charAt(0).toUpperCase() + txt.substr(1).toLowerCase());
-                          // Colores de chile
-                          return (
-                            <div key={salsa} className="salsa-item">
-                              <div style={{ width: 18, height: 18, borderRadius: '50%', background: sauceColors[idx] || '#eee', marginRight: 6, border: '1.5px solid #fff', boxShadow: '0 1px 4px rgba(0,0,0,0.07)' }} />
-                              <span className="salsa-nombre">{toTitleCase(salsa)}</span>
-                              <span style={{ display: 'flex', flexWrap: 'wrap', gap: 2 }}>
-                                {Array.from({ length: level }).map((_, i) => (
-                                  <span key={i} style={{ color: chiliColors[level-1], fontSize: 18, marginLeft: 1 }}>🌶️</span>
-                                ))}
-                              </span>
-                            </div>
-                          );
-                        })}
-                      </div>
-                      <button
-                        className="btn btn-danger mt-4 w-100"
-                        style={{ borderRadius: 20, fontWeight: 700, fontSize: '1em', background: 'var(--primary-orange)', border: 'none', marginTop: 18 }}
-                        onClick={() => setShowSauceModal(false)}
-                      >
-                        Cerrar
-                      </button>
-                    </Modal.Body>
-                  </Modal>
-                </>
-              )}
+                )}
+              </div>
               <button 
                 className="btn btn-primary w-100"
                 onClick={() => setShowModal(false)}
+                style={{ marginTop: 6, background: 'var(--primary-orange)', border: 'none', fontWeight: 700, fontSize: '1.05em', borderRadius: 14, padding: '10px 0' }}
               >
                 Cerrar
               </button>
@@ -337,7 +334,9 @@ const ProductCard: React.FC<ProductCardProps> = ({ product, category }) => {
           </Modal.Title>
         </Modal.Header>
         <Modal.Body style={{ background: 'var(--background-modal)', color: 'var(--text-main)', borderRadius: '0 0 16px 16px', padding: '22px 24px 18px 24px', textAlign: 'center', fontWeight: 500, fontSize: '1.08em' }}>
-          <div style={{ marginBottom: 10 }}>{product.comment}</div>
+          <div style={{ marginBottom: 10 }}>
+            225 gr. ≈ 8 pzas. | 515 gr. ≈ 13 pzas. | 1100 gr. ≈ 28 pzas.
+          </div>
           <div style={{ fontSize: '0.97em', color: 'var(--text-muted)', fontWeight: 400 }}>
             Las piezas son aproximadas.
           </div>
@@ -345,6 +344,66 @@ const ProductCard: React.FC<ProductCardProps> = ({ product, category }) => {
             className="btn btn-primary mt-4 w-100"
             style={{ borderRadius: 20, fontWeight: 700, fontSize: '1em', background: 'var(--primary-orange)', border: 'none', marginTop: 18 }}
             onClick={() => setShowEquivModal(false)}
+          >
+            Cerrar
+          </button>
+        </Modal.Body>
+      </Modal>
+
+      {/* Modal de salsas */}
+      <Modal
+        show={showSauceModal}
+        onHide={() => setShowSauceModal(false)}
+        centered
+        size="sm"
+        contentClassName="sauce-modal-content"
+        backdropClassName="sauce-modal-backdrop"
+      >
+        <Modal.Header closeButton style={{ border: 'none', background: 'linear-gradient(90deg, #ffe066, #ff5e57)', color: '#222', borderRadius: '16px 16px 0 0', padding: '18px 24px 12px 24px' }}>
+          <Modal.Title style={{ fontWeight: 800, fontSize: '1.13em', letterSpacing: '0.01em' }}>
+            Salsas disponibles y nivel de picante
+          </Modal.Title>
+        </Modal.Header>
+        <Modal.Body style={{ background: 'var(--background-modal)', color: 'var(--text-main)', borderRadius: '0 0 16px 16px', padding: '22px 18px 18px 18px', textAlign: 'center', fontWeight: 500, fontSize: '1.08em' }}>
+          <div style={{ marginBottom: 18, fontSize: '0.98em', color: 'var(--text-muted)' }}>
+            El orden es de menos a más picante.
+          </div>
+          {/* Lista vertical de salsas con chiles */}
+          <div style={{ margin: '0 auto 10px auto', maxWidth: 340, textAlign: 'left' }}>
+            {product.sauces && product.sauces.map((salsa) => {
+              // Niveles de picor por nombre de salsa (corregido)
+              const salsaLower = salsa.toLowerCase();
+              let level = 1;
+              if (salsaLower.includes('hot bbq')) level = 2;
+              else if (salsaLower.includes('tamarindo')) level = 2;
+              else if (salsaLower.includes('maggi')) level = 3;
+              else if (salsaLower.includes('cajún') || salsaLower.includes('cajun')) level = 4;
+              else if (salsaLower.includes('brava')) level = 4;
+              else if (salsaLower.includes('mango habanero')) level = 5;
+              else if (salsaLower.includes('requete-macho') || salsaLower.includes('super-macho')) level = 5;
+              // El resto (bbq miel, ajo parmesano, teriyaki, bbq) es 1 chile
+              const toTitleCase = (str: string) => str.replace(/\w\S*/g, (txt) => txt.charAt(0).toUpperCase() + txt.substr(1).toLowerCase());
+              const chiliColors = ['#ffe066', '#ffd166', '#ffb347', '#ff8c42', '#d7263d'];
+              const isRequeteMacho = salsaLower.includes('requete-macho') || salsaLower.includes('super-macho');
+              return (
+                <div key={salsa} style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', marginBottom: 8, gap: 8, width: '100%' }}>
+                  <span style={{ fontWeight: 500, color: 'var(--text-main)', minWidth: 110 }}>{toTitleCase(salsa)}</span>
+                  <span style={{ display: 'flex', flexWrap: 'nowrap', gap: 2, alignItems: 'center' }}>
+                    {Array.from({ length: level }).map((_, i) => (
+                      <span key={i} style={{ color: chiliColors[Math.min(level-1, chiliColors.length-1)], fontSize: 18, marginLeft: 1 }}>🌶️</span>
+                    ))}
+                    {isRequeteMacho && (
+                      <span style={{ fontSize: 18, marginLeft: 4 }} role="img" aria-label="explosivo">🤯</span>
+                    )}
+                  </span>
+                </div>
+              );
+            })}
+          </div>
+          <button
+            className="btn btn-danger mt-4 w-100"
+            style={{ borderRadius: 20, fontWeight: 700, fontSize: '1em', background: 'var(--primary-orange)', border: 'none', marginTop: 18 }}
+            onClick={() => setShowSauceModal(false)}
           >
             Cerrar
           </button>

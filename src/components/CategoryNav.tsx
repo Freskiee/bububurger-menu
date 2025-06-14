@@ -1,5 +1,7 @@
-import React from 'react';
+import React, { useContext } from 'react';
 import { menuCategories } from '../data/menuData';
+import { menuTranslations } from '../i18n/menu';
+import { LanguageContext } from '../App';
 
 interface CategoryNavProps {
   activeCategory: string;
@@ -7,6 +9,7 @@ interface CategoryNavProps {
 }
 
 const CategoryNav: React.FC<CategoryNavProps> = ({ activeCategory, onCategoryChange }) => {
+  const { language } = useContext(LanguageContext);
   return (
     <div className="category-nav" style={{ background: 'var(--background-navbar)', color: 'var(--text-main)' }}>
       <div className="container-fluid">
@@ -28,7 +31,9 @@ const CategoryNav: React.FC<CategoryNavProps> = ({ activeCategory, onCategoryCha
                   />
                 )}
                 <span className="me-2">{category.icon}</span>
-                <span className="fw-medium">{category.name}</span>
+                <span className="fw-medium">
+                  {menuTranslations[category.id]?.[language] || category.name}
+                </span>
               </div>
             ))}
           </div>
