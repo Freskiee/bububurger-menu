@@ -17,12 +17,15 @@ interface ProductCardProps {
   enableModal?: boolean;
 }
 
+// Define el tipo correcto para las opciones de precio
+interface PriceOption { label: string; price?: number; value?: number; note?: string; }
+
 const pastelColors = [
-  '#ff4081', // rosa intenso
-  '#7c4dff', // lila
-  '#ffd740', // amarillo
-  '#40c4ff', // azul
-  '#69f0ae', // verde
+  '#ff0080', // fucsia
+  '#00b0ff', // azul eléctrico
+  '#ff6d00', // naranja intenso
+  '#00e676', // verde lima
+  '#8f00ff', // violeta
 ];
 
 function multicolorText(text: string) {
@@ -103,9 +106,13 @@ const ProductCard: React.FC<ProductCardProps> = ({ product, category, products, 
         onClick={openModal}
         id={isInfantil ? "infantil" : undefined}
         style={isInfantil ? {
-          background: document.body.classList.contains('dark-mode') ? '#2a2250' : '#f3eafe',
+          background: isInfantil ? (document.body.classList.contains('dark-mode')
+            ? 'linear-gradient(135deg, #a084ee 40%, #40c4ff 60%, #ff80ab 80%, #69f0ae 90%, #ffb74d 100%)'
+            : 'linear-gradient(135deg, #a084ee 40%, #40c4ff 60%, #ff80ab 80%, #69f0ae 90%, #ffb74d 100%)') : undefined,
           borderRadius: 22,
-          border: document.body.classList.contains('dark-mode') ? '2.5px dashed #ffd740' : '2.5px dashed #7c4dff',
+          border: isInfantil ? (document.body.classList.contains('dark-mode')
+            ? '3px solid #40c4ff'
+            : '3px solid #ff80ab') : undefined,
           boxShadow: '0 2px 12px 0 rgba(124,77,255,0.10)',
           position: 'relative',
           minHeight: 180,
@@ -132,7 +139,18 @@ const ProductCard: React.FC<ProductCardProps> = ({ product, category, products, 
           margin: '0 auto 8px auto',
           minHeight: '70px'
         } : {}}>
-          <h6 className={isInfantil ? "product-title" : "product-title fw-bold mb-1"} style={isInfantil ? { fontFamily: "'Fredoka One', 'Comic Sans MS', cursive, sans-serif", fontWeight: 900, fontSize: '1.13rem', marginBottom: 2, letterSpacing: '0.01em', textAlign: 'left', display: 'flex', alignItems: 'center', gap: 6, color: document.body.classList.contains('dark-mode') ? '#ffd740' : '#7c4dff' } : {}}>
+          <h6 className={isInfantil ? "product-title" : "product-title fw-bold mb-1"} style={isInfantil ? {
+            fontFamily: "'Fredoka One', 'Comic Sans MS', cursive, sans-serif",
+            fontWeight: isInfantil ? 900 : undefined,
+            fontSize: isInfantil ? '1.25rem' : undefined,
+            letterSpacing: '0.01em',
+            marginBottom: 2,
+            textAlign: 'left',
+            display: 'flex',
+            alignItems: 'center',
+            gap: 6,
+            color: isInfantil ? (document.body.classList.contains('dark-mode') ? '#40c4ff' : '#a084ee') : undefined
+          } : {}}>
             {isInfantil ? multicolorText(productName) : productName}
             {isInfantil && <span style={{ fontSize: 18, marginLeft: 4 }}>🧃</span>}
           </h6>
@@ -171,7 +189,7 @@ const ProductCard: React.FC<ProductCardProps> = ({ product, category, products, 
           } : {}}>
             <div style={{ display: 'flex', alignItems: 'center', width: '100%', gap: 16, justifyContent: 'center' }}>
               <Modal.Title className="fw-bold" style={isInfantil ? {
-                textAlign: 'center', margin: 0, fontFamily: "'Fredoka One', 'Comic Sans MS', cursive, sans-serif", fontWeight: 900, fontSize: '1.35rem', letterSpacing: '0.01em', display: 'flex', alignItems: 'center', gap: 8
+                textAlign: 'center', margin: 0, fontFamily: "'Fredoka One', 'Comic Sans MS', cursive, sans-serif", fontWeight: isInfantil ? 900 : undefined, fontSize: isInfantil ? '1.35rem' : undefined, letterSpacing: '0.01em', display: 'flex', alignItems: 'center', gap: 8
               } : { textAlign: 'center', margin: 0 }}>
                 {isInfantil ? multicolorText(productName) : productName}
                 {isInfantil && <span style={{ fontSize: 22 }}>🍭</span>}
@@ -200,7 +218,7 @@ const ProductCard: React.FC<ProductCardProps> = ({ product, category, products, 
                 />
               </div>
               <div className="col-md-6">
-                <h4 className="mb-3" style={isInfantil ? { fontFamily: "'Fredoka One', 'Comic Sans MS', cursive, sans-serif", fontWeight: 900, fontSize: '1.18rem', letterSpacing: '0.01em', color: document.body.classList.contains('dark-mode') ? '#ffd740' : pastelColors[1], marginBottom: 8 } : {}}>
+                <h4 className="mb-3" style={isInfantil ? { fontFamily: "'Fredoka One', 'Comic Sans MS', cursive, sans-serif", fontWeight: isInfantil ? 900 : undefined, fontSize: isInfantil ? '1.18rem' : undefined, letterSpacing: isInfantil ? '0.01em' : undefined, color: document.body.classList.contains('dark-mode') ? '#ffd740' : pastelColors[1], marginBottom: 8 } : {}}>
                   {isInfantil ? multicolorText(productName) : productName}
                 </h4>
                 {isInfantil ? (
@@ -219,73 +237,78 @@ const ProductCard: React.FC<ProductCardProps> = ({ product, category, products, 
                   fontSize: '1.18rem',
                   textShadow: '0 1px 2px rgba(0,0,0,0.2)'
                 }}>
-                  {productPrices.map((option: { label: string; price?: number; value?: number }, idx: number) => (
-                    <span key={option.label + (option.price ?? option.value)} style={{ display: 'inline-block', marginBottom: 2, marginRight: 8, position: 'relative' }}>
-                      {idx > 0 && <span> | </span>}
-                      <span style={{ color: (document.body.classList.contains('dark-mode') ? '#ff6a00' : '#181818'), fontWeight: 700 }}>{option.label} </span>
-                      <span style={{ color: (document.body.classList.contains('dark-mode') ? '#fff' : '#ff6a00'), fontWeight: 700 }}>${option.price ?? option.value}</span>
-                      {/* Leyenda para alitas */}
-                      {product.id === 'w1' && option.label.includes('10') && (
-                        <span style={{ display: 'block', fontSize: '0.93em', color: '#888', marginTop: 2, fontWeight: 500 }}>
-                          Incluye 2 salsas a elegir
-                        </span>
-                      )}
-                      {product.id === 'w1' && option.label.includes('15') && (
-                        <span style={{ display: 'block', fontSize: '0.93em', color: '#888', marginTop: 2, fontWeight: 500 }}>
-                          Incluye 3 salsas a elegir
-                        </span>
-                      )}
-                      {/* Emoji de papas para banderillas de 2 piezas */}
-                      {product.id && product.id.startsWith('bd') && option.label.includes('2') && (
-                        <span style={{ position: 'relative', display: 'inline-block' }}>
-                          <span
-                            style={{ cursor: 'pointer', marginLeft: 6, fontSize: 18, verticalAlign: 'middle' }}
-                            onClick={() => setShowFriesInfo((prev) => !prev)}
-                            title="¿Qué incluye?"
-                          >🍟</span>
-                          {/* Tooltip encima del emoji */}
-                          {showFriesInfo && (
+                  {productPrices.map((option: PriceOption, idx: number) => {
+                    let comment: string | null = null;
+                    if (!option.note) {
+                      if (product.id === 'w1' && option.label.includes('10')) comment = language === 'es' ? 'Incluye 2 salsas a elegir' : 'Includes 2 sauces of your choice';
+                      else if (product.id === 'w1' && option.label.includes('15')) comment = language === 'es' ? 'Incluye 3 salsas a elegir' : 'Includes 3 sauces of your choice';
+                      else if (product.id === 'w2' && option.label.includes('225')) comment = language === 'es' ? 'Incluye 1 salsa a elegir' : 'Includes 1 sauce of your choice';
+                      else if (product.id === 'w2' && option.label.includes('515')) comment = language === 'es' ? 'Incluye 2 salsas a elegir' : 'Includes 2 sauces of your choice';
+                      else if (product.id === 'w2' && option.label.includes('1100')) comment = language === 'es' ? 'Incluye 4 salsas a elegir' : 'Includes 4 sauces of your choice';
+                    }
+                    return (
+                      <span key={option.label + (option.price ?? option.value)} style={{ display: 'inline-block', marginBottom: 2, marginRight: 8, position: 'relative' }}>
+                        {idx > 0 && <span> | </span>}
+                        <span style={{ color: (document.body.classList.contains('dark-mode') ? '#ff6a00' : '#181818'), fontWeight: 700 }}>{option.label} </span>
+                        <span style={{ color: (document.body.classList.contains('dark-mode') ? '#fff' : '#ff6a00'), fontWeight: 700 }}>${option.price ?? option.value}</span>
+                        {option.note && (
+                          <span style={{ display: 'block', fontSize: '0.93em', color: '#888', marginTop: 2, fontWeight: 500 }}>{option.note}</span>
+                        )}
+                        {!option.note && comment && (
+                          <span style={{ display: 'block', fontSize: '0.93em', color: '#888', marginTop: 2, fontWeight: 500 }}>{comment}</span>
+                        )}
+                        {/* Emoji de papas para banderillas de 2 piezas */}
+                        {product.id && product.id.startsWith('bd') && option.label.includes('2') && (
+                          <span style={{ position: 'relative', display: 'inline-block' }}>
                             <span
-                              style={{
-                                position: 'absolute',
-                                bottom: '120%',
-                                left: '50%',
-                                transform: 'translateX(-50%)',
-                                background: '#ffe066',
-                                color: '#a0522d',
-                                borderRadius: 8,
-                                padding: '6px 14px',
-                                fontSize: '0.97em',
-                                fontWeight: 600,
-                                boxShadow: '0 2px 8px rgba(0,0,0,0.13)',
-                                whiteSpace: 'normal',
-                                zIndex: 10,
-                                border: '1.5px solid #ffecb3',
-                                maxWidth: '220px',
-                                minWidth: '160px',
-                                textAlign: 'center',
-                                wordBreak: 'break-word',
-                              }}
-                            >
-                              Incluye porción de papas a la francesa.
-                              {/* Flechita */}
-                              <span style={{
-                                position: 'absolute',
-                                top: '100%',
-                                left: '50%',
-                                transform: 'translateX(-50%)',
-                                width: 0,
-                                height: 0,
-                                borderLeft: '8px solid transparent',
-                                borderRight: '8px solid transparent',
-                                borderTop: '8px solid #ffe066',
-                              }} />
-                            </span>
-                          )}
-                        </span>
-                      )}
-                    </span>
-                  ))}
+                              style={{ cursor: 'pointer', marginLeft: 6, fontSize: 18, verticalAlign: 'middle' }}
+                              onClick={() => setShowFriesInfo((prev) => !prev)}
+                              title="¿Qué incluye?"
+                            >🍟</span>
+                            {/* Tooltip encima del emoji */}
+                            {showFriesInfo && (
+                              <span
+                                style={{
+                                  position: 'absolute',
+                                  bottom: '120%',
+                                  left: '50%',
+                                  transform: 'translateX(-50%)',
+                                  background: '#ffe066',
+                                  color: '#a0522d',
+                                  borderRadius: 8,
+                                  padding: '6px 14px',
+                                  fontSize: '0.97em',
+                                  fontWeight: 600,
+                                  boxShadow: '0 2px 8px rgba(0,0,0,0.13)',
+                                  whiteSpace: 'normal',
+                                  zIndex: 10,
+                                  border: '1.5px solid #ffecb3',
+                                  maxWidth: '220px',
+                                  minWidth: '160px',
+                                  textAlign: 'center',
+                                  wordBreak: 'break-word',
+                                }}
+                              >
+                                {uiTranslations.friesIncluded[language]}
+                                {/* Flechita */}
+                                <span style={{
+                                  position: 'absolute',
+                                  top: '100%',
+                                  left: '50%',
+                                  transform: 'translateX(-50%)',
+                                  width: 0,
+                                  height: 0,
+                                  borderLeft: '8px solid transparent',
+                                  borderRight: '8px solid transparent',
+                                  borderTop: '8px solid #ffe066',
+                                }} />
+                              </span>
+                            )}
+                          </span>
+                        )}
+                      </span>
+                    );
+                  })}
                   {/* Leyenda de malteada para menú infantil */}
                   {isInfantil && (
                     <div style={{
@@ -471,7 +494,7 @@ const ProductCard: React.FC<ProductCardProps> = ({ product, category, products, 
           </Modal.Title>
         </Modal.Header>
         <Modal.Body style={{ background: 'var(--background-modal)', color: 'var(--text-main)', borderRadius: '0 0 16px 16px', padding: '22px 24px 18px 24px', textAlign: 'center', fontWeight: 500, fontSize: '1.08em' }}>
-          <div style={{ marginBottom: 10 }}>
+          <div style={{ marginBottom: 10, fontWeight: 700, color: '#ff6a00', fontSize: '1.08em' }}>
             225 gr. ≈ 8 pzas. | 515 gr. ≈ 13 pzas. | 1100 gr. ≈ 28 pzas.
           </div>
           <div style={{ fontSize: '0.97em', color: 'var(--text-muted)', fontWeight: 400 }}>
@@ -492,7 +515,7 @@ const ProductCard: React.FC<ProductCardProps> = ({ product, category, products, 
         show={showSauceModal}
         onHide={() => setShowSauceModal(false)}
         centered
-        size="sm"
+        size="lg"
         contentClassName="sauce-modal-content"
         backdropClassName="sauce-modal-backdrop"
       >
@@ -501,12 +524,9 @@ const ProductCard: React.FC<ProductCardProps> = ({ product, category, products, 
             {t.sauceTitle[language]}
           </Modal.Title>
         </Modal.Header>
-        <Modal.Body style={{ background: 'var(--background-modal)', color: 'var(--text-main)', borderRadius: '0 0 16px 16px', padding: '22px 18px 18px 18px', textAlign: 'center', fontWeight: 500, fontSize: '1.08em' }}>
-          <div style={{ marginBottom: 18, fontSize: '0.98em', color: 'var(--text-muted)' }}>
-            {t.sauceOrder[language]}
-          </div>
+        <Modal.Body style={{ background: 'var(--background-modal)', color: 'var(--text-main)', borderRadius: '0 0 16px 16px', padding: '8px 12px 12px 12px', textAlign: 'center', fontWeight: 500, fontSize: '0.95em' }}>
           {/* Lista vertical de salsas con chiles */}
-          <div style={{ margin: '0 auto 10px auto', maxWidth: 340, textAlign: 'left' }}>
+          <div style={{ margin: '0 auto 5px auto', maxWidth: 340, textAlign: 'left' }}>
             {product.sauces && product.sauces.map((salsa) => {
               // Normaliza el nombre para buscar la clave en sauceTranslations
               const normalizar = (str: string) => str.toLowerCase().replace(/[^a-záéíóúüñ0-9]/gi, '');
@@ -523,17 +543,54 @@ const ProductCard: React.FC<ProductCardProps> = ({ product, category, products, 
               else if (salsaLower.includes('brava')) level = 4;
               else if (salsaLower.includes('mango habanero')) level = 5;
               else if (salsaLower.includes('requete-macho') || salsaLower.includes('super-macho')) level = 5;
-              const chiliColors = ['#ffe066', '#ffd166', '#ffb347', '#ff8c42', '#d7263d'];
               const isRequeteMacho = salsaLower.includes('requete-macho') || salsaLower.includes('super-macho');
+              // Colores de fondo alternados
+              const spicyColors = [
+                'linear-gradient(90deg, #a8e6a8 0%, #d6e6a8 100%)', // nivel 1: verde tenue
+                'linear-gradient(90deg, #d6e6a8 0%, #ffe6a8 100%)', // nivel 2: verde-amarillo tenue
+                'linear-gradient(90deg, #ffe6a8 0%, #ffd6a8 100%)', // nivel 3: amarillo tenue
+                'linear-gradient(90deg, #ffd6a8 0%, #ffb6a8 100%)', // nivel 4: naranja tenue
+                'linear-gradient(90deg, #ffb6a8 0%, #ffa8a8 100%)', // nivel 5: rojo tenue
+              ];
+              const rowBg = spicyColors[level-1];
               return (
-                <div key={salsa} style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', marginBottom: 8, gap: 8, width: '100%' }}>
-                  <span style={{ fontWeight: 500, color: 'var(--text-main)', minWidth: 110 }}>{nombreTraducido}</span>
-                  <span style={{ display: 'flex', flexWrap: 'nowrap', gap: 2, alignItems: 'center' }}>
-                    {Array.from({ length: level }).map((_, i) => (
-                      <span key={i} style={{ color: chiliColors[Math.min(level-1, chiliColors.length-1)], fontSize: 18, marginLeft: 1 }}>🌶️</span>
-                    ))}
+                <div key={salsa} style={{
+                  display: 'flex',
+                  alignItems: 'center',
+                  justifyContent: 'space-between',
+                  flexDirection: 'row',
+                  marginBottom: 2,
+                  gap: 6,
+                  width: '100%',
+                  background: rowBg,
+                  borderRadius: 8,
+                  padding: '4px 6px',
+                  boxShadow: '0 1px 4px #ff98001a',
+                  border: '1px solid #ffd740',
+                  minHeight: 28
+                }}>
+                  <span style={{ fontWeight: 700, color: '#333', minWidth: 80, fontSize: '0.9em', letterSpacing: '0.01em', whiteSpace: 'nowrap', overflow: 'hidden', textOverflow: 'ellipsis' }}>{nombreTraducido}</span>
+                  <span style={{ display: 'flex', flexDirection: 'column', alignItems: 'flex-end', gap: 1, minWidth: 80 }}>
+                    {/* Barra de picante vertical */}
+                    <div style={{ width: 10, height: 32, background: '#fffbe6', borderRadius: 6, overflow: 'hidden', boxShadow: '0 1px 4px #ff980055', border: '1px solid #ffd740', position: 'relative', marginBottom: 1, display: 'flex', flexDirection: 'column', justifyContent: 'flex-end' }}>
+                      <div style={{
+                        width: '100%',
+                        height: `${level * 20}%`,
+                        borderRadius: 6,
+                        background: spicyColors[level-1],
+                        transition: 'height 0.4s cubic-bezier(.4,1.3,.6,1)',
+                        boxShadow: '0 1px 4px #ff980055',
+                        position: 'absolute',
+                        left: 0,
+                        bottom: 0
+                      }} />
+                      {level >= 4 && (
+                        <span style={{ position: 'absolute', left: '50%', top: 2, transform: 'translateX(-50%)', fontSize: 13, animation: 'flame 1.2s infinite alternate' }} role="img" aria-label="fuego">🔥</span>
+                      )}
+                    </div>
+                    <span style={{ fontSize: '0.8em', color: level >= 4 ? '#ff1744' : '#ff9800', fontWeight: 600, letterSpacing: '0.01em' }}>{uiTranslations.spicyLevels[language][level-1]}</span>
                     {isRequeteMacho && (
-                      <span style={{ fontSize: 18, marginLeft: 4 }} role="img" aria-label="explosivo">🤯</span>
+                      <span style={{ fontSize: 15, marginLeft: 2 }} role="img" aria-label="explosivo">🤯</span>
                     )}
                   </span>
                 </div>

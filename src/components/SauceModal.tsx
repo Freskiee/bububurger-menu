@@ -38,12 +38,17 @@ export const SauceModal: React.FC<SauceModalProps> = ({ isOpen, onClose }) => {
         </p>
         <div className="space-y-2">
           {sauces.map((sauce) => (
-            <div key={sauce.id} className="flex items-center justify-between">
+            <div key={sauce.id} className="flex items-center justify-between gap-3">
               <span>{sauceTranslations[sauce.id][language]}</span>
-              <div className="flex space-x-1">
-                {[...Array(sauce.level)].map((_, i) => (
-                  <span key={i} className="text-red-500">🌶️</span>
-                ))}
+              <div style={{ width: 90, height: 14, background: '#eee', borderRadius: 8, overflow: 'hidden', boxShadow: '0 1px 4px #ff980033' }}>
+                <div style={{
+                  width: `${sauce.level * 20}%`,
+                  height: '100%',
+                  borderRadius: 8,
+                  background: `linear-gradient(90deg, #ffe066 0%, #ffd740 40%, #ff9800 70%, #ff1744 100%)`,
+                  transition: 'width 0.3s',
+                  boxShadow: '0 1px 6px #ff980055',
+                }} />
               </div>
             </div>
           ))}

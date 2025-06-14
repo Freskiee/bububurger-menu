@@ -937,7 +937,7 @@ export const productTranslations: { [id: string]: ProductTranslation } = {
       name: "CHICKEN BONELESS",
       description: "¡Sin huesos, sin excusas! Nuestros Boneless son puro placer: pollo jugoso, crujiente por fuera, bañado en la salsa que más te prende. ¿Blue cheese o ranch? Tú mandas. 💥 Advertencia: este manjar ha sido culpable de muchas lamidas de dedos… y de platos vacíos en segundos.",
       prices: [
-        { label: "225 gr.", price: 235, note: "225 gr. ≈ 8 pzas. | 515 gr. ≈ 13 pzas. | 1100 gr. ≈ 28 pzas." },
+        { label: "225 gr.", price: 235 },
         { label: "515 gr.", price: 355 },
         { label: "1100 gr.", price: 605 }
       ],
@@ -959,7 +959,7 @@ export const productTranslations: { [id: string]: ProductTranslation } = {
       name: "CHICKEN BONELESS",
       description: "No bones, no excuses! Our Boneless are pure pleasure: juicy chicken, crispy on the outside, coated in your favorite sauce. Blue cheese or ranch? You decide. 💥 Warning: this delicacy has been guilty of many finger lickings... and empty plates in seconds.",
       prices: [
-        { label: "225 gr.", price: 235, note: "225 gr. ≈ 8 pcs. | 515 gr. ≈ 13 pcs. | 1100 gr. ≈ 28 pcs." },
+        { label: "225 gr.", price: 235 },
         { label: "515 gr.", price: 355 },
         { label: "1100 gr.", price: 605 }
       ],
@@ -982,66 +982,50 @@ export const productTranslations: { [id: string]: ProductTranslation } = {
   // Sección: Menú Infantil
   k1: {
     es: {
-      name: "NUGGETS DE POLLO",
-      description: "4 nuggets de pollo empanizados, acompañados de papas a la francesa y una bebida de 355ml.",
-      prices: [
-        { label: "Precio", price: 120 }
-      ]
+      name: "PAQUETE BUBUBURGER",
+      description: "Deliciosa Bububurger sencilla con queso manchego + 5 divertidas papas carita feliz y una chaparrita.",
+      prices: [ { label: "", price: 160 } ]
     },
     en: {
-      name: "CHICKEN NUGGETS",
-      description: "4 breaded chicken nuggets, served with french fries and a 355ml drink.",
-      prices: [
-        { label: "Price", price: 120 }
-      ]
+      name: "BUBUBURGER KIDS MEAL",
+      description: "A tasty Bububurger with manchego cheese, 5 fun smiley fries, and a small soda.",
+      prices: [ { label: "", price: 160 } ]
     }
   },
   k2: {
     es: {
-      name: "HOT DOG",
-      description: "Hot dog con salchicha de pavo, acompañado de papas a la francesa y una bebida de 355ml.",
-      prices: [
-        { label: "Precio", price: 120 }
-      ]
+      name: "PAQUETE NUGGETS",
+      description: "5 Nuggets + 5 divertidas papas carita feliz y una chaparrita.",
+      prices: [ { label: "", price: 160 } ]
     },
     en: {
-      name: "HOT DOG",
-      description: "Hot dog with turkey sausage, served with french fries and a 355ml drink.",
-      prices: [
-        { label: "Price", price: 120 }
-      ]
+      name: "NUGGETS KIDS MEAL",
+      description: "5 chicken nuggets, 5 smiley fries, and a small soda.",
+      prices: [ { label: "", price: 160 } ]
     }
   },
   k3: {
     es: {
-      name: "HAMBURGUESA",
-      description: "Hamburguesa con carne de res, acompañada de papas a la francesa y una bebida de 355ml.",
-      prices: [
-        { label: "Precio", price: 120 }
-      ]
+      name: "PAQUETE HOTDOG",
+      description: "Hot Dog sencillo + 5 papas carita feliz y una chaparrita.",
+      prices: [ { label: "", price: 130 } ]
     },
     en: {
-      name: "HAMBURGER",
-      description: "Beef hamburger, served with french fries and a 355ml drink.",
-      prices: [
-        { label: "Price", price: 120 }
-      ]
+      name: "HOT DOG KIDS MEAL",
+      description: "A classic hot dog, 5 smiley fries, and a small soda.",
+      prices: [ { label: "", price: 130 } ]
     }
   },
   k4: {
     es: {
-      name: "ALITAS",
-      description: "4 alitas de pollo, acompañadas de papas a la francesa y una bebida de 355ml.",
-      prices: [
-        { label: "Precio", price: 120 }
-      ]
+      name: "PAQUETE DEDITOS DE QUESO",
+      description: "5 Dedos de queso mozzarella + 5 papas carita feliz y una chaparrita.",
+      prices: [ { label: "", price: 160 } ]
     },
     en: {
-      name: "CHICKEN WINGS",
-      description: "4 chicken wings, served with french fries and a 355ml drink.",
-      prices: [
-        { label: "Price", price: 120 }
-      ]
+      name: "CHEESE FINGERS KIDS MEAL",
+      description: "5 mozzarella cheese sticks, 5 smiley fries, and a small soda.",
+      prices: [ { label: "", price: 160 } ]
     }
   },
   k5: {
@@ -1075,6 +1059,18 @@ export const productTranslations: { [id: string]: ProductTranslation } = {
         { label: "Price", price: 120 }
       ]
     }
+  },
+  kids: {
+    es: [
+      { name: 'Hamburguesa Kids', description: 'Hamburguesa de res, lechuga, tomate, queso y papas fritas', prices: [{ label: '120', price: 120 }] },
+      { name: 'Nuggets Kids', description: '6 piezas de pollo empanizado con papas fritas', prices: [{ label: '110', price: 110 }] },
+      { name: 'Hot Dog Kids', description: 'Hot dog con papas fritas', prices: [{ label: '100', price: 100 }] }
+    ],
+    en: [
+      { name: 'Kids Burger', description: 'Beef patty, lettuce, tomato, cheese and french fries', prices: [{ label: '120', price: 120 }] },
+      { name: 'Kids Nuggets', description: '6 pieces of breaded chicken with french fries', prices: [{ label: '110', price: 110 }] },
+      { name: 'Kids Hot Dog', description: 'Hot dog with french fries', prices: [{ label: '100', price: 100 }] }
+    ]
   }
 };
 
@@ -1270,5 +1266,9 @@ export const uiTranslations = {
   equivTitle: { es: "Equivalencia aproximada de piezas por gramaje", en: "Approximate piece equivalence by weight" },
   equivNote: { es: "Las piezas son aproximadas.", en: "The pieces are approximate." },
   friesIncluded: { es: "Incluye papas 70g", en: "Includes fries 70g" },
-  grillBurgers: { es: "Hamburguesas al Carbón", en: "Charcoal-grilled Burgers" }
+  grillBurgers: { es: "Hamburguesas al Carbón", en: "Charcoal-grilled Burgers" },
+  spicyLevels: {
+    es: ['Suave', 'Ligero', 'Medio', 'Picante', '¡Explosivo!'],
+    en: ['Mild', 'Light', 'Medium', 'Spicy', 'Explosive!']
+  }
 }; 
