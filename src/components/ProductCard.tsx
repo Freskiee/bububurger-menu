@@ -365,23 +365,40 @@ const ProductCard: React.FC<ProductCardProps> = ({ product, category, products, 
               onClick={onPrev}
               style={{
                 position: 'absolute',
-                left: 10,
+                left: -28,
                 top: '50%',
                 transform: 'translateY(-50%)',
-                background: 'rgba(0, 0, 0, 0.5)',
-                color: 'white',
+                background: 'transparent',
+                color: '#fff',
                 border: 'none',
                 borderRadius: '50%',
-                width: 40,
-                height: 40,
+                width: 56,
+                height: 56,
                 display: 'flex',
                 alignItems: 'center',
                 justifyContent: 'center',
                 cursor: 'pointer',
                 zIndex: 1000,
+                boxShadow: 'none',
+                transition: 'background 0.18s, transform 0.18s',
+                fontSize: 32,
+                outline: 'none',
+                ...(window.innerWidth < 500 ? { left: -10, width: 44, height: 44 } : {})
               }}
+              onMouseOver={e => {
+                e.currentTarget.style.background = 'rgba(0,0,0,0.18)';
+                e.currentTarget.style.transform = 'translateY(-50%) scale(1.12)';
+              }}
+              onMouseOut={e => {
+                e.currentTarget.style.background = 'transparent';
+                e.currentTarget.style.transform = 'translateY(-50%)';
+              }}
+              aria-label="Anterior"
             >
-              ←
+              <svg width="32" height="32" viewBox="0 0 32 32" fill="none" xmlns="http://www.w3.org/2000/svg" style={{ filter: 'drop-shadow(0 2px 6px rgba(0,0,0,0.32))' }}>
+                <circle cx="16" cy="16" r="16" fill="none" />
+                <path d="M20 8L12 16L20 24" stroke="#fff" strokeWidth="3.2" strokeLinecap="round" strokeLinejoin="round"/>
+              </svg>
             </button>
           )}
           {onNext && currentIndex < products.length - 1 && (
@@ -389,23 +406,40 @@ const ProductCard: React.FC<ProductCardProps> = ({ product, category, products, 
               onClick={onNext}
               style={{
                 position: 'absolute',
-                right: 10,
+                right: -28,
                 top: '50%',
                 transform: 'translateY(-50%)',
-                background: 'rgba(0, 0, 0, 0.5)',
-                color: 'white',
+                background: 'transparent',
+                color: '#fff',
                 border: 'none',
                 borderRadius: '50%',
-                width: 40,
-                height: 40,
+                width: 56,
+                height: 56,
                 display: 'flex',
                 alignItems: 'center',
                 justifyContent: 'center',
                 cursor: 'pointer',
                 zIndex: 1000,
+                boxShadow: 'none',
+                transition: 'background 0.18s, transform 0.18s',
+                fontSize: 32,
+                outline: 'none',
+                ...(window.innerWidth < 500 ? { right: -10, width: 44, height: 44 } : {})
               }}
+              onMouseOver={e => {
+                e.currentTarget.style.background = 'rgba(0,0,0,0.18)';
+                e.currentTarget.style.transform = 'translateY(-50%) scale(1.12)';
+              }}
+              onMouseOut={e => {
+                e.currentTarget.style.background = 'transparent';
+                e.currentTarget.style.transform = 'translateY(-50%)';
+              }}
+              aria-label="Siguiente"
             >
-              →
+              <svg width="32" height="32" viewBox="0 0 32 32" fill="none" xmlns="http://www.w3.org/2000/svg" style={{ filter: 'drop-shadow(0 2px 6px rgba(0,0,0,0.32))' }}>
+                <circle cx="16" cy="16" r="16" fill="none" />
+                <path d="M12 8L20 16L12 24" stroke="#fff" strokeWidth="3.2" strokeLinecap="round" strokeLinejoin="round"/>
+              </svg>
             </button>
           )}
         </Modal>
