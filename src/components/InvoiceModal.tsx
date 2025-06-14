@@ -28,6 +28,7 @@ const InvoiceModal: React.FC<InvoiceModalProps> = ({ show, onHide }) => {
   const [sent, setSent] = useState(false);
   const [error, setError] = useState<string | null>(null);
   const [rfcError, setRfcError] = useState<string | null>(null);
+  const [amountFocused, setAmountFocused] = useState(false);
   const { language } = useContext(LanguageContext) as { language: 'es' | 'en' };
   const t = uiTranslations;
 
@@ -65,6 +66,26 @@ const InvoiceModal: React.FC<InvoiceModalProps> = ({ show, onHide }) => {
     }
     setError(null);
     setRfcError(null);
+  };
+
+  // Formateador de dinero
+  const formatMoney = (val: string) => {
+    if (!val) return '';
+    const number = Number(val.replace(/[^0-9.]/g, ''));
+    if (isNaN(number)) return '';
+    return number.toLocaleString('es-MX', { style: 'currency', currency: 'MXN' });
+  };
+
+  // Formateador de dinero tipo cajero
+  const formatMoneyCajero = (val: string) => {
+    if (!val) return '';
+    // Elimina ceros a la izquierda
+    let clean = val.replace(/^0+/, '');
+    if (!clean) clean = '0';
+    // Siempre al menos 3 dígitos para parsear centavos
+    while (clean.length < 3) clean = '0' + clean;
+    const number = Number(clean) / 100;
+    return number.toLocaleString('es-MX', { style: 'currency', currency: 'MXN' });
   };
 
   if (!show) return null;
@@ -205,13 +226,16 @@ const InvoiceModal: React.FC<InvoiceModalProps> = ({ show, onHide }) => {
                       <span className="input-group-text" style={{ background: 'transparent', color: '#b0b0b0', fontWeight: 400, fontSize: '1em', border: 'none', boxShadow: 'none', paddingRight: 4, paddingLeft: 2 }}>$</span>
                       <input
                           name="amount"
-                        type="number"
+                        type="text"
                         className="form-control"
-                        value={formData.amount}
-                        onChange={(e) => handleInputChange('amount', e.target.value)}
+                        value={formatMoneyCajero(formData.amount)}
+                        onChange={(e) => {
+                          // Solo números
+                          const raw = e.target.value.replace(/[^0-9]/g, '');
+                          handleInputChange('amount', raw);
+                        }}
                         placeholder={t.invoiceAmountPlaceholder[language]}
-                        min="0"
-                        step="0.01"
+                        inputMode="numeric"
                         required
                       />
                     </div>

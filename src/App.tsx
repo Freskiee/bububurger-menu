@@ -116,6 +116,8 @@ function App() {
           onRateClick={() => setShowRatingModal(true)}
           onPaymentClick={() => setShowPaymentModal(true)}
           onInvoiceClick={() => setShowInvoiceModal(true)}
+          setDarkMode={setDarkMode}
+          darkMode={darkMode}
         />
 
         <RatingModal

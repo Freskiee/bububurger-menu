@@ -26,86 +26,90 @@ const Header: React.FC<{ setDarkMode?: (fn: (prev: boolean) => boolean) => void,
         background: 'linear-gradient(135deg, rgba(30, 30, 30, 0.82) 0%, rgba(30, 30, 30, 0.65) 100%)',
         zIndex: 1
       }}></div>
-      
-      {/* Botón de idioma minimalista en la esquina superior izquierda del header */}
-      <button
-        onClick={toggleLanguage}
+
+      {/* Contenedor sticky para los botones de idioma y dark mode */}
+      <div
         style={{
-          position: 'absolute',
+          position: 'fixed',
           top: 18,
-          left: 18,
-          zIndex: 10,
-          background: isDark ? 'rgba(40,40,40,0.72)' : 'rgba(255,255,255,0.88)',
-          border: 'none',
-          borderRadius: '50%',
-          width: 38,
-          height: 38,
-          boxShadow: '0 2px 10px 0 rgba(0,0,0,0.13)',
-          cursor: 'pointer',
-          padding: 0,
+          right: 18,
+          zIndex: 1000,
           display: 'flex',
+          gap: 12,
+          background: 'rgba(30,30,30,0.85)',
+          borderRadius: 32,
+          boxShadow: '0 2px 12px 0 rgba(0,0,0,0.18)',
+          padding: '6px 10px',
           alignItems: 'center',
-          justifyContent: 'center',
-          transition: 'transform 0.18s, box-shadow 0.18s, background 0.18s',
-          fontSize: 24,
-          outline: 'none',
-          backdropFilter: 'blur(2.5px)'
-        }}
-        aria-label="Cambiar idioma / Change language"
-        title="Cambiar idioma / Change language"
-        onMouseOver={e => {
-          e.currentTarget.style.transform = 'scale(1.13)';
-          e.currentTarget.style.boxShadow = '0 0 14px 2px #7c4dff55';
-          e.currentTarget.style.background = isDark ? 'rgba(40,40,40,0.92)' : 'rgba(255,255,255,0.98)';
-        }}
-        onMouseOut={e => {
-          e.currentTarget.style.transform = 'scale(1)';
-          e.currentTarget.style.boxShadow = '0 2px 10px 0 rgba(0,0,0,0.13)';
-          e.currentTarget.style.background = isDark ? 'rgba(40,40,40,0.72)' : 'rgba(255,255,255,0.88)';
         }}
       >
-        <span role="img" aria-label="Cambiar idioma / Change language" style={{ fontSize: 26, filter: isDark ? 'drop-shadow(0 2px 4px #23243a)' : 'drop-shadow(0 2px 4px #fff)' }}>🌐</span>
-      </button>
-      
-      {/* Botón de dark/light mode en la esquina superior derecha del header */}
-      {setDarkMode && (
+        {/* Botón de idioma */}
         <button
-          onClick={() => setDarkMode((prev: boolean) => !prev)}
+          onClick={toggleLanguage}
           style={{
-            position: 'absolute',
-            top: 18,
-            right: 18,
-            zIndex: 10,
-            background: 'transparent',
+            background: 'none',
             border: 'none',
             borderRadius: '50%',
-            width: 36,
-            height: 36,
-            boxShadow: 'none',
+            width: 38,
+            height: 38,
             cursor: 'pointer',
-            padding: 0,
             display: 'flex',
             alignItems: 'center',
             justifyContent: 'center',
-            transition: 'transform 0.18s',
+            fontSize: 24,
             outline: 'none',
+            color: '#fff',
+            transition: 'transform 0.18s, box-shadow 0.18s',
           }}
-          aria-label="Alternar modo oscuro / Toggle dark mode"
-          title="Alternar modo oscuro / Toggle dark mode"
+          aria-label="Cambiar idioma / Change language"
+          title="Cambiar idioma / Change language"
           onMouseOver={e => {
             e.currentTarget.style.transform = 'scale(1.13)';
+            e.currentTarget.style.boxShadow = '0 0 14px 2px #7c4dff55';
           }}
           onMouseOut={e => {
             e.currentTarget.style.transform = 'scale(1)';
+            e.currentTarget.style.boxShadow = 'none';
           }}
         >
-          {isDark ? (
-            <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="#ffb347" strokeWidth="2.2" strokeLinecap="round" strokeLinejoin="round"><path d="M21 12.79A9 9 0 1 1 11.21 3a7 7 0 0 0 9.79 9.79z"/></svg>
-          ) : (
-            <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="#ffb347" strokeWidth="2.2" strokeLinecap="round" strokeLinejoin="round"><circle cx="12" cy="12" r="5"/><path d="M12 1v2m0 18v2m11-11h-2M3 12H1m16.95 7.07-1.41-1.41M6.34 6.34 4.93 4.93m12.02 0-1.41 1.41M6.34 17.66l-1.41 1.41"/></svg>
-          )}
+          <span role="img" aria-label="Cambiar idioma / Change language" style={{ fontSize: 26, filter: 'drop-shadow(0 2px 4px #23243a)' }}>🌐</span>
         </button>
-      )}
+        {/* Botón de dark/light mode */}
+        {setDarkMode && (
+          <button
+            onClick={() => setDarkMode((prev: boolean) => !prev)}
+            style={{
+              background: 'none',
+              border: 'none',
+              borderRadius: '50%',
+              width: 36,
+              height: 36,
+              cursor: 'pointer',
+              display: 'flex',
+              alignItems: 'center',
+              justifyContent: 'center',
+              fontSize: 24,
+              outline: 'none',
+              color: '#fff',
+              transition: 'transform 0.18s',
+            }}
+            aria-label="Alternar modo oscuro / Toggle dark mode"
+            title="Alternar modo oscuro / Toggle dark mode"
+            onMouseOver={e => {
+              e.currentTarget.style.transform = 'scale(1.13)';
+            }}
+            onMouseOut={e => {
+              e.currentTarget.style.transform = 'scale(1)';
+            }}
+          >
+            {isDark ? (
+              <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="#ffb347" strokeWidth="2.2" strokeLinecap="round" strokeLinejoin="round"><path d="M21 12.79A9 9 0 1 1 11.21 3a7 7 0 0 0 9.79 9.79z"/></svg>
+            ) : (
+              <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="#ffb347" strokeWidth="2.2" strokeLinecap="round" strokeLinejoin="round"><circle cx="12" cy="12" r="5"/><path d="M12 1v2m0 18v2m11-11h-2M3 12H1m16.95 7.07-1.41-1.41M6.34 6.34 4.93 4.93m12.02 0-1.41 1.41M6.34 17.66l-1.41 1.41"/></svg>
+            )}
+          </button>
+        )}
+      </div>
       
       <div className="container-fluid py-4" style={{ position: 'relative', zIndex: 2 }}>
         {/* Logo y título */}
