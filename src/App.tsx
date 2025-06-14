@@ -7,6 +7,7 @@ import FloatingButtons from './components/FloatingButtons';
 import RatingModal from './components/RatingModal';
 import PaymentModal from './components/PaymentModal';
 import InvoiceModal from './components/InvoiceModal';
+import HamburgerMenu from './components/HamburgerMenu';
 import { menuCategories } from './data/menuData';
 
 // Crear contexto para el idioma
@@ -95,6 +96,7 @@ function App() {
         }}
       >
         <Header setDarkMode={setDarkMode} darkMode={darkMode} />
+        <HamburgerMenu setDarkMode={setDarkMode} darkMode={darkMode} />
         
         <CategoryNav 
           activeCategory={activeCategory} 
