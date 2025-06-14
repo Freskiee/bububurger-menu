@@ -142,7 +142,7 @@ const Header: React.FC<{ setDarkMode?: (fn: (prev: boolean) => boolean) => void,
           }}>
             {t.slogan[language]}
           </div>
-          <p className="mb-3 opacity-90">Hamburguesas al Carbón</p>
+          <p className="mb-3 opacity-90">{t.grillBurgers[language]}</p>
         </div>
 
         {/* Horarios */}
@@ -175,36 +175,36 @@ const Header: React.FC<{ setDarkMode?: (fn: (prev: boolean) => boolean) => void,
           />
           <div style={{ position: 'relative', zIndex: 2, color: '#fff', textShadow: '0 2px 8px rgba(0,0,0,0.35)' }}>
             <div className="d-flex align-items-center justify-content-center mb-2">
-              <Clock size={20} className="me-2" />
-              <h6 className="mb-0 fw-bold">{t.scheduleTitle[language]}</h6>
+              <Clock size={26} className="me-2" style={{ color: '#fff', filter: 'drop-shadow(0 1px 4px #ff9800cc)' }} />
+              <h5 className="mb-0 fw-bold" style={{ fontSize: '1.45rem', letterSpacing: '0.01em', color: '#fff', textShadow: '0 2px 8px #ff9800cc, 0 1px 0 #000' }}>{t.scheduleTitle[language]}</h5>
             </div>
-            <div className="row text-center">
-              <div className="col-6">
-                <div className="mb-2">
-                  <strong>{t.scheduleWeekdays[language]}</strong>
+            <div className="row text-center" style={{ fontSize: '1.13rem', fontWeight: 700, letterSpacing: '0.01em' }}>
+              <div className="col-6 mb-2">
+                <div>
+                  <span style={{ fontWeight: 900, fontSize: '1.08em', color: '#ffd740', textShadow: '0 1px 4px #000' }}>{t.scheduleWeekdays[language]}</span>
                   <br />
-                  <small>16:00 - 23:30</small>
+                  <span style={{ fontWeight: 700, fontSize: '1.08em', color: '#fff', textShadow: '0 1px 4px #000' }}>16:00 - 23:30</span>
                 </div>
               </div>
-              <div className="col-6">
-                <div className="mb-2">
-                  <strong>{t.scheduleWeekend[language]}</strong>
+              <div className="col-6 mb-2">
+                <div>
+                  <span style={{ fontWeight: 900, fontSize: '1.08em', color: '#ffd740', textShadow: '0 1px 4px #000' }}>{t.scheduleWeekend[language]}</span>
                   <br />
-                  <small>13:00 - 00:30</small>
+                  <span style={{ fontWeight: 700, fontSize: '1.08em', color: '#fff', textShadow: '0 1px 4px #000' }}>13:00 - 00:30</span>
                 </div>
               </div>
-              <div className="col-6">
-                <div className="mb-2">
-                  <strong>{t.scheduleSunday[language]}</strong>
+              <div className="col-6 mb-2">
+                <div>
+                  <span style={{ fontWeight: 900, fontSize: '1.08em', color: '#ffd740', textShadow: '0 1px 4px #000' }}>{t.scheduleSunday[language]}</span>
                   <br />
-                  <small>13:00 - 23:30</small>
+                  <span style={{ fontWeight: 700, fontSize: '1.08em', color: '#fff', textShadow: '0 1px 4px #000' }}>13:00 - 23:30</span>
                 </div>
               </div>
-              <div className="col-6">
-                <div className="mb-2">
-                  <strong>{t.scheduleMonday[language]}</strong>
+              <div className="col-6 mb-2">
+                <div>
+                  <span style={{ fontWeight: 900, fontSize: '1.08em', color: '#ffd740', textShadow: '0 1px 4px #000' }}>{t.scheduleMonday[language]}</span>
                   <br />
-                  <small>{t.scheduleClosed[language]}</small>
+                  <span style={{ fontWeight: 700, fontSize: '1.08em', color: '#fff', textShadow: '0 1px 4px #000' }}>{t.scheduleClosed[language]}</span>
                 </div>
               </div>
             </div>

@@ -1,6 +1,9 @@
-import React, { useState, useRef, useEffect } from 'react';
+import React, { useState, useRef, useEffect, useContext } from 'react';
 import { Product, Category } from '../data/menuData';
 import Modal from 'react-bootstrap/Modal';
+import { productTranslations, sauceTranslations } from '../i18n/menu';
+import { uiTranslations } from '../i18n/menu';
+import { LanguageContext } from '../App';
 
 interface ProductCardProps {
   product: Product;
@@ -85,6 +88,14 @@ const ProductCard: React.FC<ProductCardProps> = ({ product, category, products, 
     return () => document.removeEventListener('mousedown', handleClickOutside);
   }, [showEquivModal]);
 
+  // Obtener traducción si existe
+  const { language } = useContext(LanguageContext) as { language: 'es' | 'en' };
+  const t = uiTranslations;
+  const translated = productTranslations[product.id]?.[language as 'es' | 'en'];
+  const productName = translated?.name || product.name;
+  const productDescription = translated?.description || product.description;
+  const productPrices = translated?.prices || product.prices;
+
   return (
     <>
       <div 
@@ -107,7 +118,7 @@ const ProductCard: React.FC<ProductCardProps> = ({ product, category, products, 
         )}
         <img 
           src={product.image} 
-          alt={product.name}
+          alt={productName}
           className={isInfantil ? "product-image" : "product-image"}
           style={isInfantil ? { borderRadius: 18, border: '2px solid #ffd740', boxShadow: '0 2px 8px #ffd74033', background: '#fff' } : {}}
         />
@@ -122,7 +133,7 @@ const ProductCard: React.FC<ProductCardProps> = ({ product, category, products, 
           minHeight: '70px'
         } : {}}>
           <h6 className={isInfantil ? "product-title" : "product-title fw-bold mb-1"} style={isInfantil ? { fontFamily: "'Fredoka One', 'Comic Sans MS', cursive, sans-serif", fontWeight: 900, fontSize: '1.13rem', marginBottom: 2, letterSpacing: '0.01em', textAlign: 'left', display: 'flex', alignItems: 'center', gap: 6, color: document.body.classList.contains('dark-mode') ? '#ffd740' : '#7c4dff' } : {}}>
-            {isInfantil ? multicolorText(product.name) : product.name}
+            {isInfantil ? multicolorText(productName) : productName}
             {isInfantil && <span style={{ fontSize: 18, marginLeft: 4 }}>🧃</span>}
           </h6>
           {isInfantil ? (
@@ -135,9 +146,9 @@ const ProductCard: React.FC<ProductCardProps> = ({ product, category, products, 
               whiteSpace: 'nowrap',
               WebkitLineClamp: 1,
               WebkitBoxOrient: 'vertical'
-            }}>{product.description}</p>
+            }}>{productDescription}</p>
           ) : (
-            <p className="product-description">{product.description}</p>
+            <p className="product-description">{productDescription}</p>
           )}
         </div>
       </div>
@@ -162,13 +173,13 @@ const ProductCard: React.FC<ProductCardProps> = ({ product, category, products, 
               <Modal.Title className="fw-bold" style={isInfantil ? {
                 textAlign: 'center', margin: 0, fontFamily: "'Fredoka One', 'Comic Sans MS', cursive, sans-serif", fontWeight: 900, fontSize: '1.35rem', letterSpacing: '0.01em', display: 'flex', alignItems: 'center', gap: 8
               } : { textAlign: 'center', margin: 0 }}>
-                {isInfantil ? multicolorText(product.name) : product.name}
+                {isInfantil ? multicolorText(productName) : productName}
                 {isInfantil && <span style={{ fontSize: 22 }}>🍭</span>}
               </Modal.Title>
               {category.chefImage && (
                 <img
                   src={`/${category.chefImage}`}
-                  alt={`Chef para ${product.name}`}
+                  alt={`Chef para ${productName}`}
                   style={{ width: '48px', height: '48px', objectFit: 'contain', borderRadius: '50%', boxShadow: '0 2px 8px rgba(0,0,0,0.10)' }}
                 />
               )}
@@ -183,19 +194,19 @@ const ProductCard: React.FC<ProductCardProps> = ({ product, category, products, 
               <div className="col-md-6">
                 <img 
                   src={product.image} 
-                  alt={product.name}
+                  alt={productName}
                   className="img-fluid rounded"
                   style={isInfantil ? { width: '100%', height: 'auto', objectFit: 'cover', borderRadius: 18, border: '2px solid #ffd740', boxShadow: '0 2px 8px #ffd74033', background: '#fff' } : { width: '100%', height: 'auto', objectFit: 'cover' }}
                 />
               </div>
               <div className="col-md-6">
                 <h4 className="mb-3" style={isInfantil ? { fontFamily: "'Fredoka One', 'Comic Sans MS', cursive, sans-serif", fontWeight: 900, fontSize: '1.18rem', letterSpacing: '0.01em', color: document.body.classList.contains('dark-mode') ? '#ffd740' : pastelColors[1], marginBottom: 8 } : {}}>
-                  {isInfantil ? multicolorText(product.name) : product.name}
+                  {isInfantil ? multicolorText(productName) : productName}
                 </h4>
                 {isInfantil ? (
-                  <p className="mb-4" style={{ color: document.body.classList.contains('dark-mode') ? '#ffd740' : '#7c4dff', fontWeight: 700, fontSize: '1.01em' }}>{product.description}</p>
+                  <p className="mb-4" style={{ color: document.body.classList.contains('dark-mode') ? '#ffd740' : '#7c4dff', fontWeight: 700, fontSize: '1.01em' }}>{productDescription}</p>
                 ) : (
-                  <p className="text-muted mb-4">{product.description}</p>
+                  <p className="text-muted mb-4">{productDescription}</p>
                 )}
                 <div className="product-price mb-4" style={isInfantil ? { 
                   color: document.body.classList.contains('dark-mode') ? '#ffd740' : pastelColors[0], 
@@ -208,11 +219,11 @@ const ProductCard: React.FC<ProductCardProps> = ({ product, category, products, 
                   fontSize: '1.18rem',
                   textShadow: '0 1px 2px rgba(0,0,0,0.2)'
                 }}>
-                  {product.prices.map((option, idx) => (
-                    <span key={option.label} style={{ display: 'inline-block', marginBottom: 2, marginRight: 8, position: 'relative' }}>
+                  {productPrices.map((option: { label: string; price?: number; value?: number }, idx: number) => (
+                    <span key={option.label + (option.price ?? option.value)} style={{ display: 'inline-block', marginBottom: 2, marginRight: 8, position: 'relative' }}>
                       {idx > 0 && <span> | </span>}
                       <span style={{ color: (document.body.classList.contains('dark-mode') ? '#ff6a00' : '#181818'), fontWeight: 700 }}>{option.label} </span>
-                      <span style={{ color: (document.body.classList.contains('dark-mode') ? '#fff' : '#ff6a00'), fontWeight: 700 }}>${option.value}</span>
+                      <span style={{ color: (document.body.classList.contains('dark-mode') ? '#fff' : '#ff6a00'), fontWeight: 700 }}>${option.price ?? option.value}</span>
                       {/* Leyenda para alitas */}
                       {product.id === 'w1' && option.label.includes('10') && (
                         <span style={{ display: 'block', fontSize: '0.93em', color: '#888', marginTop: 2, fontWeight: 500 }}>
@@ -297,7 +308,7 @@ const ProductCard: React.FC<ProductCardProps> = ({ product, category, products, 
                       marginRight: 'auto',
                     }}>
                       <span role="img" aria-label="malteada" style={{ fontSize: 20 }}>🥤</span>
-                      <span>+ $95 Cambia tu bebida por una malteada</span>
+                      <span>{uiTranslations.kidsMenu.upgradeShake[language as 'es' | 'en']}</span>
                     </div>
                   )}
                 </div>
@@ -335,7 +346,7 @@ const ProductCard: React.FC<ProductCardProps> = ({ product, category, products, 
                       style={{ borderRadius: 16, fontSize: '0.97em', fontWeight: 500, padding: '4px 14px', minWidth: 120 }}
                       onClick={() => setShowEquivModal(true)}
                     >
-                      Ver equivalencias
+                      {t.seeEquiv[language]}
                     </button>
                   )}
                   {product.sauces && (
@@ -345,7 +356,7 @@ const ProductCard: React.FC<ProductCardProps> = ({ product, category, products, 
                       style={{ borderRadius: 16, fontSize: '0.97em', fontWeight: 500, padding: '4px 14px', minWidth: 120 }}
                       onClick={() => setShowSauceModal(true)}
                     >
-                      Ver salsas
+                      {t.seeSauces[language]}
                     </button>
                   )}
                 </div>
@@ -354,7 +365,7 @@ const ProductCard: React.FC<ProductCardProps> = ({ product, category, products, 
                   onClick={closeModal}
                   style={{ marginTop: 6, background: 'var(--primary-orange)', border: 'none', fontWeight: 700, fontSize: '1.05em', borderRadius: 14, padding: '10px 0' }}
                 >
-                  Cerrar
+                  {t.close[language]}
                 </button>
               </div>
             </div>
@@ -456,7 +467,7 @@ const ProductCard: React.FC<ProductCardProps> = ({ product, category, products, 
       >
         <Modal.Header closeButton style={{ border: 'none', background: 'linear-gradient(90deg, var(--primary-orange), #ff8533)', color: '#fff', borderRadius: '16px 16px 0 0', padding: '18px 24px 12px 24px' }}>
           <Modal.Title style={{ fontWeight: 800, fontSize: '1.13em', letterSpacing: '0.01em' }}>
-            Equivalencia aproximada de piezas por gramaje
+            {t.equivTitle[language]}
           </Modal.Title>
         </Modal.Header>
         <Modal.Body style={{ background: 'var(--background-modal)', color: 'var(--text-main)', borderRadius: '0 0 16px 16px', padding: '22px 24px 18px 24px', textAlign: 'center', fontWeight: 500, fontSize: '1.08em' }}>
@@ -464,14 +475,14 @@ const ProductCard: React.FC<ProductCardProps> = ({ product, category, products, 
             225 gr. ≈ 8 pzas. | 515 gr. ≈ 13 pzas. | 1100 gr. ≈ 28 pzas.
           </div>
           <div style={{ fontSize: '0.97em', color: 'var(--text-muted)', fontWeight: 400 }}>
-            Las piezas son aproximadas.
+            {t.equivNote[language]}
           </div>
           <button
             className="btn btn-primary mt-4 w-100"
             style={{ borderRadius: 20, fontWeight: 700, fontSize: '1em', background: 'var(--primary-orange)', border: 'none', marginTop: 18 }}
             onClick={() => setShowEquivModal(false)}
           >
-            Cerrar
+            {t.close[language]}
           </button>
         </Modal.Body>
       </Modal>
@@ -487,17 +498,22 @@ const ProductCard: React.FC<ProductCardProps> = ({ product, category, products, 
       >
         <Modal.Header closeButton style={{ border: 'none', background: 'linear-gradient(90deg, #ffe066, #ff5e57)', color: '#222', borderRadius: '16px 16px 0 0', padding: '18px 24px 12px 24px' }}>
           <Modal.Title style={{ fontWeight: 800, fontSize: '1.13em', letterSpacing: '0.01em' }}>
-            Salsas disponibles y nivel de picante
+            {t.sauceTitle[language]}
           </Modal.Title>
         </Modal.Header>
         <Modal.Body style={{ background: 'var(--background-modal)', color: 'var(--text-main)', borderRadius: '0 0 16px 16px', padding: '22px 18px 18px 18px', textAlign: 'center', fontWeight: 500, fontSize: '1.08em' }}>
           <div style={{ marginBottom: 18, fontSize: '0.98em', color: 'var(--text-muted)' }}>
-            El orden es de menos a más picante.
+            {t.sauceOrder[language]}
           </div>
           {/* Lista vertical de salsas con chiles */}
           <div style={{ margin: '0 auto 10px auto', maxWidth: 340, textAlign: 'left' }}>
             {product.sauces && product.sauces.map((salsa) => {
-              // Niveles de picor por nombre de salsa (corregido)
+              // Normaliza el nombre para buscar la clave en sauceTranslations
+              const normalizar = (str: string) => str.toLowerCase().replace(/[^a-záéíóúüñ0-9]/gi, '');
+              const claves = Object.keys(sauceTranslations);
+              const clave = claves.find(k => normalizar(sauceTranslations[k as keyof typeof sauceTranslations].es) === normalizar(salsa) || normalizar(sauceTranslations[k as keyof typeof sauceTranslations].en) === normalizar(salsa));
+              const nombreTraducido = clave ? sauceTranslations[clave as keyof typeof sauceTranslations][language] : salsa;
+              // Niveles de picor por nombre de salsa (igual que antes)
               const salsaLower = salsa.toLowerCase();
               let level = 1;
               if (salsaLower.includes('hot bbq')) level = 2;
@@ -507,13 +523,11 @@ const ProductCard: React.FC<ProductCardProps> = ({ product, category, products, 
               else if (salsaLower.includes('brava')) level = 4;
               else if (salsaLower.includes('mango habanero')) level = 5;
               else if (salsaLower.includes('requete-macho') || salsaLower.includes('super-macho')) level = 5;
-              // El resto (bbq miel, ajo parmesano, teriyaki, bbq) es 1 chile
-              const toTitleCase = (str: string) => str.replace(/\w\S*/g, (txt) => txt.charAt(0).toUpperCase() + txt.substr(1).toLowerCase());
               const chiliColors = ['#ffe066', '#ffd166', '#ffb347', '#ff8c42', '#d7263d'];
               const isRequeteMacho = salsaLower.includes('requete-macho') || salsaLower.includes('super-macho');
               return (
                 <div key={salsa} style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', marginBottom: 8, gap: 8, width: '100%' }}>
-                  <span style={{ fontWeight: 500, color: 'var(--text-main)', minWidth: 110 }}>{toTitleCase(salsa)}</span>
+                  <span style={{ fontWeight: 500, color: 'var(--text-main)', minWidth: 110 }}>{nombreTraducido}</span>
                   <span style={{ display: 'flex', flexWrap: 'nowrap', gap: 2, alignItems: 'center' }}>
                     {Array.from({ length: level }).map((_, i) => (
                       <span key={i} style={{ color: chiliColors[Math.min(level-1, chiliColors.length-1)], fontSize: 18, marginLeft: 1 }}>🌶️</span>
@@ -531,7 +545,7 @@ const ProductCard: React.FC<ProductCardProps> = ({ product, category, products, 
             style={{ borderRadius: 20, fontWeight: 700, fontSize: '1em', background: 'var(--primary-orange)', border: 'none', marginTop: 18 }}
             onClick={() => setShowSauceModal(false)}
           >
-            Cerrar
+            {t.close[language]}
           </button>
         </Modal.Body>
       </Modal>

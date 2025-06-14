@@ -548,7 +548,7 @@ export const menuCategories: Category[] = [
     chefImage: chefPorCategoria["infantil"],
     products: [
       {
-        id: "i1",
+        id: "k1",
         name: "PAQUETE BUBUBURGER",
         description: "Deliciosa Bububurger sencilla con queso manchego + 5 divertidas papas carita feliz y una chaparrita.",
         prices: [
@@ -557,7 +557,7 @@ export const menuCategories: Category[] = [
         image: paqueteBububurger,
       },
       {
-        id: "i2",
+        id: "k2",
         name: "PAQUETE NUGGETS",
         description: "5 Nuggets + 5 divertidas papas carita feliz y una chaparrita.",
         prices: [
@@ -566,7 +566,7 @@ export const menuCategories: Category[] = [
         image: paqueteNuggets,
       },
       {
-        id: "i3",
+        id: "k3",
         name: "PAQUETE HOTDOG",
         description: "Hot Dog sencillo + 5 papas carita feliz y una chaparrita. ",
         prices: [
@@ -575,7 +575,7 @@ export const menuCategories: Category[] = [
         image: paqueteHotdog,
       },
       {
-        id: "i4",
+        id: "k4",
         name: "PAQUETE DEDITOS DE QUESO",
         description: "5 Dedos de queso mozzarella + 5 papas carita feliz y una chaparrita.",
         prices: [

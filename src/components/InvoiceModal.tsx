@@ -21,16 +21,50 @@ const InvoiceModal: React.FC<InvoiceModalProps> = ({ show, onHide }) => {
     postalCode: '',
     paymentMethod: '',
     amount: '',
-    consumptionDate: ''
+    consumptionDate: '',
+    ticketFolio: ''
   });
   const [sending, setSending] = useState(false);
   const [sent, setSent] = useState(false);
   const [error, setError] = useState<string | null>(null);
+  const [rfcError, setRfcError] = useState<string | null>(null);
   const { language } = useContext(LanguageContext) as { language: 'es' | 'en' };
   const t = uiTranslations;
 
   const handleInputChange = (field: string, value: string) => {
     setFormData({ ...formData, [field]: value });
+    if (field === 'rfc') {
+      if (value.length !== 13) {
+        setRfcError('El RFC debe tener exactamente 13 caracteres.');
+      } else {
+        setRfcError(null);
+      }
+    }
+  };
+
+  const handleFormSubmit = (e: React.FormEvent<HTMLFormElement>) => {
+    if (
+      !formData.fullName ||
+      !formData.rfc ||
+      !formData.email ||
+      !formData.postalCode ||
+      !formData.taxRegime ||
+      !formData.paymentMethod ||
+      !formData.amount ||
+      !formData.consumptionDate ||
+      !formData.ticketFolio
+    ) {
+      e.preventDefault();
+      setError('Por favor, completa todos los campos.');
+      return;
+    }
+    if (formData.rfc.length !== 13) {
+      e.preventDefault();
+      setRfcError('El RFC debe tener exactamente 13 caracteres.');
+      return;
+    }
+    setError(null);
+    setRfcError(null);
   };
 
   if (!show) return null;
@@ -60,12 +94,42 @@ const InvoiceModal: React.FC<InvoiceModalProps> = ({ show, onHide }) => {
                 <form
                   action="https://formspree.io/f/meokgnzg"
                   method="POST"
+                  onSubmit={handleFormSubmit}
                 >
                 <div className="row">
                   <div className="col-12 mb-3">
-                      <label className="form-label">{t.invoiceEmail[language]}</label>
+                    <label className="form-label">{t.invoiceName[language]}</label>
                     <input
-                        name="email"
+                      name="name"
+                      type="text"
+                      className="form-control"
+                      value={formData.fullName}
+                      onChange={(e) => handleInputChange('fullName', e.target.value)}
+                      placeholder={t.invoiceNamePlaceholder[language]}
+                      required
+                    />
+                  </div>
+
+                  <div className="col-md-6 mb-3">
+                    <label className="form-label">{t.invoiceRFC[language]}</label>
+                    <input
+                      name="rfc"
+                      type="text"
+                      className="form-control"
+                      value={formData.rfc}
+                      onChange={(e) => handleInputChange('rfc', e.target.value.toUpperCase())}
+                      placeholder={t.invoiceRFCPlaceholder[language]}
+                      maxLength={13}
+                      minLength={13}
+                      required
+                    />
+                    {rfcError && <div style={{ color: '#ff1744', fontWeight: 600, fontSize: '0.97em', marginTop: 2 }}>{rfcError}</div>}
+                  </div>
+
+                  <div className="col-md-6 mb-3">
+                    <label className="form-label">{t.invoiceEmail[language]}</label>
+                    <input
+                      name="email"
                       type="email"
                       className="form-control"
                       value={formData.email}
@@ -76,23 +140,9 @@ const InvoiceModal: React.FC<InvoiceModalProps> = ({ show, onHide }) => {
                   </div>
 
                   <div className="col-md-6 mb-3">
-                      <label className="form-label">{t.invoiceRFC[language]}</label>
+                    <label className="form-label">{t.invoicePostal[language]}</label>
                     <input
-                        name="rfc"
-                      type="text"
-                      className="form-control"
-                      value={formData.rfc}
-                      onChange={(e) => handleInputChange('rfc', e.target.value.toUpperCase())}
-                      placeholder={t.invoiceRFCPlaceholder[language]}
-                      maxLength={13}
-                      required
-                    />
-                  </div>
-
-                  <div className="col-md-6 mb-3">
-                      <label className="form-label">{t.invoicePostal[language]}</label>
-                    <input
-                        name="postal_code"
+                      name="postal_code"
                       type="text"
                       className="form-control"
                       value={formData.postalCode}
@@ -103,62 +153,68 @@ const InvoiceModal: React.FC<InvoiceModalProps> = ({ show, onHide }) => {
                     />
                   </div>
 
-                  <div className="col-12 mb-3">
-                      <label className="form-label">{t.invoiceName[language]}</label>
-                    <input
-                        name="name"
-                      type="text"
-                      className="form-control"
-                      value={formData.fullName}
-                      onChange={(e) => handleInputChange('fullName', e.target.value)}
-                      placeholder={t.invoiceNamePlaceholder[language]}
-                      required
-                    />
-                  </div>
-
-                  <div className="col-12 mb-3">
-                      <label className="form-label">{t.invoiceRegime[language]}</label>
+                  <div className="col-md-6 mb-3">
+                    <label className="form-label">{t.invoiceRegime[language]}</label>
                     <select
-                        name="tax_regime"
+                      name="tax_regime"
                       className="form-select"
                       value={formData.taxRegime}
                       onChange={(e) => handleInputChange('taxRegime', e.target.value)}
                       required
                     >
-                        {t.invoiceRegimes[language].map((option: string, idx: number) => (
-                          <option key={option} value={option}>{option}</option>
-                        ))}
+                      {t.invoiceRegimes[language].map((option: string, idx: number) => (
+                        <option key={option} value={option}>{option}</option>
+                      ))}
                     </select>
                   </div>
 
                   <div className="col-md-6 mb-3">
-                      <label className="form-label">{t.invoicePayment[language]}</label>
+                    <label className="form-label">{t.invoicePayment[language]}</label>
                     <select
-                        name="payment_method"
+                      name="payment_method"
                       className="form-select"
                       value={formData.paymentMethod}
                       onChange={(e) => handleInputChange('paymentMethod', e.target.value)}
                       required
                     >
-                        {t.invoicePayments[language].map((option: string, idx: number) => (
-                          <option key={option} value={option}>{option}</option>
-                        ))}
+                      {t.invoicePayments[language].map((option: string, idx: number) => (
+                        <option key={option} value={option}>{option}</option>
+                      ))}
                     </select>
                   </div>
 
                   <div className="col-md-6 mb-3">
-                      <label className="form-label">{t.invoiceAmount[language]}</label>
+                    <label className="form-label">{t.invoiceTicketFolio[language]}</label>
                     <input
-                        name="amount"
-                      type="number"
+                      name="ticket_folio"
+                      type="text"
                       className="form-control"
-                      value={formData.amount}
-                      onChange={(e) => handleInputChange('amount', e.target.value)}
-                      placeholder={t.invoiceAmountPlaceholder[language]}
-                      min="0"
-                      step="0.01"
+                      value={formData.ticketFolio || ''}
+                      onChange={e => handleInputChange('ticketFolio', e.target.value)}
+                      placeholder="Ej: 123456"
                       required
                     />
+                  </div>
+
+                  <div className="col-md-6 mb-3">
+                      <label className="form-label">{t.invoiceAmount[language]}</label>
+                      <div style={{ fontSize: '0.97em', color: '#ff9800', fontWeight: 600, marginBottom: 4 }}>
+                        {t.invoiceAmountNote[language]}
+                      </div>
+                    <div className="input-group">
+                      <span className="input-group-text" style={{ background: 'transparent', color: '#b0b0b0', fontWeight: 400, fontSize: '1em', border: 'none', boxShadow: 'none', paddingRight: 4, paddingLeft: 2 }}>$</span>
+                      <input
+                          name="amount"
+                        type="number"
+                        className="form-control"
+                        value={formData.amount}
+                        onChange={(e) => handleInputChange('amount', e.target.value)}
+                        placeholder={t.invoiceAmountPlaceholder[language]}
+                        min="0"
+                        step="0.01"
+                        required
+                      />
+                    </div>
                   </div>
 
                   <div className="col-12 mb-4">
@@ -173,6 +229,8 @@ const InvoiceModal: React.FC<InvoiceModalProps> = ({ show, onHide }) => {
                     />
                   </div>
                 </div>
+
+                {error && <div className="alert alert-danger text-center mt-2">{error}</div>}
 
                 <div className="text-center">
                   <button

@@ -305,7 +305,7 @@ export const productTranslations: { [id: string]: ProductTranslation } = {
   b3: {
     es: {
       name: "OLÍMPICA",
-      description: "Ex-qui-si-ta, simplemente el mejor balance de sabor, 100 gr. de carne de res sazonada con la receta secreta de la casa, gratinada con queso manchego, tocino, y un par de deliciosos aros de cebolla con un toque de blue-cheese. Lechuga, jitomate, cebolla caramelizada, pepinillos, chiles, catsup, mostaza y mayonesa.",
+      description: "Ex-qui-si-ta, simplemente el mejor balance de sabor, 100 gr. de carne de res sazonada con la receta secreta de la casa, gratinada con queso manchego, tocino, y un par de deliciosos aros de cebolla con un toque de blue-cheese.",
       prices: [
         { label: "Sencilla", price: 170 },
         { label: "Doble", price: 185 }
@@ -313,7 +313,7 @@ export const productTranslations: { [id: string]: ProductTranslation } = {
     },
     en: {
       name: "OLYMPIC",
-      description: "Ex-qui-site, simply the best balance of flavor, 100 gr. of beef seasoned with the house's secret recipe, topped with manchego cheese, bacon, and a pair of delicious onion rings with a touch of blue-cheese dressing. Lettuce, tomato, caramelized onion, pickles, peppers, ketchup, mustard, and mayonnaise.",
+      description: "Ex-qui-site, simply the best balance of flavor. 100g of beef seasoned with the house's secret recipe, topped with melted manchego cheese, bacon, and a couple of delicious onion rings with a touch of blue cheese.",
       prices: [
         { label: "Single", price: 170 },
         { label: "Double", price: 185 }
@@ -1116,6 +1116,14 @@ export const uiTranslations = {
   invoicePaymentSelect: { es: "Selecciona Método de Pago", en: "Select Payment Method" },
   invoiceAmount: { es: "Cantidad Total *", en: "Total Amount *" },
   invoiceAmountPlaceholder: { es: "0.00", en: "0.00" },
+  invoiceAmountNote: {
+    es: "El total capturado debe ser exactamente igual al del ticket, incluyendo centavos.",
+    en: "The amount entered must match the ticket total exactly, including cents."
+  },
+  invoiceTicketFolio: {
+    es: "Folio del ticket *",
+    en: "Ticket number *"
+  },
   invoiceDate: { es: "Fecha de consumo *", en: "Consumption date *" },
   invoiceSend: { es: "Enviar Factura", en: "Send Invoice" },
   invoiceButton: { es: "solicitar factura", en: "request invoice" },
@@ -1261,5 +1269,6 @@ export const uiTranslations = {
   // Equivalencias
   equivTitle: { es: "Equivalencia aproximada de piezas por gramaje", en: "Approximate piece equivalence by weight" },
   equivNote: { es: "Las piezas son aproximadas.", en: "The pieces are approximate." },
-  friesIncluded: { es: "Incluye papas 70g", en: "Includes fries 70g" }
+  friesIncluded: { es: "Incluye papas 70g", en: "Includes fries 70g" },
+  grillBurgers: { es: "Hamburguesas al Carbón", en: "Charcoal-grilled Burgers" }
 }; 

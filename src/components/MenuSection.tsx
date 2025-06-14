@@ -127,9 +127,116 @@ const MenuSection: React.FC<MenuSectionProps> = ({ category, isFavorites = false
             />
           )}
           <span>{category.icon}</span>
-          <span>{menuTranslations[category.id]?.[language] || category.name}</span>
+          <span>{menuTranslations[category.id][language]}</span>
         </h3>
-        <div>
+        {/* Mensaje especial para hotdogs y bububurgers */}
+        {category.id === 'bububurgers' && (
+          <div style={{
+            background: isDark 
+              ? 'rgba(30, 20, 5, 0.96)' 
+              : 'rgba(255, 230, 120, 0.98)',
+            border: isDark ? '2.5px solid #ffb347' : '2.5px solid #ff9800',
+            borderRadius: 14,
+            padding: '10px 14px',
+            marginBottom: 18,
+            display: 'flex',
+            alignItems: 'center',
+            gap: 10,
+            color: '#fff',
+            fontWeight: 800,
+            fontSize: '0.98em',
+            textAlign: 'center',
+            boxShadow: isDark 
+              ? '0 2px 8px 0 #ffb34733, 0 1px 0 #000' 
+              : '0 2px 8px 0 #ff980033, 0 1px 0 #fff',
+            position: 'relative',
+            overflow: 'hidden',
+            textShadow: '0 2px 8px rgba(0,0,0,0.35)',
+            justifyContent: 'center',
+            maxWidth: 420,
+            marginLeft: 'auto',
+            marginRight: 'auto',
+          }}>
+            <span role="img" aria-label="papas" style={{ 
+              fontSize: 22,
+              filter: 'drop-shadow(0 2px 4px rgba(0,0,0,0.18))',
+              animation: 'bounce 2s infinite'
+            }}>🍟</span>
+            <span style={{
+              color: '#fff',
+              fontWeight: 800,
+              letterSpacing: '0.01em',
+              textShadow: '0 2px 8px rgba(0,0,0,0.35)',
+              fontSize: '0.98em',
+              lineHeight: 1.18,
+              display: 'block',
+              maxWidth: 320
+            }}>
+              {language === 'es' 
+                ? '¡Todas las Bububurgers incluyen 70g de papas a la francesa gratis! 🎉'
+                : 'All Bububurgers include a free 70g portion of French fries! 🎉'}
+            </span>
+            <span role="img" aria-label="papas" style={{ 
+              fontSize: 22,
+              filter: 'drop-shadow(0 2px 4px rgba(0,0,0,0.18))',
+              animation: 'bounce 2s infinite 1s'
+            }}>🍟</span>
+          </div>
+        )}
+        {category.id === 'hotdog' && (
+          <div style={{
+            background: isDark 
+              ? 'rgba(30, 20, 5, 0.96)' 
+              : 'rgba(255, 230, 120, 0.98)',
+            border: isDark ? '2.5px solid #ffb347' : '2.5px solid #ff9800',
+            borderRadius: 14,
+            padding: '10px 14px',
+            marginBottom: 18,
+            display: 'flex',
+            alignItems: 'center',
+            gap: 10,
+            color: '#fff',
+            fontWeight: 800,
+            fontSize: '0.98em',
+            textAlign: 'center',
+            boxShadow: isDark 
+              ? '0 2px 8px 0 #ffb34733, 0 1px 0 #000' 
+              : '0 2px 8px 0 #ff980033, 0 1px 0 #fff',
+            position: 'relative',
+            overflow: 'hidden',
+            textShadow: '0 2px 8px rgba(0,0,0,0.35)',
+            justifyContent: 'center',
+            maxWidth: 420,
+            marginLeft: 'auto',
+            marginRight: 'auto',
+          }}>
+            <span role="img" aria-label="papas" style={{ 
+              fontSize: 22,
+              filter: 'drop-shadow(0 2px 4px rgba(0,0,0,0.18))',
+              animation: 'bounce 2s infinite'
+            }}>🍟</span>
+            <span style={{
+              color: '#fff',
+              fontWeight: 800,
+              letterSpacing: '0.01em',
+              textShadow: '0 2px 8px rgba(0,0,0,0.35)',
+              fontSize: '0.98em',
+              lineHeight: 1.18,
+              display: 'block',
+              maxWidth: 320
+            }}>
+              {language === 'es' 
+                ? '¡Todos los hot dogs incluyen 70g de papas a la francesa gratis! 🎉'
+                : 'All hot dogs include a free 70g portion of French fries! 🎉'}
+            </span>
+            <span role="img" aria-label="papas" style={{ 
+              fontSize: 22,
+              filter: 'drop-shadow(0 2px 4px rgba(0,0,0,0.18))',
+              animation: 'bounce 2s infinite 1s'
+            }}>🍟</span>
+          </div>
+        )}
+        <div className="row g-4">
           {category.products.map((product, index) => (
             <div key={product.id} onClick={() => handleOpenModal(index)} style={{ cursor: 'pointer' }}>
               <ProductCard 
