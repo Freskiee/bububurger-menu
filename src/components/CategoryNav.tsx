@@ -1,4 +1,4 @@
-import React, { useContext } from 'react';
+import React, { useContext, useRef, useEffect } from 'react';
 import { menuCategories } from '../data/menuData';
 import { menuTranslations } from '../i18n/menu';
 import { LanguageContext } from '../App';
@@ -10,6 +10,14 @@ interface CategoryNavProps {
 
 const CategoryNav: React.FC<CategoryNavProps> = ({ activeCategory, onCategoryChange }) => {
   const { language } = useContext(LanguageContext);
+  const categoryRefs = useRef<{ [key: string]: HTMLDivElement | null }>({});
+
+  useEffect(() => {
+    if (activeCategory && categoryRefs.current[activeCategory]) {
+      categoryRefs.current[activeCategory].scrollIntoView({ behavior: 'smooth', inline: 'center', block: 'nearest' });
+    }
+  }, [activeCategory]);
+
   return (
     <div className="category-nav" style={{ background: 'var(--background-navbar)', color: 'var(--text-main)' }}>
       <div className="container-fluid">
@@ -18,6 +26,7 @@ const CategoryNav: React.FC<CategoryNavProps> = ({ activeCategory, onCategoryCha
             {menuCategories.map((category) => (
               <div
                 key={category.id}
+                ref={el => categoryRefs.current[category.id] = el}
                 className={`category-item d-flex align-items-center ${
                   activeCategory === category.id ? 'active' : ''
                 }`}

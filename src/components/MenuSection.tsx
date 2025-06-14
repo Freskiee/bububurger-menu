@@ -1,4 +1,4 @@
-import React, { useContext } from 'react';
+import React, { useContext, useState } from 'react';
 import { Category } from '../data/menuData';
 import ProductCard from './ProductCard';
 import { productTranslations, menuTranslations } from '../i18n/menu';
@@ -55,6 +55,34 @@ const MenuSection: React.FC<MenuSectionProps> = ({ category, isFavorites = false
   } else {
     sectionStyle = {};
   }
+
+  // Estado para el modal y producto seleccionado
+  const [showModal, setShowModal] = useState(false);
+  const [selectedProductIndex, setSelectedProductIndex] = useState<number | null>(null);
+
+  // Funciones para navegación
+  const handleOpenModal = (index: number) => {
+    setSelectedProductIndex(index);
+    setShowModal(true);
+  };
+  const handleCloseModal = () => {
+    setShowModal(false);
+    setSelectedProductIndex(null);
+  };
+  const handlePrevProduct = () => {
+    if (selectedProductIndex !== null && selectedProductIndex > 0) {
+      setSelectedProductIndex(selectedProductIndex - 1);
+    }
+  };
+  const handleNextProduct = () => {
+    if (
+      selectedProductIndex !== null &&
+      selectedProductIndex < category.products.length - 1
+    ) {
+      setSelectedProductIndex(selectedProductIndex + 1);
+    }
+  };
+
   return (
     <div className={`mb-4 ${isFavorites ? 'favorites-section' : ''}`}
       style={sectionStyle}>
@@ -102,9 +130,31 @@ const MenuSection: React.FC<MenuSectionProps> = ({ category, isFavorites = false
           <span>{menuTranslations[category.id]?.[language] || category.name}</span>
         </h3>
         <div>
-          {category.products.map((product) => (
-            <ProductCard key={product.id} product={product} category={category} />
+          {category.products.map((product, index) => (
+            <div key={product.id} onClick={() => handleOpenModal(index)} style={{ cursor: 'pointer' }}>
+              <ProductCard 
+                product={product} 
+                category={category} 
+                products={category.products} 
+                currentIndex={index} 
+                enableModal={false}
+              />
+            </div>
           ))}
+          {/* Modal único para el producto seleccionado */}
+          {showModal && selectedProductIndex !== null && (
+            <ProductCard
+              product={category.products[selectedProductIndex]}
+              category={category}
+              products={category.products}
+              currentIndex={selectedProductIndex}
+              showModal={true}
+              onClose={handleCloseModal}
+              onPrev={handlePrevProduct}
+              onNext={handleNextProduct}
+              enableModal={true}
+            />
+          )}
         </div>
       </div>
     </div>

@@ -5,6 +5,13 @@ import Modal from 'react-bootstrap/Modal';
 interface ProductCardProps {
   product: Product;
   category: Category;
+  products: Product[];
+  currentIndex: number;
+  showModal?: boolean;
+  onClose?: () => void;
+  onPrev?: () => void;
+  onNext?: () => void;
+  enableModal?: boolean;
 }
 
 const pastelColors = [
@@ -27,14 +34,45 @@ function multicolorText(text: string) {
   );
 }
 
-const ProductCard: React.FC<ProductCardProps> = ({ product, category }) => {
-  const [showModal, setShowModal] = useState(false);
+const ProductCard: React.FC<ProductCardProps> = ({ product, category, products, currentIndex, showModal, onClose, onPrev, onNext, enableModal }) => {
+  const [internalShowModal, setInternalShowModal] = useState(false);
   const [showEquivModal, setShowEquivModal] = useState(false);
   const [showSauceModal, setShowSauceModal] = useState(false);
   const [showFriesInfo, setShowFriesInfo] = useState(false);
   const popoverRef = useRef<HTMLDivElement | null>(null);
+  const touchStartX = useRef<number | null>(null);
+  const touchEndX = useRef<number | null>(null);
 
   const isInfantil = category.id === 'infantil';
+
+  // Controlar el modal según el modo (controlado o no)
+  const modalOpen = enableModal ? (showModal ?? false) : internalShowModal;
+  const openModal = () => {
+    if (enableModal) return;
+    setInternalShowModal(true);
+  };
+  const closeModal = () => {
+    if (enableModal && onClose) onClose();
+    else setInternalShowModal(false);
+  };
+
+  // Swipe handlers
+  const handleTouchStart = (e: React.TouchEvent) => {
+    touchStartX.current = e.touches[0].clientX;
+  };
+  const handleTouchEnd = (e: React.TouchEvent) => {
+    touchEndX.current = e.changedTouches[0].clientX;
+    if (touchStartX.current !== null && touchEndX.current !== null) {
+      const diff = touchEndX.current - touchStartX.current;
+      if (diff > 60 && onPrev) {
+        onPrev();
+      } else if (diff < -60 && onNext) {
+        onNext();
+      }
+    }
+    touchStartX.current = null;
+    touchEndX.current = null;
+  };
 
   useEffect(() => {
     if (!showEquivModal) return;
@@ -51,7 +89,7 @@ const ProductCard: React.FC<ProductCardProps> = ({ product, category }) => {
     <>
       <div 
         className="product-card p-3 mb-3"
-        onClick={() => setShowModal(true)}
+        onClick={openModal}
         id={isInfantil ? "infantil" : undefined}
         style={isInfantil ? {
           background: document.body.classList.contains('dark-mode') ? '#2a2250' : '#f3eafe',
@@ -104,220 +142,274 @@ const ProductCard: React.FC<ProductCardProps> = ({ product, category }) => {
         </div>
       </div>
 
-      <Modal
-        show={showModal}
-        onHide={() => setShowModal(false)}
-        centered
-        size="lg"
-        className="product-modal"
-      >
-        <Modal.Header closeButton className="modal-header-custom" style={isInfantil ? {
-          background: document.body.classList.contains('dark-mode') ? 'linear-gradient(90deg, #2a2250, #7c4dff)' : 'linear-gradient(90deg, #ffd740, #ff80ab)',
-          color: document.body.classList.contains('dark-mode') ? '#ffd740' : '#7c4dff',
-          fontFamily: "'Fredoka One', 'Comic Sans MS', cursive, sans-serif",
-        } : {}}>
-          <div style={{ display: 'flex', alignItems: 'center', width: '100%', gap: 16, justifyContent: 'center' }}>
-            <Modal.Title className="fw-bold" style={isInfantil ? {
-              textAlign: 'center', margin: 0, fontFamily: "'Fredoka One', 'Comic Sans MS', cursive, sans-serif", fontWeight: 900, fontSize: '1.35rem', letterSpacing: '0.01em', display: 'flex', alignItems: 'center', gap: 8
-            } : { textAlign: 'center', margin: 0 }}>
-              {isInfantil ? multicolorText(product.name) : product.name}
-              {isInfantil && <span style={{ fontSize: 22 }}>🍭</span>}
-            </Modal.Title>
-            {category.chefImage && (
-              <img
-                src={`/${category.chefImage}`}
-                alt={`Chef para ${product.name}`}
-                style={{ width: '48px', height: '48px', objectFit: 'contain', borderRadius: '50%', boxShadow: '0 2px 8px rgba(0,0,0,0.10)' }}
-              />
-            )}
-          </div>
-        </Modal.Header>
-        <Modal.Body style={isInfantil ? {
-          background: document.body.classList.contains('dark-mode') ? '#2a2250' : '#f3eafe',
-          color: document.body.classList.contains('dark-mode') ? '#ffd740' : '#7c4dff',
-          fontFamily: "'Fredoka One', 'Comic Sans MS', cursive, sans-serif",
-        } : {}}>
-          <div className="row">
-            <div className="col-md-6">
-              <img 
-                src={product.image} 
-                alt={product.name}
-                className="img-fluid rounded"
-                style={isInfantil ? { width: '100%', height: 'auto', objectFit: 'cover', borderRadius: 18, border: '2px solid #ffd740', boxShadow: '0 2px 8px #ffd74033', background: '#fff' } : { width: '100%', height: 'auto', objectFit: 'cover' }}
-              />
-            </div>
-            <div className="col-md-6">
-              <h4 className="mb-3" style={isInfantil ? { fontFamily: "'Fredoka One', 'Comic Sans MS', cursive, sans-serif", fontWeight: 900, fontSize: '1.18rem', letterSpacing: '0.01em', color: document.body.classList.contains('dark-mode') ? '#ffd740' : pastelColors[1], marginBottom: 8 } : {}}>
+      {/* Solo renderizar el Modal si enableModal es true */}
+      {enableModal && (
+        <Modal
+          show={modalOpen}
+          onHide={closeModal}
+          centered
+          size="lg"
+          className="product-modal"
+          onTouchStart={handleTouchStart}
+          onTouchEnd={handleTouchEnd}
+        >
+          <Modal.Header closeButton className="modal-header-custom" style={isInfantil ? {
+            background: document.body.classList.contains('dark-mode') ? 'linear-gradient(90deg, #2a2250, #7c4dff)' : 'linear-gradient(90deg, #ffd740, #ff80ab)',
+            color: document.body.classList.contains('dark-mode') ? '#ffd740' : '#7c4dff',
+            fontFamily: "'Fredoka One', 'Comic Sans MS', cursive, sans-serif",
+          } : {}}>
+            <div style={{ display: 'flex', alignItems: 'center', width: '100%', gap: 16, justifyContent: 'center' }}>
+              <Modal.Title className="fw-bold" style={isInfantil ? {
+                textAlign: 'center', margin: 0, fontFamily: "'Fredoka One', 'Comic Sans MS', cursive, sans-serif", fontWeight: 900, fontSize: '1.35rem', letterSpacing: '0.01em', display: 'flex', alignItems: 'center', gap: 8
+              } : { textAlign: 'center', margin: 0 }}>
                 {isInfantil ? multicolorText(product.name) : product.name}
-              </h4>
-              {isInfantil ? (
-                <p className="mb-4" style={{ color: document.body.classList.contains('dark-mode') ? '#ffd740' : '#7c4dff', fontWeight: 700, fontSize: '1.01em' }}>{product.description}</p>
-              ) : (
-                <p className="text-muted mb-4">{product.description}</p>
+                {isInfantil && <span style={{ fontSize: 22 }}>🍭</span>}
+              </Modal.Title>
+              {category.chefImage && (
+                <img
+                  src={`/${category.chefImage}`}
+                  alt={`Chef para ${product.name}`}
+                  style={{ width: '48px', height: '48px', objectFit: 'contain', borderRadius: '50%', boxShadow: '0 2px 8px rgba(0,0,0,0.10)' }}
+                />
               )}
-              <div className="product-price mb-4" style={isInfantil ? { 
-                color: document.body.classList.contains('dark-mode') ? '#ffd740' : pastelColors[0], 
-                fontWeight: 900, 
-                fontSize: '1.13em', 
-                fontFamily: "'Fredoka One', 'Comic Sans MS', cursive, sans-serif" 
-              } : {
-                color: (document.body.classList.contains('dark-mode') ? '#fff' : '#ff6a00'),
-                fontWeight: 700,
-                fontSize: '1.18rem',
-                textShadow: '0 1px 2px rgba(0,0,0,0.2)'
-              }}>
-                {product.prices.map((option, idx) => (
-                  <span key={option.label} style={{ display: 'inline-block', marginBottom: 2, marginRight: 8, position: 'relative' }}>
-                    {idx > 0 && <span> | </span>}
-                    <span style={{ color: (document.body.classList.contains('dark-mode') ? '#ff6a00' : '#181818'), fontWeight: 700 }}>{option.label} </span>
-                    <span style={{ color: (document.body.classList.contains('dark-mode') ? '#fff' : '#ff6a00'), fontWeight: 700 }}>${option.value}</span>
-                    {/* Leyenda para alitas */}
-                    {product.id === 'w1' && option.label.includes('10') && (
-                      <span style={{ display: 'block', fontSize: '0.93em', color: '#888', marginTop: 2, fontWeight: 500 }}>
-                        Incluye 2 salsas a elegir
-                      </span>
-                    )}
-                    {product.id === 'w1' && option.label.includes('15') && (
-                      <span style={{ display: 'block', fontSize: '0.93em', color: '#888', marginTop: 2, fontWeight: 500 }}>
-                        Incluye 3 salsas a elegir
-                      </span>
-                    )}
-                    {/* Emoji de papas para banderillas de 2 piezas */}
-                    {product.id && product.id.startsWith('bd') && option.label.includes('2') && (
-                      <span style={{ position: 'relative', display: 'inline-block' }}>
-                        <span
-                          style={{ cursor: 'pointer', marginLeft: 6, fontSize: 18, verticalAlign: 'middle' }}
-                          onClick={() => setShowFriesInfo((prev) => !prev)}
-                          title="¿Qué incluye?"
-                        >🍟</span>
-                        {/* Tooltip encima del emoji */}
-                        {showFriesInfo && (
+            </div>
+          </Modal.Header>
+          <Modal.Body style={isInfantil ? {
+            background: document.body.classList.contains('dark-mode') ? '#2a2250' : '#f3eafe',
+            color: document.body.classList.contains('dark-mode') ? '#ffd740' : '#7c4dff',
+            fontFamily: "'Fredoka One', 'Comic Sans MS', cursive, sans-serif",
+          } : {}}>
+            <div className="row">
+              <div className="col-md-6">
+                <img 
+                  src={product.image} 
+                  alt={product.name}
+                  className="img-fluid rounded"
+                  style={isInfantil ? { width: '100%', height: 'auto', objectFit: 'cover', borderRadius: 18, border: '2px solid #ffd740', boxShadow: '0 2px 8px #ffd74033', background: '#fff' } : { width: '100%', height: 'auto', objectFit: 'cover' }}
+                />
+              </div>
+              <div className="col-md-6">
+                <h4 className="mb-3" style={isInfantil ? { fontFamily: "'Fredoka One', 'Comic Sans MS', cursive, sans-serif", fontWeight: 900, fontSize: '1.18rem', letterSpacing: '0.01em', color: document.body.classList.contains('dark-mode') ? '#ffd740' : pastelColors[1], marginBottom: 8 } : {}}>
+                  {isInfantil ? multicolorText(product.name) : product.name}
+                </h4>
+                {isInfantil ? (
+                  <p className="mb-4" style={{ color: document.body.classList.contains('dark-mode') ? '#ffd740' : '#7c4dff', fontWeight: 700, fontSize: '1.01em' }}>{product.description}</p>
+                ) : (
+                  <p className="text-muted mb-4">{product.description}</p>
+                )}
+                <div className="product-price mb-4" style={isInfantil ? { 
+                  color: document.body.classList.contains('dark-mode') ? '#ffd740' : pastelColors[0], 
+                  fontWeight: 900, 
+                  fontSize: '1.13em', 
+                  fontFamily: "'Fredoka One', 'Comic Sans MS', cursive, sans-serif" 
+                } : {
+                  color: (document.body.classList.contains('dark-mode') ? '#fff' : '#ff6a00'),
+                  fontWeight: 700,
+                  fontSize: '1.18rem',
+                  textShadow: '0 1px 2px rgba(0,0,0,0.2)'
+                }}>
+                  {product.prices.map((option, idx) => (
+                    <span key={option.label} style={{ display: 'inline-block', marginBottom: 2, marginRight: 8, position: 'relative' }}>
+                      {idx > 0 && <span> | </span>}
+                      <span style={{ color: (document.body.classList.contains('dark-mode') ? '#ff6a00' : '#181818'), fontWeight: 700 }}>{option.label} </span>
+                      <span style={{ color: (document.body.classList.contains('dark-mode') ? '#fff' : '#ff6a00'), fontWeight: 700 }}>${option.value}</span>
+                      {/* Leyenda para alitas */}
+                      {product.id === 'w1' && option.label.includes('10') && (
+                        <span style={{ display: 'block', fontSize: '0.93em', color: '#888', marginTop: 2, fontWeight: 500 }}>
+                          Incluye 2 salsas a elegir
+                        </span>
+                      )}
+                      {product.id === 'w1' && option.label.includes('15') && (
+                        <span style={{ display: 'block', fontSize: '0.93em', color: '#888', marginTop: 2, fontWeight: 500 }}>
+                          Incluye 3 salsas a elegir
+                        </span>
+                      )}
+                      {/* Emoji de papas para banderillas de 2 piezas */}
+                      {product.id && product.id.startsWith('bd') && option.label.includes('2') && (
+                        <span style={{ position: 'relative', display: 'inline-block' }}>
                           <span
-                            style={{
-                              position: 'absolute',
-                              bottom: '120%',
-                              left: '50%',
-                              transform: 'translateX(-50%)',
-                              background: '#ffe066',
-                              color: '#a0522d',
-                              borderRadius: 8,
-                              padding: '6px 14px',
-                              fontSize: '0.97em',
-                              fontWeight: 600,
-                              boxShadow: '0 2px 8px rgba(0,0,0,0.13)',
-                              whiteSpace: 'normal',
-                              zIndex: 10,
-                              border: '1.5px solid #ffecb3',
-                              maxWidth: '220px',
-                              minWidth: '160px',
-                              textAlign: 'center',
-                              wordBreak: 'break-word',
-                            }}
-                          >
-                            Incluye porción de papas a la francesa.
-                            {/* Flechita */}
-                            <span style={{
-                              position: 'absolute',
-                              top: '100%',
-                              left: '50%',
-                              transform: 'translateX(-50%)',
-                              width: 0,
-                              height: 0,
-                              borderLeft: '8px solid transparent',
-                              borderRight: '8px solid transparent',
-                              borderTop: '8px solid #ffe066',
-                            }} />
-                          </span>
-                        )}
-                      </span>
-                    )}
-                  </span>
-                ))}
-                {/* Leyenda de malteada para menú infantil */}
-                {isInfantil && (
+                            style={{ cursor: 'pointer', marginLeft: 6, fontSize: 18, verticalAlign: 'middle' }}
+                            onClick={() => setShowFriesInfo((prev) => !prev)}
+                            title="¿Qué incluye?"
+                          >🍟</span>
+                          {/* Tooltip encima del emoji */}
+                          {showFriesInfo && (
+                            <span
+                              style={{
+                                position: 'absolute',
+                                bottom: '120%',
+                                left: '50%',
+                                transform: 'translateX(-50%)',
+                                background: '#ffe066',
+                                color: '#a0522d',
+                                borderRadius: 8,
+                                padding: '6px 14px',
+                                fontSize: '0.97em',
+                                fontWeight: 600,
+                                boxShadow: '0 2px 8px rgba(0,0,0,0.13)',
+                                whiteSpace: 'normal',
+                                zIndex: 10,
+                                border: '1.5px solid #ffecb3',
+                                maxWidth: '220px',
+                                minWidth: '160px',
+                                textAlign: 'center',
+                                wordBreak: 'break-word',
+                              }}
+                            >
+                              Incluye porción de papas a la francesa.
+                              {/* Flechita */}
+                              <span style={{
+                                position: 'absolute',
+                                top: '100%',
+                                left: '50%',
+                                transform: 'translateX(-50%)',
+                                width: 0,
+                                height: 0,
+                                borderLeft: '8px solid transparent',
+                                borderRight: '8px solid transparent',
+                                borderTop: '8px solid #ffe066',
+                              }} />
+                            </span>
+                          )}
+                        </span>
+                      )}
+                    </span>
+                  ))}
+                  {/* Leyenda de malteada para menú infantil */}
+                  {isInfantil && (
+                    <div style={{
+                      marginTop: 8,
+                      background: document.body.classList.contains('dark-mode') ? '#7c4dff' : '#ffd740',
+                      color: document.body.classList.contains('dark-mode') ? '#ffd740' : '#ff4081',
+                      border: document.body.classList.contains('dark-mode') ? '2px solid #ffd740' : '2px solid #ff80ab',
+                      borderRadius: 12,
+                      padding: '6px 14px',
+                      fontWeight: 700,
+                      fontSize: '1.01em',
+                      fontFamily: "'Fredoka One', 'Comic Sans MS', cursive, sans-serif",
+                      display: 'flex',
+                      alignItems: 'center',
+                      gap: 8,
+                      justifyContent: 'center',
+                      boxShadow: '0 1px 8px #ffd74033',
+                      width: 'fit-content',
+                      marginLeft: 'auto',
+                      marginRight: 'auto',
+                    }}>
+                      <span role="img" aria-label="malteada" style={{ fontSize: 20 }}>🥤</span>
+                      <span>+ $95 Cambia tu bebida por una malteada</span>
+                    </div>
+                  )}
+                </div>
+                {/* Etiqueta de chilibean para hot dogs (excepto infantil) */}
+                {category.id === 'hotdog' && !isInfantil && (
                   <div style={{
-                    marginTop: 8,
-                    background: document.body.classList.contains('dark-mode') ? '#7c4dff' : '#ffd740',
-                    color: document.body.classList.contains('dark-mode') ? '#ffd740' : '#ff4081',
-                    border: document.body.classList.contains('dark-mode') ? '2px solid #ffd740' : '2px solid #ff80ab',
-                    borderRadius: 12,
-                    padding: '6px 14px',
-                    fontWeight: 700,
-                    fontSize: '1.01em',
-                    fontFamily: "'Fredoka One', 'Comic Sans MS', cursive, sans-serif",
+                    background: '#fff',
+                    border: '1.5px solid #ff9800',
+                    borderRadius: 10,
+                    padding: '8px 14px',
+                    marginBottom: 16,
+                    marginTop: 2,
                     display: 'flex',
                     alignItems: 'center',
-                    gap: 8,
                     justifyContent: 'center',
-                    boxShadow: '0 1px 8px #ffd74033',
-                    width: 'fit-content',
-                    marginLeft: 'auto',
-                    marginRight: 'auto',
+                    gap: 8,
+                    fontWeight: 600,
+                    fontSize: '1em',
+                    color: '#a0522d',
+                    textAlign: 'center',
+                    boxShadow: 'none',
                   }}>
-                    <span role="img" aria-label="malteada" style={{ fontSize: 20 }}>🥤</span>
-                    <span>+ $95 Cambia tu bebida por una malteada</span>
+                    <span style={{ fontSize: 18, marginRight: 6 }}>🫘</span>
+                    <span>
+                      ¿Agregar chilibean a tu hot dog? +$45
+                    </span>
+                    <span style={{ fontSize: 18, marginLeft: 6 }}>🌶️</span>
                   </div>
                 )}
-              </div>
-              {/* Etiqueta de chilibean para hot dogs (excepto infantil) */}
-              {category.id === 'hotdog' && !isInfantil && (
-                <div style={{
-                  background: '#fff',
-                  border: '1.5px solid #ff9800',
-                  borderRadius: 10,
-                  padding: '8px 14px',
-                  marginBottom: 16,
-                  marginTop: 2,
-                  display: 'flex',
-                  alignItems: 'center',
-                  justifyContent: 'center',
-                  gap: 8,
-                  fontWeight: 600,
-                  fontSize: '1em',
-                  color: '#a0522d',
-                  textAlign: 'center',
-                  boxShadow: 'none',
-                }}>
-                  <span style={{ fontSize: 18, marginRight: 6 }}>🫘</span>
-                  <span>
-                    ¿Agregar chilibean a tu hot dog? +$45
-                  </span>
-                  <span style={{ fontSize: 18, marginLeft: 6 }}>🌶️</span>
+                <div style={{ display: 'flex', gap: 8, marginBottom: 10, justifyContent: 'center' }}>
+                  {product.id === 'w2' && (
+                    <button
+                      type="button"
+                      className="btn btn-outline-primary btn-sm"
+                      style={{ borderRadius: 16, fontSize: '0.97em', fontWeight: 500, padding: '4px 14px', minWidth: 120 }}
+                      onClick={() => setShowEquivModal(true)}
+                    >
+                      Ver equivalencias
+                    </button>
+                  )}
+                  {product.sauces && (
+                    <button
+                      type="button"
+                      className="btn btn-outline-danger btn-sm"
+                      style={{ borderRadius: 16, fontSize: '0.97em', fontWeight: 500, padding: '4px 14px', minWidth: 120 }}
+                      onClick={() => setShowSauceModal(true)}
+                    >
+                      Ver salsas
+                    </button>
+                  )}
                 </div>
-              )}
-              <div style={{ display: 'flex', gap: 8, marginBottom: 10, justifyContent: 'center' }}>
-                {product.id === 'w2' && (
-                  <button
-                    type="button"
-                    className="btn btn-outline-primary btn-sm"
-                    style={{ borderRadius: 16, fontSize: '0.97em', fontWeight: 500, padding: '4px 14px', minWidth: 120 }}
-                    onClick={() => setShowEquivModal(true)}
-                  >
-                    Ver equivalencias
-                  </button>
-                )}
-                {product.sauces && (
-                  <button
-                    type="button"
-                    className="btn btn-outline-danger btn-sm"
-                    style={{ borderRadius: 16, fontSize: '0.97em', fontWeight: 500, padding: '4px 14px', minWidth: 120 }}
-                    onClick={() => setShowSauceModal(true)}
-                  >
-                    Ver salsas
-                  </button>
-                )}
+                <button 
+                  className="btn btn-primary w-100"
+                  onClick={closeModal}
+                  style={{ marginTop: 6, background: 'var(--primary-orange)', border: 'none', fontWeight: 700, fontSize: '1.05em', borderRadius: 14, padding: '10px 0' }}
+                >
+                  Cerrar
+                </button>
               </div>
-              <button 
-                className="btn btn-primary w-100"
-                onClick={() => setShowModal(false)}
-                style={{ marginTop: 6, background: 'var(--primary-orange)', border: 'none', fontWeight: 700, fontSize: '1.05em', borderRadius: 14, padding: '10px 0' }}
-              >
-                Cerrar
-              </button>
             </div>
-          </div>
-        </Modal.Body>
-      </Modal>
+          </Modal.Body>
+          {/* Flechas de navegación a los lados del modal */}
+          {onPrev && currentIndex > 0 && (
+            <button
+              onClick={onPrev}
+              style={{
+                position: 'absolute',
+                left: 10,
+                top: '50%',
+                transform: 'translateY(-50%)',
+                background: 'rgba(0, 0, 0, 0.5)',
+                color: 'white',
+                border: 'none',
+                borderRadius: '50%',
+                width: 40,
+                height: 40,
+                display: 'flex',
+                alignItems: 'center',
+                justifyContent: 'center',
+                cursor: 'pointer',
+                zIndex: 1000,
+              }}
+            >
+              ←
+            </button>
+          )}
+          {onNext && currentIndex < products.length - 1 && (
+            <button
+              onClick={onNext}
+              style={{
+                position: 'absolute',
+                right: 10,
+                top: '50%',
+                transform: 'translateY(-50%)',
+                background: 'rgba(0, 0, 0, 0.5)',
+                color: 'white',
+                border: 'none',
+                borderRadius: '50%',
+                width: 40,
+                height: 40,
+                display: 'flex',
+                alignItems: 'center',
+                justifyContent: 'center',
+                cursor: 'pointer',
+                zIndex: 1000,
+              }}
+            >
+              →
+            </button>
+          )}
+        </Modal>
+      )}
 
       {/* Modal de equivalencias */}
       <Modal
