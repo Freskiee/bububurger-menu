@@ -238,24 +238,15 @@ const ProductCard: React.FC<ProductCardProps> = ({ product, category, products, 
                   textShadow: '0 1px 2px rgba(0,0,0,0.2)'
                 }}>
                   {productPrices.map((option: PriceOption, idx: number) => {
-                    let comment: string | null = null;
-                    if (!option.note) {
-                      if (product.id === 'w1' && option.label.includes('10')) comment = language === 'es' ? 'Incluye 2 salsas a elegir' : 'Includes 2 sauces of your choice';
-                      else if (product.id === 'w1' && option.label.includes('15')) comment = language === 'es' ? 'Incluye 3 salsas a elegir' : 'Includes 3 sauces of your choice';
-                      else if (product.id === 'w2' && option.label.includes('225')) comment = language === 'es' ? 'Incluye 1 salsa a elegir' : 'Includes 1 sauce of your choice';
-                      else if (product.id === 'w2' && option.label.includes('515')) comment = language === 'es' ? 'Incluye 2 salsas a elegir' : 'Includes 2 sauces of your choice';
-                      else if (product.id === 'w2' && option.label.includes('1100')) comment = language === 'es' ? 'Incluye 4 salsas a elegir' : 'Includes 4 sauces of your choice';
-                    }
                     return (
                       <span key={option.label + (option.price ?? option.value)} style={{ display: 'inline-block', marginBottom: 2, marginRight: 8, position: 'relative' }}>
                         {idx > 0 && <span> | </span>}
                         <span style={{ color: (document.body.classList.contains('dark-mode') ? '#ff6a00' : '#181818'), fontWeight: 700 }}>{option.label} </span>
                         <span style={{ color: (document.body.classList.contains('dark-mode') ? '#fff' : '#ff6a00'), fontWeight: 700 }}>${option.price ?? option.value}</span>
-                        {option.note && (
-                          <span style={{ display: 'block', fontSize: '0.93em', color: '#888', marginTop: 2, fontWeight: 500 }}>{option.note}</span>
-                        )}
-                        {!option.note && comment && (
-                          <span style={{ display: 'block', fontSize: '0.93em', color: '#888', marginTop: 2, fontWeight: 500 }}>{comment}</span>
+                        {option.note && option.note !== uiTranslations.friesIncluded[language] && (
+                          <span style={{ display: 'block', fontSize: '0.93em', color: '#888', marginTop: 2, fontWeight: 500 }}>
+                            {option.note}
+                          </span>
                         )}
                         {/* Emoji de papas para banderillas de 2 piezas */}
                         {product.id && product.id.startsWith('bd') && option.label.includes('2') && (

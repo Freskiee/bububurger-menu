@@ -1,4 +1,4 @@
-import { MenuItem } from "../types/menu";
+// import { MenuItem } from "../types/menu";
 import olimpica from "/menu-images/olimpica.png";
 import mojitoFrutosRojos from "/menu-images/mojito-fr.png";
 import dedosQueso from "/menu-images/dedos-queso.png";
@@ -585,394 +585,301 @@ export const menuCategories: Category[] = [
       }
     ]
   },
-  // 10. Extras
+  // 10. Bebidas y Refrescos
   {
-    id: "extras",
-    name: "Extras",
+    id: "bebidas",
+    name: "Bebidas y Refrescos",
     icon: "",
-    chefImage: chefPorCategoria["cafe"],
+    chefImage: chefPorCategoria["bebidas"],
     products: [
       {
-        id: "e1",
-        name: "Extra Queso",
-        description: "Porción adicional de queso manchego derretido.",
-        prices: [{ label: "", value: 20 }],
-        image: "/menu-images/extra-queso.png"
+        id: "bebida-1",
+        name: "REFRESCOS",
+        description: "Coca-Cola, Coca sin azúcar, Coca Light, Fanta, Delaware Punch, Sidral Mundet, Mundet rojo, Sprite, Fresca, Sangría Señorial, Agua Mineral",
+        prices: [
+          { label: "Precio", value: 35 }
+        ],
+        image: "https://images.pexels.com/photos/1187766/pexels-photo-1187766.jpeg?auto=compress&cs=tinysrgb&w=300",
       },
       {
-        id: "e2",
-        name: "Extra Tocino",
-        description: "Porción extra de tocino crujiente.",
-        prices: [{ label: "", value: 25 }],
-        image: "/menu-images/extra-tocino.png"
+        id: "bebida-2",
+        name: "BOING",
+        description: "Mango, Manzana, Guayaba, Uva, Tamarindo",
+        prices: [
+          { label: "Precio", value: 35 }
+        ],
+        image: "https://images.pexels.com/photos/1187766/pexels-photo-1187766.jpeg?auto=compress&cs=tinysrgb&w=300",
       },
       {
-        id: "e3",
-        name: "Papas Extra",
-        description: "Porción adicional de papas a la francesa.",
-        prices: [{ label: "", value: 35 }],
-        image: "/menu-images/extra-papas.png"
+        id: "bebida-3",
+        name: "AGUA CIEL",
+        description: "Botella de agua Natural Ciel de 600ml",
+        prices: [
+          { label: "Precio", value: 25 }
+        ],
+        image: "https://images.pexels.com/photos/1187766/pexels-photo-1187766.jpeg?auto=compress&cs=tinysrgb&w=300",
+      },
+      {
+        id: "bebida-4",
+        name: "BEBIDAS PREPARADAS",
+        description: "Tehuacán preparado sal y limón, Sangría Señorial preparada chile, salsa y limón, Naranjada natural o mineral, Limonada natural o mineral",
+        prices: [
+          { label: "Precio", value: 45 }
+        ],
+        image: "https://images.pexels.com/photos/1187766/pexels-photo-1187766.jpeg?auto=compress&cs=tinysrgb&w=300",
+      },
+      {
+        id: "bebida-5",
+        name: "ENERGY DRINKS",
+        description: "Volt azul, Amper amarillo, Amper rojo",
+        prices: [
+          { label: "Precio", value: 45 }
+        ],
+        image: "https://images.pexels.com/photos/1187766/pexels-photo-1187766.jpeg?auto=compress&cs=tinysrgb&w=300",
+      },
+      {
+        id: "bebida-6",
+        name: "SODAS ITALIANAS 1 LT",
+        description: "Limonada de Fresa Salvaje con Perlas Explosivas, Limonada de Mora Azul con Perlas Explosivas",
+        prices: [
+          { label: "Precio", value: 85 }
+        ],
+        image: "https://images.pexels.com/photos/1187766/pexels-photo-1187766.jpeg?auto=compress&cs=tinysrgb&w=300",
+      },
+      {
+        id: "bebida-7",
+        name: "BEBIDA DE PANDITAS",
+        description: "Yakult, Refresco de Lima Limón y Gomitas de Panditas, Escarchado de Sabores",
+        prices: [
+          { label: "Precio", value: 65 }
+        ],
+        image: "https://images.pexels.com/photos/1187766/pexels-photo-1187766.jpeg?auto=compress&cs=tinysrgb&w=300",
+      },
+      {
+        id: "bebida-8",
+        name: "CAFÉS",
+        description: "Café Americano, Con leche, Capuchino, Capuchino Vainilla, Capuchino Caramel, Con Licor de Café Kahlúa, Expreso Sencillo, Expreso Doble, Expreso Doble Cortado",
+        prices: [
+          { label: "Americano", value: 50 },
+          { label: "Con leche", value: 55 },
+          { label: "Capuchino", value: 65 },
+          { label: "Capuchino Vainilla", value: 70 },
+          { label: "Capuchino Caramel", value: 70 },
+          { label: "Con Kahlúa", value: 15, note: "Adicional" },
+          { label: "Expreso Sencillo", value: 55 },
+          { label: "Expreso Doble", value: 70 },
+          { label: "Expreso Doble Cortado", value: 75 }
+        ],
+        image: "https://images.pexels.com/photos/312418/pexels-photo-312418.jpeg?auto=compress&cs=tinysrgb&w=300",
+      },
+      {
+        id: "bebida-9",
+        name: "TISANAS FRUTALES",
+        description: "Kiwi-Fresa, Maracuyá, Frutos Caribeños, Fantasía Tropical, Frutos Rojos. Pídela fría o caliente, con colar o sin colar",
+        prices: [
+          { label: "Precio", value: 45 }
+        ],
+        image: "https://images.pexels.com/photos/1638280/pexels-photo-1638280.jpeg?auto=compress&cs=tinysrgb&w=300",
       }
     ]
   },
-  // 11. Malteadas y Postres
+  // 11. Bebidas Alcohólicas
   {
-    id: "malteadas",
+    id: "alcoholicas",
+    name: "Bebidas Alcohólicas",
+    icon: "",
+    chefImage: chefPorCategoria["bubuchelas"],
+    products: [
+      {
+        id: "a1",
+        name: "DIGESTIVOS",
+        description: "Carajillo to shake or not to shake, Carajillo conejito Turín, Baileys, Midori, Licor 43, Frangelico",
+        prices: [
+          { label: "Carajillo", value: 155 },
+          { label: "Carajillo Turín", value: 185 },
+          { label: "Baileys", value: 115 },
+          { label: "Midori", value: 120 },
+          { label: "Licor 43", value: 120 },
+          { label: "Frangelico", value: 120 }
+        ],
+        image: "https://images.pexels.com/photos/1283219/pexels-photo-1283219.jpeg?auto=compress&cs=tinysrgb&w=300",
+      },
+      {
+        id: "a2",
+        name: "APERITIVOS",
+        description: "Aperol, Campari, Anís Pernod, Jagermeister, Agavero",
+        prices: [
+          { label: "Aperol", value: 140 },
+          { label: "Campari", value: 140 },
+          { label: "Anís Pernod", value: 120 },
+          { label: "Jagermeister", value: 130 },
+          { label: "Agavero", value: 115 }
+        ],
+        image: "https://images.pexels.com/photos/338713/pexels-photo-338713.jpeg?auto=compress&cs=tinysrgb&w=300",
+      },
+      {
+        id: "a3",
+        name: "BUBUCHELA ARTESANAL",
+        description: "Blanca: Blonde Ale con especias. Oscura: Del tipo Dubbel con notas de café",
+        prices: [
+          { label: "Precio", value: 85 }
+        ],
+        image: "https://images.pexels.com/photos/1267696/pexels-photo-1267696.jpeg?auto=compress&cs=tinysrgb&w=300",
+      },
+      {
+        id: "a4",
+        name: "CHELAS NACIONALES",
+        description: "Tecate, Tecate Ligth, Indio, Corona, Victoria",
+        prices: [
+          { label: "Precio", value: 45 }
+        ],
+        image: "https://images.pexels.com/photos/52994/beer-slide-beer-glass-beer-mug-52994.jpeg?auto=compress&cs=tinysrgb&w=300",
+      },
+      {
+        id: "a5",
+        name: "CHELAS PREMIUM",
+        description: "Heineken, Ultra, Bohemia Clara, Bohemia Oscura, XX Lager, XX Ámbar",
+        prices: [
+          { label: "Precio", value: 55 }
+        ],
+        image: "https://images.pexels.com/photos/1552630/pexels-photo-1552630.jpeg?auto=compress&cs=tinysrgb&w=300",
+      },
+      {
+        id: "a6",
+        name: "MICHELADAS DE SABORES",
+        description: "Cerveza de barril clara / Oscura con escarchado y sabor de: Mango, Tamarindo, Chamoy y Ajonjolí, Mora Azul, Sandía, Fresa, Uva, Manzana Verde",
+        prices: [
+          { label: "1 Litro", value: 135 },
+          { label: "1/2 litro", value: 90 }
+        ],
+        image: "https://images.pexels.com/photos/1187766/pexels-photo-1187766.jpeg?auto=compress&cs=tinysrgb&w=300",
+      },
+      {
+        id: "a7",
+        name: "MICHELADAS TRADICIONALES",
+        description: "Michelada sal y limón, Clamachela, Cubana",
+        prices: [
+          { label: "Michelada 1L", value: 130 },
+          { label: "Michelada 1/2L", value: 85 },
+          { label: "Clamachela 1L", value: 150 },
+          { label: "Clamachela 1/2L", value: 95 },
+          { label: "Cubana 1L", value: 135 }
+        ],
+        image: "https://images.pexels.com/photos/1187766/pexels-photo-1187766.jpeg?auto=compress&cs=tinysrgb&w=300",
+      },
+      {
+        id: "a8",
+        name: "TRITÓN DE 5 LITROS",
+        description: "Claro / Oscuro, Colores / Mojito",
+        prices: [
+          { label: "Claro/Oscuro", value: 525 },
+          { label: "Colores/Mojito", value: 620 }
+        ],
+        image: "https://images.pexels.com/photos/1187766/pexels-photo-1187766.jpeg?auto=compress&cs=tinysrgb&w=300",
+      },
+      {
+        id: "a9",
+        name: "TARROS PREPARADOS",
+        description: "Michelada sal y limón, Clamatada, Cubana, Sabor",
+        prices: [
+          { label: "Michelada", value: 20 },
+          { label: "Clamatada", value: 35 },
+          { label: "Cubana", value: 25 },
+          { label: "Sabor", value: 35 }
+        ],
+        image: "https://images.pexels.com/photos/1187766/pexels-photo-1187766.jpeg?auto=compress&cs=tinysrgb&w=300",
+      },
+      {
+        id: "a10",
+        name: "COCKTAILS COLORS",
+        description: "AZULITO VODKA, ROJO VODKA DE FRUTOS ROJOS, MORADO VODKA Y JUGO DE UVA, AMARILLO BACARDÍ MANGO CHILE, ROSA BACARDÍ RASPBERRY, VERDE BACARDÍ LIMÓN, BUBBALOO XTREME DE UVA, VODKA Y CHICLES",
+        prices: [
+          { label: "1 Litro", value: 145 }
+        ],
+        image: "https://images.pexels.com/photos/1304540/pexels-photo-1304540.jpeg?auto=compress&cs=tinysrgb&w=300",
+      },
+      {
+        id: "a11",
+        name: "MOJITOS",
+        description: "ORIGINAL, PIÑA, GUAYABA, MARACUYÁ, LICHI, MANGO, FRESA, TAMARINDO, GUANABANA, FRUTOS ROJOS, JAMAICA, COCO, YAKULT, SANDIA, CEREZA, GROSELLA, GRANADA",
+        prices: [
+          { label: "1 Litro", value: 145 }
+        ],
+        image: "https://images.pexels.com/photos/1304540/pexels-photo-1304540.jpeg?auto=compress&cs=tinysrgb&w=300",
+      },
+      {
+        id: "a12",
+        name: "DESTILADOS",
+        description: "WHISKY, TEQUILA, RON, VODKA, MEZCAL, BRANDY",
+        prices: [
+          { label: "1 Litro", value: 145 }
+        ],
+        image: "https://images.pexels.com/photos/1283219/pexels-photo-1283219.jpeg?auto=compress&cs=tinysrgb&w=300",
+      },
+      {
+        id: "a13",
+        name: "STRONGBOW",
+        description: "SENCILLO, PREPARADO CON FRUTOS ROJOS",
+        prices: [
+          { label: "Precio", value: 85 }
+        ],
+        image: "https://images.pexels.com/photos/1187766/pexels-photo-1187766.jpeg?auto=compress&cs=tinysrgb&w=300",
+      },
+      {
+        id: "a14",
+        name: "COCTELES ESPECIALES",
+        description: "EL COSCORRÓN, EL DIABLO, LA CONGA, LA CHAQUETA, EL SUGAR DADDY, PALOMA DE FRESA, PALOMA DE MANGO, GIN DE FRUTOS ROJOS, GIN DE MANGO, LA PEPA ROSADA, MARGARITA FROZEN, WHISKY SUMMER",
+        prices: [
+          { label: "EL COSCORRÓN", value: 160 },
+          { label: "EL DIABLO", value: 145 },
+          { label: "LA CONGA", value: 145 },
+          { label: "LA CHAQUETA", value: 160 },
+          { label: "EL SUGAR DADDY", value: 165 },
+          { label: "PALOMA DE FRESA", value: 165 },
+          { label: "PALOMA DE MANGO", value: 165 },
+          { label: "GIN DE FRUTOS ROJOS", value: 170 },
+          { label: "GIN DE MANGO", value: 170 },
+          { label: "LA PEPA ROSADA", value: 165 },
+          { label: "MARGARITA FROZEN", value: 180 },
+          { label: "WHISKY SUMMER", value: 180 }
+        ],
+        image: "https://images.pexels.com/photos/1304540/pexels-photo-1304540.jpeg?auto=compress&cs=tinysrgb&w=300",
+      }
+    ]
+  },
+  // 12. Malteadas y Postres
+  {
+    id: "malteadas-postres",
     name: "Malteadas y Postres",
     icon: "",
     chefImage: chefPorCategoria["malteadas"],
     products: [
       {
-        id: "m1",
-        name: "Malteada de Vainilla",
-        description: "Cremosa malteada de vainilla con chantilly",
+        id: "malteada-1",
+        name: "BUBUMALTEADAS CLÁSICAS",
+        description: "Preparadas con leche deslactosada, helado e ingredientes de primera calidad, servidas con un delicioso topping de crema batida y chispas de colores, chocolate, mazapán, chicle o galleta. Sabores: Oreo, Mazapán de la Rosa, Algodón de Azúcar, Chocolate, Fresa, Frutos Rojos, Vainilla, Chicle Azul, Chicle Rosa",
         prices: [
-          { label: "Precio", value: 65 }
+          { label: "Precio", value: 85 }
         ],
         image: "https://images.pexels.com/photos/103566/pexels-photo-103566.jpeg?auto=compress&cs=tinysrgb&w=300",
       },
       {
-        id: "m2",
-        name: "Malteada de Chocolate",
-        description: "Malteada de chocolate belga con chips de chocolate",
+        id: "malteada-2",
+        name: "BUBUTEMPURA OREO",
+        description: "Clásicas galletas Oreo cubiertas de Tempura y acompañadas con cremoso y dulce helado del sabor de tu elección servidas con crema chantilly, chispas de sabores y una rica cereza",
         prices: [
-          { label: "Precio", value: 70 }
-        ],
-        image: "https://images.pexels.com/photos/108370/pexels-photo-108370.jpeg?auto=compress&cs=tinysrgb&w=300",
-      },
-      {
-        id: "m3",
-        name: "Cheesecake de Fresa",
-        description: "Delicioso cheesecake casero con fresas frescas",
-        prices: [
-          { label: "Precio", value: 85 }
+          { label: "Precio", value: 95 }
         ],
         image: "https://images.pexels.com/photos/140831/pexels-photo-140831.jpeg?auto=compress&cs=tinysrgb&w=300",
-      },
+      }
     ]
   },
-  // 12. Bebidas Sin Alcohol
+  // 13. Extras
   {
-    id: "bebidas",
-    name: "Bebidas Sin Alcohol",
-    icon: "",
-    chefImage: chefPorCategoria["bebidas"],
-    products: [
-      {
-        id: "be1",
-        name: "Limonada Natural",
-        description: "Limonada fresca con menta y hielo",
-        prices: [
-          { label: "Precio", value: 35 }
-        ],
-        image: "https://images.pexels.com/photos/96974/pexels-photo-96974.jpeg?auto=compress&cs=tinysrgb&w=300",
-      },
-      {
-        id: "be2",
-        name: "Agua Fresca de Jamaica",
-        description: "Refrescante agua de jamaica endulzada naturalmente",
-        prices: [
-          { label: "Precio", value: 30 }
-        ],
-        image: "https://images.pexels.com/photos/1327838/pexels-photo-1327838.jpeg?auto=compress&cs=tinysrgb&w=300",
-      },
-      {
-        id: "be3",
-        name: "Refresco de Lata",
-        description: "Coca Cola, Pepsi, Sprite o Fanta",
-        prices: [
-          { label: "Precio", value: 25 }
-        ],
-        image: "https://images.pexels.com/photos/50593/coca-cola-cold-drink-soft-drink-coke-50593.jpeg?auto=compress&cs=tinysrgb&w=300",
-      },
-    ]
-  },
-  // 13. Bubuchelas
-  {
-    id: "bubuchelas",
-    name: "Bubuchelas",
-    icon: "",
-    chefImage: chefPorCategoria["bubuchelas"],
-    products: [
-      {
-        id: "bu1",
-        name: "Corona Extra",
-        description: "Cerveza mexicana ligera y refrescante",
-        prices: [
-          { label: "Precio", value: 40 }
-        ],
-        image: "https://images.pexels.com/photos/52994/beer-slide-beer-glass-beer-mug-52994.jpeg?auto=compress&cs=tinysrgb&w=300",
-      },
-      {
-        id: "bu2",
-        name: "Modelo Especial",
-        description: "Cerveza dorada con sabor equilibrado",
-        prices: [
-          { label: "Precio", value: 45 }
-        ],
-        image: "https://images.pexels.com/photos/1552630/pexels-photo-1552630.jpeg?auto=compress&cs=tinysrgb&w=300",
-      },
-      {
-        id: "bu3",
-        name: "Cerveza Artesanal",
-        description: "Cerveza local de barril, rotatoria",
-        prices: [
-          { label: "Precio", value: 60 }
-        ],
-        image: "https://images.pexels.com/photos/1267696/pexels-photo-1267696.jpeg?auto=compress&cs=tinysrgb&w=300",
-      },
-    ]
-  },
-  // 14. Cócteles de Color
-  {
-    id: "cockteles",
-    name: "Cócteles de Color",
-    icon: "",
-    chefImage: chefPorCategoria["cockteles"],
-    products: [
-      {
-        id: "co1",
-        name: "Piña Colada",
-        description: "Cóctel tropical con piña, coco y ron",
-        prices: [
-          { label: "Precio", value: 95 }
-        ],
-        image: "https://images.pexels.com/photos/1304540/pexels-photo-1304540.jpeg?auto=compress&cs=tinysrgb&w=300",
-      },
-      {
-        id: "co2",
-        name: "Blue Lagoon",
-        description: "Cóctel azul con vodka, curacao y limón",
-        prices: [
-          { label: "Precio", value: 90 }
-        ],
-        image: "https://images.pexels.com/photos/1304540/pexels-photo-1304540.jpeg?auto=compress&cs=tinysrgb&w=300",
-      },
-      {
-        id: "co3",
-        name: "Tequila Sunrise",
-        description: "Tequila con jugo de naranja y granadina",
-        prices: [
-          { label: "Precio", value: 85 }
-        ],
-        image: "https://images.pexels.com/photos/616836/pexels-photo-616836.jpeg?auto=compress&cs=tinysrgb&w=300",
-      },
-    ]
-  },
-  // 15. Mojitos
-  {
-    id: "mojitos",
-    name: "Mojitos",
-    icon: "",
-    chefImage: chefPorCategoria["mojitos"],
-    products: [
-      {
-        id: "mo1",
-        name: "Mojito Clásico",
-        description: "Ron blanco, menta fresca, limón y agua mineral",
-        prices: [
-          { label: "Precio", value: 85 }
-        ],
-        image: "https://images.pexels.com/photos/1304540/pexels-photo-1304540.jpeg?auto=compress&cs=tinysrgb&w=300",
-      },
-      {
-        id: "mo2",
-        name: "Mojito de Fresa",
-        description: "Mojito tradicional con fresas naturales",
-        prices: [
-          { label: "Precio", value: 90 }
-        ],
-        image: "https://images.pexels.com/photos/1304540/pexels-photo-1304540.jpeg?auto=compress&cs=tinysrgb&w=300",
-      },
-      {
-        id: "mo3",
-        name: "Mojito de Maracuyá",
-        description: "Refrescante mojito con pulpa de maracuyá",
-        prices: [
-          { label: "Precio", value: 95 }
-        ],
-        image: "https://images.pexels.com/photos/616836/pexels-photo-616836.jpeg?auto=compress&cs=tinysrgb&w=300",
-      },
-    ]
-  },
-  // 16. Destilados
-  {
-    id: "destilados",
-    name: "Destilados",
-    icon: "",
-    chefImage: chefPorCategoria["destilados"],
-    products: [
-      {
-        id: "de1",
-        name: "Ron Añejo",
-        description: "Ron premium envejecido, servido solo",
-        prices: [
-          { label: "Precio", value: 110 }
-        ],
-        image: "https://images.pexels.com/photos/1283219/pexels-photo-1283219.jpeg?auto=compress&cs=tinysrgb&w=300",
-      },
-      {
-        id: "de2",
-        name: "Vodka Premium",
-        description: "Vodka ruso de alta calidad, servido frío",
-        prices: [
-          { label: "Precio", value: 100 }
-        ],
-        image: "https://images.pexels.com/photos/338713/pexels-photo-338713.jpeg?auto=compress&cs=tinysrgb&w=300",
-      },
-      {
-        id: "de3",
-        name: "Mezcal Artesanal",
-        description: "Mezcal oaxaqueño 100% agave",
-        prices: [
-          { label: "Precio", value: 130 }
-        ],
-        image: "https://images.pexels.com/photos/5947041/pexels-photo-5947041.jpeg?auto=compress&cs=tinysrgb&w=300",
-      },
-    ]
-  },
-  // 17. Sidras
-  {
-    id: "sidras",
-    name: "Sidras",
-    icon: "",
-    chefImage: chefPorCategoria["sidras"],
-    products: [
-      {
-        id: "s1",
-        name: "Sidra de Manzana",
-        description: "Sidra dulce de manzana fermentada",
-        prices: [
-          { label: "Precio", value: 55 }
-        ],
-        image: "https://images.pexels.com/photos/1304540/pexels-photo-1304540.jpeg?auto=compress&cs=tinysrgb&w=300",
-      },
-      {
-        id: "s2",
-        name: "Sidra de Pera",
-        description: "Sidra aromática de pera natural",
-        prices: [
-          { label: "Precio", value: 60 }
-        ],
-        image: "https://images.pexels.com/photos/616836/pexels-photo-616836.jpeg?auto=compress&cs=tinysrgb&w=300",
-      },
-      {
-        id: "s3",
-        name: "Sidra Seca",
-        description: "Sidra tradicional con bajo contenido de azúcar",
-        prices: [
-          { label: "Precio", value: 65 }
-        ],
-        image: "https://images.pexels.com/photos/1304540/pexels-photo-1304540.jpeg?auto=compress&cs=tinysrgb&w=300",
-      },
-    ]
-  },
-  // 18. Bubu-Cócteles
-  {
-    id: "bubucocteles",
-    name: "Bubu-Cócteles",
-    icon: "",
-    chefImage: chefPorCategoria["bubucocteles"],
-    products: [
-      {
-        id: "bc1",
-        name: "Bubu Martini",
-        description: "Martini especial de la casa con gin premium",
-        prices: [
-          { label: "Precio", value: 120 }
-        ],
-        image: "https://images.pexels.com/photos/338713/pexels-photo-338713.jpeg?auto=compress&cs=tinysrgb&w=300",
-      },
-      {
-        id: "bc2",
-        name: "Bubu Manhattan",
-        description: "Manhattan con whisky bourbon y vermut dulce",
-        prices: [
-          { label: "Precio", value: 115 }
-        ],
-        image: "https://images.pexels.com/photos/1283219/pexels-photo-1283219.jpeg?auto=compress&cs=tinysrgb&w=300",
-      },
-      {
-        id: "bc3",
-        name: "Bubu Old Fashioned",
-        description: "Clásico old fashioned con azúcar mascabado",
-        prices: [
-          { label: "Precio", value: 125 }
-        ],
-        image: "https://images.pexels.com/photos/338713/pexels-photo-338713.jpeg?auto=compress&cs=tinysrgb&w=300",
-      },
-    ]
-  },
-  // 19. Café y Tisanas
-  {
-    id: "cafe",
-    name: "Café y Tisanas",
+    id: "extras",
+    name: "Extras",
     icon: "",
     chefImage: chefPorCategoria["cafe"],
-    products: [
-      {
-        id: "ca1",
-        name: "Café Americano",
-        description: "Café negro de grano selecto, servido caliente",
-        prices: [
-          { label: "Precio", value: 25 }
-        ],
-        image: "https://images.pexels.com/photos/312418/pexels-photo-312418.jpeg?auto=compress&cs=tinysrgb&w=300",
-      },
-      {
-        id: "ca2",
-        name: "Cappuccino",
-        description: "Espresso con leche espumada y canela",
-        prices: [
-          { label: "Precio", value: 45 }
-        ],
-        image: "https://images.pexels.com/photos/302899/pexels-photo-302899.jpeg?auto=compress&cs=tinysrgb&w=300",
-      },
-      {
-        id: "ca3",
-        name: "Té de Manzanilla",
-        description: "Tisana relajante de manzanilla con miel",
-        prices: [
-          { label: "Precio", value: 30 }
-        ],
-        image: "https://images.pexels.com/photos/1638280/pexels-photo-1638280.jpeg?auto=compress&cs=tinysrgb&w=300",
-      },
-    ]
-  },
-  // 20. Digestivos y Aperitivos
-  {
-    id: "digestivos",
-    name: "Digestivos y Aperitivos",
-    icon: "",
-    chefImage: chefPorCategoria["digestivos"],
-    products: [
-      {
-        id: "d1",
-        name: "Tequila Blanco",
-        description: "Tequila 100% agave, servido solo o con sal y limón",
-        prices: [
-          { label: "Precio", value: 80 }
-        ],
-        image: "https://images.pexels.com/photos/5947041/pexels-photo-5947041.jpeg?auto=compress&cs=tinysrgb&w=300",
-      },
-      {
-        id: "d2",
-        name: "Whisky en las Rocas",
-        description: "Whisky premium servido con hielo",
-        prices: [
-          { label: "Precio", value: 120 }
-        ],
-        image: "https://images.pexels.com/photos/1283219/pexels-photo-1283219.jpeg?auto=compress&cs=tinysrgb&w=300",
-      },
-      {
-        id: "d3",
-        name: "Licor de Café",
-        description: "Kahlúa servido con hielo y crema",
-        prices: [
-          { label: "Precio", value: 90 }
-        ],
-        image: "https://images.pexels.com/photos/338713/pexels-photo-338713.jpeg?auto=compress&cs=tinysrgb&w=300",
-      },
-    ]
-  },
+    products: []
+  }
 ];

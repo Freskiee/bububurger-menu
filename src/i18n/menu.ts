@@ -8,9 +8,11 @@ export const menuTranslations = {
   hotdog: { es: "Hot-dogs JUMBO", en: "JUMBO Hot-dogs" },
   costillas: { es: "Costillas BBQ", en: "BBQ Ribs" },
   infantil: { es: "Menú Infantil", en: "Kids Menu" },
+  bebidas: { es: "Bebidas y Refrescos", en: "Drinks & Refreshments" },
+  alcoholicas: { es: "Bebidas Alcohólicas", en: "Alcoholic Drinks" },
   extras: { es: "Extras", en: "Extras" },
   malteadas: { es: "Malteadas y Postres", en: "Shakes & Desserts" },
-  bebidas: { es: "Bebidas Sin Alcohol", en: "Non-Alcoholic Drinks" },
+  'malteadas-postres': { es: "Malteadas y Postres", en: "Shakes & Desserts" },
   bubuchelas: { es: "Bubuchelas", en: "Bubuchelas" },
   cockteles: { es: "Cócteles de Color", en: "Colorful Cocktails" },
   mojitos: { es: "Mojitos", en: "Mojitos" },
@@ -63,7 +65,7 @@ export const productTranslations: { [id: string]: ProductTranslation } = {
     },
     en: {
       name: "BUBUBURGER OLYMPIC",
-      description: "Ex-qui-site, simply the best balance of flavor, 100 gr. of beef seasoned with the house's secret recipe, topped with manchego cheese, bacon, and a pair of delicious onion rings with a touch of blue-cheese dressing.",
+      description: "Ex-qui-site, simply the best balance of flavor. 100g of beef seasoned with the house's secret recipe, topped with manchego cheese, bacon, and a pair of delicious onion rings with a touch of blue cheese.",
       prices: [
         { label: "Single", price: 170 },
         { label: "Double", price: 185 }
@@ -73,36 +75,34 @@ export const productTranslations: { [id: string]: ProductTranslation } = {
   f2: {
     es: {
       name: "MOJITO FRUTOS ROJOS",
-      description: "Mojito tradicional con frutos rojos naturales",
+      description: "Refrescante combinación de ron blanco con frutos rojos naturales, hojas de menta y un toque de limón, servido sobre hielo en vaso de litro. Ideal para quienes buscan un sabor equilibrado entre lo frutal y lo herbal.",
       prices: [
-        { label: "1/2", price: 120 },
-        { label: "1 Lt", price: 180 }
+        { label: "1/2 Lt", price: 85 },
+        { label: "1 Lt", price: 145 }
       ]
     },
     en: {
       name: "RED FRUITS MOJITO",
-      description: "Traditional mojito with natural red fruits",
+      description: "Refreshing blend of white rum with natural red fruits, mint leaves, and a touch of lime, served over ice in a liter glass. Perfect for those seeking a balanced fruity and herbal flavor.",
       prices: [
-        { label: "1/2", price: 120 },
-        { label: "1 Lt", price: 180 }
+        { label: "1/2 Lt", price: 85 },
+        { label: "1 Lt", price: 145 }
       ]
     }
   },
   f3: {
     es: {
       name: "BUBU-DEDOS DE QUESO",
-      description: "Dedos de queso empanizados con masa dorada y crujiente. Fritos al momento para lograr una textura ligera y perfectamente dorada. Servidos listos para acompañar con tus salsas favoritas.",
+      description: "6 Deditos de queso fritos por fuera con un toque delicado de especias y por dentro queso mozzarella derretido, acompañados con salsa tipo italiana. ¡Cuidado no te muerdas tus propios dedos, que te van a quedar cortos para pedir más!",
       prices: [
-        { label: "2 Pzs", price: 120 },
-        { label: "5 Pzs", price: 250 }
+        { label: "", price: 135 }
       ]
     },
     en: {
       name: "BUBU CHEESE FINGERS",
-      description: "Breaded cheese fingers with golden and crispy batter. Fried to order for a light and perfectly golden texture. Served ready to enjoy with your favorite sauces.",
+      description: "6 cheese sticks, crispy on the outside with a delicate touch of spices and melted mozzarella inside, served with Italian-style sauce. Careful not to bite your own fingers—you'll run out before you want to stop!",
       prices: [
-        { label: "2 Pcs", price: 120 },
-        { label: "5 Pcs", price: 250 }
+        { label: "", price: 135 }
       ]
     }
   },
@@ -127,16 +127,16 @@ export const productTranslations: { [id: string]: ProductTranslation } = {
   f5: {
     es: {
       name: "EL DIABLO",
-      description: "¡Cuidado! Este cóctel es picante. Mezcla de vodka, jugo de tomate, salsa picante y especias. ¡Para valientes!",
+      description: "Mezcla intensa y refrescante de tequila, vino tinto y agua mineral, con un toque de limón y jarabe natural. Servida con escarchado de chamoy y tajín para un acabado picante y equilibrado.",
       prices: [
-        { label: "1 Lt", price: 180 }
+        { label: "1 Lt", price: 145 }
       ]
     },
     en: {
       name: "THE DEVIL",
-      description: "Warning! This cocktail is spicy. Mix of vodka, tomato juice, hot sauce, and spices. For the brave!",
+      description: "Intense and refreshing mix of tequila, red wine, and sparkling water, with a touch of lime and natural syrup. Served with a chamoy and tajín rim for a spicy and balanced finish.",
       prices: [
-        { label: "1 Lt", price: 180 }
+        { label: "1 Lt", price: 145 }
       ]
     }
   },
@@ -145,121 +145,113 @@ export const productTranslations: { [id: string]: ProductTranslation } = {
   e1: {
     es: {
       name: "BUBU-DEDOS DE QUESO",
-      description: "Dedos de queso empanizados con masa dorada y crujiente. Fritos al momento para lograr una textura ligera y perfectamente dorada. Servidos listos para acompañar con tus salsas favoritas.",
+      description: "6 Deditos de queso fritos por fuera con un toque delicado de especias y por dentro queso mozzarella derretido, acompañados con salsa tipo italiana. ¡Cuidado no te muerdas tus propios dedos, que te van a quedar cortos para pedir más!",
       prices: [
-        { label: "2 Pzs", price: 120 },
-        { label: "5 Pzs", price: 250 }
+        { label: "", price: 135 }
       ]
     },
     en: {
       name: "BUBU CHEESE FINGERS",
-      description: "Breaded cheese fingers with golden and crispy batter. Fried to order for a light and perfectly golden texture. Served ready to enjoy with your favorite sauces.",
+      description: "6 cheese sticks, crispy on the outside with a delicate touch of spices and melted mozzarella inside, served with Italian-style sauce. Careful not to bite your own fingers—you'll run out before you want to stop!",
       prices: [
-        { label: "2 Pcs", price: 120 },
-        { label: "5 Pcs", price: 250 }
+        { label: "", price: 135 }
       ]
     }
   },
   e2: {
     es: {
       name: "BUBU-CHILES RELLENOS",
-      description: "Chiles jalapeños rellenos de queso crema, empanizados y fritos hasta dorar. ¡Cuidado, pican!",
+      description: "6 Chiles jalapeños atrevidos rellenos de queso Philadelphia y empanizados por fuera, acompañados de Ketchup Heinz y queso amarillo tipo cheddar, ¡serán el remedio para tu antojo desenfrenado!",
       prices: [
-        { label: "2 Pzs", price: 120 },
-        { label: "5 Pzs", price: 250 }
+        { label: "", price: 135 }
       ]
     },
     en: {
       name: "BUBU STUFFED PEPPERS",
-      description: "Cream cheese stuffed jalapeño peppers, breaded and fried until golden. Careful, they're spicy!",
+      description: "6 daring jalapeño peppers stuffed with Philadelphia cheese and breaded on the outside, served with Heinz Ketchup and cheddar-style yellow cheese. The perfect cure for your wildest cravings!",
       prices: [
-        { label: "2 Pcs", price: 120 },
-        { label: "5 Pcs", price: 250 }
+        { label: "", price: 135 }
       ]
     }
   },
   e3: {
     es: {
-      name: "Papas Extra",
-      description: "Porción adicional de papas a la francesa.",
-      prices: [{ label: "", price: 35 }]
+      name: "BUBU-NUGGETS",
+      description: "Nuestros Nuggets de pechuga de pollo Pilgrim's Pride (10 pzs), ¡Crujientes y dorados siempre! Acompañados de Kétchup Heinz y queso amarillo tipo Cheddar.",
+      prices: [
+        { label: "", price: 135 }
+      ]
     },
     en: {
-      name: "Extra Fries",
-      description: "Additional portion of french fries.",
-      prices: [{ label: "", price: 35 }]
+      name: "BUBU NUGGETS",
+      description: "Our Pilgrim's Pride chicken breast nuggets (10 pcs), always crispy and golden! Served with Heinz Ketchup and cheddar-style yellow cheese.",
+      prices: [
+        { label: "", price: 135 }
+      ]
     }
   },
   e4: {
     es: {
       name: "BUBU-AROS DE CEBOLLA",
-      description: "Aros de cebolla empanizados con masa dorada y crujiente. Fritos al momento para lograr una textura ligera y perfectamente dorada.",
+      description: "Perfectos aros de cebolla fritos y crujientes (10 pzs), acompañados con aderezo de blue cheese o ranch. ¡Te aseguramos que si los aros Olímpicos tuvieran sabor, a estos sabrían!",
       prices: [
-        { label: "4 Pzs", price: 120 },
-        { label: "8 Pzs", price: 220 }
+        { label: "", price: 135 }
       ]
     },
     en: {
       name: "BUBU ONION RINGS",
-      description: "Breaded onion rings with golden and crispy batter. Fried to order for a light and perfectly golden texture.",
+      description: "Perfect fried and crispy onion rings (10 pcs), served with blue cheese or ranch dressing. We guarantee that if Olympic rings had a flavor, it would be these!",
       prices: [
-        { label: "4 Pcs", price: 120 },
-        { label: "8 Pcs", price: 220 }
+        { label: "", price: 135 }
       ]
     }
   },
   e5: {
     es: {
       name: "BUBU-NACHOS CHILIBEAN",
-      description: "Tortillas de maíz crujientes, bañadas en salsa de chile y frijol, gratinadas con queso manchego. Acompañados de guacamole y crema.",
+      description: "Crujientes nachos acompañados con una deliciosa mezcla de chili bean, a base de carne molida de res, frijoles, salsa italiana, servidos con rodajas de jalapeño y abundante queso amarillo tipo Cheddar. ¡Perfectos para compartir!",
       prices: [
-        { label: "Individual", price: 150 },
-        { label: "Compartir", price: 250 }
+        { label: "", price: 220 }
       ]
     },
     en: {
       name: "BUBU CHILIBEAN NACHOS",
-      description: "Crispy corn tortillas, topped with chili and bean sauce, melted manchego cheese. Served with guacamole and sour cream.",
+      description: "Crispy nachos topped with a delicious chili bean mix made with ground beef, beans, Italian sauce, jalapeño slices, and plenty of cheddar-style yellow cheese. Perfect for sharing!",
       prices: [
-        { label: "Individual", price: 150 },
-        { label: "Share", price: 250 }
+        { label: "", price: 220 }
       ]
     }
   },
   e6: {
     es: {
       name: "COSTILLAS DE ELOTE AMARILLO",
-      description: "Costillas de elote amarillo asadas, bañadas en mantequilla y especias. Acompañadas de salsa de tu elección.",
+      description: "Estas costillitas de elote dulce amarillo, bañaditas con salsa Hot BBQ, Cajun, Tajín y un toque de perejil deshidratado con limón te harán bailar como texano. Son perfectas para compartir y calmar tus antojos, ¡así que prepárate para chuparte los dedos!",
       prices: [
-        { label: "Precio", price: 120 }
-      ],
-      sauces: ["bbq", "hot bbq", "mango habanero"]
+        { label: "", price: 120 }
+      ]
     },
     en: {
       name: "YELLOW CORN RIBS",
-      description: "Grilled yellow corn ribs, basted with butter and spices. Served with your choice of sauce.",
+      description: "These sweet yellow corn ribs, bathed in Hot BBQ, Cajun, Tajín, and a touch of dried parsley with lime, will make you dance like a Texan. Perfect for sharing and satisfying your cravings—get ready to lick your fingers!",
       prices: [
-        { label: "Price", price: 120 }
-      ],
-      sauces: ["bbq", "hot bbq", "mango habanero"]
+        { label: "", price: 120 }
+      ]
     }
   },
   e7: {
     es: {
       name: "ELOTE ASADO",
-      description: "Elote dulce amarillo asado a la parrilla y bañado con mantequilla. Perfecto para acompañar cualquier platillo o disfrutar por sí solo.",
+      description: "Elote dulce amarillo asado a la parrilla, untado con mantequilla y ligeramente especiado. Perfecto para acompañar cualquier platillo o disfrutar por sí solo con su sabor ahumado y natural.",
       prices: [
-        { label: "Precio", price: 100 }
-      ],
-      sauces: ["bbq", "hot bbq", "mango habanero"]
+        { label: "", price: 75 }
+      ]
     },
     en: {
       name: "GRILLED CORN",
-      description: "Sweet yellow corn grilled and topped with butter. Perfect to accompany any dish or enjoy on its own.",
+      description: "Sweet yellow corn grilled, spread with butter and lightly seasoned. Perfect to accompany any dish or enjoy on its own with its smoky, natural flavor.",
       prices: [
-        { label: "Price", price: 100 }
-      ],
-      sauces: ["bbq", "hot bbq", "mango habanero"]
+        { label: "", price: 75 }
+      ]
     }
   },
 
@@ -513,7 +505,7 @@ export const productTranslations: { [id: string]: ProductTranslation } = {
     },
     en: {
       name: "YELLOW CORN RIBS",
-      description: "These sweet yellow corn ribs, coated with Hot BBQ sauce, Cajun, Tajín, and a touch of dehydrated parsley with lemon will make you dance like a Texan. They're perfect for sharing and satisfying your cravings, so get ready to lick your fingers!",
+      description: "These sweet yellow corn ribs, bathed in Hot BBQ, Cajun, Tajín, and a touch of dried parsley with lime, will make you dance like a Texan. Perfect for sharing and satisfying your cravings—get ready to lick your fingers!",
       prices: [
         { label: "Price", price: 120 }
       ],
