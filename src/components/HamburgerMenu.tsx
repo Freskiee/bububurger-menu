@@ -96,7 +96,7 @@ const HamburgerMenu = ({ setDarkMode, darkMode }: { setDarkMode: (fn: (prev: boo
               onMouseEnter={(e) => e.currentTarget.style.color = darkMode ? '#ffd740' : '#555'}
               onMouseLeave={(e) => e.currentTarget.style.color = darkMode ? '#fff' : '#333'}
             >
-              {darkMode ? '🌙' : '☀️'} {darkMode ? (language === 'es' ? 'Modo oscuro' : 'Dark mode') : (language === 'es' ? 'Modo claro' : 'Light mode')}
+              {darkMode ? '☀️ Modo claro' : '🌙 Modo oscuro'}
             </button>
             <button
               onClick={() => { toggleLanguage(); }}

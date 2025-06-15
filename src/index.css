@@ -660,3 +660,37 @@ body {
     font-size: 0.93em;
   }
 }
+
+@media (min-width: 769px) {
+  .category-nav {
+    padding-top: 24px;
+    padding-bottom: 24px;
+    margin-top: 20px;
+    margin-bottom: 20px;
+  }
+
+  .product-card {
+    margin-bottom: 25px;
+    min-height: 250px;
+  }
+
+  .product-title {
+    font-size: 1.3rem;
+  }
+
+  .product-description {
+    font-size: 1rem;
+  }
+
+  .product-price {
+    font-size: 1.3rem;
+  }
+
+  .modal-dialog {
+    max-width: 800px;
+  }
+
+  .invoice-form .form-control {
+    font-size: 1rem;
+  }
+}
