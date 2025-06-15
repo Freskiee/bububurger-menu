@@ -153,7 +153,7 @@ const HamburgerMenu = ({ setDarkMode, darkMode }: { setDarkMode: (fn: (prev: boo
               <FontAwesomeIcon icon={faInstagram} /> {language === 'es' ? 'Instagram' : 'Instagram'}
             </button>
             <button
-              onClick={() => window.open('https://bububurger.netlify.app/', '_blank')}
+              onClick={() => window.open('https://bububurger-web.netlify.app/', '_blank')}
               style={{
                 background: 'none',
                 border: 'none',

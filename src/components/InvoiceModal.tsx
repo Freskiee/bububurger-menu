@@ -1,5 +1,5 @@
 import React, { useState, useContext } from 'react';
-import { Send, FileText } from 'lucide-react';
+// import { Send, FileText } from 'lucide-react';
 import { LanguageContext } from '../App';
 import { uiTranslations } from '../i18n/menu';
 
@@ -8,9 +8,9 @@ interface InvoiceModalProps {
   onHide: () => void;
 }
 
-const SERVICE_ID = 'service_lw135kb';
-const TEMPLATE_ID = 'template_q75g0lf';
-const PUBLIC_KEY = 'DeTVB4MdIKuSSP5Yk';
+// const SERVICE_ID = 'service_lw135kb';
+// const TEMPLATE_ID = 'template_q75g0lf';
+// const PUBLIC_KEY = 'DeTVB4MdIKuSSP5Yk';
 
 const InvoiceModal: React.FC<InvoiceModalProps> = ({ show, onHide }) => {
   const [formData, setFormData] = useState({
@@ -24,11 +24,11 @@ const InvoiceModal: React.FC<InvoiceModalProps> = ({ show, onHide }) => {
     consumptionDate: '',
     ticketFolio: ''
   });
-  const [sending, setSending] = useState(false);
+  // const [sending, setSending] = useState(false);
   const [sent, setSent] = useState(false);
   const [error, setError] = useState<string | null>(null);
   const [rfcError, setRfcError] = useState<string | null>(null);
-  const [amountFocused, setAmountFocused] = useState(false);
+  // const [amountFocused, setAmountFocused] = useState(false);
   const { language } = useContext(LanguageContext) as { language: 'es' | 'en' };
   const t = uiTranslations;
 
@@ -69,12 +69,12 @@ const InvoiceModal: React.FC<InvoiceModalProps> = ({ show, onHide }) => {
   };
 
   // Formateador de dinero
-  const formatMoney = (val: string) => {
-    if (!val) return '';
-    const number = Number(val.replace(/[^0-9.]/g, ''));
-    if (isNaN(number)) return '';
-    return number.toLocaleString('es-MX', { style: 'currency', currency: 'MXN' });
-  };
+  // const formatMoney = (val: string) => {
+  //   if (!val) return '';
+  //   const number = Number(val.replace(/[^0-9.]/g, ''));
+  //   if (isNaN(number)) return '';
+  //   return number.toLocaleString('es-MX', { style: 'currency', currency: 'MXN' });
+  // };
 
   // Formateador de dinero tipo cajero
   const formatMoneyCajero = (val: string) => {
@@ -183,7 +183,7 @@ const InvoiceModal: React.FC<InvoiceModalProps> = ({ show, onHide }) => {
                       onChange={(e) => handleInputChange('taxRegime', e.target.value)}
                       required
                     >
-                      {t.invoiceRegimes[language].map((option: string, idx: number) => (
+                      {t.invoiceRegimes[language].map((option: string) => (
                         <option key={option} value={option}>{option}</option>
                       ))}
                     </select>
@@ -198,7 +198,7 @@ const InvoiceModal: React.FC<InvoiceModalProps> = ({ show, onHide }) => {
                       onChange={(e) => handleInputChange('paymentMethod', e.target.value)}
                       required
                     >
-                      {t.invoicePayments[language].map((option: string, idx: number) => (
+                      {t.invoicePayments[language].map((option: string) => (
                         <option key={option} value={option}>{option}</option>
                       ))}
                     </select>
