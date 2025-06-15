@@ -91,7 +91,7 @@ const InvoiceModal: React.FC<InvoiceModalProps> = ({ show, onHide }) => {
   if (!show) return null;
 
   return (
-    <div className="modal show d-block" style={{ backgroundColor: 'rgba(0,0,0,0.5)', zIndex: 2200 }}>
+    <div className="modal show d-block" style={{ backgroundColor: 'rgba(0,0,0,0.5)', zIndex: 3000 }}>
       <div className="modal-dialog modal-dialog-centered">
         <div className="modal-content" style={{ color: 'var(--text-main)' }}>
           <div className="modal-header modal-header-custom" style={{ color: 'var(--text-main)' }}>

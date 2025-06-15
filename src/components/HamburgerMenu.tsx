@@ -16,7 +16,7 @@ const HamburgerMenu = ({ setDarkMode, darkMode }: { setDarkMode: (fn: (prev: boo
           position: 'fixed',
           top: 18,
           right: 18,
-          zIndex: 2000,
+          zIndex: 1000,
           background: darkMode ? 'rgba(30,30,30,0.85)' : 'rgba(255,255,255,0.85)',
           border: 'none',
           borderRadius: 12,
