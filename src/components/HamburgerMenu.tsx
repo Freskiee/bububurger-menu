@@ -168,7 +168,7 @@ const HamburgerMenu = ({ setDarkMode, darkMode }: { setDarkMode: (fn: (prev: boo
               onMouseEnter={(e) => e.currentTarget.style.color = '#555'}
               onMouseLeave={(e) => e.currentTarget.style.color = darkMode ? '#fff' : '#333'}
             >
-              🌐 {language === 'es' ? 'Página Web' : 'Website'}
+              🌐 {language === 'es' ? 'Bububur-Web' : 'Bububur-Web'}
             </button>
           </div>
         </div>

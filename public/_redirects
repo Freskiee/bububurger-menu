@@ -1,1 +1,7 @@
 /*    /index.html   200
+
+# Manejar errores 404
+/404    /404.html   404
+
+# Redirigir rutas específicas si es necesario
+# /ruta-especifica    /otra-pagina.html   200
