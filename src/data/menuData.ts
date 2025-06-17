@@ -91,7 +91,7 @@ export const menuCategories: Category[] = [
       {
         id: "f1",
         name: "BUBUBURGER OLÍMPICA",
-        description: "Ex-qui-si-ta, simplemente el mejor balance de sabor, 100 gr. de carne de res sazonada con la receta secreta de la casa, gratinada con queso manchego, tocino, y un par de deliciosos aros de cebolla con un toque de blue-cheese.",
+        description: "Ex-qui-si-ta, simplemente el mejor balance de sabor, 100 gr. de carne de res sazonada con la receta secreta de la casa, gratinada con queso manchego, tocino, y un par de deliciosos aros de cebolla con un toque de blue-cheese. Lechuga, jitomate, cebolla caramelizada, pepinillos, chiles, catsup, mostaza y mayonesa.",
         prices: [
           { label: "", value: 170 },
           { label: "Doble", value: 185 }
@@ -595,7 +595,11 @@ export const menuCategories: Category[] = [
       {
         id: "bebida-1",
         name: "REFRESCOS",
-        description: "Coca-Cola, Coca sin azúcar, Coca Light, Fanta, Delaware Punch, Sidral Mundet, Mundet rojo, Sprite, Fresca, Sangría Señorial, Agua Mineral",
+        description: "Coca-Cola, Coca sin azúcar, Coca Light, Fanta, Delaware Punch, Sidral Mundet, Mundet rojo, Sprite, Fresca, Sangría Señorial, Agua Mineral. <button onclick='toggleBeverages()'>Ver bebidas</button>",
+        // Función para desplegar bebidas
+        toggleBeverages: function() {
+          alert('Coca-Cola, Coca sin azúcar, Coca Light, Fanta, Delaware Punch, Sidral Mundet, Mundet rojo, Sprite, Fresca, Sangría Señorial, Agua Mineral');
+        },
         prices: [
           { label: "Precio", value: 35 }
         ],

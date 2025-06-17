@@ -166,7 +166,7 @@ const ProductCard: React.FC<ProductCardProps> = ({ product, category, products, 
               WebkitBoxOrient: 'vertical'
             }}>{productDescription}</p>
           ) : (
-            <p className="product-description">{productDescription}</p>
+            <p className="product-description" style={{ whiteSpace: 'normal', overflow: 'visible' }}>{productDescription}</p>
           )}
         </div>
       </div>
@@ -347,7 +347,7 @@ const ProductCard: React.FC<ProductCardProps> = ({ product, category, products, 
                   }}>
                     <span style={{ fontSize: 18, marginRight: 6 }}>🫘</span>
                     <span>
-                      ¿Agregar chilibean a tu hot dog? +$45
+                      {language === 'es' ? '¿Agregar chilibean a tu hot dog? +$45' : 'Add chilibean to your hot dog? +$45'}
                     </span>
                     <span style={{ fontSize: 18, marginLeft: 6 }}>🌶️</span>
                   </div>
@@ -374,6 +374,21 @@ const ProductCard: React.FC<ProductCardProps> = ({ product, category, products, 
                     </button>
                   )}
                 </div>
+                {product.id === 'bebida-1' && (
+                  <button onClick={() => alert('Coca-Cola, Coca sin azúcar, Coca Light, Fanta, Delaware Punch, Sidral Mundet, Mundet rojo, Sprite, Fresca, Sangría Señorial, Agua Mineral')}
+                    style={{
+                      background: '#ff9800',
+                      color: '#fff',
+                      border: 'none',
+                      borderRadius: 8,
+                      padding: '8px 16px',
+                      cursor: 'pointer',
+                      marginTop: 10
+                    }}
+                  >
+                    Ver bebidas
+                  </button>
+                )}
                 <button 
                   className="btn btn-primary w-100"
                   onClick={closeModal}

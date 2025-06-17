@@ -227,7 +227,7 @@ const MenuSection: React.FC<MenuSectionProps> = ({ category, isFavorites = false
             }}>
               {language === 'es' 
                 ? '¡Todos los hot dogs incluyen 70g de papas a la francesa gratis! 🎉'
-                : 'All hot dogs include a free 70g portion of French fries! 🎉'}
+                : 'All  dogs include a free 70g portion of French fries! 🎉'}
             </span>
             <span role="img" aria-label="papas" style={{ 
               fontSize: 22,
