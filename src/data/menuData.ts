@@ -33,6 +33,8 @@ import paqueteBububurger from "/menu-images/paq-burger.png";
 import paqueteNuggets from "/menu-images/paq-nuggets.png";
 import paqueteHotdog from "/menu-images/paq-hot-dog.png";
 import paqueteDeditos from "/menu-images/paq-deditos.png";
+import refrescos from "/images/refrescos-todos.png";
+import boing from "/menu-images/boing_mango.png";
 
 export interface ProductPriceOption {
   label: string;
@@ -594,30 +596,26 @@ export const menuCategories: Category[] = [
     products: [
       {
         id: "bebida-1",
-        name: "REFRESCOS",
-        description: "Coca-Cola, Coca sin azúcar, Coca Light, Fanta, Delaware Punch, Sidral Mundet, Mundet rojo, Sprite, Fresca, Sangría Señorial, Agua Mineral. <button onclick='toggleBeverages()'>Ver bebidas</button>",
-        // Función para desplegar bebidas
-        toggleBeverages: function() {
-          alert('Coca-Cola, Coca sin azúcar, Coca Light, Fanta, Delaware Punch, Sidral Mundet, Mundet rojo, Sprite, Fresca, Sangría Señorial, Agua Mineral');
-        },
+        name: "SODAS",
+        description: "Refrescos de la familia Coca-Cola en presentación de 355 ml, servidos bien fríos para acompañar cualquier platillo.",
         prices: [
           { label: "Precio", value: 35 }
         ],
-        image: "https://images.pexels.com/photos/1187766/pexels-photo-1187766.jpeg?auto=compress&cs=tinysrgb&w=300",
+        image: refrescos,
       },
       {
         id: "bebida-2",
         name: "BOING",
-        description: "Mango, Manzana, Guayaba, Uva, Tamarindo",
+        description: "Bebidas Boing de 355 ml en distintos sabores, elaboradas con fruta natural. Refrescantes y perfectas para cualquier momento.",
         prices: [
           { label: "Precio", value: 35 }
         ],
-        image: "https://images.pexels.com/photos/1187766/pexels-photo-1187766.jpeg?auto=compress&cs=tinysrgb&w=300",
+        image: boing,
       },
       {
         id: "bebida-3",
         name: "AGUA CIEL",
-        description: "Botella de agua Natural Ciel de 600ml",
+        description: "",
         prices: [
           { label: "Precio", value: 25 }
         ],
@@ -626,7 +624,7 @@ export const menuCategories: Category[] = [
       {
         id: "bebida-4",
         name: "BEBIDAS PREPARADAS",
-        description: "Tehuacán preparado sal y limón, Sangría Señorial preparada chile, salsa y limón, Naranjada natural o mineral, Limonada natural o mineral",
+        description: "",
         prices: [
           { label: "Precio", value: 45 }
         ],
@@ -635,7 +633,7 @@ export const menuCategories: Category[] = [
       {
         id: "bebida-5",
         name: "ENERGY DRINKS",
-        description: "Volt azul, Amper amarillo, Amper rojo",
+        description: "",
         prices: [
           { label: "Precio", value: 45 }
         ],
@@ -644,7 +642,7 @@ export const menuCategories: Category[] = [
       {
         id: "bebida-6",
         name: "SODAS ITALIANAS 1 LT",
-        description: "Limonada de Fresa Salvaje con Perlas Explosivas, Limonada de Mora Azul con Perlas Explosivas",
+        description: "",
         prices: [
           { label: "Precio", value: 85 }
         ],
@@ -653,7 +651,7 @@ export const menuCategories: Category[] = [
       {
         id: "bebida-7",
         name: "BEBIDA DE PANDITAS",
-        description: "Yakult, Refresco de Lima Limón y Gomitas de Panditas, Escarchado de Sabores",
+        description: "",
         prices: [
           { label: "Precio", value: 65 }
         ],
@@ -662,7 +660,7 @@ export const menuCategories: Category[] = [
       {
         id: "bebida-8",
         name: "CAFÉS",
-        description: "Café Americano, Con leche, Capuchino, Capuchino Vainilla, Capuchino Caramel, Con Licor de Café Kahlúa, Expreso Sencillo, Expreso Doble, Expreso Doble Cortado",
+        description: "",
         prices: [
           { label: "Americano", value: 50 },
           { label: "Con leche", value: 55 },
@@ -679,7 +677,7 @@ export const menuCategories: Category[] = [
       {
         id: "bebida-9",
         name: "TISANAS FRUTALES",
-        description: "Kiwi-Fresa, Maracuyá, Frutos Caribeños, Fantasía Tropical, Frutos Rojos. Pídela fría o caliente, con colar o sin colar",
+        description: "",
         prices: [
           { label: "Precio", value: 45 }
         ],

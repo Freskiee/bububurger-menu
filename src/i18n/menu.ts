@@ -1063,6 +1063,25 @@ export const productTranslations: { [id: string]: ProductTranslation } = {
       { name: 'Kids Nuggets', description: '6 pieces of breaded chicken with french fries', prices: [{ label: '110', price: 110 }] },
       { name: 'Kids Hot Dog', description: 'Hot dog with french fries', prices: [{ label: '100', price: 100 }] }
     ]
+  },
+  // Sección: Bebidas y Refrescos
+  "bebida-1": {
+    es: {
+      name: "Refrescos",
+      description: "Refrescos de la familia Coca-Cola en presentación de 355 ml, servidos bien fríos para acompañar cualquier platillo.",
+      prices: [
+        { label: "Precio", price: 35, note: "" }
+      ],
+      sauces: []
+    },
+    en: {
+      name: "Sodas",
+      description: "Coca-Cola family soft drinks in 355ml presentation, served ice cold to accompany any dish.",
+      prices: [
+        { label: "Price", price: 35, note: "" }
+      ],
+      sauces: []
+    }
   }
 };
 

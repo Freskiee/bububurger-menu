@@ -45,6 +45,8 @@ const ProductCard: React.FC<ProductCardProps> = ({ product, category, products, 
   const [showEquivModal, setShowEquivModal] = useState(false);
   const [showSauceModal, setShowSauceModal] = useState(false);
   const [showFriesInfo, setShowFriesInfo] = useState(false);
+  const [showBeverageModal, setShowBeverageModal] = useState(false);
+  const [showBoingModal, setShowBoingModal] = useState(false);
   const popoverRef = useRef<HTMLDivElement | null>(null);
   const touchStartX = useRef<number | null>(null);
   const touchEndX = useRef<number | null>(null);
@@ -98,6 +100,56 @@ const ProductCard: React.FC<ProductCardProps> = ({ product, category, products, 
   const productName = translated?.name || product.name;
   const productDescription = translated?.description || product.description;
   const productPrices = translated?.prices || product.prices;
+
+  // Obtener traducción para el botón y el contenido del modal
+  const beverageButtonLabel = language === 'es' ? 'Ver bebidas' : 'See sodas';
+  const beverageList = language === 'es' ? [
+    'Coca-Cola',
+    'Coca sin azúcar',
+    'Coca Light',
+    'Fanta',
+    'Delaware Punch',
+    'Sidral Mundet',
+    'Mundet rojo',
+    'Sprite',
+    'Fresca',
+    'Sangría Señorial',
+    'Agua Mineral'
+  ] : [
+    'Coca-Cola',
+    'Coke Zero',
+    'Diet Coke',
+    'Fanta',
+    'Delaware Punch',
+    'Sidral Mundet',
+    'Red Mundet',
+    'Sprite',
+    'Fresca',
+    'Sangría Señorial',
+    'Mineral Water'
+  ];
+
+  const boingFlavors = language === 'es' ? [
+    'Fresa',
+    'Guayaba',
+    'Mango',
+    'Manzana',
+    'Tamarindo',
+    'Uva'
+  ] : [
+    'Strawberry',
+    'Guava',
+    'Mango',
+    'Apple',
+    'Tamarind',
+    'Grape'
+  ];
+
+  // Traducción de la descripción de Boing
+  const boingDescription = language === 'es' ?
+    "Bebidas Boing de 355 ml en distintos sabores, elaboradas con fruta natural. Refrescantes y perfectas para cualquier momento."
+    :
+    "Boing drinks of 355ml in different flavors, made with natural fruit. Refreshing and perfect for any moment.";
 
   return (
     <>
@@ -166,7 +218,7 @@ const ProductCard: React.FC<ProductCardProps> = ({ product, category, products, 
               WebkitBoxOrient: 'vertical'
             }}>{productDescription}</p>
           ) : (
-            <p className="product-description" style={{ whiteSpace: 'normal', overflow: 'visible' }}>{productDescription}</p>
+            <p className="product-description" style={{ whiteSpace: 'nowrap', overflow: 'hidden', textOverflow: 'ellipsis' }}>{product.id === 'bebida-2' ? boingDescription : productDescription}</p>
           )}
         </div>
       </div>
@@ -357,7 +409,13 @@ const ProductCard: React.FC<ProductCardProps> = ({ product, category, products, 
                     <button
                       type="button"
                       className="btn btn-outline-primary btn-sm"
-                      style={{ borderRadius: 16, fontSize: '0.97em', fontWeight: 500, padding: '4px 14px', minWidth: 120 }}
+                      style={{
+                        borderRadius: 10,
+                        fontSize: '0.8em',
+                        fontWeight: 500,
+                        padding: '2px 8px',
+                        minWidth: 90
+                      }}
                       onClick={() => setShowEquivModal(true)}
                     >
                       {t.seeEquiv[language]}
@@ -367,7 +425,13 @@ const ProductCard: React.FC<ProductCardProps> = ({ product, category, products, 
                     <button
                       type="button"
                       className="btn btn-outline-danger btn-sm"
-                      style={{ borderRadius: 16, fontSize: '0.97em', fontWeight: 500, padding: '4px 14px', minWidth: 120 }}
+                      style={{
+                        borderRadius: 10,
+                        fontSize: '0.8em',
+                        fontWeight: 500,
+                        padding: '2px 8px',
+                        minWidth: 90
+                      }}
                       onClick={() => setShowSauceModal(true)}
                     >
                       {t.seeSauces[language]}
@@ -375,7 +439,8 @@ const ProductCard: React.FC<ProductCardProps> = ({ product, category, products, 
                   )}
                 </div>
                 {product.id === 'bebida-1' && (
-                  <button onClick={() => alert('Coca-Cola, Coca sin azúcar, Coca Light, Fanta, Delaware Punch, Sidral Mundet, Mundet rojo, Sprite, Fresca, Sangría Señorial, Agua Mineral')}
+                  <button
+                    onClick={() => setShowBeverageModal(true)}
                     style={{
                       background: '#ff9800',
                       color: '#fff',
@@ -386,13 +451,37 @@ const ProductCard: React.FC<ProductCardProps> = ({ product, category, products, 
                       marginTop: 10
                     }}
                   >
-                    Ver bebidas
+                    {beverageButtonLabel}
+                  </button>
+                )}
+                {product.id === 'bebida-2' && (
+                  <button
+                    onClick={() => setShowBoingModal(true)}
+                    style={{
+                      background: '#ff9800',
+                      color: '#fff',
+                      border: 'none',
+                      borderRadius: 8,
+                      padding: '8px 16px',
+                      cursor: 'pointer',
+                      marginTop: 10
+                    }}
+                  >
+                    {language === 'es' ? 'Ver sabores' : 'See flavors'}
                   </button>
                 )}
                 <button 
                   className="btn btn-primary w-100"
                   onClick={closeModal}
-                  style={{ marginTop: 6, background: 'var(--primary-orange)', border: 'none', fontWeight: 700, fontSize: '1.05em', borderRadius: 14, padding: '10px 0' }}
+                  style={{
+                    marginTop: 2,
+                    background: 'var(--primary-orange)',
+                    border: 'none',
+                    fontWeight: 700,
+                    fontSize: '0.9em',
+                    borderRadius: 10,
+                    padding: '6px 0'
+                  }}
                 >
                   {t.close[language]}
                 </button>
@@ -611,6 +700,142 @@ const ProductCard: React.FC<ProductCardProps> = ({ product, category, products, 
             {t.close[language]}
           </button>
         </Modal.Body>
+      </Modal>
+
+      {/* Modal de bebidas */}
+      <Modal show={showBeverageModal} onHide={() => setShowBeverageModal(false)} centered>
+        <Modal.Header closeButton style={{
+          background: document.body.classList.contains('dark-mode') ? 'linear-gradient(135deg, #333, #555)' : 'linear-gradient(135deg, #ff9800, #ffcc80)',
+          color: '#fff',
+          boxShadow: '0 4px 12px rgba(0, 0, 0, 0.3)',
+          borderBottom: '2px solid #e65100'
+        }}>
+          <Modal.Title style={{
+            fontWeight: 'bold',
+            textShadow: '2px 2px 4px rgba(0, 0, 0, 0.3)'
+          }}>{language === 'es' ? 'Lista de Bebidas' : 'Soda List'}</Modal.Title>
+        </Modal.Header>
+        <Modal.Body style={{
+          background: document.body.classList.contains('dark-mode') ? 'linear-gradient(135deg, #444, #666)' : 'linear-gradient(135deg, #fff3e0, #ffe0b2)',
+          color: document.body.classList.contains('dark-mode') ? '#ddd' : '#333',
+          boxShadow: 'inset 0 0 15px rgba(0, 0, 0, 0.1)',
+          borderRadius: '12px',
+          padding: '24px',
+          transition: 'all 0.3s ease'
+        }}>
+          <ul style={{ listStyleType: 'none', padding: 0 }}>
+            {beverageList.map((drink, index) => (
+              <li key={drink} style={{
+                color: document.body.classList.contains('dark-mode') ? (index % 2 === 0 ? '#4caf50' : '#8bc34a') : (index % 2 === 0 ? '#1e88e5' : '#42a5f5'),
+                fontWeight: 600,
+                marginBottom: 10,
+                textShadow: '1px 1px 3px rgba(0, 0, 0, 0.3)',
+                transform: 'scale(1)',
+                transition: 'transform 0.2s ease'
+              }}
+              onMouseEnter={(e) => e.currentTarget.style.transform = 'scale(1.05)'}
+              onMouseLeave={(e) => e.currentTarget.style.transform = 'scale(1)'}
+              >
+                {drink}
+              </li>
+            ))}
+          </ul>
+        </Modal.Body>
+        <Modal.Footer style={{
+          background: document.body.classList.contains('dark-mode') ? 'linear-gradient(135deg, #555, #777)' : 'linear-gradient(135deg, #ffe0b2, #fff3e0)',
+          boxShadow: '0 -2px 12px rgba(0, 0, 0, 0.2)',
+          borderTop: '2px solid #e65100'
+        }}>
+          <button onClick={() => setShowBeverageModal(false)} style={{
+            background: '#ff9800',
+            color: '#fff',
+            border: 'none',
+            borderRadius: 8,
+            padding: '10px 20px',
+            cursor: 'pointer',
+            boxShadow: '0 3px 6px rgba(0, 0, 0, 0.3)',
+            transition: 'background 0.3s ease, transform 0.2s ease'
+          }}
+          onMouseEnter={(e) => {
+            e.currentTarget.style.background = '#e65100';
+            e.currentTarget.style.transform = 'translateY(-2px)';
+          }}
+          onMouseLeave={(e) => {
+            e.currentTarget.style.background = '#ff9800';
+            e.currentTarget.style.transform = 'translateY(0)';
+          }}
+          >
+            {language === 'es' ? 'Cerrar' : 'Close'}
+          </button>
+        </Modal.Footer>
+      </Modal>
+
+      {/* Modal de sabores de Boing */}
+      <Modal show={showBoingModal} onHide={() => setShowBoingModal(false)} centered>
+        <Modal.Header closeButton style={{
+          background: 'linear-gradient(135deg, #ff9800, #ffcc80)',
+          color: '#fff',
+          boxShadow: '0 4px 12px rgba(0, 0, 0, 0.3)',
+          borderBottom: '2px solid #e65100'
+        }}>
+          <Modal.Title style={{
+            fontWeight: 'bold',
+            textShadow: '2px 2px 4px rgba(0, 0, 0, 0.3)'
+          }}>{language === 'es' ? 'Sabores de Boing' : 'Boing Flavors'}</Modal.Title>
+        </Modal.Header>
+        <Modal.Body style={{
+          background: document.body.classList.contains('dark-mode') ? 'linear-gradient(135deg, #444, #666)' : 'linear-gradient(135deg, #fff3e0, #ffe0b2)',
+          color: document.body.classList.contains('dark-mode') ? '#ddd' : '#333',
+          boxShadow: 'inset 0 0 15px rgba(0, 0, 0, 0.1)',
+          borderRadius: '12px',
+          padding: '24px',
+          transition: 'all 0.3s ease'
+        }}>
+          <ul style={{ listStyleType: 'none', padding: 0 }}>
+            {boingFlavors.map((flavor, index) => (
+              <li key={flavor} style={{
+                color: document.body.classList.contains('dark-mode') ? (index % 2 === 0 ? '#ffeb3b' : '#ffc107') : (index % 2 === 0 ? '#d84315' : '#bf360c'),
+                fontWeight: 600,
+                marginBottom: 10,
+                textShadow: '1px 1px 3px rgba(0, 0, 0, 0.3)',
+                transform: 'scale(1)',
+                transition: 'transform 0.2s ease'
+              }}
+              onMouseEnter={(e) => e.currentTarget.style.transform = 'scale(1.05)'}
+              onMouseLeave={(e) => e.currentTarget.style.transform = 'scale(1)'}
+              >
+                {flavor}
+              </li>
+            ))}
+          </ul>
+        </Modal.Body>
+        <Modal.Footer style={{
+          background: 'linear-gradient(135deg, #ffe0b2, #fff3e0)',
+          boxShadow: '0 -2px 12px rgba(0, 0, 0, 0.2)',
+          borderTop: '2px solid #e65100'
+        }}>
+          <button onClick={() => setShowBoingModal(false)} style={{
+            background: '#ff9800',
+            color: '#fff',
+            border: 'none',
+            borderRadius: 8,
+            padding: '10px 20px',
+            cursor: 'pointer',
+            boxShadow: '0 3px 6px rgba(0, 0, 0, 0.3)',
+            transition: 'background 0.3s ease, transform 0.2s ease'
+          }}
+          onMouseEnter={(e) => {
+            e.currentTarget.style.background = '#e65100';
+            e.currentTarget.style.transform = 'translateY(-2px)';
+          }}
+          onMouseLeave={(e) => {
+            e.currentTarget.style.background = '#ff9800';
+            e.currentTarget.style.transform = 'translateY(0)';
+          }}
+          >
+            {language === 'es' ? 'Cerrar' : 'Close'}
+          </button>
+        </Modal.Footer>
       </Modal>
     </>
   );

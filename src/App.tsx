@@ -10,7 +10,8 @@ import InvoiceModal from './components/InvoiceModal';
 import HamburgerMenu from './components/HamburgerMenu';
 import { menuCategories } from './data/menuData';
 
-// Crear contexto para el idioma
+// Asegurar que la exportación de LanguageContext sea consistente.
+
 export const LanguageContext = createContext({
   language: 'es',
   toggleLanguage: () => {},
@@ -80,6 +81,7 @@ function App() {
   const toggleLanguage = () => {
     setLanguage((prev) => {
       const newLang = prev === 'es' ? 'en' : 'es';
+      console.log('Cambiando idioma a:', newLang);
       localStorage.setItem('language', newLang);
       return newLang;
     });
