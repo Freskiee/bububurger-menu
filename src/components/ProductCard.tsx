@@ -815,8 +815,8 @@ const ProductCard: React.FC<ProductCardProps> = ({ product, category, products, 
         </Modal.Header>
         <Modal.Body style={{ backgroundColor: '#2c2c2c', color: '#fff', padding: '20px' }}>
           <ul style={{ listStyleType: 'none', padding: 0 }}>
-            <li style={{ marginBottom: '10px', fontSize: '1.2rem' }}>Limonada de Fresa Salvaje con Perlas Explosivas</li>
-            <li style={{ fontSize: '1.2rem' }}>Limonada de Mora Azul con Perlas Explosivas</li>
+            <li style={{ marginBottom: '10px', fontSize: '1.2rem' }}>Limonada de Fresa Salvaje con Perlas Explosivas</li><hr />
+            <li style={{ fontSize: '1.2rem' }}>Limonada de Mora Azul con Perlas Explosivas</li><hr />
           </ul>
         </Modal.Body>
         <Modal.Footer style={{ backgroundColor: '#1e1e1e', borderTop: '1px solid #ff9800' }}>
