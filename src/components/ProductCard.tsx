@@ -220,7 +220,10 @@ const ProductCard: React.FC<ProductCardProps> = ({ product, category, products, 
             display: 'flex',
             alignItems: 'center',
             gap: 6,
-            color: isInfantil ? (document.body.classList.contains('dark-mode') ? '#40c4ff' : '#a084ee') : undefined
+            color: isInfantil ? (document.body.classList.contains('dark-mode') ? '#40c4ff' : '#a084ee') : undefined,
+            backgroundColor: '#f0f0f00',
+            padding: '5px',
+            borderRadius: '5px'
           } : {}}>
             {isInfantil ? multicolorText(productName) : productName}
             {isInfantil && <span style={{ fontSize: 18, marginLeft: 4 }}>🧃</span>}

@@ -96,7 +96,7 @@ const ProductCard: React.FC<ProductCardProps> = ({ product, category }) => {
           style={isInfantil ? { borderRadius: 18, border: '2px solid #ffd740', boxShadow: '0 2px 8px #ffd74033', background: '#fff' } : {}}
         />
         <div className={isInfantil ? "product-content" : "product-content"} style={isInfantil ? {
-          background: isDark ? 'linear-gradient(135deg, #23243a 80%, #7c4dff 100%)' : 'linear-gradient(135deg, #fffde7 80%, #f3eafe 100%)',
+          background: isDark ? 'linear-gradient(135deg, #2f4a85 80%, #7f53f9 100%)' : 'linear-gradient(135deg, #fffde7 80%, #f3eafe 100%)',
           borderRadius: 18,
           boxShadow: '0 2px 8px #7c4dff22',
           padding: '10px 10px 8px 10px',
@@ -105,7 +105,7 @@ const ProductCard: React.FC<ProductCardProps> = ({ product, category }) => {
           margin: '0 auto 8px auto',
           minHeight: '70px'
         } : {}}>
-          <h6 className={isInfantil ? "product-title" : "product-title fw-bold mb-1"} style={isInfantil ? { fontFamily: "'Fredoka One', 'Comic Sans MS', cursive, sans-serif", fontWeight: 900, fontSize: '1.13rem', marginBottom: 2, letterSpacing: '0.01em', textAlign: 'left', display: 'flex', alignItems: 'center', gap: 6 } : {}}>
+          <h6 className={isInfantil ? "product-title" : "product-title fw-bold mb-1"} style={isInfantil ? { fontFamily: "'Fredoka One', 'Comic Sans MS', cursive, sans-serif", fontWeight: 900, fontSize: '1.13rem', marginBottom: 2, letterSpacing: '0.01em', backgroundColor: '#f0f0f00', padding: '5px', borderRadius: '5px', textAlign: 'left', display: 'flex', alignItems: 'center', gap: 6 } : {}}>
             {isInfantil ? multicolorText(product.name) : product.name}
             {isInfantil && <span style={{ fontSize: 18, marginLeft: 4 }}>🧃</span>}
           </h6>

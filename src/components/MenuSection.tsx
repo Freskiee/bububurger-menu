@@ -1,7 +1,7 @@
 import React, { useContext, useState } from 'react';
 import { Category } from '../data/menuData';
 import ProductCard from './ProductCard';
-import { productTranslations, menuTranslations } from '../i18n/menu';
+import { menuTranslations } from '../i18n/menu';
 import { LanguageContext } from '../App';
 
 interface MenuSectionProps {
@@ -87,37 +87,13 @@ const MenuSection: React.FC<MenuSectionProps> = ({ category, isFavorites = false
     <div className={`mb-4 ${isFavorites ? 'favorites-section' : ''}`}
       style={sectionStyle}>
       <div className="container-fluid">
-        <h3 className="section-title" style={isInfantil ? {
-          fontFamily: "'Fredoka One', 'Comic Sans MS', cursive, sans-serif",
-          color: isDark ? '#b39ddb' : '#7c4dff',
-          fontWeight: 900,
-          fontSize: '1.7rem',
-          letterSpacing: '0.01em',
-          textShadow: isDark ? '0 2px 8px #23243a' : '0 2px 8px #f3eafe',
-          display: 'flex',
-          alignItems: 'center',
-          gap: '12px',
-          marginBottom: 16
-        } : isFavoritos ? {
-          color: isDark ? '#ffb347' : '#ff6a00',
-          fontWeight: 800,
-          fontSize: '1.5rem',
-          letterSpacing: '0.01em',
-          textShadow: isDark ? '0 2px 8px #2d1e13' : '0 2px 8px #fff3d1',
-          display: 'flex',
-          alignItems: 'center',
-          gap: '12px',
-          marginBottom: 16
-        } : {
-          color: 'var(--text-main)',
-          fontWeight: 800,
-          fontSize: '1.45rem',
-          letterSpacing: '0.01em',
-          textShadow: '0 2px 8px rgba(0,0,0,0.18)',
-          display: 'flex',
-          alignItems: 'center',
-          gap: '12px',
-          marginBottom: 16
+        <h3 className="section-title" style={{
+          background: isInfantil ? 'linear-gradient(135deg, rgba(255, 68, 130, 0.771), rgba(60, 192, 253, 0.812))' : 'linear-gradient(135deg, #ff9500, #000000)', // Degradado según la paleta
+          padding: '10px',
+          borderRadius: '10px',
+          display: 'inline-block',
+          marginBottom: '16px',
+          color: '#ffffff'
         }}>
           {category.chefImage && (
             <img
@@ -127,7 +103,17 @@ const MenuSection: React.FC<MenuSectionProps> = ({ category, isFavorites = false
             />
           )}
           <span>{category.icon}</span>
-          <span>{menuTranslations[category.id][language]}</span>
+          <span>
+            {(() => {
+              const translation = menuTranslations[category.id as keyof typeof menuTranslations];
+              if (typeof translation === 'object' && 'es' in translation) {
+                return translation[language as 'es' | 'en'];
+              } else if (typeof translation === 'string') {
+                return translation;
+              }
+              return 'Traducción no disponible';
+            })()}
+          </span>
         </h3>
         {/* Mensaje especial para hotdogs y bububurgers */}
         {category.id === 'bububurgers' && (
@@ -142,7 +128,7 @@ const MenuSection: React.FC<MenuSectionProps> = ({ category, isFavorites = false
             display: 'flex',
             alignItems: 'center',
             gap: 10,
-            color: '#fff',
+            color: '#ffffff',
             fontWeight: 800,
             fontSize: '0.98em',
             textAlign: 'center',
