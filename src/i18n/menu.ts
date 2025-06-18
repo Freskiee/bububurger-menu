@@ -1088,7 +1088,7 @@ export const productTranslations: { [id: string]: ProductTranslation } = {
       name: "Refrescos",
       description: "Refrescos de la familia Coca-Cola en presentación de 355 ml, servidos bien fríos para acompañar cualquier platillo.",
       prices: [
-        { label: "", price: 35, note: "" }
+        { label: "", price: 45, note: "" }
       ],
       sauces: []
     },
@@ -1096,7 +1096,7 @@ export const productTranslations: { [id: string]: ProductTranslation } = {
       name: "Sodas",
       description: "Coca-Cola family soft drinks in 355ml presentation, served ice cold to accompany any dish.",
       prices: [
-        { label: "", price: 35, note: "" }
+        { label: "", price: 45, note: "" }
       ],
       sauces: []
     }
