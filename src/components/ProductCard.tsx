@@ -4,6 +4,7 @@ import Modal from 'react-bootstrap/Modal';
 import { productTranslations, sauceTranslations } from '../i18n/menu';
 import { uiTranslations } from '../i18n/menu';
 import { LanguageContext } from '../App';
+import { preparedDrinksTranslations } from '../i18n/menu';
 
 interface ProductCardProps {
   product: Product;
@@ -47,6 +48,8 @@ const ProductCard: React.FC<ProductCardProps> = ({ product, category, products, 
   const [showFriesInfo, setShowFriesInfo] = useState(false);
   const [showBeverageModal, setShowBeverageModal] = useState(false);
   const [showBoingModal, setShowBoingModal] = useState(false);
+  const [showPreparedDrinksModal, setShowPreparedDrinksModal] = useState(false);
+  const [showItalianSodasModal, setShowItalianSodasModal] = useState(false);
   const popoverRef = useRef<HTMLDivElement | null>(null);
   const touchStartX = useRef<number | null>(null);
   const touchEndX = useRef<number | null>(null);
@@ -97,12 +100,17 @@ const ProductCard: React.FC<ProductCardProps> = ({ product, category, products, 
   const { language } = useContext(LanguageContext) as { language: 'es' | 'en' };
   const t = uiTranslations;
   const translated = productTranslations[product.id]?.[language as 'es' | 'en'];
-  const productName = translated?.name || product.name;
-  const productDescription = translated?.description || product.description;
+  let productName = productTranslations[product.id]?.[language]?.name || product.name;
+  let productDescription = productTranslations[product.id]?.[language]?.description || product.description;
   const productPrices = translated?.prices || product.prices;
 
+  // Asegurar que 'agua-ciel' use las traducciones correctas
+  if (product.id === 'agua-ciel') {
+    productName = productTranslations['agua-ciel'][language].name;
+    productDescription = productTranslations['agua-ciel'][language].description;
+  }
+
   // Obtener traducción para el botón y el contenido del modal
-  const beverageButtonLabel = language === 'es' ? 'Ver bebidas' : 'See sodas';
   const beverageList = language === 'es' ? [
     'Coca-Cola',
     'Coca sin azúcar',
@@ -150,6 +158,15 @@ const ProductCard: React.FC<ProductCardProps> = ({ product, category, products, 
     "Bebidas Boing de 355 ml en distintos sabores, elaboradas con fruta natural. Refrescantes y perfectas para cualquier momento."
     :
     "Boing drinks of 355ml in different flavors, made with natural fruit. Refreshing and perfect for any moment.";
+
+  // Reemplazar la lista de bebidas preparadas con las traducciones
+  const preparedDrinksList = preparedDrinksTranslations[language];
+
+  // Verificar el valor del idioma
+  // console.log('Idioma actual:', language);
+
+  // Obtener traducción para el título de bebidas preparadas
+  const preparedDrinksTitle = language === 'es' ? 'Bebidas preparadas' : 'Prepared drinks';
 
   return (
     <>
@@ -439,20 +456,40 @@ const ProductCard: React.FC<ProductCardProps> = ({ product, category, products, 
                   )}
                 </div>
                 {product.id === 'bebida-1' && (
-                  <button
+                  <button 
+                    className="btn btn-primary mt-2"
                     onClick={() => setShowBeverageModal(true)}
-                    style={{
-                      background: '#ff9800',
-                      color: '#fff',
-                      border: 'none',
-                      borderRadius: 8,
-                      padding: '8px 16px',
-                      cursor: 'pointer',
-                      marginTop: 10
-                    }}
                   >
-                    {beverageButtonLabel}
+                    {language === 'es' ? 'Ver refrescos' : 'See sodas'}
                   </button>
+                )}
+                {product.id === 'bebida-4' && (
+                  <button 
+                    className="btn btn-primary mt-2"
+                    onClick={() => setShowPreparedDrinksModal(true)}
+                  >
+                    {language === 'es' ? 'Ver bebidas' : 'See drinks'}
+                  </button>
+                )}
+                {showPreparedDrinksModal && product.id === 'bebida-4' && (
+                  <Modal show={showPreparedDrinksModal} onHide={closeModal} centered>
+                    <Modal.Header closeButton style={{ backgroundColor: '#1e1e1e', color: '#ff9800', borderBottom: '1px solid #ff9800' }}>
+                      <Modal.Title style={{ fontWeight: 'bold', fontSize: '1.5rem' }}>Bebidas Preparadas</Modal.Title>
+                    </Modal.Header>
+                    <Modal.Body style={{ backgroundColor: '#2c2c2c', color: '#fff', padding: '20px' }}>
+                      <ul style={{ listStyleType: 'none', padding: 0 }}>
+                        <li style={{ marginBottom: '10px', fontSize: '1.2rem' }}>Tehuacán con sal y limón</li><hr />
+                        <li style={{ marginBottom: '10px', fontSize: '1.2rem' }}>Sangría Señorial preparada con chile, salsa y limón</li><hr />
+                        <li style={{ marginBottom: '10px', fontSize: '1.2rem' }}>Naranjada elaborada al momento, disponible con agua natural o mineral</li><hr />
+                        <li style={{ marginBottom: '10px', fontSize: '1.2rem' }}>Limonada elaborada al momento, disponible con agua natural o mineral</li>
+                      </ul>
+                    </Modal.Body>
+                    <Modal.Footer style={{ backgroundColor: '#1e1e1e', borderTop: '1px solid #ff9800' }}>
+                      <button className="btn btn-secondary" onClick={closeModal} style={{ backgroundColor: '#ff9800', color: '#fff', fontWeight: 'bold' }}>
+                        Cerrar
+                      </button>
+                    </Modal.Footer>
+                  </Modal>
                 )}
                 {product.id === 'bebida-2' && (
                   <button
@@ -468,6 +505,14 @@ const ProductCard: React.FC<ProductCardProps> = ({ product, category, products, 
                     }}
                   >
                     {language === 'es' ? 'Ver sabores' : 'See flavors'}
+                  </button>
+                )}
+                {product.id === 'bebida-6' && (
+                  <button 
+                    className="btn btn-primary" 
+                    onClick={() => setShowItalianSodasModal(true)}
+                  >
+                    Ver Sabores
                   </button>
                 )}
                 <button 
@@ -704,136 +749,67 @@ const ProductCard: React.FC<ProductCardProps> = ({ product, category, products, 
 
       {/* Modal de bebidas */}
       <Modal show={showBeverageModal} onHide={() => setShowBeverageModal(false)} centered>
-        <Modal.Header closeButton style={{
-          background: document.body.classList.contains('dark-mode') ? 'linear-gradient(135deg, #333, #555)' : 'linear-gradient(135deg, #ff9800, #ffcc80)',
-          color: '#fff',
-          boxShadow: '0 4px 12px rgba(0, 0, 0, 0.3)',
-          borderBottom: '2px solid #e65100'
-        }}>
-          <Modal.Title style={{
-            fontWeight: 'bold',
-            textShadow: '2px 2px 4px rgba(0, 0, 0, 0.3)'
-          }}>{language === 'es' ? 'Lista de Bebidas' : 'Soda List'}</Modal.Title>
+        <Modal.Header closeButton style={{ backgroundColor: '#1e1e1e', color: '#ff9800', borderBottom: '1px solid #ff9800' }}>
+          <Modal.Title style={{ fontWeight: 'bold', fontSize: '1.5rem' }}>Refrescos</Modal.Title>
         </Modal.Header>
-        <Modal.Body style={{
-          background: document.body.classList.contains('dark-mode') ? 'linear-gradient(135deg, #444, #666)' : 'linear-gradient(135deg, #fff3e0, #ffe0b2)',
-          color: document.body.classList.contains('dark-mode') ? '#ddd' : '#333',
-          boxShadow: 'inset 0 0 15px rgba(0, 0, 0, 0.1)',
-          borderRadius: '12px',
-          padding: '24px',
-          transition: 'all 0.3s ease'
-        }}>
+        <Modal.Body style={{ backgroundColor: '#2c2c2c', color: '#fff', padding: '20px' }}>
           <ul style={{ listStyleType: 'none', padding: 0 }}>
-            {beverageList.map((drink, index) => (
-              <li key={drink} style={{
-                color: document.body.classList.contains('dark-mode') ? (index % 2 === 0 ? '#4caf50' : '#8bc34a') : (index % 2 === 0 ? '#1e88e5' : '#42a5f5'),
-                fontWeight: 600,
-                marginBottom: 10,
-                textShadow: '1px 1px 3px rgba(0, 0, 0, 0.3)',
-                transform: 'scale(1)',
-                transition: 'transform 0.2s ease'
-              }}
-              onMouseEnter={(e) => e.currentTarget.style.transform = 'scale(1.05)'}
-              onMouseLeave={(e) => e.currentTarget.style.transform = 'scale(1)'}
-              >
-                {drink}
-              </li>
-            ))}
+            <li style={{ marginBottom: '10px', fontSize: '1.2rem' }}>Coca-Cola</li><hr />
+            <li style={{ marginBottom: '10px',fontSize: '1.2rem' }}>Coca sin azúcar</li><hr />
+            <li style={{ marginBottom: '10px',fontSize: '1.2rem' }}>Coca Light</li><hr />
+            <li style={{ marginBottom: '10px',fontSize: '1.2rem' }}>Fanta</li><hr />
+            <li style={{ marginBottom: '10px',fontSize: '1.2rem' }}>Delaware Punch</li><hr />
+            <li style={{ marginBottom: '10px',fontSize: '1.2rem' }}>Sidral Mundet</li><hr />
+            <li style={{ marginBottom: '10px',fontSize: '1.2rem' }}>Mundet rojo</li><hr />
+            <li style={{ marginBottom: '10px',fontSize: '1.2rem' }}>Sprite</li><hr />
+            <li style={{ marginBottom: '10px',fontSize: '1.2rem' }}>Fresca</li><hr />
+            <li style={{ marginBottom: '10px',fontSize: '1.2rem' }}>Sangría Señorial</li><hr />
+            <li style={{ marginBottom: '10px',fontSize: '1.2rem' }}>Agua Mineral</li>
           </ul>
         </Modal.Body>
-        <Modal.Footer style={{
-          background: document.body.classList.contains('dark-mode') ? 'linear-gradient(135deg, #555, #777)' : 'linear-gradient(135deg, #ffe0b2, #fff3e0)',
-          boxShadow: '0 -2px 12px rgba(0, 0, 0, 0.2)',
-          borderTop: '2px solid #e65100'
-        }}>
-          <button onClick={() => setShowBeverageModal(false)} style={{
-            background: '#ff9800',
-            color: '#fff',
-            border: 'none',
-            borderRadius: 8,
-            padding: '10px 20px',
-            cursor: 'pointer',
-            boxShadow: '0 3px 6px rgba(0, 0, 0, 0.3)',
-            transition: 'background 0.3s ease, transform 0.2s ease'
-          }}
-          onMouseEnter={(e) => {
-            e.currentTarget.style.background = '#e65100';
-            e.currentTarget.style.transform = 'translateY(-2px)';
-          }}
-          onMouseLeave={(e) => {
-            e.currentTarget.style.background = '#ff9800';
-            e.currentTarget.style.transform = 'translateY(0)';
-          }}
-          >
-            {language === 'es' ? 'Cerrar' : 'Close'}
+        <Modal.Footer style={{ backgroundColor: '#1e1e1e', borderTop: '1px solid #ff9800' }}>
+          <button className="btn btn-secondary" onClick={closeModal} style={{ backgroundColor: '#ff9800', color: '#fff', fontWeight: 'bold' }}>
+            Cerrar
           </button>
         </Modal.Footer>
       </Modal>
 
       {/* Modal de sabores de Boing */}
       <Modal show={showBoingModal} onHide={() => setShowBoingModal(false)} centered>
-        <Modal.Header closeButton style={{
-          background: 'linear-gradient(135deg, #ff9800, #ffcc80)',
-          color: '#fff',
-          boxShadow: '0 4px 12px rgba(0, 0, 0, 0.3)',
-          borderBottom: '2px solid #e65100'
-        }}>
-          <Modal.Title style={{
-            fontWeight: 'bold',
-            textShadow: '2px 2px 4px rgba(0, 0, 0, 0.3)'
-          }}>{language === 'es' ? 'Sabores de Boing' : 'Boing Flavors'}</Modal.Title>
+        <Modal.Header closeButton style={{ backgroundColor: '#1e1e1e', color: '#ff9800', borderBottom: '1px solid #ff9800' }}>
+          <Modal.Title style={{ fontWeight: 'bold', fontSize: '1.5rem' }}>Boing</Modal.Title>
         </Modal.Header>
-        <Modal.Body style={{
-          background: document.body.classList.contains('dark-mode') ? 'linear-gradient(135deg, #444, #666)' : 'linear-gradient(135deg, #fff3e0, #ffe0b2)',
-          color: document.body.classList.contains('dark-mode') ? '#ddd' : '#333',
-          boxShadow: 'inset 0 0 15px rgba(0, 0, 0, 0.1)',
-          borderRadius: '12px',
-          padding: '24px',
-          transition: 'all 0.3s ease'
-        }}>
+        <Modal.Body style={{ backgroundColor: '#2c2c2c', color: '#fff', padding: '20px' }}>
           <ul style={{ listStyleType: 'none', padding: 0 }}>
-            {boingFlavors.map((flavor, index) => (
-              <li key={flavor} style={{
-                color: document.body.classList.contains('dark-mode') ? (index % 2 === 0 ? '#ffeb3b' : '#ffc107') : (index % 2 === 0 ? '#d84315' : '#bf360c'),
-                fontWeight: 600,
-                marginBottom: 10,
-                textShadow: '1px 1px 3px rgba(0, 0, 0, 0.3)',
-                transform: 'scale(1)',
-                transition: 'transform 0.2s ease'
-              }}
-              onMouseEnter={(e) => e.currentTarget.style.transform = 'scale(1.05)'}
-              onMouseLeave={(e) => e.currentTarget.style.transform = 'scale(1)'}
-              >
-                {flavor}
-              </li>
-            ))}
+            <li style={{ marginBottom: '10px', fontSize: '1.2rem' }}>Mango</li><hr />
+            <li style={{ marginBottom: '10px',fontSize: '1.2rem' }}>Guayaba</li><hr />
+            <li style={{ marginBottom: '10px',fontSize: '1.2rem' }}>Fresa</li><hr />
+            <li style={{ marginBottom: '10px',fontSize: '1.2rem' }}>Manzana</li><hr />
+            <li style={{ marginBottom: '10px',fontSize: '1.2rem' }}>Uva</li><hr />
+            <li style={{ marginBottom: '10px',fontSize: '1.2rem' }}>Tamarindo</li>
           </ul>
         </Modal.Body>
-        <Modal.Footer style={{
-          background: 'linear-gradient(135deg, #ffe0b2, #fff3e0)',
-          boxShadow: '0 -2px 12px rgba(0, 0, 0, 0.2)',
-          borderTop: '2px solid #e65100'
-        }}>
-          <button onClick={() => setShowBoingModal(false)} style={{
-            background: '#ff9800',
-            color: '#fff',
-            border: 'none',
-            borderRadius: 8,
-            padding: '10px 20px',
-            cursor: 'pointer',
-            boxShadow: '0 3px 6px rgba(0, 0, 0, 0.3)',
-            transition: 'background 0.3s ease, transform 0.2s ease'
-          }}
-          onMouseEnter={(e) => {
-            e.currentTarget.style.background = '#e65100';
-            e.currentTarget.style.transform = 'translateY(-2px)';
-          }}
-          onMouseLeave={(e) => {
-            e.currentTarget.style.background = '#ff9800';
-            e.currentTarget.style.transform = 'translateY(0)';
-          }}
-          >
-            {language === 'es' ? 'Cerrar' : 'Close'}
+        <Modal.Footer style={{ backgroundColor: '#1e1e1e', borderTop: '1px solid #ff9800' }}>
+          <button className="btn btn-secondary" onClick={closeModal} style={{ backgroundColor: '#ff9800', color: '#fff', fontWeight: 'bold' }}>
+            Cerrar
+          </button>
+        </Modal.Footer>
+      </Modal>
+
+      {/* Modal para sodas italianas */}
+      <Modal show={showItalianSodasModal} onHide={() => setShowItalianSodasModal(false)} centered>
+        <Modal.Header closeButton style={{ backgroundColor: '#1e1e1e', color: '#ff9800', borderBottom: '1px solid #ff9800' }}>
+          <Modal.Title style={{ fontWeight: 'bold', fontSize: '1.5rem' }}>Sodas Italianas</Modal.Title>
+        </Modal.Header>
+        <Modal.Body style={{ backgroundColor: '#2c2c2c', color: '#fff', padding: '20px' }}>
+          <ul style={{ listStyleType: 'none', padding: 0 }}>
+            <li style={{ marginBottom: '10px', fontSize: '1.2rem' }}>Limonada de Fresa Salvaje con Perlas Explosivas</li>
+            <li style={{ fontSize: '1.2rem' }}>Limonada de Mora Azul con Perlas Explosivas</li>
+          </ul>
+        </Modal.Body>
+        <Modal.Footer style={{ backgroundColor: '#1e1e1e', borderTop: '1px solid #ff9800' }}>
+          <button className="btn btn-secondary" onClick={() => setShowItalianSodasModal(false)} style={{ backgroundColor: '#ff9800', color: '#fff', fontWeight: 'bold' }}>
+            Cerrar
           </button>
         </Modal.Footer>
       </Modal>

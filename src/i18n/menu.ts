@@ -20,7 +20,25 @@ export const menuTranslations = {
   sidras: { es: "Sidras", en: "Ciders" },
   bubucocteles: { es: "Bubu-Cócteles", en: "Bubu-Cocktails" },
   cafe: { es: "Café y Tisanas", en: "Coffee & Teas" },
-  digestivos: { es: "Digestivos y Aperitivos", en: "Digestifs & Appetizers" }
+  digestivos: { es: "Digestivos y Aperitivos", en: "Digestifs & Appetizers" },
+  "agua-ciel": {
+    es: {
+      name: "Agua Ciel",
+      description: "Agua Ciel embotellada de 600ml..",
+      prices: [
+        { label: "", price: 30, note: "" }
+      ],
+      sauces: []
+    },
+    en: {
+      name: "Ciel Water",
+      description: "Bottled Ciel water of 600ml.",
+      prices: [
+        { label: "", price: 30, note: "" }
+      ],
+      sauces: []
+    }
+  }
 };
 
 export const sauceTranslations = {
@@ -1070,7 +1088,7 @@ export const productTranslations: { [id: string]: ProductTranslation } = {
       name: "Refrescos",
       description: "Refrescos de la familia Coca-Cola en presentación de 355 ml, servidos bien fríos para acompañar cualquier platillo.",
       prices: [
-        { label: "Precio", price: 35, note: "" }
+        { label: "", price: 35, note: "" }
       ],
       sauces: []
     },
@@ -1078,7 +1096,43 @@ export const productTranslations: { [id: string]: ProductTranslation } = {
       name: "Sodas",
       description: "Coca-Cola family soft drinks in 355ml presentation, served ice cold to accompany any dish.",
       prices: [
-        { label: "Price", price: 35, note: "" }
+        { label: "", price: 35, note: "" }
+      ],
+      sauces: []
+    }
+  },
+  "bebida-2": {
+    es: {
+      name: "Boing",
+      description: "Bebidas Boing de 355ml en diferentes sabores, hechas con fruta natural. Refrescantes y perfectas para cualquier momento.",
+      prices: [
+        { label: "", price: 45, note: "" }
+      ],
+      sauces: []
+    },
+    en: {
+      name: "Boing",
+      description: "Boing drinks of 355ml in different flavors, made with natural fruit. Refreshing and perfect for any moment.",
+      prices: [
+        { label: "", price: 45, note: "" }
+      ],
+      sauces: []
+    }
+  },
+  "agua-ciel": {
+    es: {
+      name: "Agua Ciel",
+      description: "Agua Ciel embotellada de 600ml..",
+      prices: [
+        { label: "", price: 30, note: "" }
+      ],
+      sauces: []
+    },
+    en: {
+      name: "Ciel Water",
+      description: "Bottled Ciel water of 600ml.",
+      prices: [
+        { label: "", price: 30, note: "" }
       ],
       sauces: []
     }
@@ -1282,4 +1336,19 @@ export const uiTranslations = {
     es: ['Suave', 'Ligero', 'Medio', 'Picante', '¡Explosivo!'],
     en: ['Mild', 'Light', 'Medium', 'Spicy', 'Explosive!']
   }
+};
+
+export const preparedDrinksTranslations = {
+  es: [
+    'Tehuacán con sal y limón',
+    'Sangría Señorial preparada con chile, salsa y limón',
+    'Naranjada elaborada al momento, disponible con agua natural o mineral',
+    'Limonada elaborada al momento, disponible con agua natural o mineral'
+  ],
+  en: [
+    'Tehuacán with salt and lime',
+    'Sangría Señorial prepared with chili, sauce, and lime',
+    'Freshly made orangeade, available with still or sparkling water',
+    'Freshly made lemonade, available with still or sparkling water'
+  ]
 }; 

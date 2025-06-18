@@ -34,7 +34,12 @@ import paqueteNuggets from "/menu-images/paq-nuggets.png";
 import paqueteHotdog from "/menu-images/paq-hot-dog.png";
 import paqueteDeditos from "/menu-images/paq-deditos.png";
 import refrescos from "/images/refrescos-todos.png";
-import boing from "/menu-images/boing_mango.png";
+import boing from "/images/boing-todos.png";
+import aguaCiel from "/menu-images/ciel.png";
+import bebidasPreparadas from "/images/bebidas-prepa.png";
+import energizantes from "/images/energizantes.png";
+import sodasItalianas from "/images/sida-italiana.png";
+import bebidaPanditas from "/images/bebida-panditas2.png";
 
 export interface ProductPriceOption {
   label: string;
@@ -599,7 +604,7 @@ export const menuCategories: Category[] = [
         name: "SODAS",
         description: "Refrescos de la familia Coca-Cola en presentación de 355 ml, servidos bien fríos para acompañar cualquier platillo.",
         prices: [
-          { label: "Precio", value: 35 }
+          { label: "", value: 45 }
         ],
         image: refrescos,
       },
@@ -608,54 +613,54 @@ export const menuCategories: Category[] = [
         name: "BOING",
         description: "Bebidas Boing de 355 ml en distintos sabores, elaboradas con fruta natural. Refrescantes y perfectas para cualquier momento.",
         prices: [
-          { label: "Precio", value: 35 }
+          { label: "", value: 45 }
         ],
         image: boing,
       },
       {
-        id: "bebida-3",
+        id: "agua-ciel",
         name: "AGUA CIEL",
-        description: "",
+        description: "Agua Ciel embotellada de 600ml.",
         prices: [
-          { label: "Precio", value: 25 }
+          { label: "", value: 30 }
         ],
-        image: "https://images.pexels.com/photos/1187766/pexels-photo-1187766.jpeg?auto=compress&cs=tinysrgb&w=300",
+        image: aguaCiel,
       },
       {
         id: "bebida-4",
         name: "BEBIDAS PREPARADAS",
-        description: "",
+        description: "Explosión de sabor en cada sorbo. Refrescos clásicos como Sangría Señorial o Tehuacán, elevados con limón, sal, salsas y chiles. Ideales para quienes buscan un toque picosito y refrescante al mismo tiempo.",
         prices: [
-          { label: "Precio", value: 45 }
+          { label: "", value: 65 }
         ],
-        image: "https://images.pexels.com/photos/1187766/pexels-photo-1187766.jpeg?auto=compress&cs=tinysrgb&w=300",
+        image: bebidasPreparadas,
       },
       {
         id: "bebida-5",
-        name: "ENERGY DRINKS",
-        description: "",
+        name: "BEBIDAS ENERGIZANTES",
+        description: "Activa tus sentidos con nuestras bebidas energizantes disponibles en dos sabores: guaraná y mora azul. Ideales para recargar energía y disfrutar de un sabor intenso y refrescante.",
         prices: [
-          { label: "Precio", value: 45 }
+          { label: "", value: 65 }
         ],
-        image: "https://images.pexels.com/photos/1187766/pexels-photo-1187766.jpeg?auto=compress&cs=tinysrgb&w=300",
+        image: energizantes,
       },
       {
         id: "bebida-6",
         name: "SODAS ITALIANAS 1 LT",
-        description: "",
+        description: "Refrescantes y burbujeantes, nuestras sodas italianas combinan agua mineral con jarabes de sabores frutales para ofrecerte una bebida ligera, colorida y llena de sabor.",
         prices: [
-          { label: "Precio", value: 85 }
+          { label: "", value: 120 }
         ],
-        image: "https://images.pexels.com/photos/1187766/pexels-photo-1187766.jpeg?auto=compress&cs=tinysrgb&w=300",
+        image: sodasItalianas,
       },
       {
         id: "bebida-7",
         name: "BEBIDA DE PANDITAS",
-        description: "",
+        description: "Yakult, Refresco de Lima Limón y Gomitas de Panditas, Escarchado de Sabores.",
         prices: [
-          { label: "Precio", value: 65 }
+          { label: "", value: 80 }
         ],
-        image: "https://images.pexels.com/photos/1187766/pexels-photo-1187766.jpeg?auto=compress&cs=tinysrgb&w=300",
+        image: bebidaPanditas,
       },
       {
         id: "bebida-8",

@@ -81,7 +81,7 @@ function App() {
   const toggleLanguage = () => {
     setLanguage((prev) => {
       const newLang = prev === 'es' ? 'en' : 'es';
-      console.log('Cambiando idioma a:', newLang);
+      // console.log('Cambiando idioma a:', newLang);
       localStorage.setItem('language', newLang);
       return newLang;
     });
