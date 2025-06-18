@@ -105,7 +105,7 @@ const ProductCard: React.FC<ProductCardProps> = ({ product, category }) => {
           margin: '0 auto 8px auto',
           minHeight: '70px'
         } : {}}>
-          <h6 className={isInfantil ? "product-title" : "product-title fw-bold mb-1"} style={isInfantil ? { fontFamily: "'Fredoka One', 'Comic Sans MS', cursive, sans-serif", fontWeight: 900, fontSize: '1.13rem', marginBottom: 2, letterSpacing: '0.01em', backgroundColor: '#f0f0f00', padding: '5px', borderRadius: '5px', textAlign: 'left', display: 'flex', alignItems: 'center', gap: 6 } : {}}>
+          <h6 className={isInfantil ? "product-title" : "product-title fw-bold mb-1"} style={isInfantil ? { fontFamily: "'Fredoka One', 'Comic Sans MS', cursive, sans-serif", fontWeight: 900, fontSize: '1.13rem', marginBottom: 2, letterSpacing: '0.01em', color: '#ffffff', backgroundColor: '#f0f0f00', padding: '5px', borderRadius: '5px', textAlign: 'left', display: 'flex', alignItems: 'center', gap: 6 } : {}}>
             {isInfantil ? multicolorText(product.name) : product.name}
             {isInfantil && <span style={{ fontSize: 18, marginLeft: 4 }}>🧃</span>}
           </h6>

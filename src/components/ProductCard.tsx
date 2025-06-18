@@ -16,6 +16,7 @@ interface ProductCardProps {
   onPrev?: () => void;
   onNext?: () => void;
   enableModal?: boolean;
+  titleStyle?: React.CSSProperties;
 }
 
 // Define el tipo correcto para las opciones de precio
@@ -41,7 +42,7 @@ function multicolorText(text: string) {
   );
 }
 
-const ProductCard: React.FC<ProductCardProps> = ({ product, category, products, currentIndex, showModal, onClose, onPrev, onNext, enableModal }) => {
+const ProductCard: React.FC<ProductCardProps> = ({ product, category, products, currentIndex, showModal, onClose, onPrev, onNext, enableModal, titleStyle }) => {
   const [internalShowModal, setInternalShowModal] = useState(false);
   const [showEquivModal, setShowEquivModal] = useState(false);
   const [showSauceModal, setShowSauceModal] = useState(false);
@@ -292,9 +293,7 @@ const ProductCard: React.FC<ProductCardProps> = ({ product, category, products, 
                 />
               </div>
               <div className="col-md-6">
-                <h4 className="mb-3" style={isInfantil ? { fontFamily: "'Fredoka One', 'Comic Sans MS', cursive, sans-serif", fontWeight: isInfantil ? 900 : undefined, fontSize: isInfantil ? '1.18rem' : undefined, letterSpacing: isInfantil ? '0.01em' : undefined, color: document.body.classList.contains('dark-mode') ? '#ffd740' : pastelColors[1], marginBottom: 8 } : {}}>
-                  {isInfantil ? multicolorText(productName) : productName}
-                </h4>
+                <h4 style={titleStyle}>{productName}</h4>
                 {isInfantil ? (
                   <p className="mb-4" style={{ color: document.body.classList.contains('dark-mode') ? '#ffd740' : '#7c4dff', fontWeight: 700, fontSize: '1.01em' }}>{productDescription}</p>
                 ) : (

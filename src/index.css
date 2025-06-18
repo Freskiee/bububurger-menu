@@ -167,6 +167,10 @@ body {
   letter-spacing: 0.01em;
 }
 
+.product-title.fw-bold.mb-1 {
+  color: #ffffff;
+}
+
 .product-description {
   color: rgba(255,255,255,0.92);
   font-size: 0.87rem;
