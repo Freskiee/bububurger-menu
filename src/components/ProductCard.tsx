@@ -50,6 +50,8 @@ const ProductCard: React.FC<ProductCardProps> = ({ product, category, products, 
   const [showBoingModal, setShowBoingModal] = useState(false);
   const [showPreparedDrinksModal, setShowPreparedDrinksModal] = useState(false);
   const [showItalianSodasModal, setShowItalianSodasModal] = useState(false);
+  const [showCafeModal, setShowCafeModal] = useState(false);
+  const [showTisanasModal, setShowTisanasModal] = useState(false);
   const popoverRef = useRef<HTMLDivElement | null>(null);
   const touchStartX = useRef<number | null>(null);
   const touchEndX = useRef<number | null>(null);
@@ -515,6 +517,16 @@ const ProductCard: React.FC<ProductCardProps> = ({ product, category, products, 
                     Ver Sabores
                   </button>
                 )}
+                {product.id === 'bebida-8' && (
+                  <button onClick={() => setShowCafeModal(true)} style={{ marginTop: '10px', padding: '5px 10px', backgroundColor: '#ff9800', color: '#fff', border: 'none', borderRadius: '5px', cursor: 'pointer' }}>
+                    Ver más
+                  </button>
+                )}
+                {product.id === 'bebida-9' && (
+                  <button onClick={() => setShowTisanasModal(true)} style={{ marginTop: '10px', padding: '5px 10px', backgroundColor: '#ff9800', color: '#fff', border: 'none', borderRadius: '5px', cursor: 'pointer' }}>
+                    Ver Sabores
+                  </button>
+                )}
                 <button 
                   className="btn btn-primary w-100"
                   onClick={closeModal}
@@ -809,6 +821,80 @@ const ProductCard: React.FC<ProductCardProps> = ({ product, category, products, 
         </Modal.Body>
         <Modal.Footer style={{ backgroundColor: '#1e1e1e', borderTop: '1px solid #ff9800' }}>
           <button className="btn btn-secondary" onClick={() => setShowItalianSodasModal(false)} style={{ backgroundColor: '#ff9800', color: '#fff', fontWeight: 'bold' }}>
+            Cerrar
+          </button>
+        </Modal.Footer>
+      </Modal>
+
+      {/* Modal para café */}
+      <Modal show={showCafeModal} onHide={() => setShowCafeModal(false)} centered size="lg">
+        <Modal.Header closeButton>
+          <Modal.Title>{product.name}</Modal.Title>
+        </Modal.Header>
+        <Modal.Body>
+          <ul style={{ listStyleType: 'none', padding: 0 }}>
+            <li style={{ display: 'flex', justifyContent: 'space-between', marginBottom: '10px' }}>
+              <span style={{ fontSize: '1.2rem' }}>Café Americano</span>
+              <span style={{ fontSize: '1.3rem', color: '#ff9800' }}>$50</span>
+            </li><hr />
+            <li style={{ display: 'flex', justifyContent: 'space-between', marginBottom: '10px' }}>
+              <span style={{ fontSize: '1.2rem' }}>Con leche</span>
+              <span style={{ fontSize: '1.3rem', color: '#ff9800' }}>$55</span>
+            </li><hr />
+            <li style={{ display: 'flex', justifyContent: 'space-between', marginBottom: '10px' }}>
+              <span style={{ fontSize: '1.2rem' }}>Capuchino</span>
+              <span style={{ fontSize: '1.3rem', color: '#ff9800' }}>$65</span>
+            </li><hr />
+            <li style={{ display: 'flex', justifyContent: 'space-between', marginBottom: '10px' }}>
+              <span style={{ fontSize: '1.2rem' }}>Capuchino Vainilla</span>
+              <span style={{ fontSize: '1.3rem', color: '#ff9800' }}>$70</span>
+            </li><hr />
+            <li style={{ display: 'flex', justifyContent: 'space-between', marginBottom: '10px' }}>
+              <span style={{ fontSize: '1.2rem' }}>Capuchino Caramel</span>
+              <span style={{ fontSize: '1.3rem', color: '#ff9800' }}>$70</span>
+            </li><hr />
+            <li style={{ display: 'flex', justifyContent: 'space-between', marginBottom: '10px' }}>
+              <span style={{ fontSize: '1.2rem' }}>Con Licor de Café Kahlúa</span>
+              <span style={{ fontSize: '1.3rem', color: '#ff9800' }}>$+ 15</span>
+            </li><hr />
+            <li style={{ display: 'flex', justifyContent: 'space-between', marginBottom: '10px' }}>
+              <span style={{ fontSize: '1.2rem' }}>Expreso Sencillo</span>
+              <span style={{ fontSize: '1.3rem', color: '#ff9800' }}>$55</span>
+            </li><hr />
+            <li style={{ display: 'flex', justifyContent: 'space-between', marginBottom: '10px' }}>
+              <span style={{ fontSize: '1.2rem' }}>Expreso Doble</span>
+              <span style={{ fontSize: '1.3rem', color: '#ff9800' }}>$70</span>
+            </li><hr />
+            <li style={{ display: 'flex', justifyContent: 'space-between', marginBottom: '10px' }}>
+              <span style={{ fontSize: '1.2rem' }}>Expreso Doble Cortado</span>
+              <span style={{ fontSize: '1.3rem', color: '#ff9800' }}>$75</span>
+            </li>
+          </ul>
+        </Modal.Body>
+        <Modal.Footer>
+          <button onClick={() => setShowCafeModal(false)} style={{ padding: '5px 10px', backgroundColor: '#ff9800', color: '#fff', border: 'none', borderRadius: '5px', cursor: 'pointer' }}>
+            Cerrar
+          </button>
+        </Modal.Footer>
+      </Modal>
+
+      {/* Modal de sabores de tisanas */}
+      <Modal show={showTisanasModal} onHide={() => setShowTisanasModal(false)} centered size="lg">
+        <Modal.Header closeButton>
+          <Modal.Title>{product.name} - Sabores</Modal.Title>
+        </Modal.Header>
+        <Modal.Body>
+          <ul style={{ listStyleType: 'none', padding: 0 }}>
+            {product.flavors?.map((flavor, index) => (
+              <li key={index} style={{ marginBottom: '10px', fontSize: '1.2rem' }}>
+                {flavor}
+                <hr style={{ margin: '10px 0' }} />
+              </li>
+            ))}
+          </ul>
+        </Modal.Body>
+        <Modal.Footer>
+          <button onClick={() => setShowTisanasModal(false)} style={{ padding: '5px 10px', backgroundColor: '#ff9800', color: '#fff', border: 'none', borderRadius: '5px', cursor: 'pointer' }}>
             Cerrar
           </button>
         </Modal.Footer>

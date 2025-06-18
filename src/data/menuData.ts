@@ -40,6 +40,8 @@ import bebidasPreparadas from "/images/bebidas-prepa.png";
 import energizantes from "/images/energizantes.png";
 import sodasItalianas from "/images/sida-italiana.png";
 import bebidaPanditas from "/images/bebida-panditas2.png";
+import cafes from "/menu-images/cafes.png";
+import tisanas from "/menu-images/tisanas.png";
 
 export interface ProductPriceOption {
   label: string;
@@ -55,6 +57,7 @@ export interface Product {
   image: string;
   comment?: string;
   sauces?: string[];
+  flavors?: string[];
 }
 
 export interface Category {
@@ -665,29 +668,21 @@ export const menuCategories: Category[] = [
       {
         id: "bebida-8",
         name: "CAFÉS",
-        description: "",
+        description: "Cafés de la casa, con leche, capuchino, expreso, americano, etc.",
         prices: [
-          { label: "Americano", value: 50 },
-          { label: "Con leche", value: 55 },
-          { label: "Capuchino", value: 65 },
-          { label: "Capuchino Vainilla", value: 70 },
-          { label: "Capuchino Caramel", value: 70 },
-          { label: "Con Kahlúa", value: 15, note: "Adicional" },
-          { label: "Expreso Sencillo", value: 55 },
-          { label: "Expreso Doble", value: 70 },
-          { label: "Expreso Doble Cortado", value: 75 }
         ],
-        image: "https://images.pexels.com/photos/312418/pexels-photo-312418.jpeg?auto=compress&cs=tinysrgb&w=300",
+        image: cafes,
       },
       {
         id: "bebida-9",
-        name: "TISANAS FRUTALES",
-        description: "",
+        name: "TISANAS NATURALES",
+        description: "Infusión de frutas y hierbas seleccionadas, ideal para cualquier momento del día. Disfrútala fría o caliente, con colar o sin colar, según tu preferencia. Refrescante, reconfortante y llena de sabor.",
+        flavors: ["Kiwi-Fresa", "Maracuyá", "Frutos Caribeños", "Fantasía Tropical", "Frutos Rojos"],
         prices: [
-          { label: "Precio", value: 45 }
+          { label: "", value: 80 }
         ],
-        image: "https://images.pexels.com/photos/1638280/pexels-photo-1638280.jpeg?auto=compress&cs=tinysrgb&w=300",
-      }
+        image: tisanas,
+      },
     ]
   },
   // 11. Bebidas Alcohólicas
@@ -699,20 +694,6 @@ export const menuCategories: Category[] = [
     products: [
       {
         id: "a1",
-        name: "DIGESTIVOS",
-        description: "Carajillo to shake or not to shake, Carajillo conejito Turín, Baileys, Midori, Licor 43, Frangelico",
-        prices: [
-          { label: "Carajillo", value: 155 },
-          { label: "Carajillo Turín", value: 185 },
-          { label: "Baileys", value: 115 },
-          { label: "Midori", value: 120 },
-          { label: "Licor 43", value: 120 },
-          { label: "Frangelico", value: 120 }
-        ],
-        image: "https://images.pexels.com/photos/1283219/pexels-photo-1283219.jpeg?auto=compress&cs=tinysrgb&w=300",
-      },
-      {
-        id: "a2",
         name: "APERITIVOS",
         description: "Aperol, Campari, Anís Pernod, Jagermeister, Agavero",
         prices: [
@@ -725,115 +706,7 @@ export const menuCategories: Category[] = [
         image: "https://images.pexels.com/photos/338713/pexels-photo-338713.jpeg?auto=compress&cs=tinysrgb&w=300",
       },
       {
-        id: "a3",
-        name: "BUBUCHELA ARTESANAL",
-        description: "Blanca: Blonde Ale con especias. Oscura: Del tipo Dubbel con notas de café",
-        prices: [
-          { label: "Precio", value: 85 }
-        ],
-        image: "https://images.pexels.com/photos/1267696/pexels-photo-1267696.jpeg?auto=compress&cs=tinysrgb&w=300",
-      },
-      {
-        id: "a4",
-        name: "CHELAS NACIONALES",
-        description: "Tecate, Tecate Ligth, Indio, Corona, Victoria",
-        prices: [
-          { label: "Precio", value: 45 }
-        ],
-        image: "https://images.pexels.com/photos/52994/beer-slide-beer-glass-beer-mug-52994.jpeg?auto=compress&cs=tinysrgb&w=300",
-      },
-      {
-        id: "a5",
-        name: "CHELAS PREMIUM",
-        description: "Heineken, Ultra, Bohemia Clara, Bohemia Oscura, XX Lager, XX Ámbar",
-        prices: [
-          { label: "Precio", value: 55 }
-        ],
-        image: "https://images.pexels.com/photos/1552630/pexels-photo-1552630.jpeg?auto=compress&cs=tinysrgb&w=300",
-      },
-      {
-        id: "a6",
-        name: "MICHELADAS DE SABORES",
-        description: "Cerveza de barril clara / Oscura con escarchado y sabor de: Mango, Tamarindo, Chamoy y Ajonjolí, Mora Azul, Sandía, Fresa, Uva, Manzana Verde",
-        prices: [
-          { label: "1 Litro", value: 135 },
-          { label: "1/2 litro", value: 90 }
-        ],
-        image: "https://images.pexels.com/photos/1187766/pexels-photo-1187766.jpeg?auto=compress&cs=tinysrgb&w=300",
-      },
-      {
-        id: "a7",
-        name: "MICHELADAS TRADICIONALES",
-        description: "Michelada sal y limón, Clamachela, Cubana",
-        prices: [
-          { label: "Michelada 1L", value: 130 },
-          { label: "Michelada 1/2L", value: 85 },
-          { label: "Clamachela 1L", value: 150 },
-          { label: "Clamachela 1/2L", value: 95 },
-          { label: "Cubana 1L", value: 135 }
-        ],
-        image: "https://images.pexels.com/photos/1187766/pexels-photo-1187766.jpeg?auto=compress&cs=tinysrgb&w=300",
-      },
-      {
-        id: "a8",
-        name: "TRITÓN DE 5 LITROS",
-        description: "Claro / Oscuro, Colores / Mojito",
-        prices: [
-          { label: "Claro/Oscuro", value: 525 },
-          { label: "Colores/Mojito", value: 620 }
-        ],
-        image: "https://images.pexels.com/photos/1187766/pexels-photo-1187766.jpeg?auto=compress&cs=tinysrgb&w=300",
-      },
-      {
-        id: "a9",
-        name: "TARROS PREPARADOS",
-        description: "Michelada sal y limón, Clamatada, Cubana, Sabor",
-        prices: [
-          { label: "Michelada", value: 20 },
-          { label: "Clamatada", value: 35 },
-          { label: "Cubana", value: 25 },
-          { label: "Sabor", value: 35 }
-        ],
-        image: "https://images.pexels.com/photos/1187766/pexels-photo-1187766.jpeg?auto=compress&cs=tinysrgb&w=300",
-      },
-      {
-        id: "a10",
-        name: "COCKTAILS COLORS",
-        description: "AZULITO VODKA, ROJO VODKA DE FRUTOS ROJOS, MORADO VODKA Y JUGO DE UVA, AMARILLO BACARDÍ MANGO CHILE, ROSA BACARDÍ RASPBERRY, VERDE BACARDÍ LIMÓN, BUBBALOO XTREME DE UVA, VODKA Y CHICLES",
-        prices: [
-          { label: "1 Litro", value: 145 }
-        ],
-        image: "https://images.pexels.com/photos/1304540/pexels-photo-1304540.jpeg?auto=compress&cs=tinysrgb&w=300",
-      },
-      {
-        id: "a11",
-        name: "MOJITOS",
-        description: "ORIGINAL, PIÑA, GUAYABA, MARACUYÁ, LICHI, MANGO, FRESA, TAMARINDO, GUANABANA, FRUTOS ROJOS, JAMAICA, COCO, YAKULT, SANDIA, CEREZA, GROSELLA, GRANADA",
-        prices: [
-          { label: "1 Litro", value: 145 }
-        ],
-        image: "https://images.pexels.com/photos/1304540/pexels-photo-1304540.jpeg?auto=compress&cs=tinysrgb&w=300",
-      },
-      {
-        id: "a12",
-        name: "DESTILADOS",
-        description: "WHISKY, TEQUILA, RON, VODKA, MEZCAL, BRANDY",
-        prices: [
-          { label: "1 Litro", value: 145 }
-        ],
-        image: "https://images.pexels.com/photos/1283219/pexels-photo-1283219.jpeg?auto=compress&cs=tinysrgb&w=300",
-      },
-      {
-        id: "a13",
-        name: "STRONGBOW",
-        description: "SENCILLO, PREPARADO CON FRUTOS ROJOS",
-        prices: [
-          { label: "Precio", value: 85 }
-        ],
-        image: "https://images.pexels.com/photos/1187766/pexels-photo-1187766.jpeg?auto=compress&cs=tinysrgb&w=300",
-      },
-      {
-        id: "a14",
+        id: "a2",
         name: "COCTELES ESPECIALES",
         description: "EL COSCORRÓN, EL DIABLO, LA CONGA, LA CHAQUETA, EL SUGAR DADDY, PALOMA DE FRESA, PALOMA DE MANGO, GIN DE FRUTOS ROJOS, GIN DE MANGO, LA PEPA ROSADA, MARGARITA FROZEN, WHISKY SUMMER",
         prices: [
@@ -851,7 +724,129 @@ export const menuCategories: Category[] = [
           { label: "WHISKY SUMMER", value: 180 }
         ],
         image: "https://images.pexels.com/photos/1304540/pexels-photo-1304540.jpeg?auto=compress&cs=tinysrgb&w=300",
-      }
+      },
+      {
+        id: "a3",
+        name: "MOJITOS",
+        description: "ORIGINAL, PIÑA, GUAYABA, MARACUYÁ, LICHI, MANGO, FRESA, TAMARINDO, GUANABANA, FRUTOS ROJOS, JAMAICA, COCO, YAKULT, SANDIA, CEREZA, GROSELLA, GRANADA",
+        prices: [
+          { label: "1 Litro", value: 145 }
+        ],
+        image: "https://images.pexels.com/photos/1304540/pexels-photo-1304540.jpeg?auto=compress&cs=tinysrgb&w=300",
+      },
+      {
+        id: "a4",
+        name: "COCKTAILS COLORS",
+        description: "AZULITO VODKA, ROJO VODKA DE FRUTOS ROJOS, MORADO VODKA Y JUGO DE UVA, AMARILLO BACARDÍ MANGO CHILE, ROSA BACARDÍ RASPBERRY, VERDE BACARDÍ LIMÓN, BUBBALOO XTREME DE UVA, VODKA Y CHICLES",
+        prices: [
+          { label: "1 Litro", value: 145 }
+        ],
+        image: "https://images.pexels.com/photos/1304540/pexels-photo-1304540.jpeg?auto=compress&cs=tinysrgb&w=300",
+      },
+      {
+        id: "a5",
+        name: "CHELAS PREMIUM",
+        description: "Heineken, Ultra, Bohemia Clara, Bohemia Oscura, XX Lager, XX Ámbar",
+        prices: [
+          { label: "Precio", value: 55 }
+        ],
+        image: "https://images.pexels.com/photos/1552630/pexels-photo-1552630.jpeg?auto=compress&cs=tinysrgb&w=300",
+      },
+      {
+        id: "a6",
+        name: "CHELAS NACIONALES",
+        description: "Tecate, Tecate Ligth, Indio, Corona, Victoria",
+        prices: [
+          { label: "Precio", value: 45 }
+        ],
+        image: "https://images.pexels.com/photos/52994/beer-slide-beer-glass-beer-mug-52994.jpeg?auto=compress&cs=tinysrgb&w=300",
+      },
+      {
+        id: "a7",
+        name: "TARROS PREPARADOS",
+        description: "Michelada sal y limón, Clamatada, Cubana, Sabor",
+        prices: [
+          { label: "Michelada", value: 20 },
+          { label: "Clamatada", value: 35 },
+          { label: "Cubana", value: 25 },
+          { label: "Sabor", value: 35 }
+        ],
+        image: "https://images.pexels.com/photos/1187766/pexels-photo-1187766.jpeg?auto=compress&cs=tinysrgb&w=300",
+      },
+      {
+        id: "a8",
+        name: "MICHELADAS TRADICIONALES",
+        description: "Michelada sal y limón, Clamachela, Cubana",
+        prices: [
+          { label: "Michelada 1L", value: 130 },
+          { label: "Michelada 1/2L", value: 85 },
+          { label: "Clamachela 1L", value: 150 },
+          { label: "Clamachela 1/2L", value: 95 },
+          { label: "Cubana 1L", value: 135 }
+        ],
+        image: "https://images.pexels.com/photos/1187766/pexels-photo-1187766.jpeg?auto=compress&cs=tinysrgb&w=300",
+      },
+      {
+        id: "a9",
+        name: "MICHELADAS DE SABORES",
+        description: "Cerveza de barril clara / Oscura con escarchado y sabor de: Mango, Tamarindo, Chamoy y Ajonjolí, Mora Azul, Sandía, Fresa, Uva, Manzana Verde",
+        prices: [
+          { label: "1 Litro", value: 135 },
+          { label: "1/2 litro", value: 90 }
+        ],
+        image: "https://images.pexels.com/photos/1187766/pexels-photo-1187766.jpeg?auto=compress&cs=tinysrgb&w=300",
+      },
+      {
+        id: "a10",
+        name: "TRITÓN DE 5 LITROS",
+        description: "Claro / Oscuro, Colores / Mojito",
+        prices: [
+          { label: "Claro/Oscuro", value: 525 },
+          { label: "Colores/Mojito", value: 620 }
+        ],
+        image: "https://images.pexels.com/photos/1187766/pexels-photo-1187766.jpeg?auto=compress&cs=tinysrgb&w=300",
+      },
+      {
+        id: "a11",
+        name: "BUBUCHELA ARTESANAL",
+        description: "Blanca: Blonde Ale con especias. Oscura: Del tipo Dubbel con notas de café",
+        prices: [
+          { label: "Precio", value: 85 }
+        ],
+        image: "https://images.pexels.com/photos/1267696/pexels-photo-1267696.jpeg?auto=compress&cs=tinysrgb&w=300",
+      },
+      {
+        id: "a12",
+        name: "STRONGBOW",
+        description: "SENCILLO, PREPARADO CON FRUTOS ROJOS",
+        prices: [
+          { label: "Precio", value: 85 }
+        ],
+        image: "https://images.pexels.com/photos/1187766/pexels-photo-1187766.jpeg?auto=compress&cs=tinysrgb&w=300",
+      },
+      {
+        id: "a13",
+        name: "DESTILADOS",
+        description: "WHISKY, TEQUILA, RON, VODKA, MEZCAL, BRANDY",
+        prices: [
+          { label: "1 Litro", value: 145 }
+        ],
+        image: "https://images.pexels.com/photos/1283219/pexels-photo-1283219.jpeg?auto=compress&cs=tinysrgb&w=300",
+      },
+      {
+        id: "a14",
+        name: "DIGESTIVOS",
+        description: "Carajillo to shake or not to shake, Carajillo conejito Turín, Baileys, Midori, Licor 43, Frangelico",
+        prices: [
+          { label: "Carajillo", value: 155 },
+          { label: "Carajillo Turín", value: 185 },
+          { label: "Baileys", value: 115 },
+          { label: "Midori", value: 120 },
+          { label: "Licor 43", value: 120 },
+          { label: "Frangelico", value: 120 }
+        ],
+        image: "https://images.pexels.com/photos/1283219/pexels-photo-1283219.jpeg?auto=compress&cs=tinysrgb&w=300",
+      },
     ]
   },
   // 12. Malteadas y Postres
