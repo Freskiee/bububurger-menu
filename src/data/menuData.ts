@@ -716,7 +716,7 @@ export const menuCategories: Category[] = [
       {
         id: "a4",
         name: "MOJITOS",
-        description: "",
+        description: "Refresca tu día con nuestros mojitos artesanales, preparados al momento con frutas naturales, hierbabuena fresca, limón y mucho hielo.",
         prices: [
           { label: "1 Litro", value: 145 },
           { label: "1/2 Litro", value: 85 }
