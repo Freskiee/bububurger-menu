@@ -46,6 +46,7 @@ import digestivos from "/menu-images/digestivos.png";
 import cocteles from "/menu-images/cocteles.png";
 import aperitivos from "/menu-images/aperitivos.png";
 import malteadas from "/menu-images/malteadas.png";
+import mojitos from "/menu-images/mojitoss.png";
 
 export interface ProductPriceOption {
   label: string;
@@ -609,7 +610,7 @@ export const menuCategories: Category[] = [
       {
         id: "bebida-1",
         name: "SODAS",
-        description: "Refrescos de la familia Coca-Cola en presentación de 355 ml, servidos bien fríos para acompañar cualquier platillo.",
+        description: "Refrescos de la familia Coca-Cola en presentación de 355 ml.",
         prices: [
           { label: "", value: 45 }
         ],
@@ -618,7 +619,7 @@ export const menuCategories: Category[] = [
       {
         id: "bebida-2",
         name: "BOING",
-        description: "Bebidas Boing de 355 ml en distintos sabores, elaboradas con fruta natural. Refrescantes y perfectas para cualquier momento.",
+        description: "Bebidas Boing de 355 ml en distintos sabores, elaboradas con fruta natural.",
         prices: [
           { label: "", value: 45 }
         ],
@@ -720,7 +721,7 @@ export const menuCategories: Category[] = [
           { label: "1 Litro", value: 145 },
           { label: "1/2 Litro", value: 85 }
         ],
-        image: "https://images.pexels.com/photos/1304540/pexels-photo-1304540.jpeg?auto=compress&cs=tinysrgb&w=300",
+        image: mojitos,
       },
       {
         id: "a11",

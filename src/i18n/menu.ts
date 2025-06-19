@@ -1086,7 +1086,7 @@ export const productTranslations: { [id: string]: ProductTranslation } = {
   "bebida-1": {
     es: {
       name: "Refrescos",
-      description: "Refrescos de la familia Coca-Cola en presentación de 355 ml, servidos bien fríos para acompañar cualquier platillo.",
+      description: "Refrescos de la familia Coca-Cola en presentación de 355 ml.",
       prices: [
         { label: "", price: 45, note: "" }
       ],
@@ -1094,7 +1094,7 @@ export const productTranslations: { [id: string]: ProductTranslation } = {
     },
     en: {
       name: "Sodas",
-      description: "Coca-Cola family soft drinks in 355ml presentation, served ice cold to accompany any dish.",
+      description: "Coca-Cola family soft drinks in 355ml presentation.",
       prices: [
         { label: "", price: 45, note: "" }
       ],
@@ -1104,7 +1104,7 @@ export const productTranslations: { [id: string]: ProductTranslation } = {
   "bebida-2": {
     es: {
       name: "Boing",
-      description: "Bebidas Boing de 355ml en diferentes sabores, hechas con fruta natural. Refrescantes y perfectas para cualquier momento.",
+      description: "Bebidas Boing de 355ml en diferentes sabores, hechas con fruta natural.",
       prices: [
         { label: "", price: 45, note: "" }
       ],
@@ -1112,7 +1112,7 @@ export const productTranslations: { [id: string]: ProductTranslation } = {
     },
     en: {
       name: "Boing",
-      description: "Boing drinks of 355ml in different flavors, made with natural fruit. Refreshing and perfect for any moment.",
+      description: "Boing drinks of 355ml in different flavors, made with natural fruit.",
       prices: [
         { label: "", price: 45, note: "" }
       ],
