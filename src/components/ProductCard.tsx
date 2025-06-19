@@ -1,6 +1,8 @@
 import React, { useState, useRef, useEffect, useContext } from 'react';
 import { Product, Category } from '../data/menuData';
-import Modal from 'react-bootstrap/Modal';
+import { Modal } from 'react-bootstrap';
+import CocktailGrid from './CocktailGrid';
+import './CocktailGrid.module.css';
 import { productTranslations, sauceTranslations } from '../i18n/menu';
 import { uiTranslations } from '../i18n/menu';
 import { LanguageContext } from '../App';
@@ -19,7 +21,6 @@ interface ProductCardProps {
   titleStyle?: React.CSSProperties;
 }
 
-// Define el tipo correcto para las opciones de precio
 interface PriceOption { label: string; price?: number; value?: number; note?: string; }
 
 const pastelColors = [
@@ -49,17 +50,19 @@ const ProductCard: React.FC<ProductCardProps> = ({ product, category, products, 
   const [showFriesInfo, setShowFriesInfo] = useState(false);
   const [showBeverageModal, setShowBeverageModal] = useState(false);
   const [showBoingModal, setShowBoingModal] = useState(false);
-  const [showPreparedDrinksModal, setShowPreparedDrinksModal] = useState(false);
   const [showItalianSodasModal, setShowItalianSodasModal] = useState(false);
+  const [showPreparedDrinksModal, setShowPreparedDrinksModal] = useState(false);
+  const [showCocktailsModal, setShowCocktailsModal] = useState(false);
   const [showCafeModal, setShowCafeModal] = useState(false);
   const [showTisanasModal, setShowTisanasModal] = useState(false);
+  const [showAperitivosModal, setShowAperitivosModal] = useState(false);
+  const [showMojitoFlavorsModal, setShowMojitoFlavorsModal] = useState(false);
   const popoverRef = useRef<HTMLDivElement | null>(null);
   const touchStartX = useRef<number | null>(null);
   const touchEndX = useRef<number | null>(null);
 
   const isInfantil = category.id === 'infantil';
 
-  // Controlar el modal según el modo (controlado o no)
   const modalOpen = enableModal ? (showModal ?? false) : internalShowModal;
   const openModal = () => {
     if (enableModal) return;
@@ -70,7 +73,11 @@ const ProductCard: React.FC<ProductCardProps> = ({ product, category, products, 
     else setInternalShowModal(false);
   };
 
-  // Swipe handlers
+  const openAperitivosModal = () => setShowAperitivosModal(true);
+  const closeAperitivosModal = () => setShowAperitivosModal(false);
+  const openCocktailsModal = () => setShowCocktailsModal(true);
+  const closeCocktailsModal = () => setShowCocktailsModal(false);
+
   const handleTouchStart = (e: React.TouchEvent) => {
     touchStartX.current = e.touches[0].clientX;
   };
@@ -99,7 +106,6 @@ const ProductCard: React.FC<ProductCardProps> = ({ product, category, products, 
     return () => document.removeEventListener('mousedown', handleClickOutside);
   }, [showEquivModal]);
 
-  // Obtener traducción si existe
   const { language } = useContext(LanguageContext) as { language: 'es' | 'en' };
   const t = uiTranslations;
   const translated = productTranslations[product.id]?.[language as 'es' | 'en'];
@@ -107,13 +113,11 @@ const ProductCard: React.FC<ProductCardProps> = ({ product, category, products, 
   let productDescription = productTranslations[product.id]?.[language]?.description || product.description;
   const productPrices = translated?.prices || product.prices;
 
-  // Asegurar que 'agua-ciel' use las traducciones correctas
   if (product.id === 'agua-ciel') {
     productName = productTranslations['agua-ciel'][language].name;
     productDescription = productTranslations['agua-ciel'][language].description;
   }
 
-  // Obtener traducción para el botón y el contenido del modal
   const beverageList = language === 'es' ? [
     'Coca-Cola',
     'Coca sin azúcar',
@@ -156,24 +160,18 @@ const ProductCard: React.FC<ProductCardProps> = ({ product, category, products, 
     'Grape'
   ];
 
-  // Traducción de la descripción de Boing
   const boingDescription = language === 'es' ?
     "Bebidas Boing de 355 ml en distintos sabores, elaboradas con fruta natural. Refrescantes y perfectas para cualquier momento."
     :
     "Boing drinks of 355ml in different flavors, made with natural fruit. Refreshing and perfect for any moment.";
 
-  // Reemplazar la lista de bebidas preparadas con las traducciones
   const preparedDrinksList = preparedDrinksTranslations[language];
 
-  // Verificar el valor del idioma
-  // console.log('Idioma actual:', language);
-
-  // Obtener traducción para el título de bebidas preparadas
   const preparedDrinksTitle = language === 'es' ? 'Bebidas preparadas' : 'Prepared drinks';
 
   return (
     <>
-      <div 
+      <div
         className="product-card p-3 mb-3"
         onClick={openModal}
         id={isInfantil ? "infantil" : undefined}
@@ -195,8 +193,8 @@ const ProductCard: React.FC<ProductCardProps> = ({ product, category, products, 
         {isInfantil && (
           <span style={{ position: 'absolute', top: 10, left: 12, fontSize: 22, zIndex: 2 }}>🎈🍟</span>
         )}
-        <img 
-          src={product.image} 
+        <img
+          src={product.image}
           alt={productName}
           className={isInfantil ? "product-image" : "product-image"}
           style={isInfantil ? { borderRadius: 18, border: '2px solid #ffd740', boxShadow: '0 2px 8px #ffd74033', background: '#fff' } : {}}
@@ -230,9 +228,9 @@ const ProductCard: React.FC<ProductCardProps> = ({ product, category, products, 
             {isInfantil && <span style={{ fontSize: 18, marginLeft: 4 }}>🧃</span>}
           </h6>
           {isInfantil ? (
-            <p className="mb-4" style={{ 
-              color: document.body.classList.contains('dark-mode') ? '#ffd740' : '#7c4dff', 
-              fontWeight: 700, 
+            <p className="mb-4" style={{
+              color: document.body.classList.contains('dark-mode') ? '#ffd740' : '#7c4dff',
+              fontWeight: 700,
               fontSize: '1.01em',
               overflow: 'hidden',
               textOverflow: 'ellipsis',
@@ -244,9 +242,9 @@ const ProductCard: React.FC<ProductCardProps> = ({ product, category, products, 
             <p className="product-description" style={{ whiteSpace: 'nowrap', overflow: 'hidden', textOverflow: 'ellipsis' }}>{product.id === 'bebida-2' ? boingDescription : productDescription}</p>
           )}
         </div>
+
       </div>
 
-      {/* Solo renderizar el Modal si enableModal es true */}
       {enableModal && (
         <Modal
           show={modalOpen}
@@ -285,8 +283,8 @@ const ProductCard: React.FC<ProductCardProps> = ({ product, category, products, 
           } : {}}>
             <div className="row">
               <div className="col-md-6">
-                <img 
-                  src={product.image} 
+                <img
+                  src={product.image}
                   alt={productName}
                   className="img-fluid rounded"
                   style={isInfantil ? { width: '100%', height: 'auto', objectFit: 'cover', borderRadius: 18, border: '2px solid #ffd740', boxShadow: '0 2px 8px #ffd74033', background: '#fff' } : { width: '100%', height: 'auto', objectFit: 'cover' }}
@@ -299,11 +297,41 @@ const ProductCard: React.FC<ProductCardProps> = ({ product, category, products, 
                 ) : (
                   <p className="text-muted mb-4">{productDescription}</p>
                 )}
-                <div className="product-price mb-4" style={isInfantil ? { 
-                  color: document.body.classList.contains('dark-mode') ? '#ffd740' : pastelColors[0], 
-                  fontWeight: 900, 
-                  fontSize: '1.13em', 
-                  fontFamily: "'Fredoka One', 'Comic Sans MS', cursive, sans-serif" 
+                {product.id === 'a1' && (
+                  <div style={{ marginTop: '10px', marginBottom: '10px' }}>
+                    <button onClick={openAperitivosModal} style={{
+                      padding: '5px 10px',
+                      backgroundColor: '#ff9500',
+                      color: '#fff',
+                      border: 'none',
+                      borderRadius: '5px',
+                      cursor: 'pointer',
+                      width: 'fit-content'
+                    }}>
+                      Ver aperitivos
+                    </button>
+                  </div>
+                )}
+                {product.id === 'a2' && (
+                  <div style={{ marginTop: '10px', marginBottom: '10px' }}>
+                    <button onClick={openCocktailsModal} style={{
+                      padding: '5px 10px',
+                      backgroundColor: '#ff9500',
+                      color: '#fff',
+                      border: 'none',
+                      borderRadius: '5px',
+                      cursor: 'pointer',
+                      width: 'fit-content'
+                    }}>
+                      Ver cocteles
+                    </button>
+                  </div>
+                )}
+                <div className="product-price mb-4" style={isInfantil ? {
+                  color: document.body.classList.contains('dark-mode') ? '#ffd740' : pastelColors[0],
+                  fontWeight: 900,
+                  fontSize: '1.13em',
+                  fontFamily: "'Fredoka One', 'Comic Sans MS', cursive, sans-serif"
                 } : {
                   color: (document.body.classList.contains('dark-mode') ? '#fff' : '#ff6a00'),
                   fontWeight: 700,
@@ -321,7 +349,6 @@ const ProductCard: React.FC<ProductCardProps> = ({ product, category, products, 
                             {option.note}
                           </span>
                         )}
-                        {/* Emoji de papas para banderillas de 2 piezas */}
                         {product.id && product.id.startsWith('bd') && option.label.includes('2') && (
                           <span style={{ position: 'relative', display: 'inline-block' }}>
                             <span
@@ -329,7 +356,6 @@ const ProductCard: React.FC<ProductCardProps> = ({ product, category, products, 
                               onClick={() => setShowFriesInfo((prev) => !prev)}
                               title="¿Qué incluye?"
                             >🍟</span>
-                            {/* Tooltip encima del emoji */}
                             {showFriesInfo && (
                               <span
                                 style={{
@@ -354,7 +380,6 @@ const ProductCard: React.FC<ProductCardProps> = ({ product, category, products, 
                                 }}
                               >
                                 {uiTranslations.friesIncluded[language]}
-                                {/* Flechita */}
                                 <span style={{
                                   position: 'absolute',
                                   top: '100%',
@@ -373,7 +398,6 @@ const ProductCard: React.FC<ProductCardProps> = ({ product, category, products, 
                       </span>
                     );
                   })}
-                  {/* Leyenda de malteada para menú infantil */}
                   {isInfantil && (
                     <div style={{
                       marginTop: 8,
@@ -399,7 +423,6 @@ const ProductCard: React.FC<ProductCardProps> = ({ product, category, products, 
                     </div>
                   )}
                 </div>
-                {/* Etiqueta de chilibean para hot dogs (excepto infantil) */}
                 {category.id === 'hotdog' && !isInfantil && (
                   <div style={{
                     background: '#fff',
@@ -460,60 +483,176 @@ const ProductCard: React.FC<ProductCardProps> = ({ product, category, products, 
                   )}
                 </div>
                 {product.id === 'bebida-1' && (
-                  <button 
-                    className="btn btn-primary mt-2"
-                    onClick={() => setShowBeverageModal(true)}
-                  >
-                    {language === 'es' ? 'Ver refrescos' : 'See sodas'}
-                  </button>
+                  <div style={{ marginTop: '20px', marginBottom: '20px' }}>
+                    <button
+                      className="btn btn-primary"
+                      onClick={() => setShowBeverageModal(true)}
+                      style={{
+                        padding: '8px 16px',
+                        backgroundColor: '#ff9800',
+                        color: '#fff',
+                        border: 'none',
+                        borderRadius: '5px',
+                        cursor: 'pointer',
+                        fontWeight: 'bold',
+                        minWidth: '120px'
+                      }}
+                    >
+                      {language === 'es' ? 'Ver refrescos' : 'See sodas'}
+                    </button>
+                  </div>
                 )}
-                {product.id === 'bebida-4' && (
-                  <button 
-                    className="btn btn-primary mt-2"
-                    onClick={() => setShowPreparedDrinksModal(true)}
-                  >
-                    {language === 'es' ? 'Ver bebidas' : 'See drinks'}
-                  </button>
-                )}
-                {showPreparedDrinksModal && product.id === 'bebida-4' && (
-                  <Modal show={showPreparedDrinksModal} onHide={closeModal} centered>
+                {showBeverageModal && product.id === 'bebida-1' && (
+                  <Modal show={showBeverageModal} onHide={() => setShowBeverageModal(false)} centered>
                     <Modal.Header closeButton style={{ backgroundColor: '#1e1e1e', color: '#ff9800', borderBottom: '1px solid #ff9800' }}>
-                      <Modal.Title style={{ fontWeight: 'bold', fontSize: '1.5rem' }}>Bebidas Preparadas</Modal.Title>
+                      <Modal.Title style={{ fontWeight: 'bold', fontSize: '1.5rem' }}>Refrescos</Modal.Title>
                     </Modal.Header>
                     <Modal.Body style={{ backgroundColor: '#2c2c2c', color: '#fff', padding: '20px' }}>
                       <ul style={{ listStyleType: 'none', padding: 0 }}>
-                        <li style={{ marginBottom: '10px', fontSize: '1.2rem' }}>Tehuacán con sal y limón</li><hr />
-                        <li style={{ marginBottom: '10px', fontSize: '1.2rem' }}>Sangría Señorial preparada con chile, salsa y limón</li><hr />
-                        <li style={{ marginBottom: '10px', fontSize: '1.2rem' }}>Naranjada elaborada al momento, disponible con agua natural o mineral</li><hr />
-                        <li style={{ marginBottom: '10px', fontSize: '1.2rem' }}>Limonada elaborada al momento, disponible con agua natural o mineral</li>
+                        {beverageList.map((beverage, index) => (
+                          <li key={index} style={{ marginBottom: '10px', fontSize: '1.2rem' }}>{beverage}</li>
+                        ))}
                       </ul>
                     </Modal.Body>
                     <Modal.Footer style={{ backgroundColor: '#1e1e1e', borderTop: '1px solid #ff9800' }}>
-                      <button className="btn btn-secondary" onClick={closeModal} style={{ backgroundColor: '#ff9800', color: '#fff', fontWeight: 'bold' }}>
+                      <button className="btn btn-secondary" onClick={() => setShowBeverageModal(false)} style={{ backgroundColor: '#ff9800', color: '#fff', fontWeight: 'bold' }}>
+                        Cerrar
+                      </button>
+                    </Modal.Footer>
+                  </Modal>
+                )}
+                {product.id === 'bebida-4' && (
+                  <div style={{ marginTop: '20px', marginBottom: '20px' }}>
+                    <button
+                      className="btn btn-primary"
+                      onClick={() => setShowPreparedDrinksModal(true)}
+                      style={{
+                        padding: '8px 16px',
+                        backgroundColor: '#ff9800',
+                        color: '#fff',
+                        border: 'none',
+                        borderRadius: '5px',
+                        cursor: 'pointer',
+                        fontWeight: 'bold',
+                        minWidth: '120px'
+                      }}
+                    >
+                      {language === 'es' ? 'Ver bebidas' : 'See drinks'}
+                    </button>
+                  </div>
+                )}
+                {product.id === 'a4' && (
+                  <div style={{ marginTop: '20px', marginBottom: '20px' }}>
+                    <button
+                      className="btn btn-primary"
+                      onClick={() => setShowMojitoFlavorsModal(true)}
+                      style={{
+                        padding: '8px 16px',
+                        backgroundColor: '#ff9800',
+                        color: '#fff',
+                        border: 'none',
+                        borderRadius: '5px',
+                        cursor: 'pointer',
+                        fontWeight: 'bold',
+                        minWidth: '120px'
+                      }}
+                    >
+                      {language === 'es' ? 'Ver sabores' : 'See flavors'}
+                    </button>
+                  </div>
+                )}
+                {showPreparedDrinksModal && product.id === 'bebida-4' && (
+                  <Modal show={showPreparedDrinksModal} onHide={() => setShowPreparedDrinksModal(false)} centered>
+                    <Modal.Header closeButton style={{ backgroundColor: '#1e1e1e', color: '#ff9800', borderBottom: '1px solid #ff9800' }}>
+                      <Modal.Title style={{ fontWeight: 'bold', fontSize: '1.5rem' }}>{preparedDrinksTitle}</Modal.Title>
+                    </Modal.Header>
+                    <Modal.Body style={{ backgroundColor: '#2c2c2c', color: '#fff', padding: '20px' }}>
+                      <ul style={{ listStyleType: 'none', padding: 0 }}>
+                        {preparedDrinksList.map((drink, index) => (
+                          <li key={index} style={{ marginBottom: '10px', fontSize: '1.2rem' }}>{drink}</li>
+                        ))}
+                      </ul>
+                    </Modal.Body>
+                    <Modal.Footer style={{ 
+                      backgroundColor: '#1e1e1e', 
+                      borderTop: '1px solid #ff9800',
+                      padding: '10px'
+                    }}>
+                      <button 
+                        onClick={() => setShowPreparedDrinksModal(false)} 
+                        style={{
+                          padding: '8px 16px',
+                          backgroundColor: '#ff9800',
+                          color: '#fff',
+                          border: 'none',
+                          borderRadius: '5px',
+                          cursor: 'pointer',
+                          marginLeft: 'auto',
+                          fontWeight: 'bold'
+                        }}
+                      >
                         Cerrar
                       </button>
                     </Modal.Footer>
                   </Modal>
                 )}
                 {product.id === 'bebida-2' && (
-                  <button
-                    onClick={() => setShowBoingModal(true)}
-                    style={{
-                      background: '#ff9800',
-                      color: '#fff',
-                      border: 'none',
-                      borderRadius: 8,
-                      padding: '8px 16px',
-                      cursor: 'pointer',
-                      marginTop: 10
-                    }}
-                  >
-                    {language === 'es' ? 'Ver sabores' : 'See flavors'}
-                  </button>
+                  <div style={{ marginTop: '20px', marginBottom: '20px' }}>
+                    <button
+                      onClick={() => setShowBoingModal(true)}
+                      style={{
+                        background: '#ff9800',
+                        color: '#fff',
+                        border: 'none',
+                        borderRadius: '5px',
+                        padding: '8px 16px',
+                        cursor: 'pointer',
+                        fontWeight: 'bold',
+                        minWidth: '120px'
+                      }}
+                    >
+                      {language === 'es' ? 'Ver sabores' : 'See flavors'}
+                    </button>
+                  </div>
+                )}
+                {showBoingModal && product.id === 'bebida-2' && (
+                  <Modal show={showBoingModal} onHide={() => setShowBoingModal(false)} centered>
+                    <Modal.Header closeButton style={{ backgroundColor: '#1e1e1e', color: '#ff9800', borderBottom: '1px solid #ff9800' }}>
+                      <Modal.Title style={{ fontWeight: 'bold', fontSize: '1.5rem' }}>Boing</Modal.Title>
+                    </Modal.Header>
+                    <Modal.Body style={{ backgroundColor: '#2c2c2c', color: '#fff', padding: '20px' }}>
+                      <ul style={{ listStyleType: 'none', padding: 0 }}>
+                        {boingFlavors.map((flavor, index) => (
+                          <li key={index} style={{ marginBottom: '10px', fontSize: '1.2rem' }}>{flavor}</li>
+                        ))}
+                      </ul>
+                    </Modal.Body>
+                    <Modal.Footer style={{ 
+                      backgroundColor: '#1e1e1e', 
+                      borderTop: '1px solid #ff9800',
+                      padding: '10px'
+                    }}>
+                      <button 
+                        onClick={() => setShowBoingModal(false)} 
+                        style={{
+                          padding: '8px 16px',
+                          backgroundColor: '#ff9800',
+                          color: '#fff',
+                          border: 'none',
+                          borderRadius: '5px',
+                          cursor: 'pointer',
+                          marginLeft: 'auto',
+                          fontWeight: 'bold'
+                        }}
+                      >
+                        Cerrar
+                      </button>
+                    </Modal.Footer>
+                  </Modal>
                 )}
                 {product.id === 'bebida-6' && (
-                  <button 
-                    className="btn btn-primary" 
+                  <button
+                    className="btn btn-primary"
                     onClick={() => setShowItalianSodasModal(true)}
                   >
                     Ver Sabores
@@ -529,7 +668,7 @@ const ProductCard: React.FC<ProductCardProps> = ({ product, category, products, 
                     Ver Sabores
                   </button>
                 )}
-                <button 
+                <button
                   className="btn btn-primary w-100"
                   onClick={closeModal}
                   style={{
@@ -547,7 +686,6 @@ const ProductCard: React.FC<ProductCardProps> = ({ product, category, products, 
               </div>
             </div>
           </Modal.Body>
-          {/* Flechas de navegación a los lados del modal */}
           {onPrev && currentIndex > 0 && (
             <button
               onClick={onPrev}
@@ -585,7 +723,7 @@ const ProductCard: React.FC<ProductCardProps> = ({ product, category, products, 
             >
               <svg width="32" height="32" viewBox="0 0 32 32" fill="none" xmlns="http://www.w3.org/2000/svg" style={{ filter: 'drop-shadow(0 2px 6px rgba(0,0,0,0.32))' }}>
                 <circle cx="16" cy="16" r="16" fill="none" />
-                <path d="M20 8L12 16L20 24" stroke="#fff" strokeWidth="3.2" strokeLinecap="round" strokeLinejoin="round"/>
+                <path d="M20 8L12 16L20 24" stroke="#fff" strokeWidth="3.2" strokeLinecap="round" strokeLinejoin="round" />
               </svg>
             </button>
           )}
@@ -626,14 +764,25 @@ const ProductCard: React.FC<ProductCardProps> = ({ product, category, products, 
             >
               <svg width="32" height="32" viewBox="0 0 32 32" fill="none" xmlns="http://www.w3.org/2000/svg" style={{ filter: 'drop-shadow(0 2px 6px rgba(0,0,0,0.32))' }}>
                 <circle cx="16" cy="16" r="16" fill="none" />
-                <path d="M12 8L20 16L12 24" stroke="#fff" strokeWidth="3.2" strokeLinecap="round" strokeLinejoin="round"/>
+                <path d="M12 8L20 16L12 24" stroke="#fff" strokeWidth="3.2" strokeLinecap="round" strokeLinejoin="round" />
               </svg>
             </button>
           )}
         </Modal>
       )}
 
-      {/* Modal de equivalencias */}
+      <Modal show={showCocktailsModal} onHide={closeCocktailsModal} centered size="lg">
+        <Modal.Header closeButton>
+          <Modal.Title>{product.name}</Modal.Title>
+        </Modal.Header>
+        <Modal.Body>
+          <CocktailGrid />
+        </Modal.Body>
+        <Modal.Footer>
+          <button onClick={closeCocktailsModal} style={{ padding: '5px 10px', backgroundColor: '#ff9800', color: '#fff', border: 'none', borderRadius: '5px', cursor: 'pointer' }}>Cerrar</button>
+        </Modal.Footer>
+      </Modal>
+
       <Modal
         show={showEquivModal}
         onHide={() => setShowEquivModal(false)}
@@ -664,7 +813,6 @@ const ProductCard: React.FC<ProductCardProps> = ({ product, category, products, 
         </Modal.Body>
       </Modal>
 
-      {/* Modal de salsas */}
       <Modal
         show={showSauceModal}
         onHide={() => setShowSauceModal(false)}
@@ -679,26 +827,21 @@ const ProductCard: React.FC<ProductCardProps> = ({ product, category, products, 
           </Modal.Title>
         </Modal.Header>
         <Modal.Body style={{ background: 'var(--background-modal)', color: 'var(--text-main)', borderRadius: '0 0 16px 16px', padding: '8px 12px 12px 12px', textAlign: 'center', fontWeight: 500, fontSize: '0.95em' }}>
-          {/* Lista vertical de salsas con chiles */}
           <div style={{ margin: '0 auto 5px auto', maxWidth: 340, textAlign: 'left' }}>
             {product.sauces && product.sauces.map((salsa) => {
-              // Normaliza el nombre para buscar la clave en sauceTranslations
               const normalizar = (str: string) => str.toLowerCase().replace(/[^a-záéíóúüñ0-9]/gi, '');
               const claves = Object.keys(sauceTranslations);
               const clave = claves.find(k => normalizar(sauceTranslations[k as keyof typeof sauceTranslations].es) === normalizar(salsa) || normalizar(sauceTranslations[k as keyof typeof sauceTranslations].en) === normalizar(salsa));
               const nombreTraducido = clave ? sauceTranslations[clave as keyof typeof sauceTranslations][language] : salsa;
-              // Niveles de picor por nombre de salsa (igual que antes)
-              const salsaLower = salsa.toLowerCase();
               let level = 1;
-              if (salsaLower.includes('hot bbq')) level = 2;
-              else if (salsaLower.includes('tamarindo')) level = 2;
-              else if (salsaLower.includes('maggi')) level = 3;
-              else if (salsaLower.includes('cajún') || salsaLower.includes('cajun')) level = 4;
-              else if (salsaLower.includes('brava')) level = 4;
-              else if (salsaLower.includes('mango habanero')) level = 5;
-              else if (salsaLower.includes('requete-macho') || salsaLower.includes('super-macho')) level = 5;
-              const isRequeteMacho = salsaLower.includes('requete-macho') || salsaLower.includes('super-macho');
-              // Colores de fondo alternados
+              if (salsa.toLowerCase().includes('hot bbq')) level = 2;
+              else if (salsa.toLowerCase().includes('tamarindo')) level = 2;
+              else if (salsa.toLowerCase().includes('maggi')) level = 3;
+              else if (salsa.toLowerCase().includes('cajún') || salsa.toLowerCase().includes('cajun')) level = 4;
+              else if (salsa.toLowerCase().includes('brava')) level = 4;
+              else if (salsa.toLowerCase().includes('mango habanero')) level = 5;
+              else if (salsa.toLowerCase().includes('requete-macho') || salsa.toLowerCase().includes('super-macho')) level = 5;
+              const isRequeteMacho = salsa.toLowerCase().includes('requete-macho') || salsa.toLowerCase().includes('super-macho');
               const spicyColors = [
                 'linear-gradient(90deg, #a8e6a8 0%, #d6e6a8 100%)', // nivel 1: verde tenue
                 'linear-gradient(90deg, #d6e6a8 0%, #ffe6a8 100%)', // nivel 2: verde-amarillo tenue
@@ -706,7 +849,7 @@ const ProductCard: React.FC<ProductCardProps> = ({ product, category, products, 
                 'linear-gradient(90deg, #ffd6a8 0%, #ffb6a8 100%)', // nivel 4: naranja tenue
                 'linear-gradient(90deg, #ffb6a8 0%, #ffa8a8 100%)', // nivel 5: rojo tenue
               ];
-              const rowBg = spicyColors[level-1];
+              const rowBg = spicyColors[level - 1];
               return (
                 <div key={salsa} style={{
                   display: 'flex',
@@ -725,13 +868,12 @@ const ProductCard: React.FC<ProductCardProps> = ({ product, category, products, 
                 }}>
                   <span style={{ fontWeight: 700, color: '#333', minWidth: 80, fontSize: '0.9em', letterSpacing: '0.01em', whiteSpace: 'nowrap', overflow: 'hidden', textOverflow: 'ellipsis' }}>{nombreTraducido}</span>
                   <span style={{ display: 'flex', flexDirection: 'column', alignItems: 'flex-end', gap: 1, minWidth: 80 }}>
-                    {/* Barra de picante vertical */}
                     <div style={{ width: 10, height: 32, background: '#fffbe6', borderRadius: 6, overflow: 'hidden', boxShadow: '0 1px 4px #ff980055', border: '1px solid #ffd740', position: 'relative', marginBottom: 1, display: 'flex', flexDirection: 'column', justifyContent: 'flex-end' }}>
                       <div style={{
                         width: '100%',
                         height: `${level * 20}%`,
                         borderRadius: 6,
-                        background: spicyColors[level-1],
+                        background: spicyColors[level - 1],
                         transition: 'height 0.4s cubic-bezier(.4,1.3,.6,1)',
                         boxShadow: '0 1px 4px #ff980055',
                         position: 'absolute',
@@ -742,7 +884,7 @@ const ProductCard: React.FC<ProductCardProps> = ({ product, category, products, 
                         <span style={{ position: 'absolute', left: '50%', top: 2, transform: 'translateX(-50%)', fontSize: 13, animation: 'flame 1.2s infinite alternate' }} role="img" aria-label="fuego">🔥</span>
                       )}
                     </div>
-                    <span style={{ fontSize: '0.8em', color: level >= 4 ? '#ff1744' : '#ff9800', fontWeight: 600, letterSpacing: '0.01em' }}>{uiTranslations.spicyLevels[language][level-1]}</span>
+                    <span style={{ fontSize: '0.8em', color: level >= 4 ? '#ff1744' : '#ff9800', fontWeight: 600, letterSpacing: '0.01em' }}>{uiTranslations.spicyLevels[language][level - 1]}</span>
                     {isRequeteMacho && (
                       <span style={{ fontSize: 15, marginLeft: 2 }} role="img" aria-label="explosivo">🤯</span>
                     )}
@@ -761,120 +903,128 @@ const ProductCard: React.FC<ProductCardProps> = ({ product, category, products, 
         </Modal.Body>
       </Modal>
 
-      {/* Modal de bebidas */}
-      <Modal show={showBeverageModal} onHide={() => setShowBeverageModal(false)} centered>
-        <Modal.Header closeButton style={{ backgroundColor: '#1e1e1e', color: '#ff9800', borderBottom: '1px solid #ff9800' }}>
-          <Modal.Title style={{ fontWeight: 'bold', fontSize: '1.5rem' }}>Refrescos</Modal.Title>
-        </Modal.Header>
-        <Modal.Body style={{ backgroundColor: '#2c2c2c', color: '#fff', padding: '20px' }}>
-          <ul style={{ listStyleType: 'none', padding: 0 }}>
-            <li style={{ marginBottom: '10px', fontSize: '1.2rem' }}>Coca-Cola</li><hr />
-            <li style={{ marginBottom: '10px',fontSize: '1.2rem' }}>Coca sin azúcar</li><hr />
-            <li style={{ marginBottom: '10px',fontSize: '1.2rem' }}>Coca Light</li><hr />
-            <li style={{ marginBottom: '10px',fontSize: '1.2rem' }}>Fanta</li><hr />
-            <li style={{ marginBottom: '10px',fontSize: '1.2rem' }}>Delaware Punch</li><hr />
-            <li style={{ marginBottom: '10px',fontSize: '1.2rem' }}>Sidral Mundet</li><hr />
-            <li style={{ marginBottom: '10px',fontSize: '1.2rem' }}>Mundet rojo</li><hr />
-            <li style={{ marginBottom: '10px',fontSize: '1.2rem' }}>Sprite</li><hr />
-            <li style={{ marginBottom: '10px',fontSize: '1.2rem' }}>Fresca</li><hr />
-            <li style={{ marginBottom: '10px',fontSize: '1.2rem' }}>Sangría Señorial</li><hr />
-            <li style={{ marginBottom: '10px',fontSize: '1.2rem' }}>Agua Mineral</li>
-          </ul>
-        </Modal.Body>
-        <Modal.Footer style={{ backgroundColor: '#1e1e1e', borderTop: '1px solid #ff9800' }}>
-          <button className="btn btn-secondary" onClick={closeModal} style={{ backgroundColor: '#ff9800', color: '#fff', fontWeight: 'bold' }}>
-            Cerrar
-          </button>
-        </Modal.Footer>
-      </Modal>
-
-      {/* Modal de sabores de Boing */}
-      <Modal show={showBoingModal} onHide={() => setShowBoingModal(false)} centered>
-        <Modal.Header closeButton style={{ backgroundColor: '#1e1e1e', color: '#ff9800', borderBottom: '1px solid #ff9800' }}>
-          <Modal.Title style={{ fontWeight: 'bold', fontSize: '1.5rem' }}>Boing</Modal.Title>
-        </Modal.Header>
-        <Modal.Body style={{ backgroundColor: '#2c2c2c', color: '#fff', padding: '20px' }}>
-          <ul style={{ listStyleType: 'none', padding: 0 }}>
-            <li style={{ marginBottom: '10px', fontSize: '1.2rem' }}>Mango</li><hr />
-            <li style={{ marginBottom: '10px',fontSize: '1.2rem' }}>Guayaba</li><hr />
-            <li style={{ marginBottom: '10px',fontSize: '1.2rem' }}>Fresa</li><hr />
-            <li style={{ marginBottom: '10px',fontSize: '1.2rem' }}>Manzana</li><hr />
-            <li style={{ marginBottom: '10px',fontSize: '1.2rem' }}>Uva</li><hr />
-            <li style={{ marginBottom: '10px',fontSize: '1.2rem' }}>Tamarindo</li>
-          </ul>
-        </Modal.Body>
-        <Modal.Footer style={{ backgroundColor: '#1e1e1e', borderTop: '1px solid #ff9800' }}>
-          <button className="btn btn-secondary" onClick={closeModal} style={{ backgroundColor: '#ff9800', color: '#fff', fontWeight: 'bold' }}>
-            Cerrar
-          </button>
-        </Modal.Footer>
-      </Modal>
-
-      {/* Modal para sodas italianas */}
-      <Modal show={showItalianSodasModal} onHide={() => setShowItalianSodasModal(false)} centered>
+      <Modal show={showItalianSodasModal} onHide={() => setShowItalianSodasModal(false)} centered size="lg">
         <Modal.Header closeButton style={{ backgroundColor: '#1e1e1e', color: '#ff9800', borderBottom: '1px solid #ff9800' }}>
           <Modal.Title style={{ fontWeight: 'bold', fontSize: '1.5rem' }}>Sodas Italianas</Modal.Title>
         </Modal.Header>
         <Modal.Body style={{ backgroundColor: '#2c2c2c', color: '#fff', padding: '20px' }}>
           <ul style={{ listStyleType: 'none', padding: 0 }}>
-            <li style={{ marginBottom: '10px', fontSize: '1.2rem' }}>Limonada de Fresa Salvaje con Perlas Explosivas</li><hr />
-            <li style={{ fontSize: '1.2rem' }}>Limonada de Mora Azul con Perlas Explosivas</li><hr />
+            <li style={{ marginBottom: '15px', fontSize: '1.3rem' }}>
+              <span>Limonada de Fresa Salvaje con Perlas Explosivas</span>
+              <hr style={{ margin: '12px 0', borderTop: '1px solid #ff9800' }} />
+            </li>
+            <li style={{ marginBottom: '15px', fontSize: '1.3rem' }}>
+              <span>Limonada de Mora Azul con Perlas Explosivas</span>
+              <hr style={{ margin: '12px 0', borderTop: '1px solid #ff9800' }} />
+            </li>
           </ul>
         </Modal.Body>
         <Modal.Footer style={{ backgroundColor: '#1e1e1e', borderTop: '1px solid #ff9800' }}>
-          <button className="btn btn-secondary" onClick={() => setShowItalianSodasModal(false)} style={{ backgroundColor: '#ff9800', color: '#fff', fontWeight: 'bold' }}>
+          {product.id === 'a1' && (
+            <button onClick={openAperitivosModal} style={{ 
+              padding: '8px 16px', 
+              backgroundColor: '#ff9800', 
+              color: '#fff', 
+              border: 'none', 
+              borderRadius: '5px', 
+              cursor: 'pointer', 
+              marginRight: '12px',
+              fontWeight: 'bold'
+            }}>
+              Ver aperitivos
+            </button>
+          )}
+          <button onClick={() => setShowItalianSodasModal(false)} style={{ 
+            padding: '8px 16px', 
+            backgroundColor: '#ff9800', 
+            color: '#fff', 
+            border: 'none', 
+            borderRadius: '5px', 
+            cursor: 'pointer',
+            fontWeight: 'bold'
+          }}>
             Cerrar
           </button>
         </Modal.Footer>
       </Modal>
 
-      {/* Modal para café */}
       <Modal show={showCafeModal} onHide={() => setShowCafeModal(false)} centered size="lg">
-        <Modal.Header closeButton>
-          <Modal.Title>{product.name}</Modal.Title>
+        <Modal.Header closeButton style={{ backgroundColor: '#1e1e1e', color: '#ff9800', borderBottom: '1px solid #ff9800' }}>
+          <Modal.Title style={{ fontWeight: 'bold', fontSize: '1.5rem' }}>{product.name}</Modal.Title>
         </Modal.Header>
-        <Modal.Body>
+        <Modal.Body style={{ backgroundColor: '#2c2c2c', color: '#fff', padding: '20px' }}>
           <ul style={{ listStyleType: 'none', padding: 0 }}>
-            <li style={{ display: 'flex', justifyContent: 'space-between', marginBottom: '10px' }}>
-              <span style={{ fontSize: '1.2rem' }}>Café Americano</span>
-              <span style={{ fontSize: '1.3rem', color: '#ff9800' }}>$50</span>
-            </li><hr />
-            <li style={{ display: 'flex', justifyContent: 'space-between', marginBottom: '10px' }}>
-              <span style={{ fontSize: '1.2rem' }}>Con leche</span>
-              <span style={{ fontSize: '1.3rem', color: '#ff9800' }}>$55</span>
-            </li><hr />
-            <li style={{ display: 'flex', justifyContent: 'space-between', marginBottom: '10px' }}>
-              <span style={{ fontSize: '1.2rem' }}>Capuchino</span>
-              <span style={{ fontSize: '1.3rem', color: '#ff9800' }}>$65</span>
-            </li><hr />
-            <li style={{ display: 'flex', justifyContent: 'space-between', marginBottom: '10px' }}>
-              <span style={{ fontSize: '1.2rem' }}>Capuchino Vainilla</span>
-              <span style={{ fontSize: '1.3rem', color: '#ff9800' }}>$70</span>
-            </li><hr />
-            <li style={{ display: 'flex', justifyContent: 'space-between', marginBottom: '10px' }}>
-              <span style={{ fontSize: '1.2rem' }}>Capuchino Caramel</span>
-              <span style={{ fontSize: '1.3rem', color: '#ff9800' }}>$70</span>
-            </li><hr />
-            <li style={{ display: 'flex', justifyContent: 'space-between', marginBottom: '10px' }}>
-              <span style={{ fontSize: '1.2rem' }}>Con Licor de Café Kahlúa</span>
-              <span style={{ fontSize: '1.3rem', color: '#ff9800' }}>$+ 15</span>
-            </li><hr />
-            <li style={{ display: 'flex', justifyContent: 'space-between', marginBottom: '10px' }}>
-              <span style={{ fontSize: '1.2rem' }}>Expreso Sencillo</span>
-              <span style={{ fontSize: '1.3rem', color: '#ff9800' }}>$55</span>
-            </li><hr />
-            <li style={{ display: 'flex', justifyContent: 'space-between', marginBottom: '10px' }}>
-              <span style={{ fontSize: '1.2rem' }}>Expreso Doble</span>
-              <span style={{ fontSize: '1.3rem', color: '#ff9800' }}>$70</span>
-            </li><hr />
-            <li style={{ display: 'flex', justifyContent: 'space-between', marginBottom: '10px' }}>
-              <span style={{ fontSize: '1.2rem' }}>Expreso Doble Cortado</span>
-              <span style={{ fontSize: '1.3rem', color: '#ff9800' }}>$75</span>
+            <li style={{ display: 'flex', justifyContent: 'space-between', marginBottom: '15px', fontSize: '1.3rem' }}>
+              <span>Café Americano</span>
+              <span style={{ color: '#ff9800' }}>$50</span>
+              <hr style={{ margin: '12px 0', borderTop: '1px solid #ff9800' }} />
+            </li>
+            <li style={{ display: 'flex', justifyContent: 'space-between', marginBottom: '15px', fontSize: '1.3rem' }}>
+              <span>Con leche</span>
+              <span style={{ color: '#ff9800' }}>$55</span>
+              <hr style={{ margin: '12px 0', borderTop: '1px solid #ff9800' }} />
+            </li>
+            <li style={{ display: 'flex', justifyContent: 'space-between', marginBottom: '15px', fontSize: '1.3rem' }}>
+              <span>Capuchino</span>
+              <span style={{ color: '#ff9800' }}>$65</span>
+              <hr style={{ margin: '12px 0', borderTop: '1px solid #ff9800' }} />
+            </li>
+            <li style={{ display: 'flex', justifyContent: 'space-between', marginBottom: '15px', fontSize: '1.3rem' }}>
+              <span>Capuchino Vainilla</span>
+              <span style={{ color: '#ff9800' }}>$70</span>
+              <hr style={{ margin: '12px 0', borderTop: '1px solid #ff9800' }} />
+            </li>
+            <li style={{ display: 'flex', justifyContent: 'space-between', marginBottom: '15px', fontSize: '1.3rem' }}>
+              <span>Capuchino Caramel</span>
+              <span style={{ color: '#ff9800' }}>$70</span>
+              <hr style={{ margin: '12px 0', borderTop: '1px solid #ff9800' }} />
+            </li>
+            <li style={{ display: 'flex', justifyContent: 'space-between', marginBottom: '15px', fontSize: '1.3rem' }}>
+              <span>Con Licor de Café Kahlúa</span>
+              <span style={{ color: '#ff9800' }}>$+ 15</span>
+              <hr style={{ margin: '12px 0', borderTop: '1px solid #ff9800' }} />
+            </li>
+            <li style={{ display: 'flex', justifyContent: 'space-between', marginBottom: '15px', fontSize: '1.3rem' }}>
+              <span>Expreso Sencillo</span>
+              <span style={{ color: '#ff9800' }}>$55</span>
+              <hr style={{ margin: '12px 0', borderTop: '1px solid #ff9800' }} />
+            </li>
+            <li style={{ display: 'flex', justifyContent: 'space-between', marginBottom: '15px', fontSize: '1.3rem' }}>
+              <span>Expreso Doble</span>
+              <span style={{ color: '#ff9800' }}>$70</span>
+              <hr style={{ margin: '12px 0', borderTop: '1px solid #ff9800' }} />
+            </li>
+            <li style={{ display: 'flex', justifyContent: 'space-between', marginBottom: '15px', fontSize: '1.3rem' }}>
+              <span>Expreso Doble Cortado</span>
+              <span style={{ color: '#ff9800' }}>$75</span>
+              <hr style={{ margin: '12px 0', borderTop: '1px solid #ff9800' }} />
             </li>
           </ul>
         </Modal.Body>
-        <Modal.Footer>
-          <button onClick={() => setShowCafeModal(false)} style={{ padding: '5px 10px', backgroundColor: '#ff9800', color: '#fff', border: 'none', borderRadius: '5px', cursor: 'pointer' }}>
+        <Modal.Footer style={{ backgroundColor: '#1e1e1e', borderTop: '1px solid #ff9800' }}>
+          {product.id === 'a1' && (
+            <button onClick={openAperitivosModal} style={{ 
+              padding: '8px 16px', 
+              backgroundColor: '#ff9800', 
+              color: '#fff', 
+              border: 'none', 
+              borderRadius: '5px', 
+              cursor: 'pointer', 
+              marginRight: '12px',
+              fontWeight: 'bold'
+            }}>
+              Ver aperitivos
+            </button>
+          )}
+          <button onClick={() => setShowCafeModal(false)} style={{ 
+            padding: '8px 16px', 
+            backgroundColor: '#ff9800', 
+            color: '#fff', 
+            border: 'none', 
+            borderRadius: '5px', 
+            cursor: 'pointer',
+            fontWeight: 'bold'
+          }}>
             Cerrar
           </button>
         </Modal.Footer>
@@ -882,21 +1032,315 @@ const ProductCard: React.FC<ProductCardProps> = ({ product, category, products, 
 
       {/* Modal de sabores de tisanas */}
       <Modal show={showTisanasModal} onHide={() => setShowTisanasModal(false)} centered size="lg">
-        <Modal.Header closeButton>
-          <Modal.Title>{product.name} - Sabores</Modal.Title>
+        <Modal.Header closeButton style={{ backgroundColor: '#1e1e1e', color: '#ff9800', borderBottom: '1px solid #ff9800' }}>
+          <Modal.Title style={{ fontWeight: 'bold', fontSize: '1.5rem' }}>{product.name} - Sabores</Modal.Title>
         </Modal.Header>
-        <Modal.Body>
+        <Modal.Body style={{ backgroundColor: '#2c2c2c', color: '#fff', padding: '20px' }}>
           <ul style={{ listStyleType: 'none', padding: 0 }}>
             {product.flavors?.map((flavor, index) => (
-              <li key={index} style={{ marginBottom: '10px', fontSize: '1.2rem' }}>
+              <li key={index} style={{ marginBottom: '15px', fontSize: '1.3rem' }}>
                 {flavor}
-                <hr style={{ margin: '10px 0' }} />
+                <hr style={{ margin: '12px 0', borderTop: '1px solid #ff9800' }} />
               </li>
             ))}
           </ul>
         </Modal.Body>
-        <Modal.Footer>
-          <button onClick={() => setShowTisanasModal(false)} style={{ padding: '5px 10px', backgroundColor: '#ff9800', color: '#fff', border: 'none', borderRadius: '5px', cursor: 'pointer' }}>
+        <Modal.Footer style={{ backgroundColor: '#1e1e1e', borderTop: '1px solid #ff9800' }}>
+          {product.id === 'a1' && (
+            <button onClick={openAperitivosModal} style={{ 
+              padding: '8px 16px', 
+              backgroundColor: '#ff9800', 
+              color: '#fff', 
+              border: 'none', 
+              borderRadius: '5px', 
+              cursor: 'pointer', 
+              marginRight: '12px',
+              fontWeight: 'bold'
+            }}>
+              Ver aperitivos
+            </button>
+          )}
+          <button onClick={() => setShowTisanasModal(false)} style={{ 
+            padding: '8px 16px', 
+            backgroundColor: '#ff9800', 
+            color: '#fff', 
+            border: 'none', 
+            borderRadius: '5px', 
+            cursor: 'pointer',
+            fontWeight: 'bold'
+          }}>
+            Cerrar
+          </button>
+        </Modal.Footer>
+      </Modal>
+
+      {/* Modal de refrescos */}
+      <Modal show={showBeverageModal} onHide={() => setShowBeverageModal(false)} centered size="lg">
+        <Modal.Header closeButton style={{ backgroundColor: '#1e1e1e', color: '#ff9800', borderBottom: '1px solid #ff9800' }}>
+          <Modal.Title style={{ fontWeight: 'bold', fontSize: '1.5rem' }}>Refrescos</Modal.Title>
+        </Modal.Header>
+        <Modal.Body style={{ backgroundColor: '#2c2c2c', color: '#fff', padding: '20px' }}>
+          <ul style={{ listStyleType: 'none', padding: 0 }}>
+            {beverageList.map((beverage, index) => (
+              <li key={index} style={{ marginBottom: '15px', fontSize: '1.3rem' }}>
+                <span>{beverage}</span>
+                <hr style={{ margin: '12px 0', borderTop: '1px solid #ff9800' }} />
+              </li>
+            ))}
+          </ul>
+        </Modal.Body>
+        <Modal.Footer style={{ 
+          backgroundColor: '#1e1e1e', 
+          borderTop: '1px solid #ff9800',
+          padding: '10px'
+        }}>
+          {product.id === 'a1' && (
+            <button onClick={openAperitivosModal} style={{ 
+              padding: '8px 16px', 
+              backgroundColor: '#ff9800', 
+              color: '#fff', 
+              border: 'none', 
+              borderRadius: '5px', 
+              cursor: 'pointer', 
+              marginLeft: 'auto',
+              marginRight: '20px',
+              fontWeight: 'bold'
+            }}>
+              Ver aperitivos
+            </button>
+          )}
+          <button onClick={() => setShowBeverageModal(false)} style={{ 
+            padding: '8px 16px', 
+            backgroundColor: '#ff9800', 
+            color: '#fff', 
+            border: 'none', 
+            borderRadius: '5px', 
+            cursor: 'pointer',
+            marginLeft: 'auto',
+            fontWeight: 'bold'
+          }}>
+            Cerrar
+          </button>
+        </Modal.Footer>
+      </Modal>
+
+      {/* Modal de Boing */}
+      <Modal show={showBoingModal} onHide={() => setShowBoingModal(false)} centered size="lg">
+        <Modal.Header closeButton style={{ backgroundColor: '#1e1e1e', color: '#ff9800', borderBottom: '1px solid #ff9800' }}>
+          <Modal.Title style={{ fontWeight: 'bold', fontSize: '1.5rem' }}>Bebidas Boing</Modal.Title>
+        </Modal.Header>
+        <Modal.Body style={{ backgroundColor: '#2c2c2c', color: '#fff', padding: '20px' }}>
+          <p style={{ fontSize: '1.2rem', marginBottom: '20px' }}>{boingDescription}</p>
+          <ul style={{ listStyleType: 'none', padding: 0 }}>
+            {boingFlavors.map((flavor, index) => (
+              <li key={index} style={{ marginBottom: '15px', fontSize: '1.3rem' }}>
+                <span>{flavor}</span>
+                <hr style={{ margin: '12px 0', borderTop: '1px solid #ff9800' }} />
+              </li>
+            ))}
+          </ul>
+        </Modal.Body>
+        <Modal.Footer style={{ backgroundColor: '#1e1e1e', borderTop: '1px solid #ff9800' }}>
+          {product.id === 'a1' && (
+            <button onClick={openAperitivosModal} style={{ 
+              padding: '8px 16px', 
+              backgroundColor: '#ff9800', 
+              color: '#fff', 
+              border: 'none', 
+              borderRadius: '5px', 
+              cursor: 'pointer', 
+              marginRight: '12px',
+              fontWeight: 'bold'
+            }}>
+              Ver aperitivos
+            </button>
+          )}
+          <button onClick={() => setShowBoingModal(false)} style={{ 
+            padding: '8px 16px', 
+            backgroundColor: '#ff9800', 
+            color: '#fff', 
+            border: 'none', 
+            borderRadius: '5px', 
+            cursor: 'pointer',
+            fontWeight: 'bold'
+          }}>
+            Cerrar
+          </button>
+        </Modal.Footer>
+      </Modal>
+
+      {/* Modal de bebidas preparadas */}
+      <Modal show={showPreparedDrinksModal} onHide={() => setShowPreparedDrinksModal(false)} centered size="lg">
+        <Modal.Header closeButton style={{ backgroundColor: '#1e1e1e', color: '#ff9800', borderBottom: '1px solid #ff9800' }}>
+          <Modal.Title style={{ fontWeight: 'bold', fontSize: '1.5rem' }}>{preparedDrinksTitle}</Modal.Title>
+        </Modal.Header>
+        <Modal.Body style={{ backgroundColor: '#2c2c2c', color: '#fff', padding: '20px' }}>
+          <ul style={{ listStyleType: 'none', padding: 0 }}>
+            {preparedDrinksList.map((drink, index) => (
+              <li key={index} style={{ marginBottom: '15px', fontSize: '1.3rem' }}>
+                <span>{drink}</span>
+                <hr style={{ margin: '12px 0', borderTop: '1px solid #ff9800' }} />
+              </li>
+            ))}
+          </ul>
+        </Modal.Body>
+        <Modal.Footer style={{ backgroundColor: '#1e1e1e', borderTop: '1px solid #ff9800' }}>
+          {product.id === 'a1' && (
+            <button onClick={openAperitivosModal} style={{ 
+              padding: '8px 16px', 
+              backgroundColor: '#ff9800', 
+              color: '#fff', 
+              border: 'none', 
+              borderRadius: '5px', 
+              cursor: 'pointer', 
+              marginRight: '12px',
+              fontWeight: 'bold'
+            }}>
+              Ver aperitivos
+            </button>
+          )}
+          <button onClick={() => setShowPreparedDrinksModal(false)} style={{ 
+            padding: '8px 16px', 
+            backgroundColor: '#ff9800', 
+            color: '#fff', 
+            border: 'none', 
+            borderRadius: '5px', 
+            cursor: 'pointer',
+            fontWeight: 'bold'
+          }}>
+            Cerrar
+          </button>
+        </Modal.Footer>
+      </Modal>
+
+      {/* Modal de opciones de aperitivos */}
+      <Modal show={showAperitivosModal} onHide={closeAperitivosModal} centered size="lg">
+        <Modal.Header closeButton style={{ backgroundColor: '#1e1e1e', color: '#ff9800', borderBottom: '1px solid #ff9800' }}>
+          <Modal.Title style={{ fontWeight: 'bold', fontSize: '1.5rem' }}>{product.name}</Modal.Title>
+        </Modal.Header>
+        <Modal.Body style={{ backgroundColor: '#2c2c2c', color: '#fff', padding: '20px' }}>
+          <ul style={{ listStyleType: 'none', padding: 0 }}>
+            <li style={{ marginBottom: '10px', fontSize: '1.2rem' }}>
+              Aperol
+              <span style={{ fontSize: '1.3rem', color: '#ff9800', float: 'right' }}>$140</span>
+              <hr style={{ margin: '10px 0', borderTop: '1px solid #ff9800' }} />
+            </li>
+            <li style={{ marginBottom: '10px', fontSize: '1.2rem' }}>
+              Campari
+              <span style={{ fontSize: '1.3rem', color: '#ff9800', float: 'right' }}>$140</span>
+              <hr style={{ margin: '10px 0', borderTop: '1px solid #ff9800' }} />
+            </li>
+            <li style={{ marginBottom: '10px', fontSize: '1.2rem' }}>
+              Anís Pernod
+              <span style={{ fontSize: '1.3rem', color: '#ff9800', float: 'right' }}>$120</span>
+              <hr style={{ margin: '10px 0', borderTop: '1px solid #ff9800' }} />
+            </li>
+            <li style={{ marginBottom: '10px', fontSize: '1.2rem' }}>
+              Jagermeister
+              <span style={{ fontSize: '1.3rem', color: '#ff9800', float: 'right' }}>$130</span>
+              <hr style={{ margin: '10px 0', borderTop: '1px solid #ff9800' }} />
+            </li>
+            <li style={{ marginBottom: '10px', fontSize: '1.2rem' }}>
+              Agavero
+              <span style={{ fontSize: '1.3rem', color: '#ff9800', float: 'right' }}>$115</span>
+              <hr style={{ margin: '10px 0', borderTop: '1px solid #ff9800' }} />
+            </li>
+          </ul>
+        </Modal.Body>
+        <Modal.Footer style={{ backgroundColor: '#1e1e1e', borderTop: '1px solid #ff9800' }}>
+          <button className="btn btn-secondary" onClick={closeAperitivosModal} style={{ backgroundColor: '#ff9800', color: '#fff', fontWeight: 'bold' }}>
+            Cerrar
+          </button>
+        </Modal.Footer>
+      </Modal>
+
+      {/* Modal de sabores de mojitos */}
+      <Modal show={showMojitoFlavorsModal} onHide={() => setShowMojitoFlavorsModal(false)} centered size="lg">
+        <Modal.Header closeButton style={{ backgroundColor: '#1e1e1e', color: '#ff9800', borderBottom: '1px solid #ff9800' }}>
+          <Modal.Title style={{ fontWeight: 'bold', fontSize: '1.5rem' }}>Sabores de Mojitos</Modal.Title>
+        </Modal.Header>
+        <Modal.Body style={{ backgroundColor: '#2c2c2c', color: '#fff', padding: '20px' }}>
+          <ul style={{ listStyleType: 'none', padding: 0 }}>
+            <li style={{ marginBottom: '15px', fontSize: '1.3rem' }}>
+              <span>Original</span>
+              <hr style={{ margin: '12px 0', borderTop: '1px solid #ff9800' }} />
+            </li>
+            <li style={{ marginBottom: '15px', fontSize: '1.3rem' }}>
+              <span>Piña</span>
+              <hr style={{ margin: '12px 0', borderTop: '1px solid #ff9800' }} />
+            </li>
+            <li style={{ marginBottom: '15px', fontSize: '1.3rem' }}>
+              <span>Guayaba</span>
+              <hr style={{ margin: '12px 0', borderTop: '1px solid #ff9800' }} />
+            </li>
+            <li style={{ marginBottom: '15px', fontSize: '1.3rem' }}>
+              <span>Maracuyá</span>
+              <hr style={{ margin: '12px 0', borderTop: '1px solid #ff9800' }} />
+            </li>
+            <li style={{ marginBottom: '15px', fontSize: '1.3rem' }}>
+              <span>Lichi</span>
+              <hr style={{ margin: '12px 0', borderTop: '1px solid #ff9800' }} />
+            </li>
+            <li style={{ marginBottom: '15px', fontSize: '1.3rem' }}>
+              <span>Mango</span>
+              <hr style={{ margin: '12px 0', borderTop: '1px solid #ff9800' }} />
+            </li>
+            <li style={{ marginBottom: '15px', fontSize: '1.3rem' }}>
+              <span>Fresa</span>
+              <hr style={{ margin: '12px 0', borderTop: '1px solid #ff9800' }} />
+            </li>
+            <li style={{ marginBottom: '15px', fontSize: '1.3rem' }}>
+              <span>Tamarindo</span>
+              <hr style={{ margin: '12px 0', borderTop: '1px solid #ff9800' }} />
+            </li>
+            <li style={{ marginBottom: '15px', fontSize: '1.3rem' }}>
+              <span>Guanábana</span>
+              <hr style={{ margin: '12px 0', borderTop: '1px solid #ff9800' }} />
+            </li>
+            <li style={{ marginBottom: '15px', fontSize: '1.3rem' }}>
+              <span>Frutos Rojos</span>
+              <hr style={{ margin: '12px 0', borderTop: '1px solid #ff9800' }} />
+            </li>
+            <li style={{ marginBottom: '15px', fontSize: '1.3rem' }}>
+              <span>Jamaica</span>
+              <hr style={{ margin: '12px 0', borderTop: '1px solid #ff9800' }} />
+            </li>
+            <li style={{ marginBottom: '15px', fontSize: '1.3rem' }}>
+              <span>Coco</span>
+              <hr style={{ margin: '12px 0', borderTop: '1px solid #ff9800' }} />
+            </li>
+            <li style={{ marginBottom: '15px', fontSize: '1.3rem' }}>
+              <span>Yakult</span>
+              <hr style={{ margin: '12px 0', borderTop: '1px solid #ff9800' }} />
+            </li>
+            <li style={{ marginBottom: '15px', fontSize: '1.3rem' }}>
+              <span>Sandía</span>
+              <hr style={{ margin: '12px 0', borderTop: '1px solid #ff9800' }} />
+            </li>
+            <li style={{ marginBottom: '15px', fontSize: '1.3rem' }}>
+              <span>Cereza</span>
+              <hr style={{ margin: '12px 0', borderTop: '1px solid #ff9800' }} />
+            </li>
+            <li style={{ marginBottom: '15px', fontSize: '1.3rem' }}>
+              <span>Grosella</span>
+              <hr style={{ margin: '12px 0', borderTop: '1px solid #ff9800' }} />
+            </li>
+            <li style={{ marginBottom: '15px', fontSize: '1.3rem' }}>
+              <span>Granada</span>
+              <hr style={{ margin: '12px 0', borderTop: '1px solid #ff9800' }} />
+            </li>
+          </ul>
+        </Modal.Body>
+        <Modal.Footer style={{ backgroundColor: '#1e1e1e', borderTop: '1px solid #ff9800' }}>
+          <button onClick={() => setShowMojitoFlavorsModal(false)} style={{ 
+            padding: '8px 16px', 
+            backgroundColor: '#ff9800', 
+            color: '#fff', 
+            border: 'none', 
+            borderRadius: '5px', 
+            cursor: 'pointer',
+            fontWeight: 'bold'
+          }}>
             Cerrar
           </button>
         </Modal.Footer>

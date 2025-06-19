@@ -9,7 +9,7 @@ export const menuTranslations = {
   costillas: { es: "Costillas BBQ", en: "BBQ Ribs" },
   infantil: { es: "Menú Infantil", en: "Kids Menu" },
   bebidas: { es: "Bebidas y Refrescos", en: "Drinks & Refreshments" },
-  alcoholicas: { es: "Bebidas Alcohólicas", en: "Alcoholic Drinks" },
+  alcoholicas: { es: "Bebidas con Alcohol", en: "Alcoholic Drinks" },
   extras: { es: "Extras", en: "Extras" },
   malteadas: { es: "Malteadas y Postres", en: "Shakes & Desserts" },
   'malteadas-postres': { es: "Malteadas y Postres", en: "Shakes & Desserts" },
@@ -473,7 +473,7 @@ export const productTranslations: { [id: string]: ProductTranslation } = {
       name: "BUBU-COSTILLAS BBQ",
       description: "¡Llegaron las costillas que ni Thalía se imaginó! Jugosas Grilled Baby Back Ribs de cerdo, bien barnizadas con tu wing sauce favorita, sobre cama de lechuga fresca. Vienen acompañadas de un elotito dulce con mantequilla y nuestros polvitos mágicos que le dan el toque especial. ¿No eres de elote? Cámbialo por papitas sin costo. 😉",
       prices: [
-        { label: "Precio", price: 315 }
+        { label: "", price: 315 }
       ],
       sauces: [
         "bbq miel",
@@ -492,7 +492,7 @@ export const productTranslations: { [id: string]: ProductTranslation } = {
       name: "BUBU BBQ RIBS",
       description: "The ribs that even Thalía couldn't imagine! Juicy Grilled Baby Back Pork Ribs, well-coated with your favorite wing sauce, served on a bed of fresh lettuce. Comes with a sweet corn on the cob with butter and our magical seasoning that gives it that special touch. Not a corn fan? Swap it for fries at no extra cost. 😉",
       prices: [
-        { label: "Price", price: 315 }
+        { label: "", price: 315 }
       ],
       sauces: [
         "honey bbq",
@@ -513,7 +513,7 @@ export const productTranslations: { [id: string]: ProductTranslation } = {
       name: "COSTILLAS DE ELOTE AMARILLO",
       description: "Estas costillitas de elote dulce amarillo, bañaditas con salsa Hot BBQ, Cajun, Tajín y un toque de perejil deshidratado con limón te harán bailar como texano. Son perfectas para compartir y calmar tus antojos, ¡así que prepárate para chuparte los dedos!",
       prices: [
-        { label: "Precio", price: 120 }
+        { label: "", price: 120 }
       ],
       sauces: [
         "bbq",
@@ -525,7 +525,7 @@ export const productTranslations: { [id: string]: ProductTranslation } = {
       name: "YELLOW CORN RIBS",
       description: "These sweet yellow corn ribs, bathed in Hot BBQ, Cajun, Tajín, and a touch of dried parsley with lime, will make you dance like a Texan. Perfect for sharing and satisfying your cravings—get ready to lick your fingers!",
       prices: [
-        { label: "Price", price: 120 }
+        { label: "", price: 120 }
       ],
       sauces: [
         "bbq",
@@ -615,14 +615,14 @@ export const productTranslations: { [id: string]: ProductTranslation } = {
       name: "PAPAS A LA FRANCESA",
       description: "Generosa porción de papas corte recto, calientitas y bien fritas; acompañadas de Kétchup Heinz y queso amarillo tipo Cheddar. ¡Obviamente sazonadas con nuestros polvos mágicos!",
       prices: [
-        { label: "Precio", price: 120 }
+        { label: "", price: 120 }
       ]
     },
     en: {
       name: "FRENCH FRIES",
       description: "Generous portion of straight-cut fries, hot and well-fried; served with Heinz Ketchup and cheddar cheese. Obviously seasoned with our magic powders!",
       prices: [
-        { label: "Price", price: 120 }
+        { label: "", price: 120 }
       ]
     }
   },
@@ -631,14 +631,14 @@ export const productTranslations: { [id: string]: ProductTranslation } = {
       name: "PAPAS CURLY",
       description: "Deliciosas papas espiral delicadamente sazonadas y muy crujientes, acompañadas con Kétchup Heinz y queso amarillo tipo Cheddar.",
       prices: [
-        { label: "Precio", price: 110 }
+        { label: "", price: 110 }
       ]
     },
     en: {
       name: "CURLY FRIES",
       description: "Delicious spiral-cut fries delicately seasoned and very crispy, served with Heinz Ketchup and cheddar cheese.",
       prices: [
-        { label: "Price", price: 110 }
+        { label: "", price: 110 }
       ]
     }
   },
@@ -647,14 +647,14 @@ export const productTranslations: { [id: string]: ProductTranslation } = {
       name: "PAPAS GAJO",
       description: "Grandiosas papas gajo en cortes de gran tamaño, doradas por fuera y suaves por dentro, acompañadas de Kétchup Heinz y queso amarillo tipo Cheddar.",
       prices: [
-        { label: "Precio", price: 110 }
+        { label: "", price: 110 }
       ]
     },
     en: {
       name: "WEDGE FRIES",
       description: "Great wedge-cut fries in large pieces, golden on the outside and soft on the inside, served with Heinz Ketchup and cheddar cheese.",
       prices: [
-        { label: "Price", price: 110 }
+        { label: "", price: 110 }
       ]
     }
   },
@@ -663,14 +663,14 @@ export const productTranslations: { [id: string]: ProductTranslation } = {
       name: "CARI-PAPAS",
       description: "Simpáticas papas en forma de carita feliz esponjaditas, fritas y calientitas, acompañadas de Kétchup Heinz y queso amarillo tipo Cheddar.",
       prices: [
-        { label: "Precio", price: 110 }
+        { label: "", price: 110 }
       ]
     },
     en: {
       name: "SMILEY FRIES",
       description: "Cute smiley face-shaped fluffy fries, fried and hot, served with Heinz Ketchup and cheddar cheese.",
       prices: [
-        { label: "Price", price: 110 }
+        { label: "", price: 110 }
       ]
     }
   },
@@ -679,14 +679,14 @@ export const productTranslations: { [id: string]: ProductTranslation } = {
       name: "PAPAS WAFFLE",
       description: "Pide estas bellezas de papas en forma de Waffle, crujientes y deliciosas, acompañadas con Kétchup Heinz y queso amarillo tipo Cheddar.",
       prices: [
-        { label: "Precio", price: 110 }
+        { label: "", price: 110 }
       ]
     },
     en: {
       name: "WAFFLE FRIES",
       description: "Order these beautiful waffle-shaped fries, crispy and delicious, served with Heinz Ketchup and cheddar cheese.",
       prices: [
-        { label: "Price", price: 110 }
+        { label: "", price: 110 }
       ]
     }
   },
@@ -753,14 +753,14 @@ export const productTranslations: { [id: string]: ProductTranslation } = {
       name: "Café Americano",
       description: "Café negro de grano selecto, servido caliente",
       prices: [
-        { label: "Precio", price: 80 }
+        { label: "", price: 80 }
       ]
     },
     en: {
       name: "Americano Coffee",
       description: "Black coffee from select beans, served hot",
       prices: [
-        { label: "Price", price: 80 }
+        { label: "", price: 80 }
       ]
     }
   },
@@ -769,14 +769,14 @@ export const productTranslations: { [id: string]: ProductTranslation } = {
       name: "Cappuccino",
       description: "Espresso con leche espumada y canela",
       prices: [
-        { label: "Precio", price: 90 }
+        { label: "", price: 90 }
       ]
     },
     en: {
       name: "Cappuccino",
       description: "Espresso with foamed milk and cinnamon",
       prices: [
-        { label: "Price", price: 90 }
+        { label: "", price: 90 }
       ]
     }
   },
@@ -785,14 +785,14 @@ export const productTranslations: { [id: string]: ProductTranslation } = {
       name: "Té de Manzanilla",
       description: "Tisana relajante de manzanilla con miel",
       prices: [
-        { label: "Precio", price: 70 }
+        { label: "", price: 70 }
       ]
     },
     en: {
       name: "Chamomile Tea",
       description: "Relaxing chamomile tea with honey",
       prices: [
-        { label: "Price", price: 70 }
+        { label: "", price: 70 }
       ]
     }
   },
@@ -803,14 +803,14 @@ export const productTranslations: { [id: string]: ProductTranslation } = {
       name: "Ron Añejo",
       description: "Ron premium envejecido, servido solo",
       prices: [
-        { label: "Precio", price: 150 }
+        { label: "", price: 150 }
       ]
     },
     en: {
       name: "Aged Rum",
       description: "Premium aged rum, served neat",
       prices: [
-        { label: "Price", price: 150 }
+        { label: "", price: 150 }
       ]
     }
   },
@@ -819,14 +819,14 @@ export const productTranslations: { [id: string]: ProductTranslation } = {
       name: "Vodka Premium",
       description: "Vodka ruso de alta calidad, servido frío",
       prices: [
-        { label: "Precio", price: 160 }
+        { label: "", price: 160 }
       ]
     },
     en: {
       name: "Premium Vodka",
       description: "High-quality Russian vodka, served cold",
       prices: [
-        { label: "Price", price: 160 }
+        { label: "", price: 160 }
       ]
     }
   },
@@ -835,14 +835,14 @@ export const productTranslations: { [id: string]: ProductTranslation } = {
       name: "Mezcal Artesanal",
       description: "Mezcal oaxaqueño 100% agave",
       prices: [
-        { label: "Precio", price: 170 }
+        { label: "", price: 170 }
       ]
     },
     en: {
       name: "Artisanal Mezcal",
       description: "Oaxacan mezcal 100% agave",
       prices: [
-        { label: "Price", price: 170 }
+        { label: "", price: 170 }
       ]
     }
   },
@@ -853,14 +853,14 @@ export const productTranslations: { [id: string]: ProductTranslation } = {
       name: "Sidra de Manzana",
       description: "Sidra dulce de manzana fermentada",
       prices: [
-        { label: "Precio", price: 140 }
+        { label: "", price: 140 }
       ]
     },
     en: {
       name: "Apple Cider",
       description: "Sweet fermented apple cider",
       prices: [
-        { label: "Price", price: 140 }
+        { label: "", price: 140 }
       ]
     }
   },
@@ -869,14 +869,14 @@ export const productTranslations: { [id: string]: ProductTranslation } = {
       name: "Sidra de Pera",
       description: "Sidra aromática de pera natural",
       prices: [
-        { label: "Precio", price: 140 }
+        { label: "", price: 140 }
       ]
     },
     en: {
       name: "Pear Cider",
       description: "Aromatic natural pear cider",
       prices: [
-        { label: "Price", price: 140 }
+        { label: "", price: 140 }
       ]
     }
   },
@@ -885,14 +885,14 @@ export const productTranslations: { [id: string]: ProductTranslation } = {
       name: "Sidra Seca",
       description: "Sidra tradicional con bajo contenido de azúcar",
       prices: [
-        { label: "Precio", price: 140 }
+        { label: "", price: 140 }
       ]
     },
     en: {
       name: "Dry Cider",
       description: "Traditional cider with low sugar content",
       prices: [
-        { label: "Price", price: 140 }
+        { label: "", price: 140 }
       ]
     }
   },
@@ -1043,14 +1043,14 @@ export const productTranslations: { [id: string]: ProductTranslation } = {
       name: "BONELESS",
       description: "4 boneless de pollo, acompañados de papas a la francesa y una bebida de 355ml.",
       prices: [
-        { label: "Precio", price: 120 }
+        { label: "", price: 120 }
       ]
     },
     en: {
       name: "BONELESS",
       description: "4 boneless chicken pieces, served with french fries and a 355ml drink.",
       prices: [
-        { label: "Price", price: 120 }
+        { label: "", price: 120 }
       ]
     }
   },
@@ -1059,14 +1059,14 @@ export const productTranslations: { [id: string]: ProductTranslation } = {
       name: "ELOTE",
       description: "Elote con mantequilla y queso, acompañado de papas a la francesa y una bebida de 355ml.",
       prices: [
-        { label: "Precio", price: 120 }
+        { label: "", price: 120 }
       ]
     },
     en: {
       name: "CORN ON THE COB",
       description: "Corn on the cob with butter and cheese, served with french fries and a 355ml drink.",
       prices: [
-        { label: "Price", price: 120 }
+        { label: "", price: 120 }
       ]
     }
   },

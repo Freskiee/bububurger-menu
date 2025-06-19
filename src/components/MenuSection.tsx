@@ -111,7 +111,7 @@ const MenuSection: React.FC<MenuSectionProps> = ({ category, isFavorites = false
               } else if (typeof translation === 'string') {
                 return translation;
               }
-              return 'Traducción no disponible';
+              return category.name || 'Traducción no disponible';
             })()}
           </span>
         </h3>

@@ -42,6 +42,10 @@ import sodasItalianas from "/images/sida-italiana.png";
 import bebidaPanditas from "/images/bebida-panditas2.png";
 import cafes from "/menu-images/cafes.png";
 import tisanas from "/menu-images/tisanas.png";
+import digestivos from "/menu-images/digestivos.png";
+import cocteles from "/menu-images/cocteles.png";
+import aperitivos from "/menu-images/aperitivos.png";
+import malteadas from "/menu-images/malteadas.png";
 
 export interface ProductPriceOption {
   label: string;
@@ -205,7 +209,7 @@ export const menuCategories: Category[] = [
         name: "COSTILLAS DE ELOTE AMARILLO",
         description: "Estas costillitas de elote dulce amarillo, bañaditas con salsa Hot BBQ, Cajun, Tajín y un toque de perejil deshidratado con limón te harán bailar como texano. Son perfectas para compartir y calmar tus antojos, ¡así que prepárate para chuparte los dedos!",
         prices: [
-          { label: "Precio", value: 120 }
+          { label: "", value: 120 }
         ],
         image: costillasElote,
         sauces: [
@@ -237,7 +241,7 @@ export const menuCategories: Category[] = [
         name: "PAPAS A LA FRANCESA",
         description: "Generosa porción de papas corte recto, calientitas y bien fritas; acompañadas de Kétchup Heinz y queso amarillo tipo Cheddar. ¡Obviamente sazonadas con nuestros polvos mágicos!",
         prices: [
-          { label: "Precio", value: 110 }
+          { label: "", value: 110 }
         ],
         image: papasFrancesa,
       },
@@ -246,7 +250,7 @@ export const menuCategories: Category[] = [
         name: "PAPAS CURLY",
         description: "Deliciosas papas espiral delicadamente sazonadas y muy crujientes, acompañadas con Kétchup Heinz y queso amarillo tipo Cheddar.",
         prices: [
-          { label: "Precio", value: 110 }
+          { label: "", value: 110 }
         ],
         image: papasCurly,
       },
@@ -255,7 +259,7 @@ export const menuCategories: Category[] = [
         name: "PAPAS GAJO",
         description: "Grandiosas papas gajo en cortes de gran tamaño, doradas por fuera y suaves por dentro, acompañadas de Kétchup Heinz y queso amarillo tipo Cheddar.",
         prices: [
-          { label: "Precio", value: 110 }
+          { label: "", value: 110 }
         ],
         image: papasGajo,
       },
@@ -264,7 +268,7 @@ export const menuCategories: Category[] = [
         name: "CARI-PAPAS",
         description: "Simpáticas papas en forma de carita feliz esponjaditas, fritas y calientitas, acompañadas de Kétchup Heinz y queso amarillo tipo Cheddar.",
         prices: [
-          { label: "Precio", value: 110 }
+          { label: "", value: 110 }
         ],
         image: cariPapas,
       },
@@ -273,7 +277,7 @@ export const menuCategories: Category[] = [
         name: "PAPAS WAFFLE",
         description: "Pide estas bellezas de papas en forma de Waffle, crujientes y deliciosas, acompañadas con Kétchup Heinz y queso amarillo tipo Cheddar.",
         prices: [
-          { label: "Precio", value: 110 }
+          { label: "", value: 110 }
         ],
         image: papasWaffle,
       }
@@ -518,7 +522,7 @@ export const menuCategories: Category[] = [
         name: "BUBU-COSTILLAS BBQ",
         description: "¡Llegaron las costillas que ni Thalía se imaginó! Jugosas Grilled Baby Back Ribs de cerdo, bien barnizadas con tu wing sauce favorita, sobre cama de lechuga fresca. Vienen acompañadas de un elotito dulce con mantequilla y nuestros polvitos mágicos que le dan el toque especial. ¿No eres de elote? Cámbialo por papitas sin costo. 😉",
         prices: [
-          { label: "Precio", value: 315 }
+          { label: "", value: 315 }
         ],
         image: costillas,
         sauces: [
@@ -539,7 +543,7 @@ export const menuCategories: Category[] = [
         name: "COSTILLAS DE ELOTE AMARILLO",
         description: "Estas costillitas de elote dulce amarillo, bañaditas con salsa Hot BBQ, Cajun, Tajín y un toque de perejil deshidratado con limón te harán bailar como texano. Son perfectas para compartir y calmar tus antojos, ¡así que prepárate para chuparte los dedos!",
         prices: [
-          { label: "Precio", value: 120 }
+          { label: "", value: 120 }
         ],
         image: costillasElote,
         sauces: [
@@ -688,54 +692,38 @@ export const menuCategories: Category[] = [
   // 11. Bebidas Alcohólicas
   {
     id: "alcoholicas",
-    name: "Bebidas Alcohólicas",
+    name: "Bebidas Con Alcohol",
     icon: "",
     chefImage: chefPorCategoria["bubuchelas"],
     products: [
       {
         id: "a1",
         name: "APERITIVOS",
-        description: "Aperol, Campari, Anís Pernod, Jagermeister, Agavero",
+        description: "Para empezar con el pie derecho. Estos traguitos son ideales para ir calentando motores antes de la comida. Ligeros, sabrosos y con ese toque que te abre el apetito. ¡El preámbulo perfecto para lo que viene!",
         prices: [
-          { label: "Aperol", value: 140 },
-          { label: "Campari", value: 140 },
-          { label: "Anís Pernod", value: 120 },
-          { label: "Jagermeister", value: 130 },
-          { label: "Agavero", value: 115 }
         ],
-        image: "https://images.pexels.com/photos/338713/pexels-photo-338713.jpeg?auto=compress&cs=tinysrgb&w=300",
+        image: aperitivos,
       },
       {
         id: "a2",
         name: "COCTELES ESPECIALES",
-        description: "EL COSCORRÓN, EL DIABLO, LA CONGA, LA CHAQUETA, EL SUGAR DADDY, PALOMA DE FRESA, PALOMA DE MANGO, GIN DE FRUTOS ROJOS, GIN DE MANGO, LA PEPA ROSADA, MARGARITA FROZEN, WHISKY SUMMER",
-        prices: [
-          { label: "EL COSCORRÓN", value: 160 },
-          { label: "EL DIABLO", value: 145 },
-          { label: "LA CONGA", value: 145 },
-          { label: "LA CHAQUETA", value: 160 },
-          { label: "EL SUGAR DADDY", value: 165 },
-          { label: "PALOMA DE FRESA", value: 165 },
-          { label: "PALOMA DE MANGO", value: 165 },
-          { label: "GIN DE FRUTOS ROJOS", value: 170 },
-          { label: "GIN DE MANGO", value: 170 },
-          { label: "LA PEPA ROSADA", value: 165 },
-          { label: "MARGARITA FROZEN", value: 180 },
-          { label: "WHISKY SUMMER", value: 180 }
+        description: "Una selección de cocteles únicos y elaborados, cada uno con su propia historia y combinación perfecta de sabores. Desde clásicos con un toque especial hasta creaciones exclusivas de nuestra casa.",
+        prices: [          
         ],
-        image: "https://images.pexels.com/photos/1304540/pexels-photo-1304540.jpeg?auto=compress&cs=tinysrgb&w=300",
-      },
-      {
-        id: "a3",
-        name: "MOJITOS",
-        description: "ORIGINAL, PIÑA, GUAYABA, MARACUYÁ, LICHI, MANGO, FRESA, TAMARINDO, GUANABANA, FRUTOS ROJOS, JAMAICA, COCO, YAKULT, SANDIA, CEREZA, GROSELLA, GRANADA",
-        prices: [
-          { label: "1 Litro", value: 145 }
-        ],
-        image: "https://images.pexels.com/photos/1304540/pexels-photo-1304540.jpeg?auto=compress&cs=tinysrgb&w=300",
+        image: cocteles
       },
       {
         id: "a4",
+        name: "MOJITOS",
+        description: "",
+        prices: [
+          { label: "1 Litro", value: 145 },
+          { label: "1/2 Litro", value: 85 }
+        ],
+        image: "https://images.pexels.com/photos/1304540/pexels-photo-1304540.jpeg?auto=compress&cs=tinysrgb&w=300",
+      },
+      {
+        id: "a11",
         name: "COCKTAILS COLORS",
         description: "AZULITO VODKA, ROJO VODKA DE FRUTOS ROJOS, MORADO VODKA Y JUGO DE UVA, AMARILLO BACARDÍ MANGO CHILE, ROSA BACARDÍ RASPBERRY, VERDE BACARDÍ LIMÓN, BUBBALOO XTREME DE UVA, VODKA Y CHICLES",
         prices: [
@@ -748,7 +736,7 @@ export const menuCategories: Category[] = [
         name: "CHELAS PREMIUM",
         description: "Heineken, Ultra, Bohemia Clara, Bohemia Oscura, XX Lager, XX Ámbar",
         prices: [
-          { label: "Precio", value: 55 }
+          { label: "", value: 55 }
         ],
         image: "https://images.pexels.com/photos/1552630/pexels-photo-1552630.jpeg?auto=compress&cs=tinysrgb&w=300",
       },
@@ -757,7 +745,7 @@ export const menuCategories: Category[] = [
         name: "CHELAS NACIONALES",
         description: "Tecate, Tecate Ligth, Indio, Corona, Victoria",
         prices: [
-          { label: "Precio", value: 45 }
+          { label: "", value: 45 }
         ],
         image: "https://images.pexels.com/photos/52994/beer-slide-beer-glass-beer-mug-52994.jpeg?auto=compress&cs=tinysrgb&w=300",
       },
@@ -807,11 +795,11 @@ export const menuCategories: Category[] = [
         image: "https://images.pexels.com/photos/1187766/pexels-photo-1187766.jpeg?auto=compress&cs=tinysrgb&w=300",
       },
       {
-        id: "a11",
+        id: "a11b",
         name: "BUBUCHELA ARTESANAL",
         description: "Blanca: Blonde Ale con especias. Oscura: Del tipo Dubbel con notas de café",
         prices: [
-          { label: "Precio", value: 85 }
+          { label: "", value: 85 }
         ],
         image: "https://images.pexels.com/photos/1267696/pexels-photo-1267696.jpeg?auto=compress&cs=tinysrgb&w=300",
       },
@@ -820,7 +808,7 @@ export const menuCategories: Category[] = [
         name: "STRONGBOW",
         description: "SENCILLO, PREPARADO CON FRUTOS ROJOS",
         prices: [
-          { label: "Precio", value: 85 }
+          { label: "", value: 85 }
         ],
         image: "https://images.pexels.com/photos/1187766/pexels-photo-1187766.jpeg?auto=compress&cs=tinysrgb&w=300",
       },
@@ -836,7 +824,7 @@ export const menuCategories: Category[] = [
       {
         id: "a14",
         name: "DIGESTIVOS",
-        description: "Carajillo to shake or not to shake, Carajillo conejito Turín, Baileys, Midori, Licor 43, Frangelico",
+        description: "El final perfecto para tu comida. Disfruta de nuestra selección de licores suaves y aromáticos, ideales para acompañar el postre o cerrar con broche de oro.",
         prices: [
           { label: "Carajillo", value: 155 },
           { label: "Carajillo Turín", value: 185 },
@@ -845,7 +833,7 @@ export const menuCategories: Category[] = [
           { label: "Licor 43", value: 120 },
           { label: "Frangelico", value: 120 }
         ],
-        image: "https://images.pexels.com/photos/1283219/pexels-photo-1283219.jpeg?auto=compress&cs=tinysrgb&w=300",
+        image: digestivos,
       },
     ]
   },
@@ -859,18 +847,18 @@ export const menuCategories: Category[] = [
       {
         id: "malteada-1",
         name: "BUBUMALTEADAS CLÁSICAS",
-        description: "Preparadas con leche deslactosada, helado e ingredientes de primera calidad, servidas con un delicioso topping de crema batida y chispas de colores, chocolate, mazapán, chicle o galleta. Sabores: Oreo, Mazapán de la Rosa, Algodón de Azúcar, Chocolate, Fresa, Frutos Rojos, Vainilla, Chicle Azul, Chicle Rosa",
+        description: "Preparamos cada malteada con leche deslactosada y helado cremoso de la mejor calidad. Las acompañamos con crema batida, chispas de colores y ese toque especial que las hace únicas: ya sea chocolate derretido, mazapán, galleta, chicle o tu topping favorito. ¡Son el antojo perfecto para consentirte a cualquier hora!",
         prices: [
-          { label: "Precio", value: 85 }
+          { label: "", value: 130 }
         ],
-        image: "https://images.pexels.com/photos/103566/pexels-photo-103566.jpeg?auto=compress&cs=tinysrgb&w=300",
+        image: malteadas,
       },
       {
         id: "malteada-2",
         name: "BUBUTEMPURA OREO",
         description: "Clásicas galletas Oreo cubiertas de Tempura y acompañadas con cremoso y dulce helado del sabor de tu elección servidas con crema chantilly, chispas de sabores y una rica cereza",
         prices: [
-          { label: "Precio", value: 95 }
+          { label: "", value: 95 }
         ],
         image: "https://images.pexels.com/photos/140831/pexels-photo-140831.jpeg?auto=compress&cs=tinysrgb&w=300",
       }
