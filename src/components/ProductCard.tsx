@@ -3,6 +3,7 @@ import { Product, Category } from '../data/menuData';
 import { Modal } from 'react-bootstrap';
 import CocktailGrid from './CocktailGrid';
 import './CocktailGrid.module.css';
+import { MalteadasModal } from './MalteadasModal';
 import { productTranslations, sauceTranslations } from '../i18n/menu';
 import { uiTranslations } from '../i18n/menu';
 import { LanguageContext } from '../App';
@@ -31,6 +32,22 @@ const pastelColors = [
   '#8f00ff', // violeta
 ];
 
+const malteadaColors = [
+  '#ffd7e0', // rosa pastel
+  '#b3e5fc', // azul pastel
+  '#ffd180', // naranja pastel
+  '#b9f6ca', // verde pastel
+  '#e1bee7'  // morado pastel
+];
+
+function alternateColors(text: string, index: number) {
+  const colors = ['#fff', '#ff6d00']; // blanco y naranja
+  const color = colors[index % colors.length];
+  return (
+    <span style={{ color, fontWeight: 'bold' }}>{text}</span>
+  );
+}
+
 function multicolorText(text: string) {
   return (
     <span>
@@ -48,6 +65,9 @@ const ProductCard: React.FC<ProductCardProps> = ({ product, category, products, 
   const [showEquivModal, setShowEquivModal] = useState(false);
   const [showSauceModal, setShowSauceModal] = useState(false);
   const [showFriesInfo, setShowFriesInfo] = useState(false);
+  const [showCocktailColorsModal, setShowCocktailColorsModal] = useState(false);
+  const [showMalteadasModal, setShowMalteadasModal] = useState(false);
+  const [showDigestivosModal, setShowDigestivosModal] = useState(false);
   const [showBeverageModal, setShowBeverageModal] = useState(false);
   const [showBoingModal, setShowBoingModal] = useState(false);
   const [showItalianSodasModal, setShowItalianSodasModal] = useState(false);
@@ -651,34 +671,216 @@ const ProductCard: React.FC<ProductCardProps> = ({ product, category, products, 
                   </Modal>
                 )}
                 {product.id === 'bebida-6' && (
-                  <button
-                    className="btn btn-primary"
-                    onClick={() => setShowItalianSodasModal(true)}
-                  >
-                    Ver Sabores
-                  </button>
+                  <div style={{ marginBottom: '20px' }}>
+                    <button
+                      className="btn btn-primary"
+                      onClick={() => setShowItalianSodasModal(true)}
+                      style={{
+                        padding: '10px 20px',
+                        fontSize: '1.05rem',
+                        minWidth: '140px'
+                      }}
+                    >
+                      Ver Sabores
+                    </button>
+                  </div>
                 )}
                 {product.id === 'bebida-8' && (
-                  <button onClick={() => setShowCafeModal(true)} style={{ marginTop: '10px', padding: '5px 10px', backgroundColor: '#ff9800', color: '#fff', border: 'none', borderRadius: '5px', cursor: 'pointer' }}>
-                    Ver más
-                  </button>
+                  <div style={{ marginBottom: '20px' }}>
+                    <button onClick={() => setShowCafeModal(true)} style={{
+                      padding: '10px 20px',
+                      backgroundColor: '#ff9800',
+                      color: '#fff',
+                      border: 'none',
+                      borderRadius: '5px',
+                      cursor: 'pointer',
+                      fontSize: '1.05rem',
+                      minWidth: '140px'
+                    }}>
+                      Ver más
+                    </button>
+                  </div>
+                )}
+                {product.id === 'a11' && (
+                  <div style={{ marginBottom: '20px' }}>
+                    <button onClick={() => setShowCocktailColorsModal(true)} style={{
+                      padding: '10px 20px',
+                      backgroundColor: '#ff9800',
+                      color: '#fff',
+                      border: 'none',
+                      borderRadius: '5px',
+                      cursor: 'pointer',
+                      fontSize: '1.05rem',
+                      minWidth: '140px'
+                    }}>
+                      Ver colores
+                    </button>
+                  </div>
+                )}
+                {showCocktailColorsModal && product.id === 'a11' && (
+                  <Modal show={showCocktailColorsModal} onHide={() => setShowCocktailColorsModal(false)} centered>
+                    <Modal.Header closeButton style={{ backgroundColor: '#1e1e1e', color: '#ff9800', borderBottom: '1px solid #ff9800' }}>
+                      <Modal.Title style={{ fontWeight: 'bold', fontSize: '1.5rem' }}>Colores de Cocktail</Modal.Title>
+                    </Modal.Header>
+                    <Modal.Body style={{ backgroundColor: '#2c2c2c', color: '#fff', padding: '20px' }}>
+                      <ul style={{ listStyleType: 'none', padding: 0 }}>
+                        {['AZULITO VODKA',
+                          'ROJO VODKA DE FRUTOS ROJOS',
+                          'MORADO VODKA Y JUGO DE UVA',
+                          'AMARILLO BACARDÍ MANGO CHILE',
+                          'ROSA BACARDÍ RASPBERRY',
+                          'VERDE BACARDÍ LIMÓN',
+                          'BUBBALOO XTREME DE UVA, VODKA Y CHICLES'].map((color, index) => (
+                            <li key={index} style={{ marginBottom: '10px', fontSize: '1.2rem' }}>
+                              <span style={{ color: pastelColors[index % pastelColors.length], fontWeight: 'bold' }}>{color}</span>
+                            </li>
+                          ))}
+                      </ul>
+                    </Modal.Body>
+                    <Modal.Footer style={{ 
+                      backgroundColor: '#1e1e1e', 
+                      borderTop: '1px solid #ff9800',
+                      padding: '10px'
+                    }}>
+                      <button 
+                        onClick={() => setShowCocktailColorsModal(false)} 
+                        style={{
+                          padding: '8px 16px',
+                          backgroundColor: '#ff9800',
+                          color: '#fff',
+                          border: 'none',
+                          borderRadius: '5px',
+                          cursor: 'pointer',
+                          marginLeft: 'auto',
+                          fontWeight: 'bold'
+                        }}
+                      >
+                        Cerrar
+                      </button>
+                    </Modal.Footer>
+                  </Modal>
                 )}
                 {product.id === 'bebida-9' && (
-                  <button onClick={() => setShowTisanasModal(true)} style={{ marginTop: '10px', padding: '5px 10px', backgroundColor: '#ff9800', color: '#fff', border: 'none', borderRadius: '5px', cursor: 'pointer' }}>
-                    Ver Sabores
-                  </button>
+                  <div style={{ marginBottom: '20px' }}>
+                    <button onClick={() => setShowTisanasModal(true)} style={{
+                      padding: '10px 20px',
+                      backgroundColor: '#ff9800',
+                      color: '#fff',
+                      border: 'none',
+                      borderRadius: '5px',
+                      cursor: 'pointer',
+                      fontSize: '1.05rem',
+                      minWidth: '140px'
+                    }}>
+                      Ver Sabores
+                    </button>
+                  </div>
+                )}
+                {product.id === 'a15' && (
+                  <div style={{ marginBottom: '20px' }}>
+                    <button onClick={() => setShowDigestivosModal(true)} style={{
+                      padding: '10px 20px',
+                      backgroundColor: '#ff9800',
+                      color: '#fff',
+                      border: 'none',
+                      borderRadius: '5px',
+                      cursor: 'pointer',
+                      fontSize: '1.05rem',
+                      minWidth: '140px'
+                    }}>
+                      Ver digestivos
+                    </button>
+                  </div>
+                )}
+                {showDigestivosModal && product.id === 'a15' && (
+                  <Modal show={showDigestivosModal} onHide={() => setShowDigestivosModal(false)} centered>
+                    <Modal.Header closeButton style={{ backgroundColor: '#1e1e1e', color: '#ff9800', borderBottom: '1px solid #ff9800' }}>
+                      <Modal.Title style={{ fontWeight: 'bold', fontSize: '1.5rem' }}>Digestivos</Modal.Title>
+                    </Modal.Header>
+                    <Modal.Body style={{ backgroundColor: '#2c2c2c', color: '#fff', padding: '20px' }}>
+                      <ul style={{ listStyleType: 'none', padding: 0 }}>
+                        {['WHISKY',
+                          'TEQUILA',
+                          'RON',
+                          'VODKA',
+                          'MEZCAL',
+                          'BRANDY',
+                          'MIDORI',
+                          'LICOR 43',
+                          'FRANGELICO'].map((digestivo, index) => {
+                            const prices: Record<string, number> = {
+                              'WHISKY': 155,
+                              'TEQUILA': 155,
+                              'RON': 155,
+                              'VODKA': 155,
+                              'MEZCAL': 155,
+                              'BRANDY': 155,
+                              'MIDORI': 120,
+                              'LICOR 43': 120,
+                              'FRANGELICO': 120
+                            };
+                            return (
+                              <li key={index} style={{ marginBottom: '10px', fontSize: '1.2rem', display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
+                                {alternateColors(digestivo, index)}
+                                <span style={{ color: '#ffd740', fontWeight: 'bold' }}>${prices[digestivo]}</span>
+                              </li>
+                            );
+                          })}
+                      </ul>
+                    </Modal.Body>
+                    <Modal.Footer style={{ 
+                      backgroundColor: '#1e1e1e', 
+                      borderTop: '1px solid #ff9800',
+                      padding: '10px'
+                    }}>
+                      <button 
+                        onClick={() => setShowDigestivosModal(false)} 
+                        style={{
+                          padding: '8px 16px',
+                          backgroundColor: '#ff9800',
+                          color: '#fff',
+                          border: 'none',
+                          borderRadius: '5px',
+                          cursor: 'pointer',
+                          marginLeft: 'auto',
+                          fontWeight: 'bold'
+                        }}
+                      >
+                        Cerrar
+                      </button>
+                    </Modal.Footer>
+                  </Modal>
+                )}
+                {product.id === 'malteada-1' && (
+                  <div style={{ marginBottom: '20px' }}>
+                    <button onClick={() => setShowMalteadasModal(true)} style={{
+                      padding: '10px 20px',
+                      backgroundColor: '#ff9800',
+                      color: '#fff',
+                      border: 'none',
+                      borderRadius: '5px',
+                      cursor: 'pointer',
+                      fontSize: '1.05rem',
+                      minWidth: '140px'
+                    }}>
+                      Ver sabores
+                    </button>
+                  </div>
+                )}
+                {showMalteadasModal && product.id === 'malteada-1' && (
+                  <MalteadasModal isOpen={showMalteadasModal} onClose={() => setShowMalteadasModal(false)} />
                 )}
                 <button
                   className="btn btn-primary w-100"
                   onClick={closeModal}
                   style={{
-                    marginTop: 2,
+                    marginTop: '20px',
                     background: 'var(--primary-orange)',
                     border: 'none',
                     fontWeight: 700,
-                    fontSize: '0.9em',
+                    fontSize: '1.05rem',
                     borderRadius: 10,
-                    padding: '6px 0'
+                    padding: '8px 0'
                   }}
                 >
                   {t.close[language]}
@@ -954,50 +1156,50 @@ const ProductCard: React.FC<ProductCardProps> = ({ product, category, products, 
         </Modal.Header>
         <Modal.Body style={{ backgroundColor: '#2c2c2c', color: '#fff', padding: '20px' }}>
           <ul style={{ listStyleType: 'none', padding: 0 }}>
-            <li style={{ display: 'flex', justifyContent: 'space-between', marginBottom: '15px', fontSize: '1.3rem' }}>
-              <span>Café Americano</span>
-              <span style={{ color: '#ff9800' }}>$50</span>
-              <hr style={{ margin: '12px 0', borderTop: '1px solid #ff9800' }} />
+            <li style={{ marginBottom: '10px', fontSize: '1.2rem' }}>
+              Café Americano
+              <span style={{ fontSize: '1.3rem', color: '#ff9800', float: 'right' }}>$50</span>
+              <hr style={{ margin: '10px 0', borderTop: '1px solid #ff9800' }} />
             </li>
-            <li style={{ display: 'flex', justifyContent: 'space-between', marginBottom: '15px', fontSize: '1.3rem' }}>
-              <span>Con leche</span>
-              <span style={{ color: '#ff9800' }}>$55</span>
-              <hr style={{ margin: '12px 0', borderTop: '1px solid #ff9800' }} />
+            <li style={{ marginBottom: '10px', fontSize: '1.2rem' }}>
+              Con leche
+              <span style={{ fontSize: '1.3rem', color: '#ff9800', float: 'right' }}>$55</span>
+              <hr style={{ margin: '10px 0', borderTop: '1px solid #ff9800' }} />
             </li>
-            <li style={{ display: 'flex', justifyContent: 'space-between', marginBottom: '15px', fontSize: '1.3rem' }}>
-              <span>Capuchino</span>
-              <span style={{ color: '#ff9800' }}>$65</span>
-              <hr style={{ margin: '12px 0', borderTop: '1px solid #ff9800' }} />
+            <li style={{ marginBottom: '10px', fontSize: '1.2rem' }}>
+              Capuchino
+              <span style={{ fontSize: '1.3rem', color: '#ff9800', float: 'right' }}>$65</span>
+              <hr style={{ margin: '10px 0', borderTop: '1px solid #ff9800' }} />
             </li>
-            <li style={{ display: 'flex', justifyContent: 'space-between', marginBottom: '15px', fontSize: '1.3rem' }}>
-              <span>Capuchino Vainilla</span>
-              <span style={{ color: '#ff9800' }}>$70</span>
-              <hr style={{ margin: '12px 0', borderTop: '1px solid #ff9800' }} />
+            <li style={{ marginBottom: '10px', fontSize: '1.2rem' }}>
+              Capuchino Vainilla
+              <span style={{ fontSize: '1.3rem', color: '#ff9800', float: 'right' }}>$70</span>
+              <hr style={{ margin: '10px 0', borderTop: '1px solid #ff9800' }} />
             </li>
-            <li style={{ display: 'flex', justifyContent: 'space-between', marginBottom: '15px', fontSize: '1.3rem' }}>
-              <span>Capuchino Caramel</span>
-              <span style={{ color: '#ff9800' }}>$70</span>
-              <hr style={{ margin: '12px 0', borderTop: '1px solid #ff9800' }} />
+            <li style={{ marginBottom: '10px', fontSize: '1.2rem' }}>
+              Capuchino Caramel
+              <span style={{ fontSize: '1.3rem', color: '#ff9800', float: 'right' }}>$70</span>
+              <hr style={{ margin: '10px 0', borderTop: '1px solid #ff9800' }} />
             </li>
-            <li style={{ display: 'flex', justifyContent: 'space-between', marginBottom: '15px', fontSize: '1.3rem' }}>
-              <span>Con Licor de Café Kahlúa</span>
-              <span style={{ color: '#ff9800' }}>$+ 15</span>
-              <hr style={{ margin: '12px 0', borderTop: '1px solid #ff9800' }} />
+            <li style={{ marginBottom: '10px', fontSize: '1.2rem' }}>
+              Con Licor de Café Kahlúa
+              <span style={{ fontSize: '1.3rem', color: '#ff9800', float: 'right' }}>$+ 15</span>
+              <hr style={{ margin: '10px 0', borderTop: '1px solid #ff9800' }} />
             </li>
-            <li style={{ display: 'flex', justifyContent: 'space-between', marginBottom: '15px', fontSize: '1.3rem' }}>
-              <span>Expreso Sencillo</span>
-              <span style={{ color: '#ff9800' }}>$55</span>
-              <hr style={{ margin: '12px 0', borderTop: '1px solid #ff9800' }} />
+            <li style={{ marginBottom: '10px', fontSize: '1.2rem' }}>
+              Expreso Sencillo
+              <span style={{ fontSize: '1.3rem', color: '#ff9800', float: 'right' }}>$55</span>
+              <hr style={{ margin: '10px 0', borderTop: '1px solid #ff9800' }} />
             </li>
-            <li style={{ display: 'flex', justifyContent: 'space-between', marginBottom: '15px', fontSize: '1.3rem' }}>
-              <span>Expreso Doble</span>
-              <span style={{ color: '#ff9800' }}>$70</span>
-              <hr style={{ margin: '12px 0', borderTop: '1px solid #ff9800' }} />
+            <li style={{ marginBottom: '10px', fontSize: '1.2rem' }}>
+              Expreso Doble
+              <span style={{ fontSize: '1.3rem', color: '#ff9800', float: 'right' }}>$70</span>
+              <hr style={{ margin: '10px 0', borderTop: '1px solid #ff9800' }} />
             </li>
-            <li style={{ display: 'flex', justifyContent: 'space-between', marginBottom: '15px', fontSize: '1.3rem' }}>
-              <span>Expreso Doble Cortado</span>
-              <span style={{ color: '#ff9800' }}>$75</span>
-              <hr style={{ margin: '12px 0', borderTop: '1px solid #ff9800' }} />
+            <li style={{ marginBottom: '10px', fontSize: '1.2rem' }}>
+              Expreso Doble Cortado
+              <span style={{ fontSize: '1.3rem', color: '#ff9800', float: 'right' }}>$75</span>
+              <hr style={{ margin: '10px 0', borderTop: '1px solid #ff9800' }} />
             </li>
           </ul>
         </Modal.Body>
@@ -1127,15 +1329,22 @@ const ProductCard: React.FC<ProductCardProps> = ({ product, category, products, 
       {/* Modal de Boing */}
       <Modal show={showBoingModal} onHide={() => setShowBoingModal(false)} centered size="lg">
         <Modal.Header closeButton style={{ backgroundColor: '#1e1e1e', color: '#ff9800', borderBottom: '1px solid #ff9800' }}>
-          <Modal.Title style={{ fontWeight: 'bold', fontSize: '1.5rem' }}>Bebidas Boing</Modal.Title>
+          <Modal.Title style={{ fontWeight: 'bold', fontSize: '1.5rem' }}>Sabores Boing</Modal.Title>
         </Modal.Header>
         <Modal.Body style={{ backgroundColor: '#2c2c2c', color: '#fff', padding: '20px' }}>
-          <p style={{ fontSize: '1.2rem', marginBottom: '20px' }}>{boingDescription}</p>
           <ul style={{ listStyleType: 'none', padding: 0 }}>
-            {boingFlavors.map((flavor, index) => (
-              <li key={index} style={{ marginBottom: '15px', fontSize: '1.3rem' }}>
-                <span>{flavor}</span>
-                <hr style={{ margin: '12px 0', borderTop: '1px solid #ff9800' }} />
+            {product.prices.map((price, index) => (
+              <li key={index} style={{ 
+                marginBottom: '10px',
+                fontSize: '1.2rem'
+              }}>
+                {product.name}
+                <span style={{ 
+                  fontSize: '1.3rem',
+                  color: '#ff9800',
+                  float: 'right'
+                }}>${price.value}</span>
+                <hr style={{ margin: '10px 0', borderTop: '1px solid #ff9800' }} />
               </li>
             ))}
           </ul>

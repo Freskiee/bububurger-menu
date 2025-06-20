@@ -25,14 +25,14 @@ const HamburgerMenu = ({ setDarkMode, darkMode }: { setDarkMode: (fn: (prev: boo
           display: 'flex',
           alignItems: 'center',
           justifyContent: 'center',
-          fontSize: 28,
+          fontSize: 24,
           color: darkMode ? '#ffd740' : '#333',
           boxShadow: '0 2px 12px 0 rgba(0,0,0,0.18)',
           cursor: 'pointer'
         }}
         aria-label={language === 'es' ? "Abrir menú" : "Open menu"}
       >
-        &#9776;
+        🍔
       </button>
 
       {/* Menú lateral */}

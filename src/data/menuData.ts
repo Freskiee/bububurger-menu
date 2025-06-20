@@ -1,52 +1,66 @@
 // import { MenuItem } from "../types/menu";
-import olimpica from "/menu-images/olimpica.png";
-import mojitoFrutosRojos from "/menu-images/mojito-fr.png";
-import dedosQueso from "/menu-images/dedos-queso.png";
-import baconWestern from "/menu-images/bacon_doble.png";
-import diablo from "/menu-images/diablo.png";
-import jalapeños from "/menu-images/jalapenios.png";
-import nuggets from "/menu-images/nuggets.png";
-import aros from "/menu-images/aros_de_cebolla.png";
-import nachosChilibean from "/menu-images/nachos.png";
-import costillasElote from "/menu-images/costillas-elote.png";
-import eloteAsado from "/menu-images/elote-asado.png";
-import papasFrancesa from "/menu-images/papas-francesa.png";
-import papasCurly from "/menu-images/papas-curly.png";
-import papasGajo from "/menu-images/papas-gajo.png";
-import cariPapas from "/menu-images/caripapas.png";
-import papasWaffle from "/menu-images/papas-waffle.png";
-import sensata from "/menu-images/sensata.png";
-import dobleMoral from "/menu-images/doble-queso-pinia.png";
-import hawaiana from "/menu-images/hawaiana.png";
-import crujipollo from "/menu-images/crujipollo.png";
-import pepperoniBurger from "/menu-images/peperoni.png";
-import costraBurger from "/menu-images/costra-burger.png";
-import ariWings from "/menu-images/alitas.png";
-import boneless from "/menu-images/boneless.png";
-import hotdog from "/menu-images/hot-dog.png";
-import hotdogTocino from "/menu-images/hot-dog-tocino.png";
-import hotdogHawaiano from "/menu-images/hot-dog-hawaiano.png";
-import hotdogItalian from "/menu-images/hot-dog-italiano.png";
-import costillas from "/menu-images/costilla.png";
-import banderillas from "/menu-images/banderillas.png";
-import paqueteBububurger from "/menu-images/paq-burger.png";
-import paqueteNuggets from "/menu-images/paq-nuggets.png";
-import paqueteHotdog from "/menu-images/paq-hot-dog.png";
-import paqueteDeditos from "/menu-images/paq-deditos.png";
-import refrescos from "/images/refrescos-todos.png";
-import boing from "/images/boing-todos.png";
-import aguaCiel from "/menu-images/ciel.png";
-import bebidasPreparadas from "/images/bebidas-prepa.png";
-import energizantes from "/images/energizantes.png";
-import sodasItalianas from "/images/sida-italiana.png";
-import bebidaPanditas from "/images/bebida-panditas2.png";
-import cafes from "/menu-images/cafes.png";
-import tisanas from "/menu-images/tisanas.png";
-import digestivos from "/menu-images/digestivos.png";
-import cocteles from "/menu-images/cocteles.png";
-import aperitivos from "/menu-images/aperitivos.png";
-import malteadas from "/menu-images/malteadas.png";
-import mojitos from "/menu-images/mojitoss.png";
+const olimpica = '/src/assets/menu-images/olimpica.png?url';
+const mojitoFrutosRojos = '/src/assets/menu-images/mojito-fr.png?url';
+const dedosQueso = '/src/assets/menu-images/dedos-queso.png?url';
+const baconWestern = '/src/assets/menu-images/bacon_doble.png?url';
+const diablo = '/src/assets/menu-images/diablo.png?url';
+const jalapeños = '/src/assets/menu-images/jalapenios.png?url';
+const nuggets = '/src/assets/menu-images/nuggets.png?url';
+const aros = '/src/assets/menu-images/aros_de_cebolla.png?url';
+const nachosChilibean = '/src/assets/menu-images/nachos.png?url';
+const costillasElote = '/src/assets/menu-images/costillas-elote.png?url';
+const eloteAsado = '/src/assets/menu-images/elote-asado.png?url';
+const papasFrancesa = '/src/assets/menu-images/papas-francesa.png?url';
+const papasCurly = '/src/assets/menu-images/papas-curly.png?url';
+const papasGajo = '/src/assets/menu-images/papas-gajo.png?url';
+const cariPapas = '/src/assets/menu-images/caripapas.png?url';
+const papasWaffle = '/src/assets/menu-images/papas-waffle.png?url';
+const sensata = '/src/assets/menu-images/sensata.png?url';
+const dobleMoral = '/src/assets/menu-images/doble-queso-pinia.png?url';
+const hawaiana = '/src/assets/menu-images/hawaiana.png?url';
+const crujipollo = '/src/assets/menu-images/crujipollo.png?url';
+const pepperoniBurger = '/src/assets/menu-images/peperoni.png?url';
+const costraBurger = '/src/assets/menu-images/costra-burger.png?url';
+const ariWings = '/src/assets/menu-images/alitas.png?url';
+const boneless = '/src/assets/menu-images/boneless.png?url';
+const hotdog = '/src/assets/menu-images/hot-dog.png?url';
+const hotdogTocino = '/src/assets/menu-images/hot-dog-tocino.png?url';
+const hotdogHawaiano = '/src/assets/menu-images/hot-dog-hawaiano.png?url';
+const hotdogItalian = '/src/assets/menu-images/hot-dog-italiano.png?url';
+const costillas = '/src/assets/menu-images/costilla.png?url';
+const banderillas = '/src/assets/menu-images/banderillas.png?url';
+const paqueteBububurger = '/src/assets/menu-images/paq-burger.png?url';
+const paqueteNuggets = '/src/assets/menu-images/paq-nuggets.png?url';
+const paqueteHotdog = '/src/assets/menu-images/paq-hot-dog.png?url';
+const paqueteDeditos = '/src/assets/menu-images/paq-deditos.png?url';
+const refrescos = '/src/assets/menu-images/refrescos-todos.png?url';
+const boing = '/src/assets/menu-images/boing-todos.png?url';
+const aguaCiel = '/src/assets/menu-images/ciel.png?url';
+const bebidasPreparadas = '/src/assets/menu-images/bebidas-prepa.png?url';
+const energizantes = '/src/assets/menu-images/energizantes.png?url';
+const sodasItalianas = '/src/assets/menu-images/sida-italiana.png?url';
+const bebidaPanditas = '/src/assets/menu-images/bebida-panditas2.png?url';
+const cafes = '/src/assets/menu-images/cafes.png?url';
+const tisanas = '/src/assets/menu-images/tisanas.png?url';
+const digestivos = '/src/assets/menu-images/digestivos.png?url';
+const cocteles = '/src/assets/menu-images/cocteles.png?url';
+const aperitivos = '/src/assets/menu-images/aperitivos.png?url';
+const malteadas = '/src/assets/menu-images/malteadas.png?url';
+const mojitos = '/src/assets/menu-images/mojitoss.png?url';
+const colores = '/src/assets/menu-images/colores.png?url';
+const micheladasSabores = '/src/assets/menu-images/micheladas-sabo.png?url';
+const tritones = '/src/assets/menu-images/tritones.png?url';
+const tempura = '/src/assets/menu-images/tempura.png?url';
+const cervezaBarril = '/src/assets/menu-images/cerveza-barril.png?url';
+const strongbow = '/src/assets/menu-images/strongbow-preparado.png?url';
+const bubuchelas = '/src/assets/menu-images/bubuchelas.png?url';
+const tarros = '/src/assets/menu-images/tarros.png?url';
+const premium = '/src/assets/menu-images/premium.png?url';
+const nacionales = '/src/assets/menu-images/nacionales.png?url';
+const micheladasTrad = '/src/assets/menu-images/micheladas-trad.png?url';
+const destilados = '/src/assets/menu-images/destilados.png?url';
+
+
 
 export interface ProductPriceOption {
   label: string;
@@ -210,7 +224,7 @@ export const menuCategories: Category[] = [
         name: "COSTILLAS DE ELOTE AMARILLO",
         description: "Estas costillitas de elote dulce amarillo, bañaditas con salsa Hot BBQ, Cajun, Tajín y un toque de perejil deshidratado con limón te harán bailar como texano. Son perfectas para compartir y calmar tus antojos, ¡así que prepárate para chuparte los dedos!",
         prices: [
-          { label: "", value: 120 }
+          { label: "", value: 170 }
         ],
         image: costillasElote,
         sauces: [
@@ -315,9 +329,9 @@ export const menuCategories: Category[] = [
         name: "LA SENSATA",
         description: "100 gr. de carne de res sazonada con la receta secreta de la casa. Lechuga, jitomate, cebolla caramelizada, pepinillos, chiles, catsup, mostaza y mayonesa.",
         prices: [
-          { label: "Sencilla", value: 135 },
-          { label: "Queso o Piña", value: 140 },
-          { label: "Queso y Piña", value: 145 }
+          { label: "Sencilla", value: 145 },
+          { label: "Queso o Piña", value: 150 },
+          { label: "Queso y Piña", value: 155 }
         ],
         image: sensata,
       },
@@ -326,8 +340,8 @@ export const menuCategories: Category[] = [
         name: "DOBLE MORAL",
         description: "Dos carnes de 100 gr. de res sazonadas con la receta secreta de la casa. Lechuga, jitomate, cebolla caramelizada, pepinillos, chiles, catsup, mostaza y mayonesa.",
         prices: [
-          { label: "Queso o Piña", value: 160 },
-          { label: "Queso y Piña", value: 175 }
+          { label: "Queso o Piña", value: 165 },
+          { label: "Queso y Piña", value: 180 }
         ],
         image: dobleMoral,
       },
@@ -346,8 +360,8 @@ export const menuCategories: Category[] = [
         name: "TROPICAL - HAWAIANA",
         description: "La inconfundible hamburguesa hawaiana con su deliciosa piña tropical, asada lentamente a la parrilla, jamón Virginia, queso manchego y su tocino bien frito a la plancha. ¡Esta Bububurger te hará bailar el Waikiki! Lechuga, jitomate, cebolla caramelizada, pepinillos, chiles, catsup, mostaza y mayonesa.",
         prices: [
-          { label: "Sencilla", value: 170 },
-          { label: "Doble", value: 185 }
+          { label: "Sencilla", value: 175 },
+          { label: "Doble", value: 190 }
         ],
         image: hawaiana,
       },
@@ -471,28 +485,28 @@ export const menuCategories: Category[] = [
     products: [
       {
         id: "h1",
-        name: "HOT DOG CLÁSICO",
-        description: "Salchicha de pavo de 30 cm servida en pan suave tipo hotdog, con catsup, mostaza, cebolla y chiles jalapeños. Acompañado de papas a la francesa sazonadas con polvo especial.",
+        name: "SENCILLITO Y SIN RODEOS",
+        description: "Salchicha de 30 cm servida en pan suave tipo hotdog, con catsup, mostaza, cebolla y chiles jalapeños. Acompañado de papas a la francesa sazonadas con polvo especial.",
         prices: [
-          { label: "Salchicha de Pavo", value: 120 },
-          { label: "Salchicha de Res", value: 150 }
+          { label: "Salchicha de Pavo", value: 95 },
+          { label: "Salchicha de Res", value: 120 }
         ],
         image: hotdog,
       },
       {
         id: "h2",
         name: "HOT DOG TOCINO",
-        description: "Salchicha de pavo de 30 cm servida en pan suave tipo hotdog, con abundante tocino crujiente, catsup, mostaza, cebolla y chiles jalapeños. Acompañado de papas a la francesa sazonadas con polvo especial.",
+        description: "Salchicha de 30 cm servida en pan suave tipo hotdog, con abundante tocino crujiente, catsup, mostaza, cebolla y chiles jalapeños. Acompañado de papas a la francesa sazonadas con polvo especial.",
         prices: [
-          { label: "Salchicha de Pavo", value: 125 },
-          { label: "Salchicha de Res", value: 155 }
+          { label: "Salchicha de Pavo", value: 110 },
+          { label: "Salchicha de Res", value: 135 }
         ],
         image: hotdogTocino,
       },
       {
         id: "h3",
         name: "HOT DOG HAWAIANO",
-        description: "Salchicha de pavo de 30 cm servida en pan suave tipo hotdog, con jamón Virginia, piña caramelizada, queso manchego y un toque de salsa BBQ. Acompañado de papas a la francesa sazonadas con polvo especial.",
+        description: "Salchicha de 30 cm servida en pan suave tipo hotdog, con tocino, piña, queso manchego. Acompañado de papas a la francesa sazonadas con polvo especial.",
         prices: [
           { label: "Salchicha de Pavo", value: 125 },
           { label: "Salchicha de Res", value: 150 }
@@ -502,7 +516,7 @@ export const menuCategories: Category[] = [
       {
         id: "h4",
         name: "HOT DOG ITALIANO",
-        description: "Salchicha de pavo de 30 cm servida en pan suave tipo hotdog, bañada en una abundante salsa italiana estilo boloñesa, elaborada con carne molida de res, jitomate y especias mediterráneas. Acompañado de papas a la francesa sazonadas con polvo especial.",
+        description: "Salchicha de 30 cm servida en pan suave tipo hotdog, con quesomanchego, salsa italiana y pepperoni.",
         prices: [
           { label: "Salchicha de Pavo", value: 125 },
           { label: "Salchicha de Res", value: 150 }
@@ -544,7 +558,7 @@ export const menuCategories: Category[] = [
         name: "COSTILLAS DE ELOTE AMARILLO",
         description: "Estas costillitas de elote dulce amarillo, bañaditas con salsa Hot BBQ, Cajun, Tajín y un toque de perejil deshidratado con limón te harán bailar como texano. Son perfectas para compartir y calmar tus antojos, ¡así que prepárate para chuparte los dedos!",
         prices: [
-          { label: "", value: 120 }
+          { label: "", value: 170 }
         ],
         image: costillasElote,
         sauces: [
@@ -693,7 +707,7 @@ export const menuCategories: Category[] = [
   // 11. Bebidas Alcohólicas
   {
     id: "alcoholicas",
-    name: "Bebidas Con Alcohol",
+    name: "BEBIDAS CON ALCOHOL",
     icon: "",
     chefImage: chefPorCategoria["bubuchelas"],
     products: [
@@ -725,45 +739,56 @@ export const menuCategories: Category[] = [
       },
       {
         id: "a11",
-        name: "COCKTAILS COLORS",
-        description: "AZULITO VODKA, ROJO VODKA DE FRUTOS ROJOS, MORADO VODKA Y JUGO DE UVA, AMARILLO BACARDÍ MANGO CHILE, ROSA BACARDÍ RASPBERRY, VERDE BACARDÍ LIMÓN, BUBBALOO XTREME DE UVA, VODKA Y CHICLES",
+        name: "COLORES",
+        description: "Un arcoíris de sabor, deliciosas bebidas para el pre perfecto. ¡Salud!",
         prices: [
-          { label: "1 Litro", value: 145 }
+          { label: "1 Litro", value: 140 },
+          { label: "1/2 Litro", value: 80 }
         ],
-        image: "https://images.pexels.com/photos/1304540/pexels-photo-1304540.jpeg?auto=compress&cs=tinysrgb&w=300",
+        image: colores,
       },
       {
         id: "a5",
         name: "CHELAS PREMIUM",
         description: "Heineken, Ultra, Bohemia Clara, Bohemia Oscura, XX Lager, XX Ámbar",
         prices: [
-          { label: "", value: 55 }
+          { label: "", value: 70 }
         ],
-        image: "https://images.pexels.com/photos/1552630/pexels-photo-1552630.jpeg?auto=compress&cs=tinysrgb&w=300",
+        image: premium,
       },
       {
         id: "a6",
         name: "CHELAS NACIONALES",
         description: "Tecate, Tecate Ligth, Indio, Corona, Victoria",
         prices: [
-          { label: "", value: 45 }
+          { label: "", value: 60 }
         ],
-        image: "https://images.pexels.com/photos/52994/beer-slide-beer-glass-beer-mug-52994.jpeg?auto=compress&cs=tinysrgb&w=300",
+        image: nacionales,
       },
       {
         id: "a7",
+        name: "CERVEZA DE BARRIL",
+        description: "Clara u oscura, siempre bien fría, tirada directo de la torre. Espumosa, refrescante y con el sabor auténtico que se disfruta hasta el último trago.",
+        prices: [
+          { label: "1/2 Litro", value: 75 },
+          { label: "1 Litro", value: 120 }
+        ],
+        image: cervezaBarril,
+      },
+      {
+        id: "a8",
         name: "TARROS PREPARADOS",
         description: "Michelada sal y limón, Clamatada, Cubana, Sabor",
         prices: [
-          { label: "Michelada", value: 20 },
+          { label: "Sal y Limón", value: 20 },
           { label: "Clamatada", value: 35 },
           { label: "Cubana", value: 25 },
           { label: "Sabor", value: 35 }
         ],
-        image: "https://images.pexels.com/photos/1187766/pexels-photo-1187766.jpeg?auto=compress&cs=tinysrgb&w=300",
+        image: tarros,
       },
       {
-        id: "a8",
+        id: "a9",
         name: "MICHELADAS TRADICIONALES",
         description: "Michelada sal y limón, Clamachela, Cubana",
         prices: [
@@ -771,68 +796,65 @@ export const menuCategories: Category[] = [
           { label: "Michelada 1/2L", value: 85 },
           { label: "Clamachela 1L", value: 150 },
           { label: "Clamachela 1/2L", value: 95 },
-          { label: "Cubana 1L", value: 135 }
+          { label: "Cubana 1L", value: 135 },
+          { label: "Cubana 1/2L", value: 90 }
         ],
-        image: "https://images.pexels.com/photos/1187766/pexels-photo-1187766.jpeg?auto=compress&cs=tinysrgb&w=300",
+        image: micheladasTrad,
       },
       {
-        id: "a9",
+        id: "a10",
         name: "MICHELADAS DE SABORES",
         description: "Cerveza de barril clara / Oscura con escarchado y sabor de: Mango, Tamarindo, Chamoy y Ajonjolí, Mora Azul, Sandía, Fresa, Uva, Manzana Verde",
         prices: [
           { label: "1 Litro", value: 135 },
           { label: "1/2 litro", value: 90 }
         ],
-        image: "https://images.pexels.com/photos/1187766/pexels-photo-1187766.jpeg?auto=compress&cs=tinysrgb&w=300",
+        image: micheladasSabores,
       },
       {
-        id: "a10",
+        id: "a17",
         name: "TRITÓN DE 5 LITROS",
         description: "Claro / Oscuro, Colores / Mojito",
         prices: [
           { label: "Claro/Oscuro", value: 525 },
           { label: "Colores/Mojito", value: 620 }
         ],
-        image: "https://images.pexels.com/photos/1187766/pexels-photo-1187766.jpeg?auto=compress&cs=tinysrgb&w=300",
-      },
-      {
-        id: "a11b",
-        name: "BUBUCHELA ARTESANAL",
-        description: "Blanca: Blonde Ale con especias. Oscura: Del tipo Dubbel con notas de café",
-        prices: [
-          { label: "", value: 85 }
-        ],
-        image: "https://images.pexels.com/photos/1267696/pexels-photo-1267696.jpeg?auto=compress&cs=tinysrgb&w=300",
+        image: tritones,
       },
       {
         id: "a12",
-        name: "STRONGBOW",
-        description: "SENCILLO, PREPARADO CON FRUTOS ROJOS",
+        name: "BUBUCHELA ARTESANAL",
+        description: "Blanca: Blonde Ale con especias. Oscura: Del tipo Dubbel con notas de café",
         prices: [
-          { label: "", value: 85 }
+          { label: "", value: 130 }
         ],
-        image: "https://images.pexels.com/photos/1187766/pexels-photo-1187766.jpeg?auto=compress&cs=tinysrgb&w=300",
+        image: bubuchelas,
       },
       {
         id: "a13",
-        name: "DESTILADOS",
-        description: "WHISKY, TEQUILA, RON, VODKA, MEZCAL, BRANDY",
+        name: "STRONGBOW",
+        description: "SENCILLO O PREPARADO CON FRUTOS ROJOS",
         prices: [
-          { label: "1 Litro", value: 145 }
+          { label: "Sencillo", value: 90 },
+          { label: "Preparado", value: 105 }
         ],
-        image: "https://images.pexels.com/photos/1283219/pexels-photo-1283219.jpeg?auto=compress&cs=tinysrgb&w=300",
+        image: strongbow,
       },
       {
         id: "a14",
+        name: "DESTILADOS",
+        description: "WHISKY, TEQUILA, RON, VODKA, MEZCAL, BRANDY",
+        prices: [
+          { label: "1 Litro", value: 145 },
+          { label: "1/2 Litro", value: 85 }
+        ],
+        image: destilados,
+      },
+      {
+        id: "a15",
         name: "DIGESTIVOS",
         description: "El final perfecto para tu comida. Disfruta de nuestra selección de licores suaves y aromáticos, ideales para acompañar el postre o cerrar con broche de oro.",
         prices: [
-          { label: "Carajillo", value: 155 },
-          { label: "Carajillo Turín", value: 185 },
-          { label: "Baileys", value: 115 },
-          { label: "Midori", value: 120 },
-          { label: "Licor 43", value: 120 },
-          { label: "Frangelico", value: 120 }
         ],
         image: digestivos,
       },
@@ -847,7 +869,7 @@ export const menuCategories: Category[] = [
     products: [
       {
         id: "malteada-1",
-        name: "BUBUMALTEADAS CLÁSICAS",
+        name: "BUBUMALTEADAS",
         description: "Preparamos cada malteada con leche deslactosada y helado cremoso de la mejor calidad. Las acompañamos con crema batida, chispas de colores y ese toque especial que las hace únicas: ya sea chocolate derretido, mazapán, galleta, chicle o tu topping favorito. ¡Son el antojo perfecto para consentirte a cualquier hora!",
         prices: [
           { label: "", value: 130 }
@@ -857,11 +879,11 @@ export const menuCategories: Category[] = [
       {
         id: "malteada-2",
         name: "BUBUTEMPURA OREO",
-        description: "Clásicas galletas Oreo cubiertas de Tempura y acompañadas con cremoso y dulce helado del sabor de tu elección servidas con crema chantilly, chispas de sabores y una rica cereza",
+        description: "Crujientes galletas Oreo cubiertas con una deliciosa capa de tempura dorada, acompañadas de una bola de cremoso helado del sabor que elijas. Servidas con un toque de crema chantilly, chispas de colores y coronadas con una jugosa cereza. ¡Un postre irresistible que combina textura y dulzura en cada bocado!",
         prices: [
-          { label: "", value: 95 }
+          { label: "", value: 160 }
         ],
-        image: "https://images.pexels.com/photos/140831/pexels-photo-140831.jpeg?auto=compress&cs=tinysrgb&w=300",
+        image: tempura,
       }
     ]
   },
