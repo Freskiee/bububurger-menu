@@ -1,13 +1,13 @@
 import React from 'react';
-const fresa = '/src/assets/menu-images/malteada-fresa.png?url';
-const oreo = '/src/assets/menu-images/malteada-oreo.png?url';
-const mazapan = '/src/assets/menu-images/malteada-mazapan.png?url';
-const chocolate = '/src/assets/menu-images/malteada-chocolate.png?url';
-const algodon = '/src/assets/menu-images/malteada-algodon.png?url';
-const frutos = '/src/assets/menu-images/malteada-frutos.png?url';
-const vainilla = '/src/assets/menu-images/malteada-vainilla.png?url';
-const chicleAzul = '/src/assets/menu-images/malteada-chicle-azul.png?url';
-const chicleRosa = '/src/assets/menu-images/malteada-chicle-rosa.png?url';
+const fresa = '/menu-images/malteada-fresa.png';
+const oreo = '/menu-images/malteada-oreo.png';
+const mazapan = '/menu-images/malteada-mazapan.png';
+const chocolate = '/menu-images/malteada-chocolate.png';
+const algodon = '/menu-images/malteada-algodon.png';
+const frutos = '/menu-images/malteada-frutos.png';
+const vainilla = '/menu-images/malteada-vainilla.png';
+const chicleAzul = '/menu-images/malteada-chicle-azul.png';
+const chicleRosa = '/menu-images/malteada-chicle-rosa.png';
 
 
 
