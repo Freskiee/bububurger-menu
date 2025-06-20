@@ -99,17 +99,19 @@ const ProductCard: React.FC<ProductCardProps> = ({ product, category, products, 
   const closeCocktailsModal = () => setShowCocktailsModal(false);
 
   const handleTouchStart = (e: React.TouchEvent) => {
+    if (e.touches.length > 1) return; // Detectar zoom y no iniciar swipe
     touchStartX.current = e.touches[0].clientX;
   };
   const handleTouchEnd = (e: React.TouchEvent) => {
+    if (e.changedTouches.length > 1) return; // Detectar zoom y no finalizar swipe
     touchEndX.current = e.changedTouches[0].clientX;
     if (touchStartX.current !== null && touchEndX.current !== null) {
-      const diff = touchEndX.current - touchStartX.current;
-      if (diff > 60 && onPrev) {
-        onPrev();
-      } else if (diff < -60 && onNext) {
-        onNext();
-      }
+        const diff = touchEndX.current - touchStartX.current;
+        if (diff > 100 && onPrev) { // Aumentar la distancia mínima de deslizamiento
+            onPrev();
+        } else if (diff < -100 && onNext) { // Aumentar la distancia mínima de deslizamiento
+            onNext();
+        }
     }
     touchStartX.current = null;
     touchEndX.current = null;
