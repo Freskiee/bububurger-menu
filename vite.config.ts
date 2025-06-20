@@ -7,4 +7,9 @@ export default defineConfig({
   optimizeDeps: {
     exclude: ['lucide-react'],
   },
+  base: './',
+  build: {
+    assetsDir: 'assets',
+    assetsInlineLimit: 4096
+  }
 });
