@@ -107,9 +107,9 @@ const ProductCard: React.FC<ProductCardProps> = ({ product, category, products, 
     touchEndX.current = e.changedTouches[0].clientX;
     if (touchStartX.current !== null && touchEndX.current !== null) {
         const diff = touchEndX.current - touchStartX.current;
-        if (diff > 100 && onPrev) { // Aumentar la distancia mínima de deslizamiento
+        if (diff > 150 && onPrev) { // Aumentar la distancia mínima de deslizamiento
             onPrev();
-        } else if (diff < -100 && onNext) { // Aumentar la distancia mínima de deslizamiento
+        } else if (diff < -150 && onNext) { // Aumentar la distancia mínima de deslizamiento
             onNext();
         }
     }

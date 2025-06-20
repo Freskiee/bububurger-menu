@@ -88,7 +88,7 @@ const MenuSection: React.FC<MenuSectionProps> = ({ category, isFavorites = false
       style={sectionStyle}>
       <div className="container-fluid">
         <h3 className="section-title" style={{
-          background: isInfantil ? 'linear-gradient(135deg, rgba(255, 68, 130, 0.9), rgba(60, 192, 253, 0.9))' : 'linear-gradient(135deg, #ff9500, #000000)', // Degradado según la paleta
+          background: isInfantil ? 'linear-gradient(135deg, rgba(255, 68, 130, 0.9), rgba(60, 192, 253, 0.9))' : 'linear-gradient(135deg, #f2a130d8, #424141cf)', // Degradado según la paleta
           padding: '10px',
           borderRadius: '10px',
           display: 'inline-block',
