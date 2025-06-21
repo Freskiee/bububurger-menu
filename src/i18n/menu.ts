@@ -315,7 +315,7 @@ export const productTranslations: { [id: string]: ProductTranslation } = {
   b3: {
     es: {
       name: "OLÍMPICA",
-      description: "Ex-qui-si-ta, simplemente el mejor balance de sabor, 100 gr. de carne de res sazonada con la receta secreta de la casa, gratinada con queso manchego, tocino, y un par de deliciosos aros de cebolla con un toque de blue-cheese.",
+      description: "Ex-qui-si-ta, simplemente el mejor balance de sabor, 100 gr. de carne de res sazonada con la receta secreta de la casa, gratinada con queso manchego, tocino, y un par de deliciosos aros de cebolla con un toque de blue-cheese. Lechuga, jitomate, cebolla caramelizada, pepinillos, chiles, catsup, mostaza y mayonesa.",
       prices: [
         { label: "Sencilla", price: 170 },
         { label: "Doble", price: 185 }
@@ -323,7 +323,7 @@ export const productTranslations: { [id: string]: ProductTranslation } = {
     },
     en: {
       name: "OLYMPIC",
-      description: "Ex-qui-site, simply the best balance of flavor. 100g of beef seasoned with the house's secret recipe, topped with melted manchego cheese, bacon, and a couple of delicious onion rings with a touch of blue cheese.",
+      description: "Ex-qui-site, simply the best balance of flavor. 100g of beef seasoned with the house's secret recipe, topped with melted manchego cheese, bacon, and a couple of delicious onion rings with a touch of blue cheese. Lettuce, tomato, caramelized onion, pickles, peppers, ketchup, mustard, and mayonnaise.",
       prices: [
         { label: "Single", price: 170 },
         { label: "Double", price: 185 }
