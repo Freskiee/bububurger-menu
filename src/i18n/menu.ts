@@ -245,7 +245,7 @@ export const productTranslations: { [id: string]: ProductTranslation } = {
       name: "COSTILLAS DE ELOTE AMARILLO",
       description: "Estas costillitas de elote dulce amarillo, bañaditas con salsa Hot BBQ, Cajun, Tajín y un toque de perejil deshidratado con limón te harán bailar como texano. Son perfectas para compartir y calmar tus antojos, ¡así que prepárate para chuparte los dedos!",
       prices: [
-        { label: "", price: 120 }
+        { label: "", price: 170 }
       ]
     },
     en: {
@@ -513,7 +513,7 @@ export const productTranslations: { [id: string]: ProductTranslation } = {
       name: "COSTILLAS DE ELOTE AMARILLO",
       description: "Estas costillitas de elote dulce amarillo, bañaditas con salsa Hot BBQ, Cajun, Tajín y un toque de perejil deshidratado con limón te harán bailar como texano. Son perfectas para compartir y calmar tus antojos, ¡así que prepárate para chuparte los dedos!",
       prices: [
-        { label: "", price: 120 }
+        { label: "", price: 170 }
       ],
       sauces: [
         "bbq",
