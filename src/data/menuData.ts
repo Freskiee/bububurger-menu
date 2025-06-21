@@ -634,6 +634,7 @@ export const menuCategories: Category[] = [
         id: "bebida-2",
         name: "BOING",
         description: "Bebidas Boing de 355 ml en distintos sabores, elaboradas con fruta natural.",
+        flavors: ["Fresa", "Guayaba", "Mango", "Manzana", "Tamarindo", "Uva"],
         prices: [
           { label: "", value: 45 }
         ],

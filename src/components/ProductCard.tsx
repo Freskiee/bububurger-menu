@@ -1335,37 +1335,18 @@ const ProductCard: React.FC<ProductCardProps> = ({ product, category, products, 
         </Modal.Header>
         <Modal.Body style={{ backgroundColor: '#2c2c2c', color: '#fff', padding: '20px' }}>
           <ul style={{ listStyleType: 'none', padding: 0 }}>
-            {product.prices.map((price, index) => (
+            {boingFlavors.map((flavor, index) => (
               <li key={index} style={{ 
-                marginBottom: '10px',
-                fontSize: '1.2rem'
+                marginBottom: '15px',
+                fontSize: '1.3rem'
               }}>
-                {product.name}
-                <span style={{ 
-                  fontSize: '1.3rem',
-                  color: '#ff9800',
-                  float: 'right'
-                }}>${price.value}</span>
-                <hr style={{ margin: '10px 0', borderTop: '1px solid #ff9800' }} />
+                {flavor}
+                <hr style={{ margin: '12px 0', borderTop: '1px solid #ff9800' }} />
               </li>
             ))}
           </ul>
         </Modal.Body>
         <Modal.Footer style={{ backgroundColor: '#1e1e1e', borderTop: '1px solid #ff9800' }}>
-          {product.id === 'a1' && (
-            <button onClick={openAperitivosModal} style={{ 
-              padding: '8px 16px', 
-              backgroundColor: '#ff9800', 
-              color: '#fff', 
-              border: 'none', 
-              borderRadius: '5px', 
-              cursor: 'pointer', 
-              marginRight: '12px',
-              fontWeight: 'bold'
-            }}>
-              Ver aperitivos
-            </button>
-          )}
           <button onClick={() => setShowBoingModal(false)} style={{ 
             padding: '8px 16px', 
             backgroundColor: '#ff9800', 
