@@ -615,14 +615,14 @@ export const productTranslations: { [id: string]: ProductTranslation } = {
       name: "PAPAS A LA FRANCESA",
       description: "Generosa porción de papas corte recto, calientitas y bien fritas; acompañadas de Kétchup Heinz y queso amarillo tipo Cheddar. ¡Obviamente sazonadas con nuestros polvos mágicos!",
       prices: [
-        { label: "", price: 120 }
+        { label: "", price: 110 }
       ]
     },
     en: {
       name: "FRENCH FRIES",
       description: "Generous portion of straight-cut fries, hot and well-fried; served with Heinz Ketchup and cheddar cheese. Obviously seasoned with our magic powders!",
       prices: [
-        { label: "", price: 120 }
+        { label: "", price: 110 }
       ]
     }
   },
