@@ -279,18 +279,18 @@ export const productTranslations: { [id: string]: ProductTranslation } = {
       name: "LA SENSATA",
       description: "100 gr. de carne de res sazonada con la receta secreta de la casa. Lechuga, jitomate, cebolla caramelizada, pepinillos, chiles, catsup, mostaza y mayonesa.",
       prices: [
-        { label: "Sencilla", price: 135 },
-        { label: "Queso o Piña", price: 140 },
-        { label: "Queso y Piña", price: 145 }
+        { label: "Sencilla", price: 145 },
+        { label: "Queso o Piña", price: 150 },
+        { label: "Queso y Piña", price: 155 }
       ]
     },
     en: {
       name: "THE SENSIBLE ONE",
       description: "100 gr. of beef seasoned with the house's secret recipe. Lettuce, tomato, caramelized onion, pickles, peppers, ketchup, mustard, and mayonnaise.",
       prices: [
-        { label: "Single", price: 135 },
-        { label: "Cheese or Pineapple", price: 140 },
-        { label: "Cheese and Pineapple", price: 145 }
+        { label: "Single", price: 145 },
+        { label: "Cheese or Pineapple", price: 150 },
+        { label: "Cheese and Pineapple", price: 155 }
       ]
     }
   },
@@ -299,16 +299,16 @@ export const productTranslations: { [id: string]: ProductTranslation } = {
       name: "DOBLE MORAL",
       description: "Dos carnes de 100 gr. de res sazonadas con la receta secreta de la casa. Lechuga, jitomate, cebolla caramelizada, pepinillos, chiles, catsup, mostaza y mayonesa.",
       prices: [
-        { label: "Queso o Piña", price: 160 },
-        { label: "Queso y Piña", price: 175 }
+        { label: "Queso o Piña", price: 165 },
+        { label: "Queso y Piña", price: 180 }
       ]
     },
     en: {
       name: "DOUBLE MORAL",
       description: "Two 100 gr. beef patties seasoned with the house's secret recipe. Lettuce, tomato, caramelized onion, pickles, peppers, ketchup, mustard, and mayonnaise.",
       prices: [
-        { label: "Cheese or Pineapple", price: 160 },
-        { label: "Cheese and Pineapple", price: 175 }
+        { label: "Cheese or Pineapple", price: 165 },
+        { label: "Cheese and Pineapple", price: 180 }
       ]
     }
   },
@@ -335,16 +335,16 @@ export const productTranslations: { [id: string]: ProductTranslation } = {
       name: "TROPICAL - HAWAIANA",
       description: "La inconfundible hamburguesa hawaiana con su deliciosa piña tropical, asada lentamente a la parrilla, jamón Virginia, queso manchego y su tocino bien frito a la plancha. ¡Esta Bububurger te hará bailar el Waikiki! Lechuga, jitomate, cebolla caramelizada, pepinillos, chiles, catsup, mostaza y mayonesa.",
       prices: [
-        { label: "Sencilla", price: 170 },
-        { label: "Doble", price: 185 }
+        { label: "Sencilla", price: 175 },
+        { label: "Doble", price: 190 }
       ]
     },
     en: {
       name: "TROPICAL - HAWAIIAN",
       description: "The unmistakable Hawaiian burger with its delicious tropical pineapple, slowly grilled, Virginia ham, manchego cheese, and its perfectly fried bacon. This Bububurger will make you dance the Waikiki! Lettuce, tomato, caramelized onion, pickles, peppers, ketchup, mustard, and mayonnaise.",
       prices: [
-        { label: "Single", price: 170 },
-        { label: "Double", price: 185 }
+        { label: "Single", price: 175 },
+        { label: "Double", price: 190 }
       ]
     }
   },
@@ -541,16 +541,16 @@ export const productTranslations: { [id: string]: ProductTranslation } = {
       name: "HOT DOG CLÁSICO",
       description: "Salchicha a la parrilla en pan suave. Clásico, sin ingredientes extra.",
       prices: [
-        { label: "Salchicha de Pavo", price: 120 },
-        { label: "Salchicha de Res", price: 150 }
+        { label: "Salchicha de Pavo", price: 95 },
+        { label: "Salchicha de Res", price: 120 }
       ]
     },
     en: {
       name: "CLASSIC HOT DOG",
       description: "Grilled sausage in a soft bun. Classic, no extra toppings.",
       prices: [
-        { label: "Turkey Sausage", price: 120 },
-        { label: "Beef Sausage", price: 150 }
+        { label: "Turkey Sausage", price: 95 },
+        { label: "Beef Sausage", price: 120 }
       ]
     }
   },
