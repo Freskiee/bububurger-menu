@@ -385,7 +385,7 @@ export const menuCategories: Category[] = [
         ],
         image: crujipollo,
         sauces: [
-          "bbq miel",
+          // "bbq miel",
           "ajo parmesano",
           "teriyaki",
           "bbq",
@@ -437,7 +437,7 @@ export const menuCategories: Category[] = [
         ],
         image: ariWings,
         sauces: [
-          "bbq miel",
+          // "bbq miel",
           "ajo parmesano",
           "teriyaki",
           "bbq",
@@ -461,7 +461,7 @@ export const menuCategories: Category[] = [
         ],
         image: boneless,
         sauces: [
-          "bbq miel",
+          // "bbq miel",
           "ajo parmesano",
           "teriyaki",
           "bbq",
@@ -541,7 +541,7 @@ export const menuCategories: Category[] = [
         ],
         image: costillas,
         sauces: [
-          "bbq miel",
+          // "bbq miel",
           "ajo parmesano",
           "teriyaki",
           "bbq",

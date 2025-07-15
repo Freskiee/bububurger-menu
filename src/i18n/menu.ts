@@ -42,7 +42,7 @@ export const menuTranslations = {
 };
 
 export const sauceTranslations = {
-  bbqMiel: { es: "BBQ Miel", en: "Honey BBQ" },
+  // bbqMiel: { es: "BBQ Miel", en: "Honey BBQ" },
   ajoParmesano: { es: "Ajo Parmesano", en: "Garlic Parmesan" },
   teriyaki: { es: "Teriyaki", en: "Teriyaki" },
   bbq: { es: "BBQ", en: "BBQ" },
@@ -375,7 +375,7 @@ export const productTranslations: { [id: string]: ProductTranslation } = {
         { label: "Bañada", price: 175 }
       ],
       sauces: [
-        "bbq miel",
+        // "bbq miel",
         "ajo parmesano",
         "teriyaki",
         "bbq",
@@ -476,7 +476,7 @@ export const productTranslations: { [id: string]: ProductTranslation } = {
         { label: "", price: 315 }
       ],
       sauces: [
-        "bbq miel",
+        // "bbq miel",
         "ajo parmesano",
         "teriyaki",
         "bbq",
@@ -907,7 +907,7 @@ export const productTranslations: { [id: string]: ProductTranslation } = {
         { label: "15 Pzs", price: 270, note: "Incluye 3 salsas a elegir" }
       ],
       sauces: [
-        "bbq miel",
+        // "bbq miel",
         "ajo parmesano",
         "teriyaki",
         "bbq",
@@ -952,7 +952,7 @@ export const productTranslations: { [id: string]: ProductTranslation } = {
         { label: "1100 gr.", price: 605 }
       ],
       sauces: [
-        "bbq miel",
+        // "bbq miel",
         "ajo parmesano",
         "teriyaki",
         "bbq",
