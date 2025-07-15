@@ -685,24 +685,24 @@ export const menuCategories: Category[] = [
         ],
         image: bebidaPanditas,
       },
-      {
-        id: "bebida-8",
-        name: "CAFÉS",
-        description: "Cafés de la casa, con leche, capuchino, expreso, americano, etc.",
-        prices: [
-        ],
-        image: cafes,
-      },
-      {
-        id: "bebida-9",
-        name: "TISANAS NATURALES",
-        description: "Infusión de frutas y hierbas seleccionadas, ideal para cualquier momento del día. Disfrútala fría o caliente, con colar o sin colar, según tu preferencia. Refrescante, reconfortante y llena de sabor.",
-        flavors: ["Kiwi-Fresa", "Maracuyá", "Frutos Caribeños", "Fantasía Tropical", "Frutos Rojos"],
-        prices: [
-          { label: "", value: 80 }
-        ],
-        image: tisanas,
-      },
+      // {
+      //   id: "bebida-8",
+      //   name: "CAFÉS",
+      //   description: "Cafés de la casa, con leche, capuchino, expreso, americano, etc.",
+      //   prices: [
+      //   ],
+      //   image: cafes,
+      // },
+      // {
+      //   id: "bebida-9",
+      //   name: "TISANAS NATURALES",
+      //   description: "Infusión de frutas y hierbas seleccionadas, ideal para cualquier momento del día. Disfrútala fría o caliente, con colar o sin colar, según tu preferencia. Refrescante, reconfortante y llena de sabor.",
+      //   flavors: ["Kiwi-Fresa", "Maracuyá", "Frutos Caribeños", "Fantasía Tropical", "Frutos Rojos"],
+      //   prices: [
+      //     { label: "", value: 80 }
+      //   ],
+      //   image: tisanas,
+      // },
     ]
   },
   // 11. Bebidas Alcohólicas
@@ -712,14 +712,14 @@ export const menuCategories: Category[] = [
     icon: "",
     chefImage: chefPorCategoria["bubuchelas"],
     products: [
-      {
-        id: "a1",
-        name: "APERITIVOS",
-        description: "Para empezar con el pie derecho. Estos traguitos son ideales para ir calentando motores antes de la comida. Ligeros, sabrosos y con ese toque que te abre el apetito. ¡El preámbulo perfecto para lo que viene!",
-        prices: [
-        ],
-        image: aperitivos,
-      },
+      // {
+      //   id: "a1",
+      //   name: "APERITIVOS",
+      //   description: "Para empezar con el pie derecho. Estos traguitos son ideales para ir calentando motores antes de la comida. Ligeros, sabrosos y con ese toque que te abre el apetito. ¡El preámbulo perfecto para lo que viene!",
+      //   prices: [
+      //   ],
+      //   image: aperitivos,
+      // },
       {
         id: "a2",
         name: "COCTELES ESPECIALES",
@@ -822,15 +822,15 @@ export const menuCategories: Category[] = [
         ],
         image: tritones,
       },
-      {
-        id: "a12",
-        name: "BUBUCHELA ARTESANAL",
-        description: "Blanca: Blonde Ale con especias. Oscura: Del tipo Dubbel con notas de café",
-        prices: [
-          { label: "", value: 130 }
-        ],
-        image: bubuchelas,
-      },
+      // {
+      //   id: "a12",
+      //   name: "BUBUCHELA ARTESANAL",
+      //   description: "Blanca: Blonde Ale con especias. Oscura: Del tipo Dubbel con notas de café",
+      //   prices: [
+      //     { label: "", value: 130 }
+      //   ],
+      //   image: bubuchelas,
+      // },
       {
         id: "a13",
         name: "STRONGBOW",
@@ -851,14 +851,14 @@ export const menuCategories: Category[] = [
         ],
         image: destilados,
       },
-      {
-        id: "a15",
-        name: "DIGESTIVOS",
-        description: "El final perfecto para tu comida. Disfruta de nuestra selección de licores suaves y aromáticos, ideales para acompañar el postre o cerrar con broche de oro.",
-        prices: [
-        ],
-        image: digestivos,
-      },
+      // {
+      //   id: "a15",
+      //   name: "DIGESTIVOS",
+      //   description: "El final perfecto para tu comida. Disfruta de nuestra selección de licores suaves y aromáticos, ideales para acompañar el postre o cerrar con broche de oro.",
+      //   prices: [
+      //   ],
+      //   image: digestivos,
+      // },
     ]
   },
   // 12. Malteadas y Postres
@@ -889,11 +889,11 @@ export const menuCategories: Category[] = [
     ]
   },
   // 13. Extras
-  {
-    id: "extras",
-    name: "Extras",
-    icon: "",
-    chefImage: chefPorCategoria["cafe"],
-    products: []
-  }
+  // {
+  //   id: "extras",
+  //   name: "Extras",
+  //   icon: "",
+  //   chefImage: chefPorCategoria["cafe"],
+  //   products: []
+  // }
 ];

@@ -61,6 +61,37 @@ body {
   position: relative;
 }
 
+.category-arrow {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  z-index: 10;
+  background: rgba(255,255,255,0.85);
+  border: none;
+  border-radius: 50%;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.08);
+  width: 36px;
+  height: 36px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  transition: background 0.2s;
+  color: var(--primary-orange);
+}
+.category-arrow svg {
+  display: block;
+}
+.category-arrow-left {
+  left: 0;
+}
+.category-arrow-right {
+  right: 0;
+}
+.category-arrow:active {
+  background: rgba(255,106,0,0.15);
+}
+
 .category-scroll-container::-webkit-scrollbar {
   display: none;
 }
