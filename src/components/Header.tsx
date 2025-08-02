@@ -35,17 +35,15 @@ const Header: React.FC<{ setDarkMode?: (fn: (prev: boolean) => boolean) => void,
               src="/images/izettle.png" 
               alt="Chef" 
               style={{ 
-                width: '80px', 
-                height: '80px', 
+                width: '120px', 
+                height: '120px', 
                 objectFit: 'contain',
                 display: 'block',
                 margin: '0 auto'
               }} 
             />
           </div>
-          <h1 className="h2 fw-bold mb-1">
-            BUBUBURGER
-          </h1>
+          
           <div style={{
             fontFamily: 'Montserrat, Arial, sans-serif',
             fontSize: '1.25rem',

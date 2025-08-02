@@ -25,14 +25,15 @@ const HamburgerMenu = ({ setDarkMode, darkMode }: { setDarkMode: (fn: (prev: boo
           display: 'flex',
           alignItems: 'center',
           justifyContent: 'center',
-          fontSize: 24,
+          fontSize: 28,
           color: darkMode ? '#ffd740' : '#333',
           boxShadow: '0 2px 12px 0 rgba(0,0,0,0.18)',
-          cursor: 'pointer'
+          cursor: 'pointer',
+          transition: 'background 0.3s',
         }}
         aria-label={language === 'es' ? "Abrir menú" : "Open menu"}
       >
-        🍔
+        <span role="img" aria-label="hamburguesa" className="hamburger-emoji">🍔</span>
       </button>
 
       {/* Menú lateral */}
@@ -45,13 +46,14 @@ const HamburgerMenu = ({ setDarkMode, darkMode }: { setDarkMode: (fn: (prev: boo
             width: '100%',
             maxWidth: 320,
             height: 'auto',
-            background: darkMode ? 'rgba(30,30,30,0.97)' : 'rgba(255,255,255,0.97)',
+            background: darkMode ? '#23242a' : '#fff',
             zIndex: 2100,
             boxShadow: '-2px 0 16px 0 rgba(0,0,0,0.18)',
             display: 'flex',
             flexDirection: 'column',
-            padding: '32px 18px 18px 18px',
-            transition: 'right 0.2s'
+            transition: 'transform 0.35s cubic-bezier(.4,1.3,.5,1), opacity 0.25s',
+            transform: open ? 'translateX(0)' : 'translateX(100%)',
+            opacity: open ? 1 : 0,
           }}
         >
           {/* Botón cerrar */}
@@ -74,8 +76,7 @@ const HamburgerMenu = ({ setDarkMode, darkMode }: { setDarkMode: (fn: (prev: boo
 
           {/* Logo */}
           <div style={{ display: 'flex', justifyContent: 'center', alignItems: 'center', flexDirection: 'column', marginBottom: 24 }}>
-            <img src="/images/izettle.png" alt="Logo" style={{ width: 60, marginBottom: 8 }} />
-            <div style={{ color: darkMode ? '#ffd740' : '#333', fontWeight: 700, fontSize: 18, textTransform: 'uppercase' }}>BUBUBURGER</div>
+            <img src="/images/izettle.png" alt="Logo" style={{ width: 60, height: 60, marginBottom: 8, objectFit: 'contain' }} />
           </div>
 
           {/* Opciones y Redes sociales */}

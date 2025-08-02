@@ -88,12 +88,21 @@ const MenuSection: React.FC<MenuSectionProps> = ({ category, isFavorites = false
       style={sectionStyle}>
       <div className="container-fluid">
         <h3 className="section-title" style={{
-          background: isInfantil ? 'linear-gradient(135deg, rgba(255, 68, 130, 0.9), rgba(60, 192, 253, 0.9))' : 'linear-gradient(135deg, #f2a130d8, #424141cf)', // Degradado según la paleta
+          background: isInfantil
+            ? (isDark
+                ? 'linear-gradient(135deg, #ff5fa2 60%, #2c7ecf 100%)'
+                : 'linear-gradient(135deg, rgba(255, 68, 130, 0.92), rgba(60, 192, 253, 0.88))')
+            : (isDark
+                ? 'linear-gradient(90deg, #ff9800 0%, #ffb347 35%, #23242a 100%)'
+                : 'linear-gradient(90deg, #ffb347 0%, #ffe29a 35%, #23242a 100%)'),
           padding: '10px',
           borderRadius: '10px',
           display: 'inline-block',
           marginBottom: '16px',
-          color: '#ffffff'
+          color: isDark ? '#fff' : '#23242a',
+          textShadow: isDark
+            ? '0 2px 12px rgba(0,0,0,0.25), 0 1px 0 #ff9800'
+            : '0 2px 12px rgba(255,179,71,0.13), 0 1px 0 #fff'
         }}>
           {category.chefImage && (
             <img
@@ -222,7 +231,7 @@ const MenuSection: React.FC<MenuSectionProps> = ({ category, isFavorites = false
             }}>🍟</span>
           </div>
         )}
-        <div className="row g-4">
+        <div className="product-grid">
           {category.products.map((product, index) => (
             <div key={product.id} onClick={() => handleOpenModal(index)} style={{ cursor: 'pointer' }}>
               <ProductCard 
