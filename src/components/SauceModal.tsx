@@ -21,6 +21,7 @@ export const SauceModal: React.FC<SauceModalProps> = ({ isOpen, onClose }) => {
     { id: 'hotBbq', level: 2 },
     { id: 'tamarindo', level: 2 },
     { id: 'maggi', level: 2 },
+    { id: 'limonPiquin', level: 3 },
     { id: 'cajun', level: 3 },
     { id: 'brava', level: 3 },
     { id: 'mangoHabanero', level: 4 },

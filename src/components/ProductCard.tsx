@@ -1041,6 +1041,7 @@ const ProductCard: React.FC<ProductCardProps> = ({ product, category, products, 
               if (salsa.toLowerCase().includes('hot bbq')) level = 2;
               else if (salsa.toLowerCase().includes('tamarindo')) level = 2;
               else if (salsa.toLowerCase().includes('maggi')) level = 3;
+              else if (salsa.toLowerCase().includes('limon piquin')) level = 3;
               else if (salsa.toLowerCase().includes('cajún') || salsa.toLowerCase().includes('cajun')) level = 4;
               else if (salsa.toLowerCase().includes('brava')) level = 4;
               else if (salsa.toLowerCase().includes('mango habanero')) level = 5;

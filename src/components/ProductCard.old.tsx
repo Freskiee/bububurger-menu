@@ -15,6 +15,7 @@ const sauceColors = [
   '#ffb347', // hot bbq
   '#ffd166', // tamarindo
   '#b2f7ef', // maggi
+  '#f7b267', // limon piquin
   '#f7b267', // cajún
   '#ff8c42', // brava
   '#ff5e57', // mango habanero
