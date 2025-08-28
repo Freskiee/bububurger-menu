@@ -141,6 +141,8 @@ const MenuSection: React.FC<MenuSectionProps> = ({ category, isFavorites = false
             position: 'relative',
             overflow: 'hidden',
             textShadow: '0 2px 8px rgba(0,0,0,0.35)',
+            display: 'flex',
+            alignItems: 'center',
             justifyContent: 'center',
             maxWidth: 420,
             marginLeft: 'auto',
@@ -149,7 +151,8 @@ const MenuSection: React.FC<MenuSectionProps> = ({ category, isFavorites = false
             <span role="img" aria-label="papas" style={{ 
               fontSize: 22,
               filter: 'drop-shadow(0 2px 4px rgba(0,0,0,0.18))',
-              animation: 'bounce 2s infinite'
+              animation: 'bounce 2s infinite',
+              marginRight: 8
             }}>🍟</span>
             <span style={{
               color: '#fff',
@@ -158,8 +161,8 @@ const MenuSection: React.FC<MenuSectionProps> = ({ category, isFavorites = false
               textShadow: '0 2px 8px rgba(0,0,0,0.35)',
               fontSize: '0.98em',
               lineHeight: 1.18,
-              display: 'block',
-              maxWidth: 320
+              flex: 1,
+              textAlign: 'center'
             }}>
               {language === 'es' 
                 ? '¡Todas las Bububurgers incluyen 70g de papas a la francesa gratis! 🎉'
@@ -168,7 +171,8 @@ const MenuSection: React.FC<MenuSectionProps> = ({ category, isFavorites = false
             <span role="img" aria-label="papas" style={{ 
               fontSize: 22,
               filter: 'drop-shadow(0 2px 4px rgba(0,0,0,0.18))',
-              animation: 'bounce 2s infinite 1s'
+              animation: 'bounce 2s infinite 1s',
+              marginLeft: 8
             }}>🍟</span>
           </div>
         )}
