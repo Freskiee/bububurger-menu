@@ -49,6 +49,7 @@ export const sauceTranslations = {
   hotBbq: { es: "Hot BBQ", en: "Hot BBQ" },
   tamarindo: { es: "Tamarindo", en: "Tamarind" },
   maggi: { es: "Maggi", en: "Maggi" },
+  limonPiquin: { es: "Limon Piquin", en: "Lemon Pickle" },
   cajun: { es: "Cajún", en: "Cajun" },
   brava: { es: "Brava", en: "Brava" },
   mangoHabanero: { es: "Mango Habanero", en: "Mango Habanero" },

@@ -4,6 +4,9 @@ import ProductCard from './ProductCard';
 import { menuTranslations } from '../i18n/menu';
 import { LanguageContext } from '../App';
 
+// Utility to ensure only strings are rendered
+const safeString = (val: unknown): string => typeof val === 'string' ? val : '';
+
 interface MenuSectionProps {
   category: Category;
   isFavorites?: boolean;
@@ -113,16 +116,17 @@ const MenuSection: React.FC<MenuSectionProps> = ({ category, isFavorites = false
           )}
           <span>{category.icon}</span>
           <span>
-            {(() => {
-              const translation = menuTranslations[category.id as keyof typeof menuTranslations];
-              if (typeof translation === 'object' && 'es' in translation) {
-                return translation[language as 'es' | 'en'];
-              } else if (typeof translation === 'string') {
-                return translation;
-              }
-              return category.name || 'Traducción no disponible';
-            })()}
-          </span>
+  {(() => {
+    const translation = menuTranslations[category.id as keyof typeof menuTranslations];
+    if (typeof translation === 'object' && translation !== null && ('es' in translation || 'en' in translation)) {
+      return safeString(translation[language as 'es' | 'en']) || category.name || 'Traducción no disponible';
+    } else if (typeof translation === 'string') {
+      return translation;
+    }
+    // fallback: nunca devuelvas un objeto
+    return category.name || 'Traducción no disponible';
+  })()}
+</span>
         </h3>
         {/* Mensaje especial para hotdogs y bububurgers */}
         {category.id === 'bububurgers' && (
@@ -134,16 +138,6 @@ const MenuSection: React.FC<MenuSectionProps> = ({ category, isFavorites = false
             borderRadius: 14,
             padding: '10px 14px',
             marginBottom: 18,
-            display: 'flex',
-            alignItems: 'center',
-            gap: 10,
-            color: '#ffffff',
-            fontWeight: 800,
-            fontSize: '0.98em',
-            textAlign: 'center',
-            boxShadow: isDark 
-              ? '0 2px 8px 0 #ffb34733, 0 1px 0 #000' 
-              : '0 2px 8px 0 #ff980033, 0 1px 0 #fff',
             position: 'relative',
             overflow: 'hidden',
             textShadow: '0 2px 8px rgba(0,0,0,0.35)',

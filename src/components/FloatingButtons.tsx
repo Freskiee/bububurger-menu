@@ -1,7 +1,14 @@
-import React from 'react';
-import { Star, CreditCard, FileText, ArrowUp, Settings, Moon, Sun, Globe } from 'lucide-react';
-import { useContext, useState } from 'react';
+import React, { useState, useEffect, useRef, useContext } from 'react';
+import { Star, CreditCard, FileText, ArrowUp, Settings, Moon, Sun, Globe, Users, Briefcase } from 'lucide-react';
 import { LanguageContext } from '../App';
+
+let navigate: ((path: string) => void) | null = null;
+try {
+  // @ts-ignore
+  const { useNavigate } = require('react-router-dom');
+  // @ts-ignore
+  navigate = useNavigate();
+} catch {}
 
 interface FloatingButtonsProps {
   onRateClick: () => void;
@@ -11,55 +18,109 @@ interface FloatingButtonsProps {
   darkMode?: boolean;
 }
 
-const FloatingButtons: React.FC<FloatingButtonsProps> = ({ 
-  onRateClick, 
-  onPaymentClick, 
+const FloatingButtons: React.FC<FloatingButtonsProps> = ({
+  onRateClick,
+  onPaymentClick,
   onInvoiceClick,
   setDarkMode,
   darkMode
 }) => {
-  const scrollToTop = () => {
-    window.scrollTo({
-      top: 0,
-      behavior: 'smooth'
-    });
-  };
   const { language, toggleLanguage } = useContext(LanguageContext) as { language: 'es' | 'en', toggleLanguage: () => void };
+
+  const fabStackRef = useRef<HTMLDivElement | null>(null);
+  const recruitWrapRef = useRef<HTMLDivElement | null>(null);
+
   const [showConfig, setShowConfig] = useState(false);
+  const [showRecruit, setShowRecruit] = useState(false);
+  const [closingRecruit, setClosingRecruit] = useState(false);
+
+  const scrollToTop = () => window.scrollTo({ top: 0, behavior: 'smooth' });
+
+  const toggleRecruitMini = () => {
+    if (showRecruit) {
+      setClosingRecruit(true);
+      setTimeout(() => { setShowRecruit(false); setClosingRecruit(false); }, 160);
+    } else {
+      setShowRecruit(true);
+    }
+  };
+
+  // Click-outside global (cierra mini y config)
+  useEffect(() => {
+    const onDocClick = (e: MouseEvent) => {
+      const t = e.target as Node;
+
+      // recruit
+      if (showRecruit && recruitWrapRef.current && !recruitWrapRef.current.contains(t)) {
+        setClosingRecruit(true);
+        setTimeout(() => { setShowRecruit(false); setClosingRecruit(false); }, 160);
+      }
+
+      // config
+      const configPanel = document.querySelector('[data-config-panel="true"]');
+      const configBtn = document.querySelector('.floating-btn.config');
+      const insidePanel = !!(configPanel && configPanel.contains(t));
+      const onButton = !!(configBtn && configBtn.contains(t));
+      if (showConfig && !insidePanel && !onButton) setShowConfig(false);
+    };
+
+    document.addEventListener('mousedown', onDocClick);
+    return () => document.removeEventListener('mousedown', onDocClick);
+  }, [showRecruit, showConfig]);
 
   return (
     <div className="floating-buttons">
+      {/* FAB izquierdo (arriba) */}
       <button
         className="floating-btn scroll-top"
         onClick={scrollToTop}
         title="Volver arriba"
+        style={{ left: 20, bottom: 20, position: 'fixed' }}
       >
         <ArrowUp size={24} />
       </button>
-      <button
-        className="floating-btn rate"
-        onClick={onRateClick}
-        title="Califica tu experiencia"
-      >
-        <Star size={24} />
-      </button>
-      
-      <button
-        className="floating-btn payment"
-        onClick={onPaymentClick}
-        title="Métodos de pago"
-      >
-        <CreditCard size={24} />
-      </button>
 
-      <button
-        className="floating-btn invoice"
-        onClick={onInvoiceClick}
-        title="Solicitar factura"
-      >
-        <FileText size={24} />
-      </button>
-      {/* Botón flotante de configuración */}
+      {/* Stack derecho: usar SIEMPRE este único contenedor */}
+      <div className="fab-stack-right" ref={fabStackRef}>
+        {/* DOM en orden de ARRIBA a ABAJO, porque usamos column-reverse en CSS */}
+        {/* 4) Vacantes (nuevo) */}
+        <div className="fab-with-mini" ref={recruitWrapRef}>
+        <button
+  className="floating-btn recruit"
+  onClick={() => setShowRecruit(v => !v)}
+  title="Únete al equipo"
+>
+  <Briefcase size={24} />
+</button>
+          {showRecruit && (
+            <button
+              id="recruit-mini"
+              className={`floating-mini-btn recruit-mini ${closingRecruit ? 'closing' : ''}`}
+              onClick={() => { navigate ? navigate('/vacantes') : (window.location.href = '/vacantes'); }}
+              title="Únete al equipo"
+            >
+              Únete al equipo
+            </button>
+          )}
+        </div>
+
+        {/* 3) Métodos de pago */}
+        <button className="floating-btn payment" onClick={onPaymentClick} title="Métodos de pago">
+          <CreditCard size={24} />
+        </button>
+
+        {/* 2) Calificación */}
+        <button className="floating-btn rate" onClick={onRateClick} title="Califica tu experiencia">
+          <Star size={24} />
+        </button>
+
+        {/* 1) Facturas */}
+        <button className="floating-btn invoice" onClick={onInvoiceClick} title="Solicitar factura">
+          <FileText size={24} />
+        </button>
+      </div>
+
+      {/* Config */}
       <div style={{ position: 'relative', display: 'inline-block' }}>
         <button
           className="floating-btn config"
@@ -71,6 +132,7 @@ const FloatingButtons: React.FC<FloatingButtonsProps> = ({
         </button>
         {showConfig && (
           <div
+            data-config-panel="true"
             style={{
               position: 'absolute',
               bottom: 60,
