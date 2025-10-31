@@ -1,7 +1,7 @@
 import React, { useState, useContext } from 'react';
 import { LanguageContext } from '../App';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faFacebookF, faInstagram } from '@fortawesome/free-brands-svg-icons';
+import { faFacebookF, faInstagram, faTiktok } from '@fortawesome/free-brands-svg-icons';
 
 const HamburgerMenu = ({ setDarkMode, darkMode }: { setDarkMode: (fn: (prev: boolean) => boolean) => void, darkMode: boolean }) => {
   const [open, setOpen] = useState(false);
@@ -154,6 +154,24 @@ const HamburgerMenu = ({ setDarkMode, darkMode }: { setDarkMode: (fn: (prev: boo
               <FontAwesomeIcon icon={faInstagram} /> {language === 'es' ? 'Instagram' : 'Instagram'}
             </button>
             <button
+              onClick={() => window.open('https://www.tiktok.com/@bububurger0', '_blank')}
+              style={{
+                background: 'none',
+                border: 'none',
+                color: darkMode ? '#fff' : '#333',
+                fontSize: 20,
+                display: 'flex',
+                alignItems: 'center',
+                gap: 10,
+                cursor: 'pointer',
+                transition: 'color 0.3s'
+              }}
+              onMouseEnter={(e) => e.currentTarget.style.color = '#555'}
+              onMouseLeave={(e) => e.currentTarget.style.color = darkMode ? '#fff' : '#333'}
+            >
+              <FontAwesomeIcon icon={faTiktok} /> {language === 'es' ? 'TikTok' : 'TikTok'}
+            </button>
+            {/* <button
               onClick={() => window.open('https://bubu-proximamente.netlify.app/', '_blank')}
               style={{
                 background: 'none',
@@ -170,7 +188,7 @@ const HamburgerMenu = ({ setDarkMode, darkMode }: { setDarkMode: (fn: (prev: boo
               onMouseLeave={(e) => e.currentTarget.style.color = darkMode ? '#fff' : '#333'}
             >
               🌐 {language === 'es' ? 'Bububur-Web' : 'Bububur-Web'}
-            </button>
+            </button> */}
           </div>
         </div>
       )}
